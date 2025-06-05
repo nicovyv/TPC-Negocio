@@ -9,7 +9,7 @@ using dominio;
 
 namespace presentacion
 {
-    public partial class MarcasCategorias : System.Web.UI.Page
+    
     public partial class MarcasyCategorias : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
