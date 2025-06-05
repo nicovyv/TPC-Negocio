@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using dominio;
+using negocio;
 
 namespace presentacion
 {
@@ -35,12 +36,15 @@ namespace presentacion
 
         private void cargarCategorias()
         {
-            List<Marca> listaCategorias = new List<Marca>
-            {
-                new Marca { Descripcion = "DESKTOPS" },
-                new Marca { Descripcion = "NOTEBOOKS" },
-                new Marca { Descripcion = "CELULARES" }
-             };
+            List<Categoria> listaCategorias = new List<Categoria>();
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            //{
+            //    new Marca { Descripcion = "DESKTOPS" },
+            //    new Marca { Descripcion = "NOTEBOOKS" },
+            //    new Marca { Descripcion = "CELULARES" }
+            // };
+            //dgvCategorias.DataSource = listaCategorias;
+            listaCategorias = negocio.listar();
             dgvCategorias.DataSource = listaCategorias;
             dgvCategorias.DataBind();
         }
