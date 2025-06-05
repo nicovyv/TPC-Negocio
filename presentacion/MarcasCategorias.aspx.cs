@@ -10,7 +10,7 @@ using negocio;
 
 namespace presentacion
 {
-    
+
     public partial class MarcasyCategorias : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -47,6 +47,34 @@ namespace presentacion
             listaCategorias = negocio.listar();
             dgvCategorias.DataSource = listaCategorias;
             dgvCategorias.DataBind();
+        }
+
+        protected void btnGuardarCatNueva_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtNuevaCat.Text))
+            {
+                try
+                {
+                    Categoria nueva = new Categoria();
+                    nueva.Descripcion = txtNuevaCat.Text.Trim();
+
+                    CategoriaNegocio negocio = new CategoriaNegocio();
+                    negocio.agregar(nueva);
+                    cargarCategorias();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }else
+            {
+
+                lblErrorCatNueva.Text = "Se debe completar el campo";
+                lblErrorCatNueva.CssClass = "text-danger";
+                lblErrorCatNueva.Visible = true;
+                
+            }
         }
     }
 }
