@@ -65,7 +65,8 @@ namespace presentacion
                 catch (Exception ex)
                 {
 
-                    throw ex;
+                    //throw ex;
+                    Response.Redirect("Error.aspx", false);
                 }
             }else
             {
