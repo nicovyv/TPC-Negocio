@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="MarcasCategorias.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -82,6 +83,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarcasCategorias.aspx.cs">
+      <DependentUpon>MarcasCategorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarcasCategorias.aspx.designer.cs">
+      <DependentUpon>MarcasCategorias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
