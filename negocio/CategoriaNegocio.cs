@@ -51,7 +51,8 @@ namespace negocio
 
             try
             {
-                datos.setConsulta("INSERT INTO CATEGORIAS (DESCRIPCION) VALUES('" + nuevo.Descripcion + "')");
+                datos.setConsulta("INSERT INTO CATEGORIAS (DESCRIPCION) VALUES(@Descripcion)");
+                datos.setParametro("@Descripcion", nuevo.Descripcion);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
