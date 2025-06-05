@@ -23,18 +23,25 @@
     <main >
           <div class="container border border-dark border-3 rounded" style="margin-top:100px;width:40%;padding: 10px;">
               
-              <form>
+              <form id="formLogin" runat="server" >
                   <div class="form-group">
                       <label for="exampleInputEmail1">Usuario</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Usuario">
-                     
+                      
+                        <asp:TextBox runat="server"  type="text" CssClass="form-control" ID="txtNombreUsuario"  placeholder="Ingrese Usuario"/>
                   </div>
                   <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <asp:TextBox runat="server" type="password" CssClass="form-control" id="txtPassword" placeholder="Ingrese su contraseña"/>
                   </div>
                   <div class="d-flex justify-content-end">
-                      <button type="submit" class="btn btn-primary mt-1">Acceder</button>
+                      <asp:Button
+                          runat="server" 
+                          OnClick="btnLogin_Click"
+                          type="submit"
+                          ID="btnLogin" 
+                          CssClass="btn btn-primary mt-1"
+                          Text="Acceder">
+                      </asp:Button>
                       <a class="ml-3" href="Productos.aspx">Cancelar</a>
                   </div>
                   
