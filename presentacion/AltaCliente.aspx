@@ -20,6 +20,7 @@
             </div>
             <div class="mb-3">
                 <asp:button text="Agregar" runat="server" ID="btnAgregarCliente"/>
+                    <a href="Clientes.aspx">Cancelar</a>
             </div>
         </div>
     </div>
