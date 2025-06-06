@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
         <h2>Compras</h2>
-    <a href="#">Nueva Compra</a>
+    <a href="FormCompra.aspx">Nueva Compra</a>
     <div class="row">
             <div class="col-6">
                 <div class="mb-3">

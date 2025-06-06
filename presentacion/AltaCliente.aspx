@@ -19,7 +19,7 @@
                 <asp:textbox runat="server" ID="txtEmailCliente" cssclass="form-control" placeholder="ejemplo@email.com"/>
             </div>
             <div class="mb-3">
-                <asp:button text="Agregar" runat="server" ID="btnAgregarCliente"/>
+                <asp:button text="Registrar Cliente" runat="server" ID="btnAgregarCliente"/>
                     <a href="Clientes.aspx">Cancelar</a>
             </div>
         </div>

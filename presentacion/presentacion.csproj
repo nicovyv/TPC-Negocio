@@ -71,6 +71,8 @@
     <Content Include="Clientes.aspx" />
     <Content Include="Compras.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="FormCompra.aspx" />
+    <Content Include="FormVenta.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="MarcasCategorias.aspx">
@@ -109,6 +111,20 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompra.aspx.cs">
+      <DependentUpon>FormCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormCompra.aspx.designer.cs">
+      <DependentUpon>FormCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormVenta.aspx.cs">
+      <DependentUpon>FormVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormVenta.aspx.designer.cs">
+      <DependentUpon>FormVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -3,15 +3,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Proveedores</h2>
-    <a href="AltaCliente.aspx">Agregar Nuevo Cliente</a>
+    <a href="#">Agregar Nuevo Proveedor</a>
     <div class="row">
             <div class="col-6">
                 <div class="mb-3">
                     <label class="form-label" runat="server">Filtrar</label>
-                    <asp:TextBox runat="server" ID="txtFiltroCliente" CssClass="form-control" AutoPostBack="true" />
+                    <asp:TextBox runat="server" ID="txtFiltroProveedor" CssClass="form-control" AutoPostBack="true" />
                 </div>
             </div>
            
         </div>
-    <h3>Clientes Registrados</h3>
+    <h3>Proveedores Registrados</h3>
 </asp:Content>
