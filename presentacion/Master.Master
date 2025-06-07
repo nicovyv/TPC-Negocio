@@ -37,8 +37,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="Ventas.aspx">Ventas</a>
                                 </li>
+                                
                                 <li class="nav-item">
-                                    <a class="nav-link" href="MarcasCategorias.aspx">Marcas y Categorias                                                                                    </a>
+                                    <a class="nav-link" href="Marcas.aspx">Marcas                                                                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Categorias.aspx">Categorias                                                                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="Login.aspx">ACCEDER</a>
