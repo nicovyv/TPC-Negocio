@@ -67,7 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaCategoria.aspx" />
     <Content Include="AltaCliente.aspx" />
+    <Content Include="AltaMarca.aspx" />
     <Content Include="Clientes.aspx" />
     <Content Include="Compras.aspx" />
     <Content Include="Error.aspx" />
@@ -85,12 +87,26 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaCategoria.aspx.cs">
+      <DependentUpon>AltaCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaCategoria.aspx.designer.cs">
+      <DependentUpon>AltaCategoria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AltaCliente.aspx.cs">
       <DependentUpon>AltaCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AltaCliente.aspx.designer.cs">
       <DependentUpon>AltaCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaMarca.aspx.cs">
+      <DependentUpon>AltaMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaMarca.aspx.designer.cs">
+      <DependentUpon>AltaMarca.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
