@@ -15,7 +15,7 @@ namespace negocio
 
             try
             {
-                accesoDatos.setConsulta("select id, email, password, nombre, apellido, tipousuario,  from Usuarios where email=@email and password=@password");
+                accesoDatos.setConsulta("select id, email, password, nombre, apellido, tipousuario from Usuarios where email=@email and password=@password");
                 accesoDatos.setParametro("@email", usuario.Email);
                 accesoDatos.setParametro("@password", usuario.Password);
                 accesoDatos.ejecutarLectura();

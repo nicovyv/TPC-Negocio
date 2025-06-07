@@ -8,7 +8,19 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            try
+            {
+                if (Security.isLogin(Session["usuario"]))
+
+                    Response.Redirect("Productos.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -24,7 +36,7 @@ namespace presentacion
                 if (usuarioNegocio.Login(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    Response.Redirect("PerfilUsuario.aspx", false);
+                    Response.Redirect("Perfil.aspx", false);
                 }
                 else
                 {
