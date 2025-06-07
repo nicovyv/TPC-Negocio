@@ -27,7 +27,7 @@
                   <div class="form-group">
                       <label for="exampleInputEmail1">Usuario</label>
                       
-                        <asp:TextBox runat="server"  type="text" CssClass="form-control" ID="txtNombreUsuario"  placeholder="Ingrese Usuario"/>
+                        <asp:TextBox runat="server"  type="text" CssClass="form-control" ID="txtEmail"  placeholder="Ingrese Usuario"/>
                   </div>
                   <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
@@ -40,7 +40,8 @@
                           type="submit"
                           ID="btnLogin" 
                           CssClass="btn btn-primary mt-1"
-                          Text="Acceder">
+                          Text="Acceder"
+                          >
                       </asp:Button>
                       <a class="ml-3" href="Productos.aspx">Cancelar</a>
                   </div>
