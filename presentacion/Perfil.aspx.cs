@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,28 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (!IsPostBack)
+                {
+                    if (Security.isLogin(Session["usuario"]))
+                    {
+                        Usuario usuario = (Usuario)Session["usuario"];
+                        txtEmail.Text = usuario.Email;
+                        txtEmail.ReadOnly = true;
+
+                        txtNombre.Text = usuario.Nombre;
+                        txtApellido.Text = usuario.Apellido;
+
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.ToString());
+            }
 
         }
     }
