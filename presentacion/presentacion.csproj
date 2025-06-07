@@ -77,6 +77,7 @@
     <Content Include="FormVenta.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="Marcas.aspx" />
     <Content Include="MarcasCategorias.aspx">
       <BrowseToURL>~/MarcasCategorias.aspx</BrowseToURL>
     </Content>
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Marcas.aspx.cs">
+      <DependentUpon>Marcas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Marcas.aspx.designer.cs">
+      <DependentUpon>Marcas.aspx</DependentUpon>
     </Compile>
     <Compile Include="MarcasCategorias.aspx.cs">
       <DependentUpon>MarcasCategorias.aspx</DependentUpon>
