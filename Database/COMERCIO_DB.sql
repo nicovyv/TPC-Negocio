@@ -43,6 +43,19 @@ Ganancia DECIMAL (5, 2) NOT NULL CHECK (Ganancia >= 0),
 PrecioCompra MONEY NOT NULL CHECK (PrecioCompra >= 0),
 Activo BIT NOT NULL DEFAULT 1
 );
+CREATE TABLE Usuarios(
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[email] [varchar](100) NOT NULL,
+	[password] [varchar](20) NOT NULL,
+	[nombre] [varchar](50) NULL,
+	[apellido] [varchar](50) NULL,
+	[TipoUsuario] [int] NOT NULL
+) 
+INSERT INTO Usuarios(email,password,nombre,apellido,TipoUsuario)
+VALUES 
+('test1@email.com',123456,'Leonel','Messi',1),
+('test2@email.com',222222,'Angel','Di Maria',2),
+('test3@email.com',111111,'Emiliano','Martinez',3);
 
 
 
