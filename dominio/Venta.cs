@@ -10,7 +10,7 @@ namespace dominio
         public int Cantidad { get; set; }
         public Cliente Cliente { get; set; }
         public DateTime Fecha { get; set; }
-        public Factura Factura { get; set; }
+        
 
         public TipoUsuario Vendedor { get; set; }
     }
