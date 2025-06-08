@@ -49,7 +49,7 @@ CREATE TABLE Usuarios(
 	[password] [varchar](20) NOT NULL,
 	[nombre] [varchar](50) NULL,
 	[apellido] [varchar](50) NULL,
-	[TipoUsuario] [int] NOT NULL
+	[admin] [bit] NOT NULL
 ) 
 INSERT INTO Usuarios(email,password,nombre,apellido,TipoUsuario)
 VALUES 

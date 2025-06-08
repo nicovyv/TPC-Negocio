@@ -9,13 +9,65 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
+        public List<Usuario> Listar()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Usuario> usuarios = new List<Usuario>();
+            try
+            {
+                datos.setConsulta("select email, password, nombre, apellido, admin from Usuarios");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.Id = (int)datos.Lector["id"];
+                    usuario.Email = (string)datos.Lector["email"];
+                    usuario.Password = (string)datos.Lector["password"];    
+                    usuario.Nombre = (string)datos.Lector["nombre"];
+                    usuario.Apellido = (string)datos.Lector["apellido"];
+                    usuario.Admin = (bool)datos.Lector["admin"];
+                    usuarios.Add(usuario);
+
+                }
+
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+        public void AgregarUsuario(Usuario usuarioNuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO Usuarios(email, password, nombre, apellido, admin) VALUES (@email, @password, @nombre, @apellido,@admin)");
+                datos.setParametro("@email", usuarioNuevo.Email);
+                datos.setParametro("@password", usuarioNuevo.Password);
+                datos.setParametro("@nombre", usuarioNuevo.Nombre);
+                datos.setParametro("@apellido", usuarioNuevo.Apellido);
+                datos.setParametro("@admin", usuarioNuevo.Admin);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+
+        }
         public bool Login(Usuario usuario)
         {
             AccesoDatos accesoDatos = new AccesoDatos();
 
             try
             {
-                accesoDatos.setConsulta("select id, email, password, nombre, apellido, tipousuario from Usuarios where email=@email and password=@password");
+                accesoDatos.setConsulta("select id, email, password, nombre, apellido, admin from Usuarios where email=@email and password=@password");
                 accesoDatos.setParametro("@email", usuario.Email);
                 accesoDatos.setParametro("@password", usuario.Password);
                 accesoDatos.ejecutarLectura();
@@ -23,7 +75,7 @@ namespace negocio
                 if (accesoDatos.Lector.Read())
                 {
                     usuario.Id = (int)accesoDatos.Lector["id"];
-                    usuario.TipoUsuario = (TipoUsuario)accesoDatos.Lector["TipoUsuario"];
+                    usuario.Admin = (bool)accesoDatos.Lector["admin"];
 
 
                     if (!(accesoDatos.Lector["nombre"] is DBNull))
