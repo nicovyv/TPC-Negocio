@@ -26,7 +26,7 @@
 
      <div class="row">
          <div class="col-md-4">
-             <asp:Button Text="Guardar" ID="btnGuardar"  CssClass="btn btn-primary" runat="server" />
+             <asp:Button Text="Guardar" OnClick="btnGuardar_Click" ID="btnGuardar"  CssClass="btn btn-primary" runat="server" />
              <a href="Productos.aspx">Regresar</a>
          </div>
      </div>

@@ -39,7 +39,7 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
-        public void modificarUsuario(Usuario usuario)
+        public void ModificarUsuario(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try

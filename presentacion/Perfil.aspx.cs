@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -36,6 +37,30 @@ namespace presentacion
                 Session.Add("error", ex.ToString());
             }
 
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {   
+                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                Usuario usuario = (Usuario)Session["usuario"];
+
+                usuario.Nombre = txtNombre.Text;
+                usuario.Apellido = txtApellido.Text;
+                usuario.Email = txtEmail.Text;
+
+                usuarioNegocio.ModificarUsuario(usuario);
+                
+
+
+           
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+
+            }
         }
     }
 }
