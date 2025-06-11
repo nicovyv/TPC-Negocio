@@ -22,33 +22,14 @@ namespace negocio
                 usuario = null;
             }
 
-            //if (usuario.TipoUsuario.Equals(2) )
-            if(usuario.Admin)
+            
+            if(usuario!=null)
             {
-                return true;
+                return usuario.Admin;
             }
             else { return false; }
         }
-        public static bool isGerente(object user)
-        {
-            Usuario usuario;
-
-            if (user != null)
-            {
-                usuario = (Usuario)user;
-            }
-            else
-            {
-                usuario = null;
-            }
-
-            //if (usuario.TipoUsuario.Equals(3))
-            if (!(usuario.Admin))
-            {
-                return true;
-            }
-            else { return false; }
-        }
+       
         public static bool isLogin(object user)
         {
             Usuario usuario;
