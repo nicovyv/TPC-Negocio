@@ -22,7 +22,8 @@ namespace negocio
                 usuario = null;
             }
 
-            if (usuario.TipoUsuario.Equals(2) )
+            //if (usuario.TipoUsuario.Equals(2) )
+            if(usuario.Admin)
             {
                 return true;
             }
@@ -41,7 +42,8 @@ namespace negocio
                 usuario = null;
             }
 
-            if (usuario.TipoUsuario.Equals(3))
+            //if (usuario.TipoUsuario.Equals(3))
+            if (!(usuario.Admin))
             {
                 return true;
             }

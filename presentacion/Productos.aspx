@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-6">
                     <div class="mb-3">
-                        <button class="form-label" runat="server">Nueva Categoría</button>
+                        <button class="form-label" runat="server">Nueva Producto</button>
                     </div>
                 </div>
             </div>

@@ -12,6 +12,6 @@ namespace dominio
         public DateTime Fecha { get; set; }
         
 
-        public TipoUsuario Vendedor { get; set; }
+        //public TipoUsuario Vendedor { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace presentacion
                     negocio.agregar(nueva);
                     cargarCategorias();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                     //throw ex;
