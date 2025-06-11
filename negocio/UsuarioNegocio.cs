@@ -83,27 +83,6 @@ namespace negocio
             finally { datos.cerrarConexion(); }
 
         }
-        public void actualizar(Usuario usuario)
-        {
-            AccesoDatos accesoDatos = new AccesoDatos();
-            try
-            {
-                accesoDatos.setConsulta("UPDATE USERS set email=@email, nombre = @nombre, apellido = @apellido,  where Id = @id");
-                accesoDatos.setParametro("@email", usuario.Email);
-                accesoDatos.setParametro("@nombre", usuario.Nombre);
-                accesoDatos.setParametro("@apellido", usuario.Apellido);
-               
-               
-                accesoDatos.setParametro("@id", usuario.Id);
-                accesoDatos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally { accesoDatos.cerrarConexion(); }
-        }
         public bool Login(Usuario usuario)
         {
             AccesoDatos accesoDatos = new AccesoDatos();
