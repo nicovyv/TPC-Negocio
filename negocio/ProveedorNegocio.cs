@@ -25,7 +25,7 @@ namespace negocio
                     Proveedor proveedor = new Proveedor();
                     proveedor.Id = (int)datos.Lector["ID"];
                     proveedor.Nombre = (string)datos.Lector["Nombre"];
-                    proveedor.Email=(string)datos.Lector["Email"];
+                    proveedor.Email = (string)datos.Lector["Email"];
                     proveedor.Direccion = (string)datos.Lector["Direccion"];
                     proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
                     proveedor.Telefono = (int)datos.Lector["Telefono"];
@@ -48,9 +48,9 @@ namespace negocio
 
             }
         }
-   
 
-     public void agregarProveedor(Proveedor proveedor)
+
+        public void agregarProveedor(Proveedor proveedor)
         {
             AccesoDatos accesoDatos = new AccesoDatos();
 
@@ -76,6 +76,37 @@ namespace negocio
                 accesoDatos.cerrarConexion();
             }
         }
+
+        public void modificarProveedor(Proveedor proveedor)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+
+            try
+            {
+                accesoDatos.setConsulta("UPDATE PROVEEDORES SET NOMBRE = @NOMBRE, EMAIL = @EMAIL, DIRECCION = @DIRECCION, CUILCUIT = @CUILCUIT, TELEFONO = @TELEFONO WHERE ID = @ID");
+                accesoDatos.setParametro("@ID", proveedor.Id);
+                accesoDatos.setParametro("@NOMBRE", proveedor.Nombre);
+                accesoDatos.setParametro("@EMAIL", proveedor.Email);
+                accesoDatos.setParametro("@DIRECCION", proveedor.Direccion);
+                accesoDatos.setParametro("@CUILCUIT", proveedor.CuilCuit);
+                accesoDatos.setParametro("@TELEFONO", proveedor.Telefono);
+
+                accesoDatos.ejecutarAccion();
+            }
+              
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
     }
+
+
 
 }
