@@ -13,8 +13,8 @@ Descripcion VARCHAR (50) NOT NULL UNIQUE,
 Activo BIT NOT NULL DEFAULT 1
 );
 
-INSERT INTO Categorias (Descripcion) 
-VALUES ('DESKTOPS'),('NOTEBOOKS'),('CELULARES')
+GO
+
 
 
 CREATE TABLE Marcas (
@@ -22,6 +22,8 @@ ID INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
 Descripcion VARCHAR (50) NOT NULL UNIQUE,
 Activo BIT NOT NULL DEFAULT 1
 );
+
+GO
 
 CREATE TABLE Clientes (
 ID INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
@@ -34,6 +36,8 @@ Activo BIT NOT NULL DEFAULT 1
 );
 
 
+GO
+
 CREATE TABLE Proveedores (
 ID INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
 Nombre VARCHAR (50) NOT NULL UNIQUE,
@@ -43,6 +47,8 @@ CuilCuit VARCHAR (50) NOT NULL,
 Telefono INT NOT NULL,
 Activo BIT NOT NULL DEFAULT 1
 );
+
+GO
 
 CREATE TABLE Productos (
 ID INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
@@ -58,19 +64,33 @@ Ganancia DECIMAL (5, 2) NOT NULL CHECK (Ganancia >= 0),
 PrecioCompra MONEY NOT NULL CHECK (PrecioCompra >= 0),
 Activo BIT NOT NULL DEFAULT 1
 );
+
+GO
 CREATE TABLE Usuarios(
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[email] [varchar](100) NOT NULL,
-	[password] [varchar](20) NOT NULL,
-	[nombre] [varchar](50) NULL,
-	[apellido] [varchar](50) NULL,
-	[admin] [bit] NOT NULL
+ID INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
+Email VARCHAR (100) NOT NULL UNIQUE,
+Pass VARCHAR (20) NOT NULL,
+Nombre VARCHAR (50) NOT NULL,
+Apellido VARCHAR (50) NOT NULL,
+Admin BIT NOT NULL,
+Activo BIT NOT NULL DEFAULT 1
 ) 
-INSERT INTO Usuarios(email,password,nombre,apellido,TipoUsuario)
+
+
+GO
+
+--INSERTS
+
+INSERT INTO Categorias (Descripcion) 
+VALUES ('DESKTOPS'),('NOTEBOOKS'),('CELULARES')
+
+GO
+
+INSERT INTO Usuarios(Email, Pass, Nombre, Apellido, Admin)
 VALUES 
 ('test1@email.com',123456,'Leonel','Messi',1),
-('test2@email.com',222222,'Angel','Di Maria',2),
-('test3@email.com',111111,'Emiliano','Martinez',3);
+('test2@email.com',222222,'Angel','Di Maria',0),
+('test3@email.com',111111,'Emiliano','Martinez',0);
 
 
 
