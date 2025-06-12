@@ -66,12 +66,12 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("INSERT INTO Usuarios(email, password, nombre, apellido, admin) VALUES (@email, @password, @nombre, @apellido,@admin)");
+                datos.setConsulta("INSERT INTO Usuarios(email, password, nombre, apellido, admin) VALUES (@email, @password, @nombre, @apellido,0)");
                 datos.setParametro("@email", usuarioNuevo.Email);
                 datos.setParametro("@password", usuarioNuevo.Password);
                 datos.setParametro("@nombre", usuarioNuevo.Nombre);
                 datos.setParametro("@apellido", usuarioNuevo.Apellido);
-                datos.setParametro("@admin", usuarioNuevo.Admin);
+                
                 datos.ejecutarAccion();
 
             }
