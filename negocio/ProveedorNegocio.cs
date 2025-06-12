@@ -105,6 +105,25 @@ namespace negocio
                 accesoDatos.cerrarConexion();
             }
         }
+
+        public void eliminarProveedor(int Id)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setConsulta("DELETE FROM PROVEEDORES WHERE ID = @ID");
+                accesoDatos.setParametro("ID", Id);
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
     }
 
 
