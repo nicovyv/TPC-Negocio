@@ -48,5 +48,34 @@ namespace negocio
 
             }
         }
+   
+
+     public void agregarProveedor(Proveedor proveedor)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+
+
+            try
+            {
+                accesoDatos.setConsulta("INSERT INTO PROVEEDORES (NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO) VALUES (@NOMBRE, @EMAIL, @DIRECCION, @CUILCUIT, @TELEFONO)");
+                accesoDatos.setParametro("@NOMBRE", proveedor.Nombre);
+                accesoDatos.setParametro("@EMAIL", proveedor.Email);
+                accesoDatos.setParametro("@DIRECCION", proveedor.Direccion);
+                accesoDatos.setParametro("@CUILCUIT", proveedor.CuilCuit);
+                accesoDatos.setParametro("@TELEFONO", proveedor.Telefono);
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
     }
+
 }
