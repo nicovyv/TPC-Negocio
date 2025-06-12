@@ -16,7 +16,7 @@ namespace negocio
 
             try
             {
-                datos.setConsulta("SELECT ID, NOMBRE FROM PROVEEDORES");
+                datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES");
                 datos.ejecutarLectura();
 
 
@@ -25,6 +25,10 @@ namespace negocio
                     Proveedor proveedor = new Proveedor();
                     proveedor.Id = (int)datos.Lector["ID"];
                     proveedor.Nombre = (string)datos.Lector["Nombre"];
+                    proveedor.Email=(string)datos.Lector["Email"];
+                    proveedor.Direccion = (string)datos.Lector["Direccion"];
+                    proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
+                    proveedor.Telefono = (int)datos.Lector["Telefono"];
 
                     listaProveedores.Add(proveedor);
 
