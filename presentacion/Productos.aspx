@@ -6,17 +6,31 @@
 
 
     <div>
-        <h1>Lista de Productos</h1>
+        <h1>Productos</h1>
+
+        <div class="row">
+            <div class="col-8">
+                <label class="form-label" runat="server">Buscador:</label>
+            </div>
+            <div class="col-10 d-flex">
+                <label class="form-label" runat="server">Nombre del Producto</label>
+                <asp:TextBox runat="server" ID="txtBuscador" CssClass="form-control" AutoPostBack="true" />
+                <asp:Button Text="Buscar" runat="server" />
+            </div>
+        </div>
+
+
         <div class="row">
             <div class="col-6">
                 <div class="mb-3">
-                    <label class="form-label" runat="server">Filtrar</label>
-                    <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" />
+                    <label class="form-label" runat="server">Filtrar:</label>
                 </div>
-                <div class="col-6">
-                    <div class="mb-3">
-                        <button class="form-label" runat="server">Nueva Producto</button>
-                    </div>
+                <div class="col-12">
+                    <label class="form-label" runat="server">Marca:</label>
+                    <asp:DropDownList ID="ddlFiltroMarca" runat="server"></asp:DropDownList>
+                    <label class="form-label" runat="server">Categoria:</label>
+                    <asp:DropDownList ID="ddlFiltroCategoria" runat="server"></asp:DropDownList>
+                    <asp:Button Text="Ver productos dados de baja" runat="server" />
                 </div>
             </div>
 
@@ -26,12 +40,24 @@
             CssClass="table table-dark table-hover" AutoGenerateColumns="false"
             AllowPaging="true" PageSize="5">
             <Columns>
+                <asp:BoundField HeaderText="Id" DataField="Id" />
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-                <asp:BoundField HeaderText="StockActual" DataField="StockActual" />
+                <asp:BoundField HeaderText="Marca" DataField="Marca" />
+                <asp:BoundField HeaderText="Categoria" DataField="Categoria" />
+                <asp:BoundField HeaderText="Stock" DataField="StockActual" />
+                <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
+                <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Ver Detalle" />
+                <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Modificar" />
                 <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Eliminar" />
             </Columns>
         </asp:GridView>
+    </div>
+
+
+    <div class="col-6">
+        <div class="mb-3">
+            <button class="form-label" runat="server">Nuevo Producto</button>
+        </div>
     </div>
 </asp:Content>
