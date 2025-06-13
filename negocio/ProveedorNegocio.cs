@@ -9,14 +9,21 @@ namespace negocio
 {
     public class ProveedorNegocio
     {
-        public List<Proveedor> listar()
+        public List<Proveedor> listar(string id="")
         {
             List<Proveedor> listaProveedores = new List<Proveedor>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES");
+                if (id != "")
+                {
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES WHERE ID = " + id);
+                }
+                else
+                {
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES");
+                }               
                 datos.ejecutarLectura();
 
 

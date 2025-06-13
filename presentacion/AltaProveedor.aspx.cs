@@ -13,9 +13,27 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+                string id = Request.QueryString["id"];
+                if (!string.IsNullOrEmpty(id))
+                {
+                    lblTitulo.Text = "Formulario Modificación de Proveedor";
+                    btnAgregarProveedor.Text = "Modificar";
+                    ProveedorNegocio negocio = new ProveedorNegocio();
+                    Proveedor seleccionado = (negocio.listar(id))[0];
+
+                    Session.Add("proveedoreSeleccionado", seleccionado);
+
+                    txtNombreProveedor.Text = seleccionado.Nombre;
+                    txtCuilProveedor.Text = seleccionado.CuilCuit;
+                    txtDireccion.Text = seleccionado.Direccion;
+                    txtEmailProveedor.Text = seleccionado.Email;
+                    txtTelefono.Text = seleccionado.Telefono.ToString();
+                }
+            }
         }
-
         protected void btnAgregarProveedor_Click(object sender, EventArgs e)
         {
             Proveedor nuevo = new Proveedor(); 
@@ -27,9 +45,22 @@ namespace presentacion
             nuevo.Telefono = int.Parse(txtTelefono.Text);
             nuevo.Email = txtEmailProveedor.Text;
 
-            proveedorNegocio.agregarProveedor(nuevo);
+            if (Request.QueryString["id"] != null)
+            {
+                nuevo.Id = int.Parse(Request.QueryString["id"]);
+                proveedorNegocio.modificarProveedor(nuevo);
+                Session.Remove("proveedorSeleccionado");
+            }
+
+            else
+            {
+                proveedorNegocio.agregarProveedor(nuevo);
+            }
 
             Response.Redirect("Proveedores.aspx");
+            Context.ApplicationInstance.CompleteRequest();
+
+            
         }
     }
 }

@@ -35,6 +35,10 @@ namespace presentacion
                 negocio.eliminarProveedor(id);
                 cargarProveedores();
             }
+            else if (e.CommandName == "Modificar")
+            {
+                Response.Redirect("AltaProveedor.aspx?id=" + id);
+            }
         }
     }
 }
