@@ -9,15 +9,23 @@ namespace negocio
 {
     public class ClienteNegocio
     {
-        public List<Cliente> listar()
+        public List<Cliente> listar(string id= "")
         {
             List<Cliente> listaClientes = new List<Cliente>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES");
-                datos.ejecutarLectura();
+                
+                if(id!= "")
+                {
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES WHERE ID = "+ id);
+                }
+                else
+                {
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES");
+                }
+                    datos.ejecutarLectura();
 
 
                 while (datos.Lector.Read())

@@ -10,14 +10,32 @@ namespace presentacion
 {
     public partial class AltaCliente : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+                if (id != null & !IsPostBack)
+                {
+                    btnAgregarCliente.Text = "Modificar";
+                    ClienteNegocio negocio = new ClienteNegocio();
+                    Cliente seleccionado = (negocio.listar(id))[0];
 
+                    Session.Add("clienteSeleccionado", seleccionado);
+                    
+                    txtNombreCliente.Text = seleccionado.Nombre;
+                    txtCuilCliente.Text = seleccionado.CuilCuit;
+                    txtDireccion.Text = seleccionado.Direccion;
+                    txtEmailCliente.Text = seleccionado.Email;
+                    txtTelefono.Text = seleccionado.Telefono.ToString();
+                }            
+            }
         }
 
         protected void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            Cliente nuevo = new Cliente(); 
+            Cliente nuevo = new Cliente();
             ClienteNegocio clienteNegocio = new ClienteNegocio();
 
             nuevo.Nombre = txtNombreCliente.Text;
@@ -26,7 +44,17 @@ namespace presentacion
             nuevo.Telefono = int.Parse(txtTelefono.Text);
             nuevo.Email = txtEmailCliente.Text;
 
-            clienteNegocio.agregarCliente(nuevo);
+            if (Request.QueryString["id"] != null)
+            {
+                nuevo.Id = int.Parse(Request.QueryString["id"]);
+                clienteNegocio.modificarCliente(nuevo);
+            }
+
+            else
+            {
+                clienteNegocio.agregarCliente(nuevo);
+
+            }
 
             Response.Redirect("Clientes.aspx");
             

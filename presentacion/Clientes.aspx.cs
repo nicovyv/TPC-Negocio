@@ -34,7 +34,7 @@ namespace presentacion
             }
             else if(e.CommandName == "Modificar")
             {
-                
+                Response.Redirect("AltaCliente.aspx?id=" + id);
             }
         }
     }
