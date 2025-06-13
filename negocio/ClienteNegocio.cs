@@ -47,6 +47,33 @@ namespace negocio
                 datos.cerrarConexion();
 
             }
-        }      
+        }
+
+        public void agregarCliente(Cliente cliente)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+
+
+            try
+            {
+                accesoDatos.setConsulta("INSERT INTO CLIENTES (NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO) VALUES (@NOMBRE, @EMAIL, @DIRECCION, @CUILCUIT, @TELEFONO)");
+                accesoDatos.setParametro("@NOMBRE", cliente.Nombre);
+                accesoDatos.setParametro("@EMAIL", cliente.Email);
+                accesoDatos.setParametro("@DIRECCION", cliente.Direccion);
+                accesoDatos.setParametro("@CUILCUIT", cliente.CuilCuit);
+                accesoDatos.setParametro("@TELEFONO", cliente.Telefono);
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
     }
 }
