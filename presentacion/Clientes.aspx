@@ -14,4 +14,17 @@
            
         </div>
     <h3>Clientes Registrados</h3>
+
+     <asp:GridView id="dgvClientes" runat="server" DataKeyNames="Id"
+     CssClass="table table-dark table-hover" AutoGenerateColumns="false"
+     AllowPaging="false" PageSize="5">
+     <Columns>
+         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+         <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
+         <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
+         <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+         <asp:BoundField HeaderText="Email" DataField="Email" />
+         <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Seleccionar" />         
+     </Columns>
+ </asp:GridView>
 </asp:Content>
