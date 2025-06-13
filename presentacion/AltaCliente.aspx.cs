@@ -15,9 +15,11 @@ namespace presentacion
         {
             if (!IsPostBack)
             {
-                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
-                if (id != null & !IsPostBack)
+
+                string id = Request.QueryString["id"];
+                if (!string.IsNullOrEmpty(id))
                 {
+                    lblTitulo.Text = "Formulario Modificación de Cliente";
                     btnAgregarCliente.Text = "Modificar";
                     ClienteNegocio negocio = new ClienteNegocio();
                     Cliente seleccionado = (negocio.listar(id))[0];
@@ -48,15 +50,16 @@ namespace presentacion
             {
                 nuevo.Id = int.Parse(Request.QueryString["id"]);
                 clienteNegocio.modificarCliente(nuevo);
+                Session.Remove("clienteSeleccionado");
             }
 
             else
             {
                 clienteNegocio.agregarCliente(nuevo);
-
             }
 
             Response.Redirect("Clientes.aspx");
+            Context.ApplicationInstance.CompleteRequest();
             
         }
     }

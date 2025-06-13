@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Formulario de Alta Cliente</h2>
+    <asp:Label runat="server" ID="lblTitulo" CssClass="h2" Text="Formulario de Alta Cliente"></asp:Label>
+    
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
