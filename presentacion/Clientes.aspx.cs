@@ -9,7 +9,10 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarClientes();
+            if (!IsPostBack)
+            {
+                cargarClientes();
+            }
         }
 
         private void cargarClientes()
@@ -19,6 +22,14 @@ namespace presentacion
             listaClientes = negocio.listar();
             dgvClientes.DataSource = listaClientes;
             dgvClientes.DataBind();
+        }
+        protected void dgvClientes_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+
+            ClienteNegocio negocio = new ClienteNegocio();
+            negocio.eliminarCliente(id);
+            cargarClientes();
         }
     }
 }

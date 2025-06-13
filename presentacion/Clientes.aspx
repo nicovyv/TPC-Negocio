@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Clientes.aspx.cs" Inherits="presentacion.Clientes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Clientes.aspx.cs" Inherits="presentacion.Clientes"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -18,14 +18,19 @@
 
      <asp:GridView id="dgvClientes" runat="server" DataKeyNames="Id"
      CssClass="table table-dark table-hover" AutoGenerateColumns="false"
-     AllowPaging="false" PageSize="5">
+     AllowPaging="false" PageSize="5" OnRowCommand="dgvClientes_RowCommand">
      <Columns>
          <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
          <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
          <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
          <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
          <asp:BoundField HeaderText="Email" DataField="Email" />
-         <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Seleccionar" />         
+         <asp:TemplateField HeaderText="Eliminar">
+             <ItemTemplate>
+                 <asp:Button Text="Eliminar" CssClass="btn btn-danger" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+             </ItemTemplate>
+         </asp:TemplateField>  
+         <asp:CommandField HeaderText="Seleccionado" ShowSelectButton="True" SelectText="Seleccionar" />         
      </Columns>
  </asp:GridView>
 </asp:Content>

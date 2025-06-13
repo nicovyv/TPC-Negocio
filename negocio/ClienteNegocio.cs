@@ -23,7 +23,7 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     Cliente cliente = new Cliente();
-                    cliente.Id = (int)datos.Lector["ID"];
+                    cliente.Id = (int)datos.Lector["Id"];
                     cliente.Nombre = (string)datos.Lector["Nombre"];
                     cliente.Email = (string)datos.Lector["Email"];
                     cliente.Direccion = (string)datos.Lector["Direccion"];
