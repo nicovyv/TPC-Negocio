@@ -3,7 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Clientes</h2>
-    <a href="AltaCliente.aspx">Agregar Nuevo Cliente</a>
+    
+    <a class="btn btn-dark" href="AltaCliente.aspx">Nuevo Cliente</a>
     <div class="row">
             <div class="col-6">
                 <div class="mb-3">

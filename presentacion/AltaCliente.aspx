@@ -8,19 +8,27 @@
         <div class="col-6">
             <div class="mb-3">
                 <label for="txtNombreCliente" class="form-label">Nombre</label>
-                <asp:textbox runat="server" ID="txtNombreCliente" cssclass="form-control" />
+                <asp:TextBox runat="server" ID="txtNombreCliente" CssClass="form-control" />
             </div>
             <div class="mb-3">
                 <label for="txtCuilCliente" class="form-label">Cuil/Cuit</label>
-                <asp:textbox runat="server" ID="txtCuilCliente" cssclass="form-control" />
+                <asp:TextBox runat="server" ID="txtCuilCliente" CssClass="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="txtDireccion" class="form-label">Direccion</label>
+                <asp:TextBox runat="server" ID="txtDireccion" CssClass="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="txtTelefono" class="form-label">Telefono</label>
+                <asp:TextBox runat="server" ID="txtTelefono" CssClass="form-control" />
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email</label>
-                <asp:textbox runat="server" ID="txtEmailCliente" cssclass="form-control" placeholder="ejemplo@email.com"/>
+                <asp:TextBox runat="server" ID="txtEmailCliente" CssClass="form-control" placeholder="ejemplo@email.com" />
             </div>
             <div class="mb-3">
-                <asp:button text="Registrar Cliente" runat="server" ID="btnAgregarCliente"/>
-                    <a href="Clientes.aspx">Cancelar</a>
+                <asp:Button class="btn btn-dark" Text="Registrar Cliente" runat="server" ID="btnAgregarCliente" OnClick="btnAgregarCliente_Click" />
+                <a class="btn btn-dark" href="Clientes.aspx">Cancelar</a>
             </div>
         </div>
     </div>
