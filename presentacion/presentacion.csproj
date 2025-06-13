@@ -76,6 +76,7 @@
     <Content Include="Compras.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="FormCompra.aspx" />
+    <Content Include="FormProductos.aspx" />
     <Content Include="FormVenta.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
@@ -150,6 +151,13 @@
     </Compile>
     <Compile Include="FormCompra.aspx.designer.cs">
       <DependentUpon>FormCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductos.aspx.cs">
+      <DependentUpon>FormProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormProductos.aspx.designer.cs">
+      <DependentUpon>FormProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormVenta.aspx.cs">
       <DependentUpon>FormVenta.aspx</DependentUpon>

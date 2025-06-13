@@ -27,9 +27,9 @@
                 </div>
                 <div class="col-12">
                     <label class="form-label" runat="server">Marca:</label>
-                    <asp:DropDownList ID="ddlFiltroMarca" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlFiltroMarca" CssClass="form-select" runat="server"></asp:DropDownList>
                     <label class="form-label" runat="server">Categoria:</label>
-                    <asp:DropDownList ID="ddlFiltroCategoria" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlFiltroCategoria" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:Button Text="Ver productos dados de baja" runat="server" />
                 </div>
             </div>
@@ -57,7 +57,8 @@
 
     <div class="col-6">
         <div class="mb-3">
-            <button class="form-label" runat="server">Nuevo Producto</button>
+            <%--<button class="form-label" runat="server" >Nuevo Producto</button>--%>
+            <a href="FormProductos.aspx">Nuevo Producto</a>
         </div>
     </div>
 </asp:Content>
