@@ -28,7 +28,13 @@ namespace presentacion
         }
         protected void dgvProveedores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
+            int id = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName == "Eliminar")
+            {
+                ProveedorNegocio negocio = new ProveedorNegocio();
+                negocio.eliminarProveedor(id);
+                cargarProveedores();
+            }
         }
     }
 }
