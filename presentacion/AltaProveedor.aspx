@@ -26,7 +26,7 @@
             <asp:TextBox runat="server" ID="txtEmailProveedor" CssClass="form-control" placeholder="ejemplo@email.com" />
         </div>
         <div class="mb-3">
-            <asp:Button class="btn btn-dark" Text="Registrar Proveedor" runat="server" ID="btnAgregarProveedor" />
+            <asp:Button class="btn btn-dark" Text="Registrar Proveedor" runat="server" ID="btnAgregarProveedor" OnClick="btnAgregarProveedor_Click" />
             <a class="btn btn-dark" href="Proveedores.aspx">Cancelar</a>
         </div>
     </div>
