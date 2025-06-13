@@ -26,10 +26,16 @@ namespace presentacion
         protected void dgvClientes_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
-
-            ClienteNegocio negocio = new ClienteNegocio();
-            negocio.eliminarCliente(id);
-            cargarClientes();
+            if(e.CommandName=="Eliminar")
+            {
+                ClienteNegocio negocio = new ClienteNegocio();
+                negocio.eliminarCliente(id);
+                cargarClientes();
+            }
+            else if(e.CommandName == "Modificar")
+            {
+                
+            }
         }
     }
 }

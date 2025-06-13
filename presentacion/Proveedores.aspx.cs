@@ -13,5 +13,10 @@ namespace presentacion
         {
 
         }
+
+        protected void dgvProveedores_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
     }
 }
