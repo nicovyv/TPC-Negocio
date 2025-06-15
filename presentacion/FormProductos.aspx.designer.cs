@@ -24,6 +24,15 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.TextBox txtCodProd;
 
         /// <summary>
+        /// Control txtNombreProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreProd;
+
+        /// <summary>
         /// Control txtDescProd.
         /// </summary>
         /// <remarks>
@@ -51,13 +60,22 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.DropDownList ddlCatProd;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtPrecioCompraProd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtPrecioCompraProd;
+
+        /// <summary>
+        /// Control txtPrecioVentaProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrecioVentaProd;
 
         /// <summary>
         /// Control txtGananciaProd.
@@ -69,6 +87,24 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.TextBox txtGananciaProd;
 
         /// <summary>
+        /// Control txtStockMinimoProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStockMinimoProd;
+
+        /// <summary>
+        /// Control txtStockActualProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStockActualProd;
+
+        /// <summary>
         /// Control cblProveedoresProd.
         /// </summary>
         /// <remarks>
@@ -76,5 +112,23 @@ namespace presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList cblProveedoresProd;
+
+        /// <summary>
+        /// Control btnGuardarProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarProd;
+
+        /// <summary>
+        /// Control btnCancelarProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarProd;
     }
 }
