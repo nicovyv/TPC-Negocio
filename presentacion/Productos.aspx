@@ -40,12 +40,11 @@
             CssClass="table table-dark table-hover" AutoGenerateColumns="false"
             AllowPaging="true" PageSize="5">
             <Columns>
-                <asp:BoundField HeaderText="Id" DataField="Id" />
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="Marca" DataField="Marca" />
-                <asp:BoundField HeaderText="Categoria" DataField="Categoria" />
-                <asp:BoundField HeaderText="Stock" DataField="StockActual" />
+                <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
+                <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
+                <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" />
                 <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
                 <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Ver Detalle" />
                 <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Modificar" />
