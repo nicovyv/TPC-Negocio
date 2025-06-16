@@ -27,11 +27,11 @@
                 <label for="ddlCatProd" class="form-label">Categoria: </label>
                 <asp:DropDownList runat="server" ID="ddlCatProd" CssClass="form-select"></asp:DropDownList>
             </div>
-            <div class="mb-3 d-flex">
+            <div class="mb-3 d-flex" ID="divPrecioCompra" runat="server" >
                 <label for="txtPrecioCompraProd" class="form-label">Precio Compra: </label>
                 <asp:TextBox runat="server" ID="txtPrecioCompraProd" CssClass="form-control" />
             </div>
-            <div class="mb-3 d-flex">
+            <div class="mb-3 d-flex" ID="divPrecioVenta" runat="server" >
                 <label for="txtPrecioVentaProd" class="form-label">Precio Venta: </label>
                 <asp:TextBox runat="server" ID="txtPrecioVentaProd" CssClass="form-control" />
             </div>
@@ -43,17 +43,17 @@
                 <label for="txtStockMinimoProd" class="form-label">Stock Minimo: </label>
                 <asp:TextBox runat="server" ID="txtStockMinimoProd" CssClass="form-control" />
             </div>
-            <div class="mb-3 d-flex">
+            <div class="mb-3 d-flex" ID="divStockActual" runat="server" >
                 <label for="txtStockActualProd" class="form-label">Stock Actual: </label>
                 <asp:TextBox runat="server" ID="txtStockActualProd" CssClass="form-control" />
             </div>
             <div class="mb-3 d-flex">
                 <label for="txtProveedoresPord" class="form-label">Proveedores: </label>
-                <asp:CheckBoxList ID="cblProveedoresProd" RepeatDirection="Vertical" RepeatColumns="1" runat="server"></asp:CheckBoxList>
+                <asp:CheckBoxList ID="cblProveedoresProd" RepeatDirection="Vertical" RepeatColumns="1" runat="server" CssClass="list-group"></asp:CheckBoxList>
             </div>
 
             <div class="mb-3">
-                <asp:Button ID="btnGuardarProd" runat="server" Text="Guardar" CssClass="btn btn-primary"  />
+                <asp:Button ID="btnGuardarProd" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardarProd_Click" />
                 <asp:Button ID="btnCancelarProd" runat="server" Text="Cancelar" CssClass="btn btn-secondary"  />
             </div>
 

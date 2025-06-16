@@ -57,5 +57,74 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+
+
+        public bool ValidaCodigoProducto(string codProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setConsulta("SELECT COUNT(*) FROM Productos WHERE CodProd = @cod");
+                datos.setParametro("@cod", codProd);
+                datos.ejecutarLectura();
+
+                int aux = datos.Lector.GetInt32(0);
+
+                if (aux > 0)
+                {
+                    return false;
+                }
+                else
+                    return true;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
+
+
+
+        public void Agregar(Producto nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+
+            try
+            {
+                datos.setConsulta("INSERT INTO Productos (CodProd, Nombre, Descripcion, IDCategoria, IDMarca, Precio, StockMinimo, StockActual, Ganancia, PrecioCompra)VALUES(@cod, @nombre, @desc, @idCat, @idMarca, 0, @stockMinimo, 0, @ganancia, 0)");
+                datos.setParametro("@cod", nuevo.Codigo);
+                datos.setParametro("@nombre", nuevo.Nombre);
+                datos.setParametro("@desc", nuevo.Descripcion);
+                datos.setParametro("@idMarca", nuevo.Marca.Id);
+                datos.setParametro("@stockMinimo", nuevo.StockMinimo);
+                datos.setParametro("@ganancia", nuevo.Ganancia);
+                datos.setParametro("@idCat", nuevo.Categoria.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
     }
 }

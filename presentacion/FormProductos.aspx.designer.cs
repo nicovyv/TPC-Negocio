@@ -60,6 +60,15 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.DropDownList ddlCatProd;
 
         /// <summary>
+        /// Control divPrecioCompra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPrecioCompra;
+
+        /// <summary>
         /// Control txtPrecioCompraProd.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrecioCompraProd;
+
+        /// <summary>
+        /// Control divPrecioVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPrecioVenta;
 
         /// <summary>
         /// Control txtPrecioVentaProd.
@@ -94,6 +112,15 @@ namespace presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStockMinimoProd;
+
+        /// <summary>
+        /// Control divStockActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStockActual;
 
         /// <summary>
         /// Control txtStockActualProd.
