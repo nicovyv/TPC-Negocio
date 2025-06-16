@@ -35,7 +35,7 @@ namespace negocio
                     proveedor.Email = (string)datos.Lector["Email"];
                     proveedor.Direccion = (string)datos.Lector["Direccion"];
                     proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
-                    proveedor.Telefono = (int)datos.Lector["Telefono"];
+                    proveedor.Telefono = (string)datos.Lector["Telefono"];
 
                     listaProveedores.Add(proveedor);
 

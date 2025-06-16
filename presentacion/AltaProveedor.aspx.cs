@@ -42,7 +42,7 @@ namespace presentacion
             nuevo.Nombre = txtNombreProveedor.Text;
             nuevo.CuilCuit = txtCuilProveedor.Text;
             nuevo.Direccion = txtDireccion.Text;
-            nuevo.Telefono = int.Parse(txtTelefono.Text);
+            nuevo.Telefono = txtTelefono.Text;
             nuevo.Email = txtEmailProveedor.Text;
 
             if (Request.QueryString["id"] != null)
