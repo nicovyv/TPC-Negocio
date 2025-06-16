@@ -24,6 +24,15 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.TextBox txtCodProd;
 
         /// <summary>
+        /// Control lblErrorCodProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorCodProd;
+
+        /// <summary>
         /// Control txtNombreProd.
         /// </summary>
         /// <remarks>
@@ -33,6 +42,15 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.TextBox txtNombreProd;
 
         /// <summary>
+        /// Control lblErrorNombreProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorNombreProd;
+
+        /// <summary>
         /// Control txtDescProd.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescProd;
+
+        /// <summary>
+        /// Control lblErrorDescProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorDescProd;
 
         /// <summary>
         /// Control ddlMarcaProd.
@@ -105,6 +132,15 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.TextBox txtGananciaProd;
 
         /// <summary>
+        /// Control lblErrorGananciaProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorGananciaProd;
+
+        /// <summary>
         /// Control txtStockMinimoProd.
         /// </summary>
         /// <remarks>
@@ -112,6 +148,15 @@ namespace presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStockMinimoProd;
+
+        /// <summary>
+        /// Control lblErrorStockMinimoProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorStockMinimoProd;
 
         /// <summary>
         /// Control divStockActual.

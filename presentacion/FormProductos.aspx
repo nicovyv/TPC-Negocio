@@ -10,14 +10,17 @@
             <div class="mb-3 d-flex">
                 <label for="txtCodProd" class="form-label">Codigo: </label>
                 <asp:TextBox runat="server" ID="txtCodProd" CssClass="form-control" />
+                <asp:Label runat="server" ID="lblErrorCodProd" visible="false"></asp:Label>
             </div>
             <div class="mb-3 d-flex">
                 <label for="txtNombreProd" class="form-label">Nombre: </label>
                 <asp:TextBox runat="server" ID="txtNombreProd" CssClass="form-control" />
+                <asp:Label runat="server" ID="lblErrorNombreProd" visible="false"></asp:Label>
             </div>
             <div class="mb-3 d-flex">
                 <label for="txtDescProd" class="form-label">Descripción: </label>
                 <asp:TextBox runat="server" ID="txtDescProd" CssClass="form-control" />
+                <asp:Label runat="server" ID="lblErrorDescProd" visible="false"></asp:Label>
             </div>
             <div class="mb-3 d-flex">
                 <label for="ddlMarcaProd" class="form-label">Marca: </label>
@@ -38,10 +41,12 @@
             <div class="mb-3 d-flex">
                 <label for="txtGananciaProd" class="form-label">% Ganancia: </label>
                 <asp:TextBox runat="server" ID="txtGananciaProd" CssClass="form-control" />
+                <asp:Label runat="server" ID="lblErrorGananciaProd" visible="false"></asp:Label>
             </div>
             <div class="mb-3 d-flex">
                 <label for="txtStockMinimoProd" class="form-label">Stock Minimo: </label>
                 <asp:TextBox runat="server" ID="txtStockMinimoProd" CssClass="form-control" />
+                <asp:Label runat="server" ID="lblErrorStockMinimoProd" visible="false"></asp:Label>
             </div>
             <div class="mb-3 d-flex" ID="divStockActual" runat="server" >
                 <label for="txtStockActualProd" class="form-label">Stock Actual: </label>

@@ -70,11 +70,12 @@ namespace negocio
                 datos.setParametro("@cod", codProd);
                 datos.ejecutarLectura();
 
-                int aux = datos.Lector.GetInt32(0);
 
-                if (aux > 0)
+
+                if (datos.Lector.Read())
                 {
-                    return false;
+                    int aux = datos.Lector.GetInt32(0);
+                    return aux == 0;
                 }
                 else
                     return true;

@@ -82,7 +82,16 @@ namespace presentacion
             try
             {
 
-                if (!negocio.ValidaCodigoProducto(txtCodProd.Text)){
+                if (!ValidarCamposObligatorios())
+                {
+                    return;
+                }
+
+                if (!negocio.ValidaCodigoProducto(txtCodProd.Text))
+                {
+                    lblErrorCodProd.Text = "El código de producto ya existe";
+                    lblErrorCodProd.CssClass = "text-danger";
+                    lblErrorCodProd.Visible = true;
                     return;
                 }
 
@@ -97,8 +106,27 @@ namespace presentacion
                 nuevo.Categoria = new Categoria();
                 nuevo.Categoria.Id = int.Parse(ddlCatProd.SelectedValue);
 
-                nuevo.Ganancia = float.Parse(txtGananciaProd.Text);
-                nuevo.StockMinimo = int.Parse(txtStockMinimoProd.Text);
+
+                if (!float.TryParse(txtGananciaProd.Text, out float ganancia))
+                {
+                    lblErrorGananciaProd.Text = "Debe ingresar un número válido";
+                    lblErrorGananciaProd.Visible = true;
+                    return;
+                }
+
+                //nuevo.Ganancia = float.Parse(txtGananciaProd.Text);
+                nuevo.Ganancia = ganancia;
+
+
+                if (!int.TryParse(txtStockMinimoProd.Text, out int stockMinimo))
+                {
+                    lblErrorStockMinimoProd.Text = "Debe ingresar un número válido";
+                    lblErrorStockMinimoProd.Visible = true;
+                    return;
+                }
+                //nuevo.StockMinimo = int.Parse(txtStockMinimoProd.Text);
+                nuevo.StockMinimo = stockMinimo;
+              
 
 
                 nuevo.PrecioCompra = 0;
@@ -120,5 +148,64 @@ namespace presentacion
 
 
         }
+
+
+
+
+        private bool ValidarCamposObligatorios()
+        {
+            bool valida = true;
+
+            lblErrorCodProd.Visible = false;
+            lblErrorNombreProd.Visible = false;
+            lblErrorDescProd.Visible = false;
+            lblErrorGananciaProd.Visible = false;
+
+            if (string.IsNullOrEmpty(txtCodProd.Text))
+            {
+                lblErrorCodProd.Text = "CAMPO REQUERIDO";
+                lblErrorCodProd.CssClass = "text-danger";
+                lblErrorCodProd.Visible = true;
+
+                valida = false;
+            }
+
+            if (string.IsNullOrEmpty(txtNombreProd.Text))
+            {
+                lblErrorNombreProd.Text = "CAMPO REQUERIDO";
+                lblErrorNombreProd.CssClass = "text-danger";
+                lblErrorNombreProd.Visible = true;
+
+                valida = false;
+            }
+
+
+            if (string.IsNullOrEmpty(txtDescProd.Text))
+            {
+                lblErrorDescProd.Text = "CAMPO REQUERIDO";
+                lblErrorDescProd.CssClass = "text-danger";
+                lblErrorDescProd.Visible = true;
+
+                valida = false;
+            }
+
+            if (string.IsNullOrEmpty(txtGananciaProd.Text))
+            {
+                lblErrorGananciaProd.Text = "CAMPO REQUERIDO";
+                lblErrorGananciaProd.CssClass = "text-danger";
+                lblErrorGananciaProd.Visible = true;
+
+                valida = false;
+            }
+
+
+
+
+            return valida;
+        }
+
+
+
+
     }
 }
