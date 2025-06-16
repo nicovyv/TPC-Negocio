@@ -95,4 +95,29 @@ VALUES
 
 
 
+--SP
 
+CREATE PROCEDURE sp_ListarProd AS
+BEGIN
+	SELECT 
+	P.ID AS IdProducto, 
+	P.CodProd AS Codigo, 
+	P.Nombre AS NombreProducto,
+	P.Descripcion AS DescripcionProducto,
+	C.ID AS IdCategoria,
+	C.Descripcion AS DescripcionCategoria, 
+	M.ID AS IdMarca,
+	M.Descripcion AS DescripcionMarca, 
+	P.Precio AS PrecioVenta, 
+	P.PrecioCompra, 
+	P.StockMinimo, 
+	P.StockActual, 
+	P.Ganancia, 
+	P.Activo
+	FROM Productos P
+	INNER JOIN Categorias C ON C.ID = P.IDCategoria
+	INNER JOIN Marcas M ON M.ID = P.IDMarca
+	WHERE P.Activo = 1
+END
+
+EXEC sp_ListarProd
