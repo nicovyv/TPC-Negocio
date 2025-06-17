@@ -15,7 +15,7 @@ namespace negocio
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                datos.setConsulta("select email, password, nombre, apellido, admin from Usuarios");
+                datos.setConsulta("select email, pass, nombre, apellido, admin from Usuarios");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -66,9 +66,9 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("INSERT INTO Usuarios(email, password, nombre, apellido, admin) VALUES (@email, @password, @nombre, @apellido,0)");
+                datos.setConsulta("INSERT INTO Usuarios(email, pass, nombre, apellido, admin) VALUES (@email, @pass, @nombre, @apellido,0)");
                 datos.setParametro("@email", usuarioNuevo.Email);
-                datos.setParametro("@password", usuarioNuevo.Password);
+                datos.setParametro("@pass", usuarioNuevo.Password);
                 datos.setParametro("@nombre", usuarioNuevo.Nombre);
                 datos.setParametro("@apellido", usuarioNuevo.Apellido);
                 
@@ -89,9 +89,9 @@ namespace negocio
 
             try
             {
-                accesoDatos.setConsulta("select id, email, password, nombre, apellido, admin from Usuarios where email=@email and password=@password");
+                accesoDatos.setConsulta("select id, email, pass, nombre, apellido, admin from Usuarios where email=@email and pass=@pass");
                 accesoDatos.setParametro("@email", usuario.Email);
-                accesoDatos.setParametro("@password", usuario.Password);
+                accesoDatos.setParametro("@pass", usuario.Password);
                 accesoDatos.ejecutarLectura();
 
                 if (accesoDatos.Lector.Read())
