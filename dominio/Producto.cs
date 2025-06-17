@@ -14,7 +14,7 @@ namespace dominio
         public string Img { get; set; }
         public int StockActual { get; set; }
         public int StockMinimo { get; set; }
-        public List<Proovedor> Proveedor { get; set; }
+        public List<Proveedor> Proveedor { get; set; }
         public float Ganancia { get; set; }
         public decimal PrecioCompra { get; set; }
     }
