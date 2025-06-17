@@ -11,7 +11,7 @@ namespace presentacion
 {
 
 
-    public partial class AltaCliente
+    public partial class AltaProveedor
     {
 
         /// <summary>
@@ -24,22 +24,22 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// Control txtNombreCliente.
+        /// Control txtNombreProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreProveedor;
 
         /// <summary>
-        /// Control txtCuilCliente.
+        /// Control txtCuilProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCuilCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtCuilProveedor;
 
         /// <summary>
         /// Control txtDireccion.
@@ -60,21 +60,21 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.TextBox txtTelefono;
 
         /// <summary>
-        /// Control txtEmailCliente.
+        /// Control txtEmailProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmailCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailProveedor;
 
         /// <summary>
-        /// Control btnAgregarCliente.
+        /// Control btnAgregarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarCliente;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProveedor;
     }
 }
