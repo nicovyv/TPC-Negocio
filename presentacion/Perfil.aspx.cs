@@ -27,7 +27,10 @@ namespace presentacion
                         txtNombre.Text = usuario.Nombre;
                         txtApellido.Text = usuario.Apellido;
 
-                        
+                        if (!string.IsNullOrEmpty(usuario.ImagenUrl))
+                        {
+                            imagenNuevoPerfil.ImageUrl = "~/Imagenes/" + usuario.ImagenUrl;
+                        }
                     }
                 }
             }
@@ -39,25 +42,38 @@ namespace presentacion
 
         }
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
+        
+
+        protected void btnGuardar_Click1(object sender, EventArgs e)
         {
+           
             try
-            {   
+            {   //Escribir IMG
                 UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
                 Usuario usuario = (Usuario)Session["usuario"];
+                if (txtImagen.PostedFile.FileName != "")
+                {
+                    string ruta = Server.MapPath("./Imagenes/");
+                    txtImagen.PostedFile.SaveAs(ruta + "perfil-" + usuario.Id + ".jpg");
+                    usuario.ImagenUrl = "perfil-" + usuario.Id + ".jpg";
+
+                }
 
                 usuario.Nombre = txtNombre.Text;
                 usuario.Apellido = txtApellido.Text;
                 usuario.Email = txtEmail.Text;
 
                 usuarioNegocio.ModificarUsuario(usuario);
-                
+
+                //Leer de la IMG
+                Image img = (Image)Master.FindControl("imgNavbar");
+                img.ImageUrl = "~/Imagenes/" + usuario.ImagenUrl;
 
 
-           
             }
             catch (Exception ex)
             {
+
                 Session.Add("error", ex.ToString());
 
             }

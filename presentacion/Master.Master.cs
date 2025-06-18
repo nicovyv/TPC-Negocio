@@ -8,6 +8,8 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            imgNavbar.ImageUrl = "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png";
+
             if (!(Page is Login|| Page is Bienvenida || Page is Registro))
             {
                 if (!Security.isLogin(Session["usuario"]))
