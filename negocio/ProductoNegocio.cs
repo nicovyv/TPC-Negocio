@@ -113,6 +113,27 @@ namespace negocio
                 datos.setParametro("@idCat", nuevo.Categoria.Id);
 
                 datos.ejecutarAccion();
+
+
+                datos.limpiarParametros();
+
+
+                datos.setConsulta("SELECT ID FROM Productos WHERE CodProd = @cod");
+                datos.setParametro("@cod", nuevo.Codigo);
+                int idProducto = Convert.ToInt32(datos.ejecutarEscalar());
+
+                foreach (var proveedor in nuevo.Proveedores)
+                {
+                    AccesoDatos datosProv = new AccesoDatos();
+                    datosProv.setConsulta("INSERT INTO ProductosXProveedor (IDProducto, IDProveedor) VALUES(@IDProducto, @IDProveedor)");
+                    datosProv.setParametro("@IDProducto", idProducto);
+                    datosProv.setParametro("@IDProveedor", proveedor.Id);
+                    datosProv.ejecutarAccion();
+                    datosProv.cerrarConexion();
+                }
+
+
+
             }
             catch (Exception)
             {
@@ -122,6 +143,7 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+                
             }
 
         }

@@ -9,6 +9,17 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //if (Session["usuario"] == null)
+            //{
+            //    Usuario usuario = new Usuario();
+            //    usuario.Id = 1;
+            //    usuario.Nombre = "Usuario Test";
+            //    usuario.Admin = true; // o false, según quieras probar permisos
+
+            //    Session.Add("usuario", usuario);
+            //}
+
             cargarProductos();
         }
 

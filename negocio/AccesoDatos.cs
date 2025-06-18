@@ -12,6 +12,8 @@ namespace negocio
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
+
+        
         public SqlDataReader Lector
         {
             get { return lector; }
@@ -63,6 +65,10 @@ namespace negocio
 
                 throw ex;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }
         public void setParametro(string nombre, Object valor)
         {
@@ -73,6 +79,31 @@ namespace negocio
             if (lector != null)
                 lector.Close();
             conexion.Close();
+        }
+
+        public object ejecutarEscalar()
+        {
+            comando.Connection = conexion;
+
+            try
+            {
+                conexion.Open();
+                return comando.ExecuteScalar();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public void limpiarParametros()
+        {
+            comando.Parameters.Clear();
         }
     }
 }

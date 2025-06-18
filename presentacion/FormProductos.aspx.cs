@@ -134,10 +134,21 @@ namespace presentacion
                 nuevo.StockActual = 0;
 
 
+                nuevo.Proveedores = new List<Proveedor>();
+                foreach (ListItem item in cblProveedoresProd.Items)
+                {
+                    if (item.Selected)
+                    {
+                        Proveedor proveedor = new Proveedor();
+                        proveedor.Id = int.Parse(item.Value);
+                        nuevo.Proveedores.Add(proveedor);
+                    }
+                }
+
+
                 negocio.Agregar(nuevo);
 
-
-
+                Response.Redirect("Productos.aspx");
 
             }
             catch (Exception)
