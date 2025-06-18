@@ -16,7 +16,10 @@ namespace presentacion
                 {
                     Usuario usuario = (Usuario)Session["usuario"];
                     labelUsuario.Text = usuario.Email;
-                    
+                    if (!string.IsNullOrEmpty(usuario.ImagenUrl))
+                    {
+                        imgNavbar.ImageUrl = "~/Imagenes/" + ((Usuario)Session["usuario"]).ImagenUrl;
+                    }
                 }
             }
         }

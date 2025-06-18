@@ -95,6 +95,10 @@
          
           
 <% } %> 
+          <asp:Image
+              ID="imgNavbar"
+              runat="server"
+              Style="height: 40px; width: 40px; border-radius: 50%;" />
       </div>                           
 
                     </div>

@@ -21,6 +21,21 @@
           <label class="form-label">Apellido</label>
           <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
          </div>
+         <div class="col-md-4">
+             <div class="mb-3">
+                 <label class="form-label">Imagen de Perfil</label>
+                 <input
+                     type="file"
+                     id="txtImagen"
+                     runat="server"
+                     class="form-control" />
+             </div>
+             <asp:Image
+                 ID="imagenNuevoPerfil"
+                 CssClass="img-fluid mb-3"
+                 runat="server"
+                 ImageUrl="https://www.palomacornejo.com/wp-content/uploads/2021/08/no-image.jpg" />
+</div>
      </div>
     
 
