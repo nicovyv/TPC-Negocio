@@ -44,10 +44,11 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("UPDATE usuarios SET email=@email, nombre = @nombre, apellido = @apellido where Id = @id");
+                datos.setConsulta("UPDATE USERS set email=@email, nombre = @nombre, apellido = @apellido, urlImagenPerfil = @img where Id = @id");
                 datos.setParametro("@email", usuario.Email);
                 datos.setParametro("@nombre", usuario.Nombre);
                 datos.setParametro("@apellido", usuario.Apellido);
+                datos.setParametro("@img", (object)usuario.ImagenUrl ?? DBNull.Value);
                 datos.setParametro("@id", usuario.Id);
                 datos.ejecutarAccion();
             }
