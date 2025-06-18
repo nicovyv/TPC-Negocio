@@ -22,6 +22,9 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
+                                <%if (!negocio.Security.isLogin(Session["usuario"])) {%> 
+                                
+                                <%  } else { %>
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="Productos.aspx">Productos</a>
                                 </li>
@@ -44,18 +47,56 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="Categorias.aspx">Categorias                                                                                    </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Login.aspx">ACCEDER</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Registro.aspx">Registrarse</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Perfil.aspx">Perfil</a>
-                                </li>
+                               
+                                <% } %> 
+                               
 
                             </ul>
                         </div>
+      <div class="d-flex"> 
+
+          <%if (!negocio.Security.isLogin(Session["usuario"])) {%> 
+           <asp:Button 
+              Text="CREAR CUENTA" 
+              CssClass="btn btn-outline-secondary me-2"
+              runat="server" 
+              ID="bntRegistro"
+              OnClick="bntRegistro_Click"
+              />
+          
+          <asp:Button
+              Text="ACCEDER" 
+              CssClass="btn btn-outline-secondary" 
+              runat="server"
+              ID="btnLogin"
+              OnClick="btnLogin_Click"
+              />
+
+          
+<%  } else { %>
+          <div class="container">
+              <asp:Button
+                  Text="Perfil"
+                  CssClass="btn btn-outline-secondary"
+                  runat="server"
+                  ID="btnPerfil"
+                  OnClick="btnPerfil_Click" />
+          </div>
+          <div class="container">
+              <asp:Button
+                  Text="Logout"
+                  CssClass="btn btn-outline-secondary ml-1"
+                  runat="server"
+                  ID="btnLogout"
+                  OnClick="btnLogout_Click" />
+          </div>
+          
+          <asp:Label Text="" ID="labelUsuario" CssClass="form-label text-light" runat="server" />
+         
+          
+<% } %> 
+      </div>                           
+
                     </div>
                 </nav>
             </header>
