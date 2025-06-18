@@ -8,10 +8,10 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Page is Login || Page is Registro))
+            if (!(Page is Login|| Page is Bienvenida || Page is Registro))
             {
                 if (!Security.isLogin(Session["usuario"]))
-                    Response.Redirect("Login.aspx", false);
+                    Response.Redirect("Bienvenida.aspx", false);
                 else
                 {
                     Usuario usuario = (Usuario)Session["usuario"];
