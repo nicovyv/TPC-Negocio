@@ -39,7 +39,7 @@
 
     </div>
     <asp:Button OnClick="btnRegistrarse_Click" Text="Registrarse" ID="btnRegistrarse" CssClass="btn btn-primary text-center" runat="server" />
-    <a href="Default.aspx">cancelar</a>
+    <a href="Bienvenida.aspx">cancelar</a>
   
     
     
