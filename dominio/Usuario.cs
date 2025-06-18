@@ -9,6 +9,7 @@
         public string Apellido { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public string ImagenUrl { get; set; }
         public bool Admin { get; set; }
 
     }
