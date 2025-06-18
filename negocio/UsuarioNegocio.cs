@@ -113,9 +113,13 @@ namespace negocio
                         usuario.Apellido = (string)accesoDatos.Lector["apellido"];
 
                     }
+                    if (!(accesoDatos.Lector["urlImagenPerfil"] is DBNull))
+                    {
+                        usuario.ImagenUrl = (string)accesoDatos.Lector["urlImagenPerfil"];
+
+                    }
 
 
-                    
 
                     return true;
                 }
