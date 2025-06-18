@@ -50,8 +50,8 @@
                 <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
                 <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Ver Detalle" />
                 <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Modificar" />
-                <asp:CommandField HeaderText="Acción" ShowSelectButton="True" SelectText="Eliminar" />
             </Columns>
+            
         </asp:GridView>
     </div>
 

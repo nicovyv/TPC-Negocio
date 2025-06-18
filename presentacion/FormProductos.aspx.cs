@@ -17,11 +17,7 @@ namespace presentacion
             {
                 CargarListas();
 
-                foreach (ListItem item in cblProveedoresProd.Items)
-                {
-                    item.Attributes["class"] = "list-group-item";
-                }
-
+              
 
                 string id = Request.QueryString["id"];
 
@@ -48,6 +44,8 @@ namespace presentacion
             ProductoNegocio necgocio = new ProductoNegocio();
             Producto producto = necgocio.ObtenerPorId(id);
 
+            if (producto != null)
+            {
                 txtCodProd.Text = producto.Codigo;
                 txtCodProd.Enabled = false;
 
@@ -73,6 +71,9 @@ namespace presentacion
                 {
                     prov.Selected = producto.Proveedores.Any(x => x.Id.ToString() == prov.Value);
                 }
+            }
+
+                
                 
 
         }
