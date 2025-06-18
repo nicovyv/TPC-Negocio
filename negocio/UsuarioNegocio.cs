@@ -90,7 +90,7 @@ namespace negocio
 
             try
             {
-                accesoDatos.setConsulta("select id, email, pass, nombre, apellido, admin from Usuarios where email=@email and pass=@pass");
+                accesoDatos.setConsulta("select id, email, pass, nombre, apellido, admin,urlImagenPefil from Usuarios where email=@email and pass=@pass");
                 accesoDatos.setParametro("@email", usuario.Email);
                 accesoDatos.setParametro("@pass", usuario.Password);
                 accesoDatos.ejecutarLectura();
