@@ -29,5 +29,17 @@ namespace presentacion
             dgvProducto.DataSource = negocio.listar();
             dgvProducto.DataBind();
         }
+
+        protected void dgvProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvProducto.SelectedDataKey.Value.ToString();
+            Response.Redirect("FormProductos.aspx?id=" + id);
+        }
+
+        protected void dgvProducto_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
+        {
+            dgvProducto.PageIndex = e.NewPageIndex;
+            dgvProducto.DataBind();
+        }
     }
 }

@@ -38,6 +38,8 @@
 
         <asp:GridView ID="dgvProducto" runat="server" DataKeyNames="Id"
             CssClass="table table-dark table-hover" AutoGenerateColumns="false"
+            OnSelectedIndexChanged ="dgvProducto_SelectedIndexChanged"
+            OnPageIndexChanging="dgvProducto_PageIndexChanging"
             AllowPaging="true" PageSize="5">
             <Columns>
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
@@ -48,7 +50,7 @@
                 <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
                 <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Ver Detalle" />
                 <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Modificar" />
-                <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Eliminar" />
+                <asp:CommandField HeaderText="Acción" ShowSelectButton="True" SelectText="Eliminar" />
             </Columns>
         </asp:GridView>
     </div>

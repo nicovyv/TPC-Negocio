@@ -21,14 +21,59 @@ namespace presentacion
                 {
                     item.Attributes["class"] = "list-group-item";
                 }
+
+
+                string id = Request.QueryString["id"];
+
+                if (string.IsNullOrEmpty(id))
+                {
+                    FormularioAlta();
+                }
+                else
+                {
+                   
+                    cargarProductosModificacion(int.Parse(id));
+                }
+
+
+
+
             }
 
-            string id = Request.QueryString["id"];
 
-            if (string.IsNullOrEmpty(id))
-            {
-                FormularioAlta();
-            }
+        }
+
+        private void cargarProductosModificacion(int id)
+        {
+            ProductoNegocio necgocio = new ProductoNegocio();
+            Producto producto = necgocio.ObtenerPorId(id);
+
+                txtCodProd.Text = producto.Codigo;
+                txtCodProd.Enabled = false;
+
+                txtNombreProd.Text = producto.Nombre;
+                txtDescProd.Text = producto.Descripcion;
+
+                ddlCatProd.SelectedValue = producto.Categoria.Id.ToString();
+                ddlMarcaProd.SelectedValue = producto.Marca.Id.ToString();
+
+                txtPrecioVentaProd.Text = producto.PrecioVenta.ToString();
+                txtPrecioVentaProd.Enabled = false;
+
+                txtPrecioCompraProd.Text = producto.PrecioCompra.ToString();
+                txtPrecioCompraProd.Enabled = false;
+
+                txtStockActualProd.Text = producto.StockActual.ToString();
+                txtStockActualProd.Enabled = false;
+
+                txtStockMinimoProd.Text = producto.StockMinimo.ToString();
+                txtGananciaProd.Text = producto.Ganancia.ToString();
+
+                foreach (ListItem prov in cblProveedoresProd.Items)
+                {
+                    prov.Selected = producto.Proveedores.Any(x => x.Id.ToString() == prov.Value);
+                }
+                
 
         }
 
@@ -145,8 +190,15 @@ namespace presentacion
                     }
                 }
 
-
-                negocio.Agregar(nuevo);
+                if (nuevo.Id == 0)
+                {
+                    negocio.Agregar(nuevo);
+                }
+                else
+                {
+                    negocio.Modificar(nuevo);
+                }
+               // negocio.Agregar(nuevo);
 
                 Response.Redirect("Productos.aspx");
 

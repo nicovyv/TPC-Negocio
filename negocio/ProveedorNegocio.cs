@@ -9,7 +9,7 @@ namespace negocio
 {
     public class ProveedorNegocio
     {
-        public List<Proveedor> listar(string id="")
+        public List<Proveedor> listar(string id = "")
         {
             List<Proveedor> listaProveedores = new List<Proveedor>();
             AccesoDatos datos = new AccesoDatos();
@@ -23,7 +23,7 @@ namespace negocio
                 else
                 {
                     datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES");
-                }               
+                }
                 datos.ejecutarLectura();
 
 
@@ -101,7 +101,7 @@ namespace negocio
 
                 accesoDatos.ejecutarAccion();
             }
-              
+
             catch (Exception ex)
             {
 
@@ -130,6 +130,46 @@ namespace negocio
             {
                 accesoDatos.cerrarConexion();
             }
+        }
+
+
+
+        public List<Proveedor> listarProveedoresXProducto(int idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+
+            try
+            {
+
+                datos.setConsulta("SELECT P.ID FROM Proveedores P INNER JOIN ProductosXProveedor PXP ON P.ID = PXP.IDProveedor WHERE PXP.IDProducto = @idProd");
+                datos.setParametro("@idProd", idProd);
+                datos.ejecutarLectura();
+
+                List<Proveedor> lista = new List<Proveedor>();
+
+
+                while (datos.Lector.Read())
+                {
+                    Proveedor proveedor = new Proveedor();
+                    proveedor.Id = (int)datos.Lector["ID"];
+                    proveedor.Nombre = (string)datos.Lector["Nombre"];
+                    lista.Add(proveedor);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
         }
     }
 

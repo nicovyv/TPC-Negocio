@@ -9,7 +9,7 @@
         <div class="col-6">
             <div class="mb-3 d-flex">
                 <label for="txtCodProd" class="form-label">Codigo: </label>
-                <asp:TextBox runat="server" ID="txtCodProd" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtCodProd" CssClass="form-control" Enabled="false"/>
                 <asp:Label runat="server" ID="lblErrorCodProd" visible="false"></asp:Label>
             </div>
             <div class="mb-3 d-flex">
@@ -30,13 +30,13 @@
                 <label for="ddlCatProd" class="form-label">Categoria: </label>
                 <asp:DropDownList runat="server" ID="ddlCatProd" CssClass="form-select"></asp:DropDownList>
             </div>
-            <div class="mb-3 d-flex" ID="divPrecioCompra" runat="server" >
+            <div class="mb-3 d-flex" ID="divPrecioCompra" runat="server"  >
                 <label for="txtPrecioCompraProd" class="form-label">Precio Compra: </label>
-                <asp:TextBox runat="server" ID="txtPrecioCompraProd" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtPrecioCompraProd" CssClass="form-control" Enabled="false"/>
             </div>
             <div class="mb-3 d-flex" ID="divPrecioVenta" runat="server" >
                 <label for="txtPrecioVentaProd" class="form-label">Precio Venta: </label>
-                <asp:TextBox runat="server" ID="txtPrecioVentaProd" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtPrecioVentaProd" CssClass="form-control" Enabled="false"/>
             </div>
             <div class="mb-3 d-flex">
                 <label for="txtGananciaProd" class="form-label">% Ganancia: </label>
