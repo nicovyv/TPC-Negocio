@@ -60,14 +60,15 @@ namespace negocio
 
 
 
-        public bool ValidaCodigoProducto(string codProd)
+        public bool ValidaCodigoProducto(string codProd, int idProd = 0)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setConsulta("SELECT COUNT(*) FROM Productos WHERE CodProd = @cod");
+                datos.setConsulta("SELECT COUNT(*) FROM Productos WHERE CodProd = @cod AND ID != @idProd");
                 datos.setParametro("@cod", codProd);
+                datos.setParametro("@idProd", idProd);
                 datos.ejecutarLectura();
 
 
@@ -164,9 +165,11 @@ namespace negocio
                 datos.setParametro("@idCat", producto.Categoria.Id);
                 datos.setParametro("@idMarca", producto.Marca.Id);
                 datos.setParametro("@stockMinimo", producto.StockMinimo);
-                datos.setParametro("@@ganancia", producto.Ganancia);
+                datos.setParametro("@ganancia", producto.Ganancia);
 
                 datos.ejecutarAccion();
+
+                datos.limpiarParametros();
 
                 datos.setConsulta("DELETE FROM ProductosXProveedor WHERE IDProducto = @idProd");
                 datos.setParametro("@idProd", producto.Id);

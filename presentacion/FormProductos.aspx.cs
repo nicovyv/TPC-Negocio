@@ -132,7 +132,15 @@ namespace presentacion
                     return;
                 }
 
-                if (!negocio.ValidaCodigoProducto(txtCodProd.Text))
+
+                int idProducto = 0;
+
+                if (Request.QueryString["id"] != null)
+                    int.TryParse(Request.QueryString["id"], out idProducto);
+
+                nuevo.Id = idProducto;
+
+                if (!negocio.ValidaCodigoProducto(txtCodProd.Text, idProducto))
                 {
                     lblErrorCodProd.Text = "El código de producto ya existe";
                     lblErrorCodProd.CssClass = "text-danger";
