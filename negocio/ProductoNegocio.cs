@@ -242,7 +242,7 @@ namespace negocio
                     datos.limpiarParametros();
 
 
-                    datos.setConsulta("SELECT P.ID FROM Proveedores P INNER JOIN ProductosXProveedor PXP ON P.ID = PXP.IDProveedor WHERE PXP.IDProducto = @id");
+                    datos.setConsulta("SELECT P.ID, P.Nombre FROM Proveedores P INNER JOIN ProductosXProveedor PXP ON P.ID = PXP.IDProveedor WHERE PXP.IDProducto = @id");
                     datos.setParametro("@id", producto.Id);
                     datos.ejecutarLectura();
 
