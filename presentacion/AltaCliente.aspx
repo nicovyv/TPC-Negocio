@@ -28,8 +28,8 @@
             </div>
             <div class="mb-3">
                 <label for="txtTelefono" class="form-label">Telefono</label>
-                <asp:TextBox runat="server" ID="txtTelefono" pattern="\d{11}" 
-             title="Ingrese solo números, exactamente 11 dígitos" maxlength="11" placeholder="1130000000" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtTelefono" pattern="\d{10}" 
+             title="Ingrese solo números, exactamente 10 dígitos" maxlength="10" placeholder="1130000000" CssClass="form-control" />
             </div>
             <div class="mb-3">
                 <label for="txtTelefono"  class="form-label">Email</label>
