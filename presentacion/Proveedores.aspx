@@ -8,7 +8,14 @@
 
     <div class="d-flex justify-content-center" style="height: 100px;">
         <div class="col-sm-6">
-            <asp:TextBox runat="server" ID="txtFiltroCliente" placeholder="🔍 Busque Proveedores..." CssClass="form-control" AutoPostBack="true" />
+            <asp:TextBox runat="server" ID="txtFiltro" placeholder="Busque Proveedores..." CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+        </div>
+        <div class="col-sm-1">
+            <asp:Button Text="🔍" CssClass="btn btn-light" runat="server" />
+           
+        </div>
+        <div class="col-sm-1">
+             <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" id="btnLimpiar" OnClick="btnLimpiar_Click" Visible="false" />
         </div>
     </div>
 

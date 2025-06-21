@@ -94,7 +94,7 @@ GO
 --INSERTS
 
 INSERT INTO Categorias (Descripcion) 
-VALUES ('DESKTOPS'),('NOTEBOOKS'),('CELULARES')
+VALUES ('DESKTOPS'),('NOTEBOOKS'),('CELULARES');
 
 GO
 
@@ -104,6 +104,11 @@ VALUES
 ('test2@email.com',222222,'Angel','Di Maria',0),
 ('test3@email.com',111111,'Emiliano','Martinez',0);
 
+GO
+
+INSERT INTO MARCAS (Descripcion)
+VALUES
+('HP'),('MSI'),('DELL'),('MOTOROLA'),('SAMSUNG');
 
 GO
 

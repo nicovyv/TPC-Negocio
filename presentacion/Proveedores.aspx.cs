@@ -15,16 +15,17 @@ namespace presentacion
         {
             if (!IsPostBack)
             {
-                cargarProveedores();
+                cargarProveedores();             
             }
+            
         }
         private void cargarProveedores()
         {
-            List<Proveedor> listaProveedores = new List<Proveedor>();
-            ProveedorNegocio negocio = new ProveedorNegocio();
-            listaProveedores = negocio.listar();
-            dgvProveedores.DataSource = listaProveedores;
+            ProveedorNegocio negocio = new ProveedorNegocio();            
+            Session.Add(("listaProveedores"), negocio.listar()); 
+            dgvProveedores.DataSource = Session["listaProveedores"];
             dgvProveedores.DataBind();
+            
         }
         protected void dgvProveedores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -39,6 +40,23 @@ namespace presentacion
             {
                 Response.Redirect("AltaProveedor.aspx?id=" + id);
             }
+        }
+
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
+        {        
+            List<Proveedor> lista = (List<Proveedor>)Session["listaProveedores"];
+            List<Proveedor> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvProveedores.DataSource = listaFiltrada;
+            dgvProveedores.DataBind();
+            btnLimpiar.Visible = true;           
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dgvProveedores.DataSource = Session["listaProveedores"];
+            dgvProveedores.DataBind();
+            txtFiltro.Text = "";
+            btnLimpiar.Visible = false;
         }
     }
 }
