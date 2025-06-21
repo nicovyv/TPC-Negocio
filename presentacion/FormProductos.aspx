@@ -9,7 +9,7 @@
         <div class="col-6">
             <div class="mb-3 d-flex">
                 <label for="txtCodProd" class="form-label">Codigo: </label>
-                <asp:TextBox runat="server" ID="txtCodProd" CssClass="form-control" Enabled="false"/>
+                <asp:TextBox runat="server" ID="txtCodProd" CssClass="form-control" />
                 <asp:Label runat="server" ID="lblErrorCodProd" visible="false"></asp:Label>
             </div>
             <div class="mb-3 d-flex">
