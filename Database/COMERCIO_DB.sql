@@ -112,6 +112,15 @@ VALUES
 
 GO
 
+CREATE OR ALTER PROCEDURE insertarUsuario (@email VARCHAR(100),@pass VARCHAR(20))
+AS
+BEGIN
+INSERT INTO Usuarios (email,pass,admin) OUTPUT inserted.ID VALUES (@email,@pass,0)
+END
+
+
+GO
+
 --SP
 
 CREATE PROCEDURE sp_ListarProd AS
