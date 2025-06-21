@@ -9,14 +9,23 @@ namespace negocio
 {
     public class CategoriaNegocio
     {
-        public List<Categoria> listar()
+        public List<Categoria> listar(string id = "")
         {
             List<Categoria> listaCategoria = new List<Categoria>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS");
+
+                if (id != "")
+                {
+                    datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS WHERE ID = " + id);
+                }
+                else
+                {
+                    datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS");
+                }
+                    
                 datos.ejecutarLectura();
 
 

@@ -62,7 +62,7 @@ namespace presentacion
                 {
                     nuevo.Id = int.Parse(Request.QueryString["id"]);
                     negocio.modificarMarca(nuevo);
-                    Session.Remove("MacaSeleccionada");
+                    Session.Remove("MarcaSeleccionada");
                 }
                 else
                 {
