@@ -50,6 +50,7 @@ namespace presentacion
                 {
                     lblValidarDescripción.Text = "!Atención! Se debe completar el campo de Descripción, por favor";
                     lblValidarDescripción.Visible = true;
+                    return;
                 }
 
                 Marca nuevo = new Marca();
