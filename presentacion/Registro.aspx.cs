@@ -40,7 +40,7 @@ namespace presentacion
                 usuario.Apellido = txtApellido.Text;
                 usuario.Email = txtEmail.Text;
                 usuario.Password = txtPassword.Text;
-
+                
                 usuarioNegocio.AgregarUsuario(usuario);
                 Response.Redirect("Productos.aspx",false);
             }
