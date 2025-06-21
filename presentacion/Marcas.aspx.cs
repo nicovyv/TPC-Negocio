@@ -58,5 +58,11 @@ namespace presentacion
                 Response.Redirect("AltaMarca.aspx?id=" + id);
             }
         }
+
+        protected void dgvMarcas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvMarcas.PageIndex=e.NewPageIndex;
+            cargarMarcas();
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace negocio
     public class MarcaNegocio
     {
         
-        public List<Marca> listar()
+        public List<Marca> listar(string id = "")
         {
             List<Marca> marcas = new List<Marca>();
             AccesoDatos datos = new AccesoDatos();
@@ -18,7 +18,15 @@ namespace negocio
 
             try
             {
-                datos.setConsulta("SELECT ID, Descripcion FROM MARCAS");
+                if (id != "")
+                {
+                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS WHERE ID = "+ id);
+                }
+                else
+                {
+                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS");
+                }
+                    
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -53,7 +61,7 @@ namespace negocio
 
             try
             {
-                accesoDatos.setConsulta("INSERT INTO MARCAS VALUES (@desc)");
+                accesoDatos.setConsulta("INSERT INTO MARCAS (DESCRIPCION) VALUES (@desc)");
                 accesoDatos.setParametro("@desc", marca.Descripcion);
                 accesoDatos.ejecutarAccion();
             }

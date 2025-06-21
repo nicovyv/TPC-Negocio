@@ -26,9 +26,10 @@
 
         <asp:GridView ID="dgvMarcas" runat="server" DataKeyNames="Id"
             CssClass="table table-dark table-hover" AutoGenerateColumns="false"
-            AllowPaging="true" PageSize="5" OnRowCommand="dgvMarcas_RowCommand">
+            AllowPaging="true" PageSize="5" OnRowCommand="dgvMarcas_RowCommand" OnPageIndexChanging="dgvMarcas_PageIndexChanging">
             <Columns>
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+                <asp:BoundField HeaderText="Cantidad de Productos" />
                 <asp:TemplateField HeaderText="Acción">
                     <ItemTemplate>
                         <asp:Button Text="Modificar" CssClass="btn btn-light" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
