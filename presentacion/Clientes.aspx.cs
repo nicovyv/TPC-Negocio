@@ -16,11 +16,10 @@ namespace presentacion
         }
 
         private void cargarClientes()
-        {
-            List<Cliente> listaClientes = new List<Cliente>();
-            ClienteNegocio negocio = new ClienteNegocio();
-            listaClientes = negocio.listar();
-            dgvClientes.DataSource = listaClientes;
+        {            
+            ClienteNegocio negocio = new ClienteNegocio();            
+            Session.Add(("listaClientes"), negocio.listar());
+            dgvClientes.DataSource = Session["listaClientes"];             
             dgvClientes.DataBind();
         }
         protected void dgvClientes_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
@@ -36,6 +35,23 @@ namespace presentacion
             {
                 Response.Redirect("AltaCliente.aspx?id=" + id);
             }
+        }
+
+        protected void txtFiltroCliente_TextChanged(object sender, EventArgs e)
+        {
+            List<Cliente> lista = (List<Cliente>)Session["listaClientes"];
+            List<Cliente> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvClientes.DataSource = listaFiltrada;
+            dgvClientes.DataBind();
+            btnLimpiar.Visible = true;
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dgvClientes.DataSource = Session["listaClientes"];
+            dgvClientes.DataBind();
+            txtFiltro.Text = "";
+            btnLimpiar.Visible = false;
         }
     }
 }

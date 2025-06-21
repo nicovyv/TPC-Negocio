@@ -124,7 +124,7 @@ namespace presentacion
             catch (Exception ex)
             {
                 lblValidarCuit.Visible = true;
-                lblValidarCuit.Text = "El CUIL/CUIT ingresado ya está registrado";
+                lblValidarCuit.Text = "El CUIL/CUIT o Nombre ingresado ya está registrado";
             }
            
             
