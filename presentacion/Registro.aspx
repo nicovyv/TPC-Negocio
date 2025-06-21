@@ -5,10 +5,10 @@
    
         <h3 class="">Crea tu usuario</h3>
 
-   
-    <div class="row align-items-center">
+
+    <div class="row align-items-center container">
         <div class="col-6 col-md-4">
-           
+
             <div class="mb-3 row">
                 <label for="txtEmail" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
                 <div class="col-sm-10">
@@ -18,9 +18,9 @@
 
             <div class="mb-3 row">
 
-                <label for="txtPassword"  class="col-sm-2 col-form-label col-form-label-sm">Password</label>
+                <label for="txtPassword" class="col-sm-2 col-form-label col-form-label-sm">Password</label>
                 <div class="col-sm-10">
-                    <asp:TextBox runat="server" type="password" ID="txtPassword" CssClass="form-control form-control-sm"  />
+                    <asp:TextBox runat="server" type="password" ID="txtPassword" CssClass="form-control form-control-sm" />
                 </div>
             </div>
 

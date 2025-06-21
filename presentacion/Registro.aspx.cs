@@ -34,6 +34,7 @@ namespace presentacion
            
             Usuario usuario = new Usuario();
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            EmailService emailService= new EmailService();  
             try
             {
                 
@@ -41,6 +42,8 @@ namespace presentacion
                 usuario.Password = txtPassword.Text;
                 usuario.Id=usuarioNegocio.AgregarUsuario(usuario);
                 Session.Add("usuario", usuario);
+                emailService.armarCorreo(usuario.Email, "Bienvenid@", "Hola bienvenido, gracias por elegirnos.");
+                emailService.enviarMail();
                 Response.Redirect("Perfil.aspx",false);
             }
             catch (Exception ex)
