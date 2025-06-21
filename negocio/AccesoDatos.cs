@@ -80,6 +80,20 @@ namespace negocio
                 lector.Close();
             conexion.Close();
         }
+        public int ejecutarAccionEscalar()
+        {
+            comando.Connection= conexion;
+            try
+            {
+                conexion.Open();
+                return int.Parse(comando.ExecuteScalar().ToString());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
         public object ejecutarEscalar()
         {

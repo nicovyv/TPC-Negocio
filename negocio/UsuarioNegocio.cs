@@ -62,18 +62,16 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void AgregarUsuario(Usuario usuarioNuevo)
+        public int AgregarUsuario(Usuario usuarioNuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("INSERT INTO Usuarios(email, pass, nombre, apellido,UrlImagenPerfil, admin) VALUES (@email, @pass, @nombre, @apellido,@img,0)");
+                datos.setearSP("insertarUsuario");
                 datos.setParametro("@email", usuarioNuevo.Email);
                 datos.setParametro("@pass", usuarioNuevo.Password);
-                datos.setParametro("@nombre", usuarioNuevo.Nombre);
-                datos.setParametro("@apellido", usuarioNuevo.Apellido);
-                datos.setParametro("@img", usuarioNuevo.ImagenUrl);
-                datos.ejecutarAccion();
+             
+               return datos.ejecutarAccionEscalar();
 
             }
             catch (Exception ex)
