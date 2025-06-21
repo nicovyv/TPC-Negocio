@@ -16,7 +16,7 @@ namespace negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("a1b5de55e9cbf5", "ad5599865c092b");
+            server.Credentials = new NetworkCredential("", "");
             server.EnableSsl = true;
             server.Port = 2525;
             server.Host = "smtp.mailtrap.io";
@@ -24,7 +24,7 @@ namespace negocio
         public void armarCorreo(string emailDestino, string asunto, string cuerpo)
         {
             email = new MailMessage();
-            email.From = new MailAddress("noresponder@catalogoweb.com");
+            email.From = new MailAddress("");
             email.To.Add(emailDestino);
             email.Subject = asunto;
             email.IsBodyHtml = true;
