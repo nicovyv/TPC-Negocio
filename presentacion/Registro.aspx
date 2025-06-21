@@ -8,18 +8,7 @@
    
     <div class="row align-items-center">
         <div class="col-6 col-md-4">
-           <div class="mb-3 row">
-               <label for="txtNombre" class="col-sm-2 col-form-label col-form-label-sm">Nombre</label>
-               <div class="col-sm-10">
-                   <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control form-control-sm" />
-               </div>
-           </div>
-            <div class="mb-3 row">
-                <label for="txtApellido" class="col-sm-2 col-form-label col-form-label-sm">Apellido</label>
-                <div class="col-sm-10">
-                    <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control form-control-sm" />
-                </div>
-            </div>
+           
             <div class="mb-3 row">
                 <label for="txtEmail" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
                 <div class="col-sm-10">

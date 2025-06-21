@@ -36,13 +36,12 @@ namespace presentacion
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
-                usuario.Nombre = txtNombre.Text;
-                usuario.Apellido = txtApellido.Text;
+                
                 usuario.Email = txtEmail.Text;
                 usuario.Password = txtPassword.Text;
-                
-                usuarioNegocio.AgregarUsuario(usuario);
-                Response.Redirect("Productos.aspx",false);
+                usuario.Id=usuarioNegocio.AgregarUsuario(usuario);
+                Session.Add("usuario", usuario);
+                Response.Redirect("Perfil.aspx",false);
             }
             catch (Exception ex)
             {
