@@ -36,7 +36,7 @@ namespace negocio
                     cliente.Email = (string)datos.Lector["Email"];
                     cliente.Direccion = (string)datos.Lector["Direccion"];
                     cliente.CuilCuit = (string)datos.Lector["CuilCuit"];
-                    cliente.Telefono = (int)datos.Lector["Telefono"];
+                    cliente.Telefono = (string)datos.Lector["Telefono"];
 
                     listaClientes.Add(cliente);
 

@@ -32,7 +32,7 @@ namespace presentacion
                     txtCuilCliente.Text = seleccionado.CuilCuit;
                     txtDireccion.Text = seleccionado.Direccion;
                     txtEmailCliente.Text = seleccionado.Email;
-                    txtTelefono.Text = seleccionado.Telefono.ToString();
+                    txtTelefono.Text = seleccionado.Telefono;
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace presentacion
                 nuevo.Nombre = txtNombreCliente.Text;
                 nuevo.CuilCuit = txtCuilCliente.Text;
                 nuevo.Direccion = txtDireccion.Text;
-                nuevo.Telefono = int.Parse(txtTelefono.Text);
+                nuevo.Telefono = txtTelefono.Text;
                 nuevo.Email = txtEmailCliente.Text;
 
                 if (Request.QueryString["id"] != null)
@@ -120,7 +120,7 @@ namespace presentacion
                 Response.Redirect("Clientes.aspx");
                 Context.ApplicationInstance.CompleteRequest();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 lblValidarCuit.Visible = true;
                 lblValidarCuit.Text = "El CUIL/CUIT o Nombre ingresado ya está registrado";

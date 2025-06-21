@@ -20,7 +20,8 @@
             </div>
             <div class="mb-3">
                 <label for="txtCuilCliente" class="form-label">Cuil/Cuit</label>
-                <asp:TextBox runat="server" ID="txtCuilCliente" MaxLength="13" placeholder="20-00000000-5" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtCuilCliente" MaxLength="11" placeholder="20000000005" pattern="\d{11}" 
+             title="Ingrese solo números, exactamente 11 dígitos" CssClass="form-control" />
             </div>
             <div class="mb-3">
                 <label for="txtDireccion" class="form-label">Direccion</label>

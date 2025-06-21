@@ -121,7 +121,7 @@ namespace presentacion
                 Context.ApplicationInstance.CompleteRequest();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 lblValidarCuit.Visible = true;
                 lblValidarCuit.Text = "El CUIL/CUIT o Nombre ingresado ya está registrado";
