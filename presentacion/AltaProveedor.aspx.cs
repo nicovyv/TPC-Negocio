@@ -15,23 +15,38 @@ namespace presentacion
         {
             if (!IsPostBack)
             {
-
-                string id = Request.QueryString["id"];
-                if (!string.IsNullOrEmpty(id))
+                try
                 {
-                    lblTitulo.Text = "Formulario Modificación de Proveedor";
-                    btnAgregarProveedor.Text = "Modificar";
-                    ProveedorNegocio negocio = new ProveedorNegocio();
-                    Proveedor seleccionado = (negocio.listar(id))[0];
+                    string id = Request.QueryString["id"];
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        lblTitulo.Text = "Formulario Modificación de Proveedor";
+                        btnAgregarProveedor.Text = "Modificar";
+                        ProveedorNegocio negocio = new ProveedorNegocio();
+                        Proveedor seleccionado = (negocio.listar(id))[0];
 
-                    Session.Add("proveedoreSeleccionado", seleccionado);
+                        Session.Add("proveedoreSeleccionado", seleccionado);
 
-                    txtNombreProveedor.Text = seleccionado.Nombre;
-                    txtCuilProveedor.Text = seleccionado.CuilCuit;
-                    txtDireccion.Text = seleccionado.Direccion;
-                    txtEmailProveedor.Text = seleccionado.Email;
-                    txtTelefono.Text = seleccionado.Telefono.ToString();
+                        txtNombreProveedor.Text = seleccionado.Nombre;
+                        txtCuilProveedor.Text = seleccionado.CuilCuit;
+                        txtDireccion.Text = seleccionado.Direccion;
+                        txtEmailProveedor.Text = seleccionado.Email;
+                        txtTelefono.Text = seleccionado.Telefono.ToString();
+                    }
                 }
+                catch (Exception)
+                {
+                    lblValidarCuit.Visible = true;
+                    lblValidarCuit.Text = "Proveedor no disponible o no existe";
+                    txtNombreProveedor.Enabled = false;
+                    txtCuilProveedor.Enabled = false;
+                    txtDireccion.Enabled = false;
+                    txtEmailProveedor.Enabled = false;
+                    txtTelefono.Enabled = false;
+                    btnAgregarProveedor.Visible = false;
+                }
+
+                
             }
             if (IsPostBack)
             {

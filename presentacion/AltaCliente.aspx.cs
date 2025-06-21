@@ -38,8 +38,8 @@ namespace presentacion
                 }
                 catch (Exception)
                 {
-
-                    lblValidarCuit.Text = "Cliente no disponible o no exite";
+                    lblValidarCuit.Visible = true;
+                    lblValidarCuit.Text = "Cliente no disponible o no existe";
                     txtNombreCliente.Enabled = false;
                     txtCuilCliente.Enabled = false;
                     txtDireccion.Enabled = false;
