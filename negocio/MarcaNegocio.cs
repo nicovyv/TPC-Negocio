@@ -9,7 +9,7 @@ namespace negocio
 {
     public class MarcaNegocio
     {
-        
+
         public List<Marca> listar(string id = "")
         {
             List<Marca> marcas = new List<Marca>();
@@ -20,13 +20,13 @@ namespace negocio
             {
                 if (id != "")
                 {
-                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS WHERE ID = "+ id);
+                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS WHERE ID = " + id);
                 }
                 else
                 {
                     datos.setConsulta("SELECT ID, Descripcion FROM MARCAS");
                 }
-                    
+
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -36,9 +36,9 @@ namespace negocio
                     marca.Descripcion = (string)datos.Lector["DESCRIPCION"];
 
                     marcas.Add(marca);
-    
-                }  
-                
+
+                }
+
                 return marcas;
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
-       }
+        }
 
 
         public void agregarMarca(Marca marca)
@@ -100,7 +100,7 @@ namespace negocio
             }
         }
 
-         public void eliminarMarca(int Id)
+        public void eliminarMarca(int Id)
         {
             try
             {

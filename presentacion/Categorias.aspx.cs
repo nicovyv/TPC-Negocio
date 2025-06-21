@@ -13,54 +13,56 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarCategorias();
+            if (!IsPostBack)
+            {
+                cargarCategorias();
+            }
         }
         private void cargarCategorias()
         {
-            List<Categoria> listaCategorias = new List<Categoria>();
             CategoriaNegocio negocio = new CategoriaNegocio();
-            //{
-            //    new Marca { Descripcion = "DESKTOPS" },
-            //    new Marca { Descripcion = "NOTEBOOKS" },
-            //    new Marca { Descripcion = "CELULARES" }
-            // };
-            //dgvCategorias.DataSource = listaCategorias;
-            listaCategorias = negocio.listar();
-            dgvCategorias.DataSource = listaCategorias;
+            Session.Add(("listaCategorias"), negocio.listar());
+            dgvCategorias.DataSource = Session["listaCategorias"];
             dgvCategorias.DataBind();
-        }
+        }        
 
-        protected void On_Click(object sender, EventArgs e)
+        protected void dgvCategorias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtNuevaCat.Text))
+            int id = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName == "Eliminar")
             {
-                try
-                {
-                    Categoria nueva = new Categoria();
-                    nueva.Descripcion = txtNuevaCat.Text.Trim();
-
-                    CategoriaNegocio negocio = new CategoriaNegocio();
-                    negocio.agregar(nueva);
-                    cargarCategorias();
-                }
-                catch (Exception)
-                {
-
-                    //throw ex;
-                    Response.Redirect("Error.aspx", false);
-                }
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                negocio.eliminarCategoria(id);
+                cargarCategorias();
             }
-            else
+            else if (e.CommandName == "Modificar")
             {
-
-                lblErrorCatNueva.Text = "Se debe completar el campo";
-                lblErrorCatNueva.CssClass = "text-danger";
-                lblErrorCatNueva.Visible = true;
-
+                Response.Redirect("AltaCategoria.aspx?id=" + id);
             }
         }
 
-       
+        protected void dgvCategorias_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvCategorias.PageIndex = e.NewPageIndex;
+            cargarCategorias();
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dgvCategorias.DataSource = Session["listaCategorias"];
+            dgvCategorias.DataBind();
+            txtFiltro.Text = "";
+            btnLimpiar.Visible = false;
+        }
+
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Categoria> lista = (List<Categoria>)Session["listaCategorias"];
+            List<Categoria> listaFiltrada = lista.FindAll(x => x.Descripcion.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvCategorias.DataSource = listaFiltrada;
+            dgvCategorias.DataBind();
+            btnLimpiar.Visible = true;
+        }
     }
     
 }
