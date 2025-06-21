@@ -1,25 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Bienvenida.aspx.cs" Inherits="presentacion.Bienvenida" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="container mt-2">
-<h1 class="display-1">Bienvenid@</h1>
-<p class="lead">
-  Gracias por utilizar nuestro sistema de back office para comercios.
-</p>
-<div class="d-flex flex-row">
-    <p class="lead">
-  Si ya tienes una cuenta puedes acceder a ella y empezar a utilizar el sistema.
-</p>
-<a class="btn btn-primary" href="Login.aspx">ACCEDER</a>
-</div>
-<div class="d-flex flex-row mt-3">
-    <p class="lead">
-  Si no tienes una cuenta puedes crear una y empezar a utilizar el sistema.
-</p>
-<a class="btn btn-primary" href="Registro.aspx">CREAR CUENTA</a>
-</div>
-</div>
+    <div class="container text-center mt-5">
+        <h1 class="display-4 fw-bold">¡Bienvenid@!</h1>
+        <p class="lead mt-3">
+            Gracias por utilizar nuestro sistema de back office para comercios.
+        </p>
 
+        <hr class="my-4" />
 
+        <div class="mt-4">
+            <p class="lead">¿Ya tienes una cuenta?</p>
+            <a class="btn btn-primary btn-lg px-4 me-2" href="Login.aspx">Acceder</a>
+        </div>
+
+        <div class="mt-5">
+            <p class="lead">¿No tienes una cuenta todavía?</p>
+            <a class="btn btn-outline-primary btn-lg px-4" href="Registro.aspx">Crear cuenta</a>
+        </div>
+    </div>
 </asp:Content>
+
