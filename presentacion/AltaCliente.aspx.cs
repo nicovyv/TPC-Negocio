@@ -17,23 +17,37 @@ namespace presentacion
         {
             if (!IsPostBack)
             {
-
-                string id = Request.QueryString["id"];
-                if (!string.IsNullOrEmpty(id))
+                try
                 {
-                    lblTitulo.Text = "Formulario Modificación de Cliente";
-                    btnAgregarCliente.Text = "Modificar";
-                    ClienteNegocio negocio = new ClienteNegocio();
-                    Cliente seleccionado = (negocio.listar(id))[0];
+                    string id = Request.QueryString["id"];
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        lblTitulo.Text = "Formulario Modificación de Cliente";
+                        btnAgregarCliente.Text = "Modificar";
+                        ClienteNegocio negocio = new ClienteNegocio();
+                        Cliente seleccionado = (negocio.listar(id))[0];
 
-                    Session.Add("clienteSeleccionado", seleccionado);
+                        Session.Add("clienteSeleccionado", seleccionado);
 
-                    txtNombreCliente.Text = seleccionado.Nombre;
-                    txtCuilCliente.Text = seleccionado.CuilCuit;
-                    txtDireccion.Text = seleccionado.Direccion;
-                    txtEmailCliente.Text = seleccionado.Email;
-                    txtTelefono.Text = seleccionado.Telefono;
+                        txtNombreCliente.Text = seleccionado.Nombre;
+                        txtCuilCliente.Text = seleccionado.CuilCuit;
+                        txtDireccion.Text = seleccionado.Direccion;
+                        txtEmailCliente.Text = seleccionado.Email;
+                        txtTelefono.Text = seleccionado.Telefono;
+                    }
                 }
+                catch (Exception)
+                {
+
+                    lblValidarCuit.Text = "Cliente no disponible o no exite";
+                    txtNombreCliente.Enabled = false;
+                    txtCuilCliente.Enabled = false;
+                    txtDireccion.Enabled = false;
+                    txtEmailCliente.Enabled = false;
+                    txtTelefono.Enabled = false;
+                    btnAgregarCliente.Visible = false;
+                }
+                
             }
         }
 
