@@ -40,8 +40,8 @@ namespace presentacion
                 }
                 else
                 {
-                    Session.Add("error", "Algún dato ingresado es incorrecto");
-                    Response.Redirect("Error.aspx");
+                    Session.Add("error", "Email o Password incorrectos");
+                    Response.Redirect("Error.aspx",false);
                 }
 
 
