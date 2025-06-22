@@ -51,5 +51,9 @@ namespace negocio
             }
             else { return false; }
         }
+        public static string ManejoError(Exception ex)
+        {
+            return ex.ToString();
+        }
     }
 }

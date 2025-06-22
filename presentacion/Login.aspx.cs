@@ -18,7 +18,7 @@ namespace presentacion
             catch (Exception ex)
             {
 
-                Session.Add("error", ex);
+                Session.Add("error", Security.ManejoError(ex));
                 Response.Redirect("Error.aspx");
             }
         }
@@ -50,7 +50,7 @@ namespace presentacion
             catch (Exception ex)
             {
 
-                Session.Add("error", ex);
+                Session.Add("error", Security.ManejoError(ex));
                 Response.Redirect("Error.aspx");
             }
         }
