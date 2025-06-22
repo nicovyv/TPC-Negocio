@@ -40,11 +40,33 @@ namespace presentacion
                 
                 usuario.Email = txtEmail.Text;
                 usuario.Password = txtPassword.Text;
-                usuario.Id=usuarioNegocio.AgregarUsuario(usuario);
-                Session.Add("usuario", usuario);
-                emailService.armarCorreo(usuario.Email, "Bienvenid@", "Hola bienvenido, gracias por elegirnos.");
-                emailService.enviarMail();
-                Response.Redirect("Perfil.aspx",false);
+                if(!(string.IsNullOrEmpty(usuario.Email)) & !(string.IsNullOrEmpty(usuario.Password)))
+                {
+                    usuario.Id = usuarioNegocio.AgregarUsuario(usuario);
+                    if (usuario.Id != 0)
+                    {
+                        Session.Add("usuario", usuario);
+                        emailService.armarCorreo(usuario.Email, "Bienvenid@", "Hola bienvenido, gracias por elegirnos.");
+                        emailService.enviarMail();
+                        Response.Redirect("Perfil.aspx", false);
+                    }
+                    else
+                    {
+                        Session.Add("error", "Hubo un error al crear el usuario, intente más tarde.");
+                        Response.Redirect("Error.aspx", false);
+                    }
+                }
+                else
+                {
+                    Session.Add("error", "El campo Email Usuario y Password son requeridos.");
+                    Response.Redirect("Error.aspx", false);
+                }
+                
+                
+               
+               
+
+               
             }
             catch (Exception ex)
             {
