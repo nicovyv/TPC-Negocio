@@ -1,7 +1,11 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
-using negocio;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace presentacion
 {
@@ -10,17 +14,22 @@ namespace presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Session["usuario"] == null)
-            {
-                Usuario usuario = new Usuario();
-                usuario.Id = 1;
-                usuario.Nombre = "Usuario Test";
-                usuario.Admin = true; // o false, según quieras probar permisos
+            cargarProductos();
 
-                Session.Add("usuario", usuario);
+            if (!IsPostBack)
+            {
+                if (Security.isAdmin(Session["usuario"]))
+                {
+                    btnNuevoProd.Visible = true;
+                }
+                else
+                {
+                    btnNuevoProd.Visible = false;
+                }
+
             }
 
-            cargarProductos();
+
         }
 
         private void cargarProductos()
@@ -41,5 +50,26 @@ namespace presentacion
             dgvProducto.PageIndex = e.NewPageIndex;
             dgvProducto.DataBind();
         }
+
+        protected void dgvProducto_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        {
+
+            string id = e.CommandArgument.ToString();
+
+            Response.Redirect("FormProductos.aspx?id=" + id);
+
+        }
+
+        protected void btnNuevoProd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormProductos.aspx");
+        }
+
+        //protected void dgvProducto_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
+        //    Button btnModProd = 
+        //}
+
     }
 }

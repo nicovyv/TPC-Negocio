@@ -40,6 +40,7 @@
             CssClass="table table-dark table-hover" AutoGenerateColumns="false"
             OnSelectedIndexChanged ="dgvProducto_SelectedIndexChanged"
             OnPageIndexChanging="dgvProducto_PageIndexChanging"
+            OnRowCommand="dgvProducto_RowCommand"
             AllowPaging="true" PageSize="5">
             <Columns>
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
@@ -48,8 +49,14 @@
                 <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
                 <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" />
                 <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
-                <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Ver Detalle" />
-                <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Modificar" />
+                <%--<asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Ver Detalle" />
+                <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Modificar" />--%>
+                 <asp:TemplateField HeaderText="Acción">
+                    <ItemTemplate>
+                        <asp:Button ID="btnModProd" Text="Modificar" CssClass="btn btn-light" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                        <asp:Button  Text="Ver Detalle" CssClass="btn btn-light" CommandName="Detalle" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             
         </asp:GridView>
@@ -59,7 +66,7 @@
     <div class="col-6">
         <div class="mb-3">
             <%--<button class="form-label" runat="server" >Nuevo Producto</button>--%>
-            <a href="FormProductos.aspx">Nuevo Producto</a>
+            <asp:Button ID="btnNuevoProd" OnClick="btnNuevoProd_Click" runat="server" Text="Nuevo Producto" />
         </div>
     </div>
 </asp:Content>

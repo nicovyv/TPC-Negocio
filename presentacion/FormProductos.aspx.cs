@@ -17,22 +17,23 @@ namespace presentacion
             {
                 CargarListas();
 
-              
-
                 string id = Request.QueryString["id"];
 
                 if (string.IsNullOrEmpty(id))
                 {
-                    FormularioAlta();
+                    if ((Security.isAdmin(Session["usuario"])))
+                    {
+                        FormularioAlta();
+                    }
+                        
                 }
-                else
+                else 
                 {
-                   
-                    cargarProductosModificacion(int.Parse(id));
+                    if ((Security.isAdmin(Session["usuario"])))
+                        cargarProductosModificacion(int.Parse(id));
+                    else
+                        CargarDetalleProducto(int.Parse(id));
                 }
-
-
-
 
             }
 
@@ -73,8 +74,66 @@ namespace presentacion
                 }
             }
 
-                
-                
+
+
+
+        }
+
+        private void CargarDetalleProducto(int id)
+        {
+
+            try
+            {
+                ProductoNegocio necgocio = new ProductoNegocio();
+                Producto producto = necgocio.ObtenerPorId(id);
+
+                if (producto != null)
+                {
+
+                    txtCodProd.Text = producto.Codigo;
+                    txtCodProd.Enabled = false;
+
+                    txtNombreProd.Text = producto.Nombre;
+                    txtNombreProd.Enabled = false;
+
+                    txtDescProd.Text = producto.Descripcion;
+                    txtDescProd.Enabled = false;
+
+                    ddlCatProd.SelectedValue = producto.Categoria.Id.ToString();
+                    ddlCatProd.Enabled = false;
+
+                    ddlMarcaProd.SelectedValue = producto.Marca.Id.ToString();
+                    ddlMarcaProd.Enabled = false;
+
+                    txtPrecioVentaProd.Text = producto.PrecioVenta.ToString();
+                    txtPrecioVentaProd.Enabled = false;
+
+                    txtPrecioCompraProd.Text = producto.PrecioCompra.ToString();
+                    txtPrecioCompraProd.Enabled = false;
+
+                    txtStockActualProd.Text = producto.StockActual.ToString();
+                    txtStockActualProd.Enabled = false;
+
+                    txtStockMinimoProd.Text = producto.StockMinimo.ToString();
+                    txtStockMinimoProd.Enabled = false;
+
+                    txtGananciaProd.Text = producto.Ganancia.ToString();
+                    txtGananciaProd.Enabled = false;
+
+                    foreach (ListItem prov in cblProveedoresProd.Items)
+                    {
+                        prov.Selected = producto.Proveedores.Any(x => x.Id.ToString() == prov.Value);
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
 
         }
 
@@ -180,7 +239,7 @@ namespace presentacion
                 }
                 //nuevo.StockMinimo = int.Parse(txtStockMinimoProd.Text);
                 nuevo.StockMinimo = stockMinimo;
-              
+
 
 
                 nuevo.PrecioCompra = 0;
@@ -207,7 +266,7 @@ namespace presentacion
                 {
                     negocio.Modificar(nuevo);
                 }
-               // negocio.Agregar(nuevo);
+                // negocio.Agregar(nuevo);
 
                 Response.Redirect("Productos.aspx");
 
