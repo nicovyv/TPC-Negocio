@@ -13,5 +13,20 @@ namespace presentacion
         {
 
         }
+
+        protected System.Void dgvCompra_RowCommand()
+        {
+
+        }
+
+        protected System.Void btnLimpiar_Click()
+        {
+
+        }
+
+        protected System.Void txtFiltro_TextChanged()
+        {
+
+        }
     }
 }
