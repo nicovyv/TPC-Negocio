@@ -14,7 +14,7 @@ namespace presentacion
             Exception exc = Server.GetLastError();
 
             Session.Add("error", Security.ManejoError(exc));
-            Response.Redirect("Error.aspx");
+            Server.Transfer("Error.aspx");
         }
     }
 }
