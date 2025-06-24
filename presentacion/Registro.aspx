@@ -12,7 +12,7 @@
             <div class="mb-3 row">
                 <label for="txtEmail" class="col-sm-3 col-form-label col-form-label-sm">Email</label>
                 <div class="col-sm-9">
-                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control form-control-sm" />
+                    <asp:TextBox runat="server" required ID="txtEmail" CssClass="form-control form-control-sm" />
                 </div>
             </div>
 
@@ -20,7 +20,7 @@
 
                 <label for="txtPassword" class="col-sm-3 col-form-label col-form-label-sm">Password</label>
                 <div class="col-sm-9">
-                    <asp:TextBox runat="server" type="password" ID="txtPassword" CssClass="form-control form-control-sm" />
+                    <asp:TextBox runat="server" required type="password" ID="txtPassword" CssClass="form-control form-control-sm" />
                 </div>
             </div>
               <asp:Button OnClick="btnRegistrarse_Click" Text="Registrarse" ID="btnRegistrarse" CssClass="btn btn-primary float-end" runat="server" />
