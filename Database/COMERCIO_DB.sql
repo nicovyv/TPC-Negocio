@@ -91,26 +91,6 @@ CONSTRAINT FK_PRODXPROV_PROV FOREIGN KEY (IDProveedor) REFERENCES Proveedores (I
 
 GO
 
---INSERTS
-
-INSERT INTO Categorias (Descripcion) 
-VALUES ('DESKTOPS'),('NOTEBOOKS'),('CELULARES');
-
-GO
-
-INSERT INTO Usuarios(Email, Pass, Nombre, Apellido, Admin)
-VALUES 
-('test1@email.com',123456,'Leonel','Messi',1),
-('test2@email.com',222222,'Angel','Di Maria',0),
-('test3@email.com',111111,'Emiliano','Martinez',0);
-
-GO
-
-INSERT INTO MARCAS (Descripcion)
-VALUES
-('HP'),('MSI'),('DELL'),('MOTOROLA'),('SAMSUNG');
-
-GO
 
 CREATE OR ALTER PROCEDURE insertarUsuario (@email VARCHAR(100),@pass VARCHAR(20))
 AS
