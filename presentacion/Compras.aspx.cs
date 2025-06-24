@@ -14,17 +14,17 @@ namespace presentacion
 
         }
 
-        protected System.Void dgvCompra_RowCommand()
+        protected void dgvCompra_RowCommand(object sender, EventArgs e)
         {
 
         }
 
-        protected System.Void btnLimpiar_Click()
+        protected void btnLimpiar_Click(object sender, EventArgs e)
         {
 
         }
 
-        protected System.Void txtFiltro_TextChanged()
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -2,71 +2,78 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <div class="container mt-4">
+        <h1 class="mb-4">Productos</h1>
 
-    <div>
-        <h1>Productos</h1>
-
-        <div class="row">
-            <div class="col-8">
-                <label class="form-label" runat="server">Buscador:</label>
-            </div>
-            <div class="col-10 d-flex">
-                <label class="form-label" runat="server">Nombre del Producto</label>
-                <asp:TextBox runat="server" ID="txtBuscador" CssClass="form-control" AutoPostBack="true" />
-                <asp:Button Text="Buscar" runat="server" />
+        <!-- Buscador -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="txtBuscador" class="form-label">Nombre del Producto</label>
+                <div class="input-group">
+                    <asp:TextBox ID="txtBuscador" runat="server" CssClass="form-control" AutoPostBack="true" />
+                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                </div>
             </div>
         </div>
 
-
-        <div class="row">
-            <div class="col-6">
+        <!-- Filtros -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5>Filtrar por:</h5>
                 <div class="mb-3">
-                    <label class="form-label" runat="server">Filtrar:</label>
+                    <label for="ddlFiltroMarca" class="form-label">Marca</label>
+                    <asp:DropDownList ID="ddlFiltroMarca" runat="server" CssClass="form-select"></asp:DropDownList>
                 </div>
-                <div class="col-12">
-                    <label class="form-label" runat="server">Marca:</label>
-                    <asp:DropDownList ID="ddlFiltroMarca" CssClass="form-select" runat="server"></asp:DropDownList>
-                    <label class="form-label" runat="server">Categoria:</label>
-                    <asp:DropDownList ID="ddlFiltroCategoria" CssClass="form-select" runat="server"></asp:DropDownList>
-                    <asp:Button Text="Ver productos dados de baja" runat="server" />
+                <div class="mb-3">
+                    <label for="ddlFiltroCategoria" class="form-label">Categoría</label>
+                    <asp:DropDownList ID="ddlFiltroCategoria" runat="server" CssClass="form-select"></asp:DropDownList>
                 </div>
+                <asp:Button Text="Ver productos dados de baja" runat="server" CssClass="btn btn-outline-secondary" />
             </div>
-
         </div>
 
+        <!-- Grilla -->
         <asp:GridView ID="dgvProducto" runat="server" DataKeyNames="Id"
-            CssClass="table table-dark table-hover" AutoGenerateColumns="false"
-            OnSelectedIndexChanged ="dgvProducto_SelectedIndexChanged"
+            CssClass="table table-dark table-hover"
+            AutoGenerateColumns="false"
+            AllowPaging="true" PageSize="5"
+            OnSelectedIndexChanged="dgvProducto_SelectedIndexChanged"
             OnPageIndexChanging="dgvProducto_PageIndexChanging"
-            OnRowCommand="dgvProducto_RowCommand"
-            AllowPaging="true" PageSize="5">
+            OnRowCommand="dgvProducto_RowCommand">
             <Columns>
-                <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
+                <asp:BoundField HeaderText="Código" DataField="Codigo" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                 <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
-                <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
+                <asp:BoundField HeaderText="Categoría" DataField="Categoria.Descripcion" />
                 <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" />
                 <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
-                <%--<asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Ver Detalle" />
-                <asp:CommandField HeaderText="" ShowSelectButton="True" SelectText="Modificar" />--%>
-                 <asp:TemplateField HeaderText="Acción">
+                <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
-                        <asp:Button ID="btnModProd" Text="Modificar" CssClass="btn btn-light" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
-                        <asp:Button  Text="Ver Detalle" CssClass="btn btn-light" CommandName="Detalle" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                        <asp:Button 
+                            ID="btnModProd" 
+                            Text="Modificar" 
+                            CssClass="btn btn-light btn-sm me-2" 
+                            CommandName="Modificar" 
+                            CommandArgument='<%# Eval("Id") %>' 
+                            runat="server" />
+                        <asp:Button 
+                            Text="Ver Detalle" 
+                            CssClass="btn btn-secondary btn-sm" 
+                            CommandName="Detalle" 
+                            CommandArgument='<%# Eval("Id") %>' 
+                            runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-            
         </asp:GridView>
-    </div>
 
-
-    <div class="col-6">
-        <div class="mb-3">
-            <%--<button class="form-label" runat="server" >Nuevo Producto</button>--%>
-            <asp:Button ID="btnNuevoProd" OnClick="btnNuevoProd_Click" runat="server" Text="Nuevo Producto" />
+        <!-- Botón Nuevo Producto -->
+        <div class="mt-4">
+            <asp:Button ID="btnNuevoProd" OnClick="btnNuevoProd_Click" runat="server" Text="Nuevo Producto" CssClass="btn btn-success" />
         </div>
     </div>
+
 </asp:Content>
