@@ -103,6 +103,17 @@ CREATE TABLE Compras (
 
 GO
 
+CREATE TABLE DetalleCompra (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    IDCompra INT NOT NULL FOREIGN KEY REFERENCES Compras(ID),
+    IDProducto INT NOT NULL FOREIGN KEY REFERENCES Productos(ID),
+    Cantidad INT NOT NULL CHECK (Cantidad > 0),
+    Precio MONEY NOT NULL CHECK (Precio > 0),
+	Activo BIT NOT NULL DEFAULT 1
+);
+
+GO
+
 
 CREATE OR ALTER PROCEDURE insertarUsuario (@email VARCHAR(100),@pass VARCHAR(20))
 AS

@@ -10,6 +10,7 @@ namespace dominio
         public DateTime Fecha { get; set; }
         public Proveedor Proveedor { get; set; }
         public Usuario Usuario { get; set; }
+        public List<DetalleCompra> Detalle { get; set; }
         public decimal Total { get; set; }
     }
 }
