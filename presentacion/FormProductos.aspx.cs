@@ -130,6 +130,8 @@ namespace presentacion
                         prov.Selected = producto.Proveedores.Any(x => x.Id.ToString() == prov.Value);
                     }
 
+                    cblProveedoresProd.Enabled = false;
+
                 }
 
             }
