@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
       
-      <h2 class="d-flex justify-content-center">Clientes</h2>
+      <h2 class="d-flex justify-content-center">Compras</h2>
 
 
   <div class="d-flex justify-content-center" style="height: 100px;">

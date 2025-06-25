@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,9 +12,16 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            cargarCompras();
         }
 
+        private void cargarCompras()
+        {
+            CompraNegocio compraNegocio = new CompraNegocio();
+            Session.Add(("listaCompras"), compraNegocio.listar());
+            dgvCompra.DataSource = Session["listaCompras"];
+            dgvCompra.DataBind();
+        }
         protected void dgvCompra_RowCommand(object sender, EventArgs e)
         {
 
