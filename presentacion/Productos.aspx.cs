@@ -14,10 +14,12 @@ namespace presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            cargarProductos();
+
 
             if (!IsPostBack)
             {
+                cargarProductos();
+
                 if (Security.isAdmin(Session["usuario"]))
                 {
                     btnNuevoProd.Visible = true;
@@ -41,8 +43,7 @@ namespace presentacion
 
         protected void dgvProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = dgvProducto.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormProductos.aspx?id=" + id);
+
         }
 
         protected void dgvProducto_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)

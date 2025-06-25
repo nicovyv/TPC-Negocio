@@ -52,18 +52,18 @@
                 <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
-                        <asp:Button 
-                            ID="btnModProd" 
-                            Text="Modificar" 
-                            CssClass="btn btn-light btn-sm me-2" 
-                            CommandName="Modificar" 
-                            CommandArgument='<%# Eval("Id") %>' 
+                        <asp:Button
+                            ID="btnModProd"
+                            Text="Modificar"
+                            CssClass="btn btn-light btn-sm me-2"
+                            CommandName="Modificar"
+                            CommandArgument='<%# Eval("Id") %>'
                             runat="server" />
-                        <asp:Button 
-                            Text="Ver Detalle" 
-                            CssClass="btn btn-secondary btn-sm" 
-                            CommandName="Detalle" 
-                            CommandArgument='<%# Eval("Id") %>' 
+                        <asp:Button
+                            Text="Ver Detalle"
+                            CssClass="btn btn-secondary btn-sm"
+                            CommandName="Detalle"
+                            CommandArgument='<%# Eval("Id") %>'
                             runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>

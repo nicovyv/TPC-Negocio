@@ -13,11 +13,15 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+
             if (!IsPostBack)
             {
                 CargarListas();
 
                 string id = Request.QueryString["id"];
+                string accion = Request.QueryString["accion"];
 
                 if (string.IsNullOrEmpty(id))
                 {
@@ -25,13 +29,14 @@ namespace presentacion
                     {
                         FormularioAlta();
                     }
-                        
+
                 }
-                else 
+                else
                 {
-                    if ((Security.isAdmin(Session["usuario"])))
+                    if ((Security.isAdmin(Session["usuario"])) && accion == "modificar")
                         cargarProductosModificacion(int.Parse(id));
-                    else
+
+                    else if (accion == "detalle")
                         CargarDetalleProducto(int.Parse(id));
                 }
 
