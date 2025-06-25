@@ -36,9 +36,22 @@ namespace presentacion
 
         private void cargarProductos()
         {
+
+
             ProductoNegocio negocio = new ProductoNegocio();
-            dgvProducto.DataSource = negocio.listar();
-            dgvProducto.DataBind();
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvProductoAdmin.DataSource = negocio.listar();
+                dgvProductoAdmin.DataBind();
+            }
+            else
+            {
+                dgvProductoVendedor.DataSource = negocio.listar();
+                dgvProductoVendedor.DataBind();
+            }
+
+            
         }
 
         protected void dgvProducto_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,8 +61,25 @@ namespace presentacion
 
         protected void dgvProducto_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
-            dgvProducto.PageIndex = e.NewPageIndex;
-            dgvProducto.DataBind();
+            //dgvProducto.PageIndex = e.NewPageIndex;
+            //dgvProducto.DataBind();
+
+            ProductoNegocio negocio = new ProductoNegocio();
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvProductoAdmin.PageIndex = e.NewPageIndex;
+                dgvProductoAdmin.DataSource = negocio.listar();
+                dgvProductoAdmin.DataBind();
+            }
+            else
+            {
+                dgvProductoVendedor.PageIndex = e.NewPageIndex;
+                dgvProductoVendedor.DataSource = negocio.listar();
+                dgvProductoVendedor.DataBind();
+            }
+
+
         }
 
         protected void dgvProducto_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)

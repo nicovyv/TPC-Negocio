@@ -36,7 +36,7 @@
         </div>
 
         <!-- Grilla -->
-        <asp:GridView ID="dgvProducto" runat="server" DataKeyNames="Id"
+        <asp:GridView ID="dgvProductoAdmin" runat="server" DataKeyNames="Id"
             CssClass="table table-dark table-hover"
             AutoGenerateColumns="false"
             AllowPaging="true" PageSize="5"
@@ -69,6 +69,33 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+
+          <asp:GridView ID="dgvProductoVendedor" runat="server" DataKeyNames="Id"
+      CssClass="table table-dark table-hover"
+      AutoGenerateColumns="false"
+      AllowPaging="true" PageSize="5"
+      OnSelectedIndexChanged="dgvProducto_SelectedIndexChanged"
+      OnPageIndexChanging="dgvProducto_PageIndexChanging"
+      OnRowCommand="dgvProducto_RowCommand">
+      <Columns>
+          <asp:BoundField HeaderText="Código" DataField="Codigo" />
+          <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+          <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
+          <asp:BoundField HeaderText="Categoría" DataField="Categoria.Descripcion" />
+          <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" />
+          <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
+          <asp:TemplateField HeaderText="Acciones">
+              <ItemTemplate>
+                  <asp:Button
+                      Text="Ver Detalle"
+                      CssClass="btn btn-secondary btn-sm"
+                      CommandName="Detalle"
+                      CommandArgument='<%# Eval("Id") %>'
+                      runat="server" />
+              </ItemTemplate>
+          </asp:TemplateField>
+      </Columns>
+  </asp:GridView>
 
         <!-- Botón Nuevo Producto -->
         <div class="mt-4">

@@ -42,13 +42,22 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.DropDownList ddlFiltroCategoria;
 
         /// <summary>
-        /// Control dgvProducto.
+        /// Control dgvProductoAdmin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvProducto;
+        protected global::System.Web.UI.WebControls.GridView dgvProductoAdmin;
+
+        /// <summary>
+        /// Control dgvProductoVendedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvProductoVendedor;
 
         /// <summary>
         /// Control btnNuevoProd.
