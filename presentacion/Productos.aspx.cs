@@ -56,7 +56,14 @@ namespace presentacion
 
             string id = e.CommandArgument.ToString();
 
-            Response.Redirect("FormProductos.aspx?id=" + id);
+            if (e.CommandName == "Modificar")
+            {
+                Response.Redirect("FormProductos.aspx?id=" + id + "&accion=modificar");
+            }
+            else if (e.CommandName == "Detalle")
+            {
+                Response.Redirect("FormProductos.aspx?id=" + id + "&accion=detalle");
+            }
 
         }
 
