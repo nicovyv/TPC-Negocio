@@ -3,29 +3,21 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 class="d-flex justify-content-center">Proveedores</h2>
-
-
-    <div class="d-flex justify-content-center" style="height: 100px;">
-        <div class="col-sm-6">
-            <asp:TextBox runat="server" ID="txtFiltro" placeholder="Busque Proveedores..." CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
-        </div>
-        <div class="col-sm-1">
-            <asp:Button Text="🔍" CssClass="btn btn-light" runat="server" />
-           
-        </div>
-        <div class="col-sm-1">
-             <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" id="btnLimpiar" OnClick="btnLimpiar_Click" Visible="false" />
-        </div>
-    </div>
-
-    <div class="row" style="height: 200px;">
-        <div class="col">
-            <a class="btn btn-dark" href="AltaProveedor.aspx">Nuevo Proveedor</a>
+    <div class="container mt-4">
+        <h1 class="mb-4">Proveedores</h1>
+         <!-- Buscador -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="txtFiltro" class="form-label">Nombre del proveedor</label>
+                <div class="input-group">
+                    <asp:TextBox runat="server" ID="txtFiltro" placeholder="Busque Proveedores..." CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                </div>
+                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnLimpiar" OnClick="btnLimpiar_Click" Visible="false" />
+            </div>
         </div>
 
-
-
+         <!-- Grilla -->
         <asp:GridView ID="dgvProveedores" runat="server" DataKeyNames="Id"
             CssClass="table table-dark table-hover" AutoGenerateColumns="false"
             AllowPaging="false" PageSize="5" OnRowCommand="dgvProveedores_RowCommand">
@@ -43,5 +35,10 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+         <!-- Botón Nuevo Proveedor -->
+        <div class="mt-4">
+            <a class="btn btn-success" href="AltaProveedor.aspx">Nuevo Proveedor</a>
+        </div>
     </div>
+    
 </asp:Content>
