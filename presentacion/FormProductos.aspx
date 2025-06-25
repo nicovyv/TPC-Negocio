@@ -59,7 +59,9 @@
 
             <div class="mb-3">
                 <asp:Button ID="btnGuardarProd" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardarProd_Click" />
-                <asp:Button ID="btnCancelarProd" runat="server" Text="Cancelar" CssClass="btn btn-secondary"  />
+                <%--<asp:Button ID="btnCancelarProd" runat="server" Text="Cancelar" CssClass="btn btn-secondary" />--%>
+                <a href="Productos.aspx" class="d-block m-2 float-end">Cancelar</a>
+                <asp:Button ID="btnBajaProd" runat="server" Text="Dar de Baja" CssClass="btn btn-danger ms-2" visible="false"  OnClick="btnBajaProd_Click" />
             </div>
 
 

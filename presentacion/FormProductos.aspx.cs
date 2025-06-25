@@ -34,7 +34,11 @@ namespace presentacion
                 else
                 {
                     if ((Security.isAdmin(Session["usuario"])) && accion == "modificar")
+                    {
                         cargarProductosModificacion(int.Parse(id));
+                        btnBajaProd.Visible = true;
+                    }
+
 
                     else if (accion == "detalle")
                         CargarDetalleProducto(int.Parse(id));
@@ -342,8 +346,28 @@ namespace presentacion
             return valida;
         }
 
+        protected void btnBajaProd_Click(object sender, EventArgs e)
+        {
+            ProductoNegocio negocio = new ProductoNegocio();
+            Producto nuevo = new Producto();
+
+            try
+            {
+                //Producto producto = new Producto();
+                //int idProducto;
+
+                //if (Request.QueryString["id"] != null) { }
 
 
+                //negocio.ObtenerPorId(idProducto);
 
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
