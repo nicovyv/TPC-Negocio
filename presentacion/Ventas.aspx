@@ -22,18 +22,21 @@
         <!-- DATOS de venta -->
 
 
-        <div class="row">
+        <div class="column d-flex flex-column gap-4 ">
             <div class="col-6">
                 <asp:Label ID="lblCatVenta" runat="server" Text="Categoria"></asp:Label>
                 <asp:DropDownList ID="ddlCatVenta" runat="server"></asp:DropDownList>
+                <asp:Label runat="server" Text="Seleccione una catégoria (opcional)"></asp:Label>
             </div>
             <div class="col-6">
                 <asp:Label ID="lblProdVenta" runat="server" Text="Producto"></asp:Label>
                 <asp:DropDownList ID="ddlProdVenta" runat="server"></asp:DropDownList>
+                <asp:Label runat="server" Text="Seleccione un producto"></asp:Label>
             </div>
             <div class="col-6">
                 <asp:Label ID="lblCantVenta" runat="server" Text="Cantidad"></asp:Label>
                 <asp:TextBox ID="txtCantVenta" runat="server"></asp:TextBox>
+                <asp:Label runat="server" Text="Indique la cantidad"></asp:Label>
             </div>
             <asp:Button ID="btnAgregarItemVenta" runat="server" Text="Agregar" />
 
