@@ -51,6 +51,24 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
+        /// Control lblCatVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCatVenta;
+
+        /// <summary>
+        /// Control ddlCatVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCatVenta;
+
+        /// <summary>
         /// Control lblProdVenta.
         /// </summary>
         /// <remarks>
@@ -103,5 +121,14 @@ namespace presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvDetalleVenta;
+
+        /// <summary>
+        /// Control btnGuardarVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarVenta;
     }
 }

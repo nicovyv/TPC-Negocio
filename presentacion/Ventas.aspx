@@ -19,8 +19,14 @@
         <asp:Label CssClass="form-label" runat="server" ID="lblCUIT"></asp:Label>
         <asp:Label CssClass="form-label" runat="server" ID="lblNombre"></asp:Label>
 
+        <!-- DATOS de venta -->
+
 
         <div class="row">
+            <div class="col-6">
+                <asp:Label ID="lblCatVenta" runat="server" Text="Categoria"></asp:Label>
+                <asp:DropDownList ID="ddlCatVenta" runat="server"></asp:DropDownList>
+            </div>
             <div class="col-6">
                 <asp:Label ID="lblProdVenta" runat="server" Text="Producto"></asp:Label>
                 <asp:DropDownList ID="ddlProdVenta" runat="server"></asp:DropDownList>
@@ -38,9 +44,10 @@
             <asp:GridView ID="dgvDetalleVenta" runat="server">
 
                 <Columns>
-                    <asp:BoundField HeaderText="Producto" DataField="Producto" />
-                    <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
-                    <asp:BoundField HeaderText="Precio Unitario" DataField="PrecioVenta" />
+                    <asp:BoundField HeaderText="Código" DataField="producto.codigo" />
+                    <asp:BoundField HeaderText="Cantidad" DataField="cantidad" />
+                    <asp:BoundField HeaderText="Precio Unitario" DataField="precioUnidad" />
+                    <asp:BoundField HeaderText="SubTotal" DataField="" />
                 </Columns>
 
             </asp:GridView>
@@ -48,10 +55,9 @@
 
         </div>
 
-    </div>
-
-
-
-
-
+        <div class="mb-3">
+            <asp:Button ID="btnGuardarVenta" runat="server" Text="Confirmar Venta" CssClass="btn btn-primary"  />
+            <%--<asp:Button ID="btnCancelarProd" runat="server" Text="Cancelar" CssClass="btn btn-secondary" />--%>
+            <a href="Productos.aspx" class="d-block m-2 float-end">Cancelar</a>
+        </div>
 </asp:Content>
