@@ -63,7 +63,6 @@ namespace presentacion
         {
             //dgvProducto.PageIndex = e.NewPageIndex;
             //dgvProducto.DataBind();
-
             ProductoNegocio negocio = new ProductoNegocio();
 
             if (Security.isAdmin(Session["usuario"]))
