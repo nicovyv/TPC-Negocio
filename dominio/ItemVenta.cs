@@ -11,5 +11,11 @@ namespace dominio
         public Producto Producto { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioUnidad { get; set; }
+
+        public decimal Subtotal
+        {
+            get { return Cantidad * PrecioUnidad; }
+        
+        }
     }
 }

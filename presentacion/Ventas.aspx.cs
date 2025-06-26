@@ -13,8 +13,12 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarCategorias();
-            cargarProductos();
+            if (!IsPostBack)
+            {
+                cargarCategorias();
+                cargarProductos();
+            }
+ 
         }
 
         protected void btnAsignarCliente_Click(object sender, EventArgs e)
