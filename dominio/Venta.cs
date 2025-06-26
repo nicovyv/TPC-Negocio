@@ -9,9 +9,7 @@ namespace dominio
         public Cliente Cliente { get; set; }
         public DateTime Fecha { get; set; }
         public List<ItemVenta> ItemVenta { get; set; }
+        public Decimal Total { get; set; }
 
-
-
-        //public TipoUsuario Vendedor { get; set; }
     }
 }

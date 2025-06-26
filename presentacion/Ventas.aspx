@@ -15,6 +15,7 @@
                 </div>
             </div>
         </div>
+     </div>
         <!-- DATOS de cliente -->
         <asp:Label CssClass="form-label" runat="server" ID="lblCUIT"></asp:Label>
         <asp:Label CssClass="form-label" runat="server" ID="lblNombre"></asp:Label>
