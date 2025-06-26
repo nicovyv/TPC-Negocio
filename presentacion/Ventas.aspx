@@ -32,14 +32,14 @@
             <div class="col-6">
                 <asp:Label ID="lblProdVenta" runat="server" Text="Producto"></asp:Label>
                 <asp:DropDownList ID="ddlProdVenta" runat="server"></asp:DropDownList>
-                <asp:Label runat="server" Text="Seleccione un producto"></asp:Label>
+                 <asp:Label runat="server" Text="seleccione un producto" ID="lblHelProdVenta"></asp:Label>
             </div>
             <div class="col-6">
                 <asp:Label ID="lblCantVenta" runat="server" Text="Cantidad"></asp:Label>
                 <asp:TextBox ID="txtCantVenta" runat="server"></asp:TextBox>
-                <asp:Label runat="server" Text="Indique la cantidad"></asp:Label>
+                <asp:Label runat="server" Text="Indique la cantidad" ID="lblHelpCantVenta"></asp:Label>
             </div>
-            <asp:Button ID="btnAgregarItemVenta" runat="server" Text="Agregar" />
+            <asp:Button ID="btnAgregarItemVenta" runat="server" Text="Agregar" OnClick="btnAgregarItemVenta_Click" />
 
         </div>
 

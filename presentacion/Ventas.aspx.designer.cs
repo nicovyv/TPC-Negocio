@@ -87,6 +87,15 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.DropDownList ddlProdVenta;
 
         /// <summary>
+        /// Control lblHelProdVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHelProdVenta;
+
+        /// <summary>
         /// Control lblCantVenta.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCantVenta;
+
+        /// <summary>
+        /// Control lblHelpCantVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHelpCantVenta;
 
         /// <summary>
         /// Control btnAgregarItemVenta.

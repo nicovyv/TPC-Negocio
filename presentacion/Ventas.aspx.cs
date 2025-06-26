@@ -70,7 +70,69 @@ namespace presentacion
             ddlProdVenta.DataBind();
         }
 
+        protected void btnAgregarItemVenta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductoNegocio negocio = new ProductoNegocio();
+                int idProducto = int.Parse(ddlProdVenta.SelectedValue);
+
+                if (idProducto == 0)
+                {
+                    lblHelProdVenta.Text = "Debe seleccionar un Producto.";
+                    lblHelProdVenta.CssClass = "text-danger";
+                    return;
+                }
 
 
+                Producto producto =  negocio.ObtenerPorId(idProducto);
+
+                int cantidad = int.Parse(txtCantVenta.Text);
+
+                if(cantidad < 1)
+                {
+                    lblHelpCantVenta.Text = "La cantidad debe ser mayor a 0 unidades";
+                    lblHelpCantVenta.CssClass = "text-danger";
+                    return;
+                }
+
+            
+                else if(producto.StockActual - cantidad < producto.StockMinimo)
+                {
+                    lblHelpCantVenta.Text = "No hay stock suficiente.";
+                    lblHelpCantVenta.CssClass = "text-danger";
+                    return;
+                }
+
+
+
+                ItemVenta item = new ItemVenta();
+                item.Producto = producto;
+                item.Cantidad = cantidad;
+                item.PrecioUnidad = producto.PrecioVenta;
+
+
+                List<ItemVenta> listaItems = new List<ItemVenta>();
+                listaItems.Add(item);
+
+                dgvDetalleVenta.DataSource = listaItems;
+                dgvDetalleVenta.DataBind();
+
+
+                lblCantVenta.Text = "";
+                lblHelpCantVenta.Text = "Indique la cantidad";
+                lblHelProdVenta.Text = "seleccione un producto";
+
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
     }
 }
