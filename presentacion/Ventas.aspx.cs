@@ -17,9 +17,19 @@ namespace presentacion
             Cliente cliente = new Cliente();
             try
             {
-              cliente=clienteNegocio.buscarClientePorCuitCuil(txtBuscadorCliente.Text);
-                lblCUIT.Text = cliente.CuilCuit;
-                lblNombre.Text = cliente.Nombre;
+                cliente=clienteNegocio.buscarClientePorCuitCuil(txtBuscadorCliente.Text);
+                
+                if(cliente.Id!=0 )
+                {
+                    lblCUIT.Text = cliente.CuilCuit;
+                    lblNombre.Text = cliente.Nombre;
+                }
+                else
+                {
+                    Session.Add("error", "El cliente no está registrado en el sistema, no se puede realizar la venta");
+                    Response.Redirect("Error.aspx",false);
+                }
+               
             }
             catch (Exception ex)
             {
