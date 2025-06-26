@@ -14,6 +14,7 @@ namespace presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             cargarCategorias();
+            cargarProductos();
         }
 
         protected void btnAsignarCliente_Click(object sender, EventArgs e)
@@ -54,6 +55,15 @@ namespace presentacion
             ddlCatVenta.DataValueField = "Id";
             ddlCatVenta.DataBind();
 
+        }
+
+        private void cargarProductos()
+        {
+            ProductoNegocio negocio = new ProductoNegocio();
+            ddlProdVenta.DataSource = negocio.listar();
+            ddlProdVenta.DataTextField = "Nombre";
+            ddlProdVenta.DataValueField = "Id";
+            ddlProdVenta.DataBind();
         }
 
 
