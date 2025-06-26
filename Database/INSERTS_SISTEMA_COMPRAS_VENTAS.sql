@@ -27,20 +27,20 @@ GO
 -- Insertando en Clientes
 INSERT INTO Clientes (Nombre, Email, Direccion, CuilCuit, Telefono)
 VALUES 
-('Juan Pérez', 'juan.perez@email.com', 'Av. Siempre Viva 123', '20-12345678-9', '011-1234-5678'),
-('Ana Gómez', 'ana.gomez@email.com', 'Calle Falsa 456', '27-87654321-0', '011-8765-4321'),
-('Carlos Ramírez', 'carlos.ramirez@email.com', 'Mitre 789', '20-11223344-0', '0341-1234567'),
-('Lucía Fernández', 'lucia.fernandez@email.com', 'Santa Fe 321', '27-44332211-5', '011-5555-6666'),
-('Federico López', 'federico.lopez@email.com', 'Belgrano 654', '23-99887766-1', '0261-444-5555');
+('Juan Pérez', 'juan.perez@email.com', 'Av. Siempre Viva 123', '20123456789', '011-1234-5678'),
+('Ana Gómez', 'ana.gomez@email.com', 'Calle Falsa 456', '27876543210', '011-8765-4321'),
+('Carlos Ramírez', 'carlos.ramirez@email.com', 'Mitre 789', '20112233440', '0341-1234567'),
+('Lucía Fernández', 'lucia.fernandez@email.com', 'Santa Fe 321', '27443322115', '011-5555-6666'),
+('Federico López', 'federico.lopez@email.com', 'Belgrano 654', '23998877661', '0261-444-5555');
 
 -- Insertando en Proveedores
 INSERT INTO Proveedores (Nombre, Email, Direccion, CuilCuit, Telefono)
 VALUES 
-('ElectroMayorista SA', 'contacto@electromayorista.com', 'Paraná 123', '30-11223344-5', '011-1111-2222'),
-('Distribuidora General SRL', 'ventas@distribgeneral.com', 'Av. Córdoba 456', '30-99887766-3', '011-3333-4444'),
-('TodoHerramientas SA', 'ventas@todoherramientas.com', 'Av. San Martín 1000', '30-55443322-6', '011-7777-8888'),
-('MundoJardin SRL', 'contacto@mundojardin.com', 'Boulogne Sur Mer 800', '30-66778899-0', '0342-222-3333'),
-('DeporteMax SA', 'info@deportemax.com', 'Av. Libertador 2000', '30-10101010-9', '011-9999-0000');
+('ElectroMayorista SA', 'contacto@electromayorista.com', 'Paraná 123', '30112233445', '011-1111-2222'),
+('Distribuidora General SRL', 'ventas@distribgeneral.com', 'Av. Córdoba 456', '30998877663', '011-3333-4444'),
+('TodoHerramientas SA', 'ventas@todoherramientas.com', 'Av. San Martín 1000', '30554433226', '011-7777-8888'),
+('MundoJardin SRL', 'contacto@mundojardin.com', 'Boulogne Sur Mer 800', '30667788990', '0342-222-3333'),
+('DeporteMax SA', 'info@deportemax.com', 'Av. Libertador 2000', '30101010109', '011-9999-0000');
 
 GO
 -- Insertando en Productos

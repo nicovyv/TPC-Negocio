@@ -9,6 +9,35 @@ namespace negocio
 {
     public class ClienteNegocio
     {
+        public Cliente buscarClientePorCuitCuil(string cuitCuil)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Cliente cliente = new Cliente();
+            
+            try
+            {
+                datos.setConsulta("SELECT Id,Nombre,Email,Direccion,CuilCuit,Telefono,Activo FROM Clientes WHERE CuilCuit=@cuilCuit AND Activo=1;");
+                datos.setParametro("@cuilCuit",cuitCuil);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    
+                    cliente.Id = (int)datos.Lector["Id"];
+                    cliente.Nombre = (string)datos.Lector["Nombre"];
+                    cliente.Email = (string)datos.Lector["Email"];
+                    cliente.Direccion = (string)datos.Lector["Direccion"];
+                    cliente.CuilCuit = (string)datos.Lector["CuilCuit"];
+                    cliente.Telefono = (string)datos.Lector["Telefono"];
+                    cliente.Activo = (bool)datos.Lector["Activo"];
+                }
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public List<Cliente> listar(string id= "")
         {
             List<Cliente> listaClientes = new List<Cliente>();

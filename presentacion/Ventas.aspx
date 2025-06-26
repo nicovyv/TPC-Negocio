@@ -2,18 +2,26 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-            <h2>Ventas</h2>
-    <a href="FormVenta.aspx">Nueva Venta</a>
-    <div class="row">
-            <div class="col-6">
-                <div class="mb-3">
-                    <label class="form-label" runat="server">Filtrar</label>
-                    <asp:TextBox runat="server" ID="txtFiltroVenta" CssClass="form-control" AutoPostBack="true" />
+    <div class="container mt-4">
+        <h1 class="mb-4">Ventas</h1>
+        <!-- Buscador de cliente -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="txtBuscador" class="form-label">CUIT O CUIL Del Cliente</label>
+                <div class="input-group">
+                    <asp:TextBox ID="txtBuscadorCliente" placeholder="Ingrese Cuil o Cuit del cliente" runat="server" CssClass="form-control" AutoPostBack="true" />
+                    <asp:Button Text="Asignar cliente" ID="btnAsignarCliente" OnClick="btnAsignarCliente_Click" runat="server" CssClass="btn btn-primary" />
                 </div>
             </div>
-           
         </div>
-    <h3>Historial de Ventas</h3>
+        <!-- DATOS de cliente -->
+        <asp:Label CssClass="form-label" runat="server" ID="lblCUIT"></asp:Label>
+        <asp:Label CssClass="form-label" runat="server" ID="lblNombre"></asp:Label>
+
+    </div>
+            
+    
+  
+
 
 </asp:Content>
