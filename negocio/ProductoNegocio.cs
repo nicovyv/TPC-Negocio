@@ -285,5 +285,36 @@ namespace negocio
         }
 
 
+
+        // ELIMINACION LOGICA
+        public void eliminar(int id)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                
+
+                datos.setConsulta("UPDATE Productos SET Activo = 0 WHERE ID = @id");
+                datos.setParametro("@id", id);
+
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+           
+
+        }
+
+
     }
 }

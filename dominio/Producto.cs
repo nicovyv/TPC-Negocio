@@ -17,5 +17,6 @@ namespace dominio
         public List<Proveedor> Proveedores { get; set; }
         public float Ganancia { get; set; }
         public decimal PrecioCompra { get; set; }
+        public bool Activo { get; set; }
     }
 }

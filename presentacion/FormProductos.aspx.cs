@@ -348,19 +348,18 @@ namespace presentacion
 
         protected void btnBajaProd_Click(object sender, EventArgs e)
         {
-            ProductoNegocio negocio = new ProductoNegocio();
-            Producto nuevo = new Producto();
+           
+           
 
             try
             {
-                //Producto producto = new Producto();
-                //int idProducto;
+                ProductoNegocio negocio = new ProductoNegocio();
 
-                //if (Request.QueryString["id"] != null) { }
+                int idProducto = int.Parse(Request.QueryString["Id"]);
 
+                negocio.eliminar(idProducto);
 
-                //negocio.ObtenerPorId(idProducto);
-
+                Response.Redirect("Productos.aspx");
 
             }
             catch (Exception)
