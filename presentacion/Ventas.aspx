@@ -31,12 +31,15 @@
 
                 </div>
             </div>
-            <asp:Button 
-                ID="btnIngresarProductos"
-                OnClick="btnIngresarProductos_Click"
-                runat="server" 
-                CssClass="btn btn-primary mt-4" 
-                Text="Ingresar productos" />
+            <div>
+                <asp:Button
+                    ID="btnIngresarProductos"
+                    OnClick="btnIngresarProductos_Click"
+                    runat="server"
+                    CssClass="btn btn-primary mt-4"
+                    Text="Ingresar productos" />
+            </div>
+            
         </div>
         <!-- INGRESAR PRODUCTOS A LA VENTA -->
         <div class="column d-flex flex-column gap-4 ">
