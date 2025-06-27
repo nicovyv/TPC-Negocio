@@ -28,6 +28,22 @@
             </div>
         </div>
 
+         <asp:Button ID="btnAgregarItemVenta" runat="server" Text="AGREGAR PRODUCTO" CssClass="mt-4 btn btn-primary btn-sm " OnClick="btnAgregarItemVenta_Click" />
+
+
+         <h1 class="mt-4">PRODUCTOS AGREGADOS A LA VENTA</h1>
+        <div>
+            <!-- GRILLA DE PRODUCTOS AGREGADOS A LA VENTA -->
+            <asp:GridView ID="dgvDetalleVenta" runat="server">
+                <Columns>
+                    <asp:BoundField HeaderText="Código" DataField="producto.codigo" />
+                    <asp:BoundField HeaderText="Cantidad" DataField="cantidad" />
+                    <asp:BoundField HeaderText="Precio Unitario" DataField="precioUnidad" />
+                    <asp:BoundField HeaderText="SubTotal" DataField="" />
+                </Columns>
+            </asp:GridView>
+        </div>
+
     </div>
 
 </asp:Content>
