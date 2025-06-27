@@ -80,6 +80,7 @@
     <Content Include="FormProductos.aspx" />
     <Content Include="FormVenta.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="IngresarProductosVenta.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Marcas.aspx" />
     <Content Include="Perfil.aspx" />
@@ -176,6 +177,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IngresarProductosVenta.aspx.cs">
+      <DependentUpon>IngresarProductosVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IngresarProductosVenta.aspx.designer.cs">
+      <DependentUpon>IngresarProductosVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

@@ -14,26 +14,48 @@
                     <asp:Button Text="Asignar cliente" ID="btnAsignarCliente" OnClick="btnAsignarCliente_Click" runat="server" CssClass="btn btn-primary" />
                 </div>
             </div>
+           
         </div>
+
         <!-- DATOS de cliente -->
         <div class="row">
-            <asp:Label CssClass="form-label" runat="server" ID="lblCUIT"></asp:Label>
-            <asp:Label CssClass="form-label" runat="server" ID="lblNombre"></asp:Label>
+            <div class="col-md-6">
+                <h1>CLIENTE:</h1>
+                <div class="input-group">
+                    <label for="txtCuit" class="form-label">CUIT O CUIL Del Cliente</label>
+                    <asp:TextBox ID="txtCuit" placeholder="" ReadOnly="true" runat="server" CssClass="form-control" AutoPostBack="true" />
+                </div>
+                <div class="input-group mt-4">
+                    <label for="txtnombreCliente" class="form-label">NOMBRE Del Cliente</label>
+                    <asp:TextBox ID="txtnombreCliente" placeholder="" ReadOnly="true" runat="server" CssClass="form-control" AutoPostBack="true" />
+
+                </div>
+            </div>
+            <asp:Button 
+                ID="btnIngresarProductos"
+                OnClick="btnIngresarProductos_Click"
+                runat="server" 
+                CssClass="btn btn-primary mt-4" 
+                Text="Ingresar productos" />
         </div>
         <!-- INGRESAR PRODUCTOS A LA VENTA -->
         <div class="column d-flex flex-column gap-4 ">
-            <!-- DDL CATEGORIA PRODUCTO -->
-            <div class="col-6">
-                <asp:Label ID="lblCatVenta" runat="server" Text="Categoria"></asp:Label>
-                <asp:DropDownList ID="ddlCatVenta" runat="server"></asp:DropDownList>
-                <asp:Label runat="server" Text="Seleccione una catégoria (opcional)"></asp:Label>
+            <h1 class="mt-4">INGRESAR PRODUCTOS</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <!-- DDL CATEGORIA PRODUCTO -->
+                <div class="col-6">
+                    <asp:Label ID="lblCatVenta" runat="server" Text="Categoria"></asp:Label>
+                    <asp:DropDownList ID="ddlCatVenta" runat="server"></asp:DropDownList>
+                    <asp:Label runat="server" Text="Seleccione una catégoria (opcional)"></asp:Label>
+                </div>
+                <!-- DDL PRODUCTO -->
+                <div class="col-6">
+                    <asp:Label ID="lblProdVenta" runat="server" Text="Producto"></asp:Label>
+                    <asp:DropDownList ID="ddlProdVenta" runat="server"></asp:DropDownList>
+                    <asp:Label runat="server" Text="seleccione un producto" ID="lblHelProdVenta"></asp:Label>
+                </div>
             </div>
-            <!-- DDL PRODUCTO -->
-            <div class="col-6">
-                <asp:Label ID="lblProdVenta" runat="server" Text="Producto"></asp:Label>
-                <asp:DropDownList ID="ddlProdVenta" runat="server"></asp:DropDownList>
-                <asp:Label runat="server" Text="seleccione un producto" ID="lblHelProdVenta"></asp:Label>
-            </div>
+            
             <!--INPUT CANTIDAD PRODUCTO -->
             <div class="col-6">
                 <asp:Label ID="lblCantVenta" runat="server" Text="Cantidad"></asp:Label>

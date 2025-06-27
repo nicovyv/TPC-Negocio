@@ -11,6 +11,7 @@ namespace presentacion
 {
     public partial class Ventas : System.Web.UI.Page
     {
+        Venta venta;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,14 +26,22 @@ namespace presentacion
         {
             ClienteNegocio clienteNegocio = new ClienteNegocio();
             Cliente cliente = new Cliente();
+            
+             
+           
             try
             {
                 cliente=clienteNegocio.buscarClientePorCuitCuil(txtBuscadorCliente.Text);
+                //GENERAMOS UNA NUEVA VENTA
+                venta = new Venta();
+                //ASIGNAMOS CLIENTE A LA VENTA
+                venta.Cliente = new Cliente();
+                venta.Cliente = cliente;
                 
                 if(cliente.Id!=0 )
                 {
-                    lblCUIT.Text = cliente.CuilCuit;
-                    lblNombre.Text = cliente.Nombre;
+                    txtCuit.Text = cliente.CuilCuit;
+                    txtnombreCliente.Text = cliente.Nombre;
                 }
                 else
                 {
@@ -72,6 +81,8 @@ namespace presentacion
 
         protected void btnAgregarItemVenta_Click(object sender, EventArgs e)
         {
+            //GENERAMOS UN LISTADO DE ITEMS VACIO PARA LA VENTA
+            List<ItemVenta> itemsVentas = new List<ItemVenta>();
             try
             {
                 ProductoNegocio negocio = new ProductoNegocio();
@@ -133,6 +144,11 @@ namespace presentacion
             }
 
 
+        }
+
+        protected void btnIngresarProductos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("IngresarProductosVenta.aspx", false);
         }
     }
 }
