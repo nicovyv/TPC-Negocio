@@ -52,6 +52,12 @@ namespace presentacion
                 negocio.Desactivar(id);
                 cargarUsuarios();
             }
+            else if(e.CommandName == "Activar")
+            {
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                negocio.Activar(id);
+                cargarUsuarios();
+            }
            
         }
     }
