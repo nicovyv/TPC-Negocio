@@ -82,6 +82,26 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void Activar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE Usuarios set activo = 1 where Id = @id");
+                datos.setParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public int AgregarUsuario(Usuario usuarioNuevo)
         {
             AccesoDatos datos = new AccesoDatos();
