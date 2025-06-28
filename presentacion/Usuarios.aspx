@@ -16,6 +16,23 @@
                 <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnLimpiar" Visible="false" />
             </div>
         </div>
-        
+        <!-- Grilla -->
+        <asp:GridView ID="dgvUsuarios" runat="server" DataKeyNames="Id"
+            CssClass="table table-dark table-hover" AutoGenerateColumns="false"
+            AllowPaging="false" PageSize="5">
+            <Columns>
+                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+                <asp:BoundField HeaderText="Email" DataField="Email" />
+                <asp:BoundField HeaderText="Perfil" DataField="Perfil" />
+                <asp:BoundField HeaderText="Activo" DataField="Activo" />
+                <asp:TemplateField HeaderText="Acción">
+                    <ItemTemplate>
+                        <asp:Button Text="Desactivar" CssClass="btn btn-light" CommandName="Desactivar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                        <asp:Button Text="Activar" CssClass="btn btn-danger" CommandName="Activar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
     </div>
 </asp:Content>
