@@ -1,6 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="presentacion.Usuarios" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <div class="container mt-4">
+        <h1 class="mb-4">Usuarios</h1>
+        <!-- Buscador -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="txtFiltro" class="form-label">Nombre del Usuario</label>
+                <div class="input-group">
+                    <asp:TextBox runat="server" ID="txtFiltro" placeholder="Busque Usuarios..." CssClass="form-control" AutoPostBack="true" />
+                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                </div>
+                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnLimpiar" Visible="false" />
+            </div>
+        </div>
+        
+    </div>
 </asp:Content>
