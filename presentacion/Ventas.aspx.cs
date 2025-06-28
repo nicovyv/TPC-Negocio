@@ -16,7 +16,7 @@ namespace presentacion
         {
             if (!IsPostBack)
             {
-
+                btnIngresarProductos.Visible = false;
             }
 
 
@@ -43,6 +43,11 @@ namespace presentacion
                 {
                     txtCuit.Text = cliente.CuilCuit;
                     txtnombreCliente.Text = cliente.Nombre;
+
+
+                    Session.Add("cliente", cliente);
+
+                    btnIngresarProductos.Visible = true;
                 }
                 else
                 {

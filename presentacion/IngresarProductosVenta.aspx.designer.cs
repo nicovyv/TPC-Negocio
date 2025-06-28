@@ -15,22 +15,22 @@ namespace presentacion
     {
 
         /// <summary>
-        /// Control txtCuit.
+        /// Control lblNombreCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCuit;
+        protected global::System.Web.UI.WebControls.Label lblNombreCliente;
 
         /// <summary>
-        /// Control txtnombreCliente.
+        /// Control lblCuilCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtnombreCliente;
+        protected global::System.Web.UI.WebControls.Label lblCuilCliente;
 
         /// <summary>
         /// Control lblCatVenta.

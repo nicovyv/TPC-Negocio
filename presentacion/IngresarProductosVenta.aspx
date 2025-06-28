@@ -8,14 +8,10 @@
 
             <div class="col-md-6">
                 <h3>CLIENTE:</h3>
-                <div class="input-group">
-                    <label for="txtCuit" class="form-label">CUIT O CUIL Del Cliente</label>
-                    <asp:TextBox ID="txtCuit" placeholder="" ReadOnly="true" runat="server" CssClass="form-control" AutoPostBack="true" />
-                </div>
-                <div class="input-group mt-4">
-                    <label for="txtnombreCliente" class="form-label">NOMBRE Del Cliente</label>
-                    <asp:TextBox ID="txtnombreCliente" placeholder="" ReadOnly="true" runat="server" CssClass="form-control" AutoPostBack="true" />
-
+             
+                <div>
+                    <asp:Label ID="lblNombreCliente" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="lblCuilCliente" runat="server" Text=""></asp:Label>
                 </div>
             </div>
 
@@ -72,8 +68,8 @@
 
 
         <div>
-            <asp:Button ID="btnFinalizarVenta" runat="server" Text="Finalizar Venta" CssClass="btn-primary"/>
-            <asp:Button ID="btnVolverVenta" runat="server" Text="Volver"  CssClass="btn-secondary" OnClick="btnVolverVenta_Click"/>
+            <asp:Button ID="btnFinalizarVenta" runat="server" Text="Finalizar Venta" CssClass="mt-4 btn btn-primary btn-sm" OnClick="btnFinalizarVenta_Click"/>
+            <asp:Button ID="btnVolverVenta" runat="server" Text="Volver"  CssClass="mt-4 btn btn-secondary btn-sm" OnClick="btnVolverVenta_Click"/>
         </div>
 
     </div>

@@ -16,6 +16,9 @@ namespace presentacion
         {
             if (!IsPostBack)
             {
+
+                cargarCliente();
+
                 cargarCategorias();
                 cargarProductos();
 
@@ -23,7 +26,7 @@ namespace presentacion
 
             }
 
-            //cargarDetalleVenta();
+            
 
         }
 
@@ -48,26 +51,11 @@ namespace presentacion
         }
 
 
-        //protected void cargarDetalleVenta()
-        //{
-        //    Venta venta = (Venta)Session["venta"];
-
-        //    if (venta != null && venta.ItemVenta != null)
-        //    {
-
-        //        dgvDetalleVenta.DataSource = venta.ItemVenta;
-        //        dgvDetalleVenta.DataBind();
-
-
-
-        //    }
-
-        //}
+      
 
         protected void btnAgregarItemVenta_Click(object sender, EventArgs e)
         {
-            //GENERAMOS UN LISTADO DE ITEMS VACIO PARA LA VENTA
-            //List<ItemVenta> itemsVentas = new List<ItemVenta>();
+            
             try
             {
                 //Venta venta = null;
@@ -120,8 +108,6 @@ namespace presentacion
                 item.PrecioUnidad = producto.PrecioVenta;
 
 
-                //List<ItemVenta> listaItems = new List<ItemVenta>();
-                //listaItems.Add(item);
 
                 venta.ItemVenta.Add(item);
 
@@ -155,6 +141,23 @@ namespace presentacion
         {
             Session.Remove("venta");
             Response.Redirect("Ventas.aspx");
+        }
+
+        protected void cargarCliente()
+        {
+            Cliente cliente = (Cliente)Session["cliente"];
+
+            string cuil = cliente.CuilCuit;
+            string nombre = cliente.Nombre;
+
+            lblNombreCliente.Text = nombre;
+            lblCuilCliente.Text = cuil;
+
+        }
+
+        protected void btnFinalizarVenta_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("VentaRegistrada.aspx");
         }
     }
 }
