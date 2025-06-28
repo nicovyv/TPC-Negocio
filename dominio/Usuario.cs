@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 
 namespace dominio
 {
@@ -29,6 +30,7 @@ namespace dominio
         }
         public string ImagenUrl { get; set; }
         public bool Admin { get; set; }
+        public bool Activo { get; set; }
 
     }
 }

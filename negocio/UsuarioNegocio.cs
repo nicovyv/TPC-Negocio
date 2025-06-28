@@ -15,17 +15,18 @@ namespace negocio
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                datos.setConsulta("select email, pass, nombre, apellido, admin from Usuarios");
+                datos.setConsulta("select id, email, pass, nombre, apellido, admin, activo from Usuarios");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Usuario usuario = new Usuario();
                     usuario.Id = (int)datos.Lector["id"];
                     usuario.Email = (string)datos.Lector["email"];
-                    usuario.Password = (string)datos.Lector["password"];    
+                    usuario.Password = (string)datos.Lector["pass"];    
                     usuario.Nombre = (string)datos.Lector["nombre"];
                     usuario.Apellido = (string)datos.Lector["apellido"];
                     usuario.Admin = (bool)datos.Lector["admin"];
+                    usuario.Activo = (bool)datos.Lector["activo"];
                     usuarios.Add(usuario);
 
                 }
