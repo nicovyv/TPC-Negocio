@@ -12,7 +12,7 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarCompras();
+           // cargarCompras();
         }
 
         private void cargarCompras()

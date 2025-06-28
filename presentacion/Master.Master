@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -18,65 +18,74 @@
                 <div class="container-fluid">
                     <a class="navbar-brand fw-bold" href="#">Back Office</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <% if (negocio.Security.isLogin(Session["usuario"])) { %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Productos.aspx">Productos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Clientes.aspx">Clientes</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Proveedores.aspx">Proveedores</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Compras.aspx">Compras</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Ventas.aspx">Ventas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Marcas.aspx">Marcas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Categorias.aspx">Categorías</a>
-                                </li>
+                            <% if (negocio.Security.isLogin(Session["usuario"]))
+                                { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Productos.aspx">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Clientes.aspx">Clientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Proveedores.aspx">Proveedores</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Compras</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Compras.aspx">Ver Compras</a></li>
+                                    <li><a class="dropdown-item" href="FormCompra.aspx">Nueva Compra</a></li>                                    
+                                </ul>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Ventas.aspx">Ventas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Marcas.aspx">Marcas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Categorias.aspx">Categorías</a>
+                            </li>
                             <% } %>
                         </ul>
 
                         <div class="d-flex align-items-center gap-2">
-                            <% if (!negocio.Security.isLogin(Session["usuario"])) { %>
-                                <asp:Button Text="Crear Cuenta"
-                                            CssClass="btn btn-outline-light"
-                                            runat="server"
-                                            ID="btnRegistro"
-                                            OnClick="bntRegistro_Click" />
-                                <asp:Button Text="Acceder"
-                                            CssClass="btn btn-outline-light"
-                                            runat="server"
-                                            ID="btnLogin"
-                                            OnClick="btnLogin_Click" />
-                            <% } else { %>
-                                <asp:Label ID="labelUsuario" runat="server" CssClass="text-light me-2" />
-                                <asp:Image ID="imgNavbar"
-                                           runat="server"
-                                           CssClass="rounded-circle"
-                                           Style="width: 40px; height: 40px; object-fit: cover;" />
-                                <asp:Button Text="Perfil"
-                                            CssClass="btn btn-outline-light"
-                                            runat="server"
-                                            ID="btnPerfil"
-                                            OnClick="btnPerfil_Click" />
-                                <asp:Button Text="Logout"
-                                            CssClass="btn btn-outline-light"
-                                            runat="server"
-                                            ID="btnLogout"
-                                            OnClick="btnLogout_Click" />
+                            <% if (!negocio.Security.isLogin(Session["usuario"]))
+                                { %>
+                            <asp:Button Text="Crear Cuenta"
+                                CssClass="btn btn-outline-light"
+                                runat="server"
+                                ID="btnRegistro"
+                                OnClick="bntRegistro_Click" />
+                            <asp:Button Text="Acceder"
+                                CssClass="btn btn-outline-light"
+                                runat="server"
+                                ID="btnLogin"
+                                OnClick="btnLogin_Click" />
+                            <% }
+                            else
+                            { %>
+                            <asp:Label ID="labelUsuario" runat="server" CssClass="text-light me-2" />
+                            <asp:Image ID="imgNavbar"
+                                runat="server"
+                                CssClass="rounded-circle"
+                                Style="width: 40px; height: 40px; object-fit: cover;" />
+                            <asp:Button Text="Perfil"
+                                CssClass="btn btn-outline-light"
+                                runat="server"
+                                ID="btnPerfil"
+                                OnClick="btnPerfil_Click" />
+                            <asp:Button Text="Logout"
+                                CssClass="btn btn-outline-light"
+                                runat="server"
+                                ID="btnLogout"
+                                OnClick="btnLogout_Click" />
                             <% } %>
                         </div>
                     </div>
