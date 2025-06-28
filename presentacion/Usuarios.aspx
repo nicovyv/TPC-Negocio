@@ -27,10 +27,9 @@
                 <asp:BoundField HeaderText="Admin" DataField="Admin" />
                 <asp:BoundField HeaderText="Activo" DataField="Activo" />
                 <asp:TemplateField HeaderText="Acción">
-                    <ItemTemplate>
-
-                        <asp:Button Text="Desactivar" CssClass="btn btn-danger" CommandName="Desactivar" CommandArgument='<%# Eval("Id") %>' runat="server" />
-
+                    <ItemTemplate>                        
+                        <asp:Button Text="Desactivar" CssClass="btn btn-danger" CommandName="Desactivar" CommandArgument='<%# Eval("Id") %>' Visible='<%# Eval("Activo") %>' runat="server" />                      
+                        <asp:Button Text="Activar" CssClass="btn btn-light" CommandName="Activar" CommandArgument='<%# Eval("Id") %>' Visible='<%#!(bool) Eval("Activo") %>' runat="server" />                       
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
