@@ -10,10 +10,10 @@
             <div class="col-md-6">
                 <label for="txtFiltro" class="form-label">Nombre del Usuario</label>
                 <div class="input-group">
-                    <asp:TextBox runat="server" ID="txtFiltro" placeholder="Busque Usuarios..." CssClass="form-control" AutoPostBack="true" />
-                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                    <asp:TextBox runat="server" ID="txtFiltro" placeholder="Busque Usuarios..." CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+                    <asp:Button Text="Buscar" runat="server" id="Buscar" CssClass="btn btn-primary" />
                 </div>
-                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnLimpiar" Visible="false" />
+                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnLimpiar" Visible="false" OnClick="btnLimpiar_Click" />
             </div>
         </div>
         <!-- Grilla -->

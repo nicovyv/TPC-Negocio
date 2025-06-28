@@ -247,7 +247,7 @@
     </Compile>
     <Compile Include="Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
-
+	</Compile>
     <Compile Include="VentaRegistrada.aspx.cs">
       <DependentUpon>VentaRegistrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
 
 namespace presentacion
 {
@@ -24,5 +25,24 @@ namespace presentacion
             dgvUsuarios.DataSource = Session["listaUsuarios"];
             dgvUsuarios.DataBind();
         }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dgvUsuarios.DataSource = Session["listaUsuarios"];
+            dgvUsuarios.DataBind();
+            txtFiltro.Text = "";
+            btnLimpiar.Visible = false;
+        }
+
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Usuario> lista = (List<Usuario>)Session["listaUsuarios"];
+            List<Usuario> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvUsuarios.DataSource = listaFiltrada;
+            dgvUsuarios.DataBind();
+            btnLimpiar.Visible = true;
+        }
+
+       
     }
 }
