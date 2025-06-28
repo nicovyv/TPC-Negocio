@@ -20,7 +20,7 @@
         <!-- DATOS de cliente -->
         <div class="row">
             <div class="col-md-6">
-                <h1>CLIENTE:</h1>
+                <h3>CLIENTE:</h3>
                 <div class="input-group">
                     <label for="txtCuit" class="form-label">CUIT O CUIL Del Cliente</label>
                     <asp:TextBox ID="txtCuit" placeholder="" ReadOnly="true" runat="server" CssClass="form-control" AutoPostBack="true" />
@@ -41,6 +41,7 @@
             </div>
 
         </div>
+    </div>
 
 
 </asp:Content>

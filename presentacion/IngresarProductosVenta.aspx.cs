@@ -138,7 +138,8 @@ namespace presentacion
                 lblHelpCantVenta.Text = "Indique la cantidad";
                 lblHelProdVenta.Text = "seleccione un producto";
 
-               
+                decimal totalVenta = venta.ItemVenta.Sum(x => x.Cantidad * x.PrecioUnidad);
+                lbltotalVentaValor.Text = totalVenta.ToString();
 
             }
             catch (Exception)
@@ -148,6 +149,12 @@ namespace presentacion
             }
 
 
+        }
+
+        protected void btnVolverVenta_Click(object sender, EventArgs e)
+        {
+            Session.Remove("venta");
+            Response.Redirect("Ventas.aspx");
         }
     }
 }
