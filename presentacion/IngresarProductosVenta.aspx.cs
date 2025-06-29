@@ -36,24 +36,26 @@ namespace presentacion
                     ddlCatVenta.DataTextField = "Descripcion";
                     ddlCatVenta.DataValueField = "Id";
                     ddlCatVenta.DataBind();
-                }
-                
-                //DDL Productos
-                List<Producto> productos = new List<Producto>();
-                int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
-                productos = productoNegocio.FiltrarCategoria(idCategoria);
-               
-               
-                
-                ddlProdVenta.DataSource = productos;
-                ddlProdVenta.DataTextField = "Nombre";
-                ddlProdVenta.DataValueField = "Id";
-                ddlProdVenta.DataBind();
+                    //DDL Productos
+                    List<Producto> productos = new List<Producto>();
+                    int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
+                    productos = productoNegocio.FiltrarCategoria(idCategoria);
 
-                //Cargar precio del producto y stock actual
-                Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-                txtProdPrecio.Text = producto.PrecioVenta.ToString();
-                txtProdStock.Text = producto.StockActual.ToString();
+
+
+                    ddlProdVenta.DataSource = productos;
+                    ddlProdVenta.DataTextField = "Nombre";
+                    ddlProdVenta.DataValueField = "Id";
+                    ddlProdVenta.DataBind();
+                    //Cargar precio del producto y stock actual
+                    Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+                    txtProdPrecio.Text = producto.PrecioVenta.ToString();
+                    txtProdStock.Text = producto.StockActual.ToString();
+                }
+
+               
+
+              
 
 
             }
@@ -259,11 +261,25 @@ namespace presentacion
         protected void ddlCatVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
             // cargarProductos();
-            CategoriaNegocio negocio = new CategoriaNegocio();
-            ddlCatVenta.DataSource = negocio.listar();
-            ddlCatVenta.DataTextField = "Descripcion";
-            ddlCatVenta.DataValueField = "Id";
-            ddlCatVenta.DataBind();
+            //CategoriaNegocio negocio = new CategoriaNegocio();
+            //ddlCatVenta.DataSource = negocio.listar();
+            //ddlCatVenta.DataTextField = "Descripcion";
+            //ddlCatVenta.DataValueField = "Id";
+            //ddlCatVenta.DataBind();
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+
+
+            int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
+            List<Producto> productosFiltrados = productoNegocio.FiltrarCategoria(idCategoria);
+
+            ddlProdVenta.DataSource = productosFiltrados;
+            ddlProdVenta.DataTextField = "Nombre";
+            ddlProdVenta.DataValueField = "Id";
+            ddlProdVenta.DataBind();
+            //Cargar precio del producto y stock actual
+            Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+            txtProdPrecio.Text = producto.PrecioVenta.ToString();
+            txtProdStock.Text = producto.StockActual.ToString();
         }
 
         protected void ddlProdVenta_SelectedIndexChanged(object sender, EventArgs e)
@@ -273,13 +289,13 @@ namespace presentacion
             ProductoNegocio negocio = new ProductoNegocio();
            
            
-            int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
-            List<Producto> productosFiltrados = negocio.FiltrarCategoria(idCategoria);
+            //int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
+            //List<Producto> productosFiltrados = negocio.FiltrarCategoria(idCategoria);
 
-            ddlProdVenta.DataSource = productosFiltrados;
-            ddlProdVenta.DataTextField = "Nombre";
-            ddlProdVenta.DataValueField = "Id";
-            ddlProdVenta.DataBind();
+            //ddlProdVenta.DataSource = productosFiltrados;
+            //ddlProdVenta.DataTextField = "Nombre";
+            //ddlProdVenta.DataValueField = "Id";
+            //ddlProdVenta.DataBind();
             int idProducto = int.Parse(ddlProdVenta.SelectedValue);
 
 
