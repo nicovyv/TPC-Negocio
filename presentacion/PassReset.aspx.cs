@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,12 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnGenerar_Click(object sender, EventArgs e)
+        {
+           
 
         }
     }

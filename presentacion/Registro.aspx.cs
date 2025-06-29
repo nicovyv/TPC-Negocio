@@ -42,6 +42,8 @@ namespace presentacion
                 usuario.Password = txtPassword.Text;
                 if(!(string.IsNullOrEmpty(usuario.Email)) & !(string.IsNullOrEmpty(usuario.Password)))
                 {
+
+
                     usuario.Id = usuarioNegocio.AgregarUsuario(usuario);
                     if (usuario.Id != 0)
                     {
