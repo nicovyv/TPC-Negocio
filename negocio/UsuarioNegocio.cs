@@ -79,6 +79,27 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public void ResetPass(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE Usuarios set pass = @pass  where Id = @id");
+                datos.setParametro("@pass", usuario.Password);
+                datos.setParametro("@id", usuario.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void ModificarUsuario(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
