@@ -30,12 +30,14 @@ namespace presentacion
                         lblNombreCliente.Text = cliente.Nombre;
                         lblCuilCliente.Text = cliente.CuilCuit;
                     }
+                    
                     //DDL Categorias
                     List<Categoria> categorias = categoriaNegocio.listar();
                     ddlCatVenta.DataSource = categorias;
                     ddlCatVenta.DataTextField = "Descripcion";
                     ddlCatVenta.DataValueField = "Id";
                     ddlCatVenta.DataBind();
+                    
                     //DDL Productos
                     List<Producto> productos = new List<Producto>();
                     int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
@@ -47,6 +49,7 @@ namespace presentacion
                     ddlProdVenta.DataTextField = "Nombre";
                     ddlProdVenta.DataValueField = "Id";
                     ddlProdVenta.DataBind();
+                    
                     //Cargar precio del producto y stock actual
                     Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
                     txtProdPrecio.Text = producto.PrecioVenta.ToString();
@@ -66,10 +69,6 @@ namespace presentacion
                 Response.Redirect("Error.aspx");
             }
            
-           
-           
-
-
         }
         protected void cargarCliente()
         {
@@ -82,58 +81,6 @@ namespace presentacion
             lblCuilCliente.Text = cuil;
 
         }
-
-        private void cargarCategorias()
-        {
-            CategoriaNegocio negocio = new CategoriaNegocio();
-            ddlCatVenta.DataSource = negocio.listar();
-            ddlCatVenta.DataTextField = "Descripcion";
-            ddlCatVenta.DataValueField = "Id";
-            ddlCatVenta.DataBind();
-
-            //cargarProductos();
-        }
-
-
-        // SE CARGAN LOS DDL PARA LA CARGA DE PRODUCTOS A LA VENTA, SE MUESTRA EN PANTALLA STOCK Y PRECIO UNITARIO
-        private void cargarProductos()
-        {
-            ProductoNegocio negocio = new ProductoNegocio();
-            
-            int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
-
-            List<Producto> productosFiltrados = negocio.FiltrarCategoria(idCategoria);
-
-            ddlProdVenta.DataSource = productosFiltrados;
-            ddlProdVenta.DataTextField = "Nombre";
-            ddlProdVenta.DataValueField = "Id";
-            ddlProdVenta.DataBind();
-
-
-           
-
-            if (productosFiltrados.Count > 0)
-            {
-                Producto producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-               txtProdPrecio.Text = producto.PrecioVenta.ToString();
-               txtProdStock.Text = producto.StockActual.ToString();
-
-
-            }
-            else
-            {
-                txtProdPrecio.Text = "";
-                txtProdStock.Text = "";
-                txtCantVenta.Text = "";
-            }
-
-
-        
-
-        }
-
-
-
 
         protected void btnAgregarItemVenta_Click(object sender, EventArgs e)
         {
@@ -260,14 +207,8 @@ namespace presentacion
         // SE CARGAN LOS PRODUCTOS FILTADOS POR CATEGORIA
         protected void ddlCatVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // cargarProductos();
-            //CategoriaNegocio negocio = new CategoriaNegocio();
-            //ddlCatVenta.DataSource = negocio.listar();
-            //ddlCatVenta.DataTextField = "Descripcion";
-            //ddlCatVenta.DataValueField = "Id";
-            //ddlCatVenta.DataBind();
+            
             ProductoNegocio productoNegocio = new ProductoNegocio();
-
 
             int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
             List<Producto> productosFiltrados = productoNegocio.FiltrarCategoria(idCategoria);
@@ -276,6 +217,7 @@ namespace presentacion
             ddlProdVenta.DataTextField = "Nombre";
             ddlProdVenta.DataValueField = "Id";
             ddlProdVenta.DataBind();
+
             //Cargar precio del producto y stock actual
             Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
             txtProdPrecio.Text = producto.PrecioVenta.ToString();
@@ -284,26 +226,12 @@ namespace presentacion
 
         protected void ddlProdVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             ProductoNegocio negocio = new ProductoNegocio();
-           
-           
-            //int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
-            //List<Producto> productosFiltrados = negocio.FiltrarCategoria(idCategoria);
-
-            //ddlProdVenta.DataSource = productosFiltrados;
-            //ddlProdVenta.DataTextField = "Nombre";
-            //ddlProdVenta.DataValueField = "Id";
-            //ddlProdVenta.DataBind();
             int idProducto = int.Parse(ddlProdVenta.SelectedValue);
-
 
             Producto producto = new Producto();
             producto = negocio.ObtenerPorId(idProducto);
 
-            //lblPrecioProd.Text = producto.PrecioVenta.ToString();
-            //lblStockProd.Text = producto.StockActual.ToString();
             txtProdPrecio.Text = producto.PrecioVenta.ToString();
             txtProdStock.Text= producto.StockActual.ToString(); 
         }
