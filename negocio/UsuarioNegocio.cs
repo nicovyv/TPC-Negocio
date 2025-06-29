@@ -9,20 +9,27 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
-        public List<Usuario> Listar()
+        public List<Usuario> Listar(string id)
         {
             AccesoDatos datos = new AccesoDatos();
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                datos.setConsulta("select id, email, pass, nombre, apellido, admin, activo from Usuarios");
+                if (id != "")
+                {
+                    datos.setConsulta("select id, email, pass, nombre, apellido, admin, activo from Usuarios where id = " + id);
+                }
+                else
+                {
+                    datos.setConsulta("select id, email, pass, nombre, apellido, admin, activo from Usuarios");
+                }
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Usuario usuario = new Usuario();
                     usuario.Id = (int)datos.Lector["id"];
                     usuario.Email = (string)datos.Lector["email"];
-                    usuario.Password = (string)datos.Lector["pass"]; 
+                    usuario.Password = (string)datos.Lector["pass"];
                     if (!(datos.Lector["nombre"] is DBNull))
                     {
                         usuario.Nombre = (string)datos.Lector["nombre"];
@@ -38,6 +45,32 @@ namespace negocio
                 }
 
                 return usuarios;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public Usuario buscarMail(string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario usuario = new Usuario();
+            try
+            {
+                if (email != "")
+                {
+                    datos.setConsulta("select id where email = " + email);
+                    datos.ejecutarLectura();
+                    
+                    usuario.Id = (int)datos.Lector["id"];                   
+
+                    return usuario;
+                }
+
+                return usuario;
             }
             catch (Exception ex)
             {
@@ -74,7 +107,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("UPDATE Usuarios set activo = 0 where Id = @id");                               
+                datos.setConsulta("UPDATE Usuarios set activo = 0 where Id = @id");
                 datos.setParametro("@id", id);
                 datos.ejecutarAccion();
             }
@@ -154,8 +187,8 @@ namespace negocio
                 datos.setearSP("insertarUsuario");
                 datos.setParametro("@email", usuarioNuevo.Email);
                 datos.setParametro("@pass", usuarioNuevo.Password);
-             
-               return datos.ejecutarAccionEscalar();
+
+                return datos.ejecutarAccionEscalar();
 
             }
             catch (Exception ex)

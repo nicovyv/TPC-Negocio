@@ -18,7 +18,6 @@ namespace presentacion
 
         protected void btnGenerar_Click(object sender, EventArgs e)
         {
-           
 
         }
     }
