@@ -34,7 +34,7 @@
 
             </div>
             <div class="d-flex justify-content-between align-items-center mt-4">
-                <asp:Label Text="¡Cambio de Password exitoso!/nPuede seguir navegando!" CssClass="alert alert-success" id="lblExito" runat="server" visible="false"/>
+                <asp:Label Text="¡Cambio de Password exitoso! Puede seguir navegando!" CssClass="alert alert-success" id="lblExito" runat="server" visible="false"/>
             </div>
 
         </div>
