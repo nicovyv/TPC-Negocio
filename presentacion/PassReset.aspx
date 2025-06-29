@@ -15,13 +15,13 @@
             <div class="mb-3 row">
                 <label for="txtPassword" class="col-sm-3 col-form-label col-form-label-sm">Codigo</label>
                 <div class="col-sm-9">
-                    <asp:TextBox runat="server" required="false" type="text" ID="txtCodigo" CssClass="form-control form-control-sm" />
+                    <asp:TextBox runat="server" type="text" ID="txtCodigo" CssClass="form-control form-control-sm" />
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="txtPassword" class="col-sm-3 col-form-label col-form-label-sm">Nueva Password</label>
                 <div class="col-sm-9">
-                    <asp:TextBox runat="server" required="false" type="password" ID="txtPassword" CssClass="form-control form-control-sm" />
+                    <asp:TextBox runat="server" type="password" ID="txtPassword" CssClass="form-control form-control-sm" />
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-4">

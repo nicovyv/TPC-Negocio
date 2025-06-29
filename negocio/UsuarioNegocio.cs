@@ -9,7 +9,7 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
-        public List<Usuario> Listar(string id)
+        public List<Usuario> Listar(string id="")
         {
             AccesoDatos datos = new AccesoDatos();
             List<Usuario> usuarios = new List<Usuario>();
@@ -62,11 +62,13 @@ namespace negocio
             {
                 if (email != "")
                 {
-                    datos.setConsulta("select id where email = " + email);
+                    datos.setConsulta("select id from usuarios where email = @email");
+                    datos.setParametro("@email", email);
                     datos.ejecutarLectura();
-                    
-                    usuario.Id = (int)datos.Lector["id"];                   
-
+                    datos.Lector.Read();
+                    usuario.Id = (int)datos.Lector["id"];
+                    usuario.Email = email;
+                   
                     return usuario;
                 }
 
