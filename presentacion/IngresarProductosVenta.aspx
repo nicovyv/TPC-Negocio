@@ -7,18 +7,18 @@
     <div class="container mt-4">
 
         <!-- CLIENTE -->
-        <div class="card mb-4">
+        <div class="card mb-4 col-md-4 rounded-0">
             <div class="card-header">
                 <h5 class="mb-0">Cliente</h5>
             </div>
             <div class="card-body">
-                <asp:Label ID="lblNombreCliente" runat="server" CssClass="d-block fw-bold"></asp:Label>
+                <asp:Label ID="lblNombreCliente" runat="server" CssClass="d-block "></asp:Label>
                 <asp:Label ID="lblCuilCliente" runat="server" CssClass="d-block"></asp:Label>
             </div>
         </div>
 
         <!-- INGRESAR PRODUCTOS -->
-        <div class="card mb-4">
+        <div class="card mb-4 rounded-0">
             <div class="card-header">
                 <h5 class="mb-0">Ingresar Productos</h5>
             </div>
@@ -26,6 +26,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <asp:Label ID="lblCatVenta" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
+<<<<<<< HEAD
                         <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlCatVenta_SelectedIndexChanged"></asp:DropDownList>
                         <small class="form-text text-muted">Seleccione una categoría</small>
                     </div>
@@ -33,14 +34,23 @@
                         <asp:Label ID="lblProdVenta" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
                         <asp:DropDownList ID="ddlProdVenta" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlProdVenta_SelectedIndexChanged"></asp:DropDownList>
                         <asp:Label id="lblHelProdVenta" runat="server" class="form-text text-muted">Seleccione un producto</asp:Label>
+=======
+                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label ID="lblProdVenta" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
+                        <asp:DropDownList ID="ddlProdVenta" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:Label id="lblHelProdVenta" runat="server" class="form-text">Seleccione un producto</asp:Label>
+>>>>>>> 8a2110092f769036a9075eaf3ae57f50f4ba0151
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-3 ">
                     <div class="col-md-4">
                         <asp:Label ID="lblCantVenta" runat="server" Text="Cantidad" CssClass="form-label"></asp:Label>
                         <asp:TextBox ID="txtCantVenta" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:Label id="lblHelpCantVenta" runat="server" class="form-text text-muted">Indique la cantidad</asp:Label>
+                     <asp:Label id="lblHelpCantVenta" runat="server" class="form-text">Indique la cantidad</asp:Label>
                     </div>
                     <div class="col-md-4">
                         <p>Stock Disponible</p> <asp:Label  runat="server" ID="lblStockProd"/>
@@ -55,7 +65,7 @@
         </div>
 
         <!-- PRODUCTOS AGREGADOS -->
-        <div class="card mb-4">
+        <div class="card mb-4 rounded-0">
             <div class="card-header">
                 <h5 class="mb-0">Productos Agregados a la Venta</h5>
             </div>

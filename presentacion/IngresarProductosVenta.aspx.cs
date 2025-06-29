@@ -102,7 +102,7 @@ namespace presentacion
                 }
                 if (string.IsNullOrEmpty(txtCantVenta.Text))
                 {
-                    lblHelpCantVenta.Text = "Este campo es obligatoria";
+                    lblHelpCantVenta.Text = "Este campo es obligatorio";
                     lblHelpCantVenta.CssClass = "text-danger";
                     return;
                 }
