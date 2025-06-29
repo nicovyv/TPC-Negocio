@@ -16,15 +16,15 @@ namespace negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("dadd3b215bbb71", "50329669f8c581");
+            server.Credentials = new NetworkCredential("tpcprogra@gmail.com", "vwzlyxnmhtfvyhwi");
             server.EnableSsl = true;
-            server.Port = 2525;
-            server.Host = "sandbox.smtp.mailtrap.io";
+            server.Port = 587;
+            server.Host = "smtp.gmail.com";
         }
         public void armarCorreo(string emailDestino, string asunto, string cuerpo)
         {
             email = new MailMessage();
-            email.From = new MailAddress("noresponder@progracioniii.com");
+            email.From = new MailAddress("noresponder@tpcprogra.com");
             email.To.Add(emailDestino);
             email.Subject = asunto;
             email.IsBodyHtml = true;
