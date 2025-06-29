@@ -102,6 +102,7 @@ namespace presentacion
                 int cantidad = int.Parse(txtCantVenta.Text);
                 
                 //AGREGAMOS LA VENTA A LA SESIÓN
+                
                 Venta venta = (Venta)Session["venta"];
 
                 //VALIDACIONES

@@ -26,23 +26,15 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <asp:Label ID="lblCatVenta" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
-<<<<<<< HEAD
-                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlCatVenta_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control" 
+                            OnSelectedIndexChanged="ddlCatVenta_SelectedIndexChanged"></asp:DropDownList>
                         <small class="form-text text-muted">Seleccione una categoría</small>
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblProdVenta" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
-                        <asp:DropDownList ID="ddlProdVenta" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlProdVenta_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlProdVenta" runat="server" AutoPostBack="true" CssClass="form-control" 
+                            OnSelectedIndexChanged="ddlProdVenta_SelectedIndexChanged"></asp:DropDownList>
                         <asp:Label id="lblHelProdVenta" runat="server" class="form-text text-muted">Seleccione un producto</asp:Label>
-=======
-                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
-                       
-                    </div>
-                    <div class="col-md-6">
-                        <asp:Label ID="lblProdVenta" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
-                        <asp:DropDownList ID="ddlProdVenta" runat="server" CssClass="form-control"></asp:DropDownList>
-                        <asp:Label id="lblHelProdVenta" runat="server" class="form-text">Seleccione un producto</asp:Label>
->>>>>>> 8a2110092f769036a9075eaf3ae57f50f4ba0151
                     </div>
                 </div>
 
