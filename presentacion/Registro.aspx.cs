@@ -42,21 +42,29 @@ namespace presentacion
                 usuario.Password = txtPassword.Text;
                 if(!(string.IsNullOrEmpty(usuario.Email)) & !(string.IsNullOrEmpty(usuario.Password)))
                 {
-
-
-                    usuario.Id = usuarioNegocio.AgregarUsuario(usuario);
-                    if (usuario.Id != 0)
+                    if (!txtPassword.Text.Contains(" ") && !(string.IsNullOrEmpty((txtPassword.Text))))
                     {
-                        Session.Add("usuario", usuario);
-                        emailService.armarCorreo(usuario.Email, "Bienvenid@", "Hola bienvenido, gracias por elegirnos.");
-                        emailService.enviarMail();
-                        Response.Redirect("Perfil.aspx", false);
+                        usuario.Id = usuarioNegocio.AgregarUsuario(usuario);
+                        if (usuario.Id != 0)
+                        {
+                            Session.Add("usuario", usuario);
+                            emailService.armarCorreo(usuario.Email, "Bienvenid@", "Hola bienvenido, gracias por elegirnos.");
+                            emailService.enviarMail();
+                            Response.Redirect("Perfil.aspx", false);
+                        }
+                        else
+                        {
+                            Session.Add("error", "Hubo un error al crear el usuario, intente más tarde.");
+                            Response.Redirect("Error.aspx", false);
+                        }
                     }
                     else
                     {
-                        Session.Add("error", "Hubo un error al crear el usuario, intente más tarde.");
-                        Response.Redirect("Error.aspx", false);
+                        lblExito.Visible = true;
+                        lblExito.Text = "Ingrese una contraseña valida, sin espacios";
+                        lblExito.CssClass = "alert alert-danger";
                     }
+                        
                 }
                 else
                 {
