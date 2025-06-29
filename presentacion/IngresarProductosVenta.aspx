@@ -43,12 +43,10 @@
                      <asp:Label id="lblHelpCantVenta" runat="server" class="form-text">Indique la cantidad</asp:Label>
                     </div>
                     <div class="col-md-4">
-                        <asp:Label ID="lblStockProd" runat="server" Text="Stock" CssClass="form-label"></asp:Label>
-                        <asp:TextBox ID="txtStockProd" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                        <p>Stock Disponible</p> <asp:Label  runat="server" ID="lblStockProd"/>
                     </div>
                     <div class="col-md-4">
-                        <asp:Label ID="lblPrecioProd" runat="server" Text="Precio Unitario" CssClass="form-label"></asp:Label>
-                        <asp:TextBox ID="txtPrecioProd" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                        <p>Precio Unitario</p> <asp:Label  runat="server" ID="lblPrecioProd"/>
                     </div>
                 </div>
 

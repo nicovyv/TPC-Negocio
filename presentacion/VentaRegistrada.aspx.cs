@@ -13,7 +13,12 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarDatosVenta();
+           
+            if (!IsPostBack)
+            {
+                cargarDatosVenta();
+            } 
+
         }
 
 
@@ -27,10 +32,14 @@ namespace presentacion
 
                 lblNombreClienteVentaExito.Text = cliente.Nombre;
                 lblCuilVentaExito.Text = cliente.CuilCuit;
-                lblFechaVentaExito.Text = DateTime.Now.ToString();
+                lblFechaVentaExito.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
-                
-                
+
+                Venta venta = new Venta();
+                venta = (Venta)Session["venta"];
+
+                repDetalleVentaRegistrada.DataSource = venta.ItemVenta;
+                repDetalleVentaRegistrada.DataBind();
 
 
                 
