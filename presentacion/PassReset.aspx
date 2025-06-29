@@ -22,7 +22,7 @@
             <div class="mb-3 row">
                 <asp:Label Text="Nueva Contraseña" class="col-sm-3 col-form-label col-form-label-sm" id="lblCambiar" visible="false" runat="server" />    
                 <div class="col-sm-9">
-                    <asp:TextBox runat="server" type="password" ID="txtPassword" visible="false" CssClass="form-control form-control-sm" />
+                    <asp:TextBox runat="server" type="password" ID="txtPassword" pattern="^\S+$" title="¡Por favor, ingrese una contraseña sin espacios en blanco!" visible="false" CssClass="form-control form-control-sm" />
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-4">
@@ -35,6 +35,7 @@
             </div>
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <asp:Label Text="¡Cambio de Password exitoso! Puede seguir navegando!" CssClass="alert alert-success" id="lblExito" runat="server" visible="false"/>
+
             </div>
 
         </div>
