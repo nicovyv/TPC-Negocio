@@ -30,19 +30,23 @@ namespace presentacion
 
             try
             {
-                usuario.Email = txtEmail.Text;
-                usuario.Password = txtPassword.Text;
+                if (!txtPassword.Text.Contains(" ") && !(string.IsNullOrEmpty((txtPassword.Text))) && (!txtEmail.Text.Contains(" ") && !(string.IsNullOrEmpty((txtEmail.Text)))))
+                {
+                    usuario.Email = txtEmail.Text;
+                    usuario.Password = txtPassword.Text;
 
-                if (usuarioNegocio.Login(usuario))
-                {
-                    Session.Add("usuario", usuario);
-                   Response.Redirect("Perfil.aspx", false);
+                    if (usuarioNegocio.Login(usuario))
+                    {
+                        Session.Add("usuario", usuario);
+                        Response.Redirect("Perfil.aspx", false);
+                    }
+                    else
+                    {
+                        Session.Add("error", "Email o Password incorrectos");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
-                else
-                {
-                    Session.Add("error", "Email o Password incorrectos");
-                    Response.Redirect("Error.aspx",false);
-                }
+                
 
 
 

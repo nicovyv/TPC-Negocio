@@ -44,7 +44,7 @@
             <form id="formLogin" runat="server">
                 <div class="mb-3">
                     <label for="txtEmail" class="form-label">Email Usuario</label>
-                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" placeholder="Ingrese su email" />
+                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Por ejemplo: email@dominio.com" AutoCompleteType="Email" placeholder="Ingrese su email" />
                 </div>
 
                 <div class="mb-3">
