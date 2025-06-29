@@ -2,89 +2,88 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-4">
 
-
-            <div class="col-md-6">
-                <h3>CLIENTE:</h3>
-             
-                <div>
-                    <asp:Label ID="lblNombreCliente" runat="server" Text=""></asp:Label>
-                    <asp:Label ID="lblCuilCliente" runat="server" Text=""></asp:Label>
-                </div>
+        <!-- CLIENTE -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Cliente</h5>
             </div>
-
-
-
-
-        <div class="column d-flex flex-column gap-4 ">
-            <h1 class="mt-4">INGRESAR PRODUCTOS</h1>
-            <div class="d-flex justify-content-center align-items-center">
-                <!-- DDL CATEGORIA PRODUCTO -->
-                <div class="col-6">
-                    <asp:Label ID="lblCatVenta" runat="server" Text="Categoria"></asp:Label>
-                    <asp:DropDownList AutoPostBack="true" ID="ddlCatVenta" runat="server"></asp:DropDownList>
-                    <asp:Label runat="server" Text="Seleccione una catégoria (opcional)"></asp:Label>
-                </div>
-                <!-- DDL PRODUCTO -->
-                <div class="col-6">
-                    <asp:Label ID="lblProdVenta" runat="server" Text="Producto"></asp:Label>
-                    <asp:DropDownList ID="ddlProdVenta" runat="server"></asp:DropDownList>
-                    <asp:Label runat="server" Text="seleccione un producto" ID="lblHelProdVenta"></asp:Label>
-                </div>
-                
+            <div class="card-body">
+                <asp:Label ID="lblNombreCliente" runat="server" CssClass="d-block fw-bold"></asp:Label>
+                <asp:Label ID="lblCuilCliente" runat="server" CssClass="d-block"></asp:Label>
             </div>
+        </div>
 
-            <!--INPUT CANTIDAD PRODUCTO -->
-            <div class="col-6">
-                <asp:Label ID="lblCantVenta" runat="server" Text="Cantidad"></asp:Label>
-                <asp:TextBox ID="txtCantVenta" runat="server"></asp:TextBox>
-                <asp:Label runat="server" Text="Indique la cantidad" ID="lblHelpCantVenta"></asp:Label>
-                <!-- STOCK PRODUCTO -->
-                <div class="col-6">
-                    <asp:Label ID="lblStockProd" runat="server" Text="STOCK del Producto"></asp:Label>
-                    <asp:TextBox ID="txtStockProd" ReadOnly="true" runat="server"></asp:TextBox>
-
+        <!-- INGRESAR PRODUCTOS -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Ingresar Productos</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <asp:Label ID="lblCatVenta" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
+                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
+                        <small class="form-text text-muted">Seleccione una categoría</small>
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label ID="lblProdVenta" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
+                        <asp:DropDownList ID="ddlProdVenta" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:Label id="lblHelProdVenta" runat="server" class="form-text text-muted">Seleccione un producto</asp:Label>
+                    </div>
                 </div>
-                <!-- PRECIO PRODUCTO -->
-                <div class="col-6">
-                    <asp:Label ID="lblPrecioProd" runat="server" Text="PRECIO del Producto por unidad"></asp:Label>
-                    <asp:TextBox ID="txtPrecioProd" ReadOnly="true" runat="server"></asp:TextBox>
 
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <asp:Label ID="lblCantVenta" runat="server" Text="Cantidad" CssClass="form-label"></asp:Label>
+                        <asp:TextBox ID="txtCantVenta" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:Label id="lblHelpCantVenta" runat="server" class="form-text text-muted">Indique la cantidad</asp:Label>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:Label ID="lblStockProd" runat="server" Text="Stock" CssClass="form-label"></asp:Label>
+                        <asp:TextBox ID="txtStockProd" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:Label ID="lblPrecioProd" runat="server" Text="Precio Unitario" CssClass="form-label"></asp:Label>
+                        <asp:TextBox ID="txtPrecioProd" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+
+                <asp:Button ID="btnAgregarItemVenta" runat="server" Text="Agregar Producto" CssClass="btn btn-primary btn-sm" OnClick="btnAgregarItemVenta_Click" />
+            </div>
+        </div>
+
+        <!-- PRODUCTOS AGREGADOS -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Productos Agregados a la Venta</h5>
+            </div>
+            <div class="card-body">
+                <asp:GridView ID="dgvDetalleVenta" runat="server" AutoGenerateColumns="false"
+                    CssClass="table table-striped table-bordered">
+                    <Columns>
+                        <asp:BoundField HeaderText="Código" DataField="Producto.Codigo" />
+                        <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+                        <asp:BoundField HeaderText="Precio Unitario" DataField="PrecioUnidad" />
+                        <asp:BoundField HeaderText="SubTotal" DataField="Subtotal" />
+                    </Columns>
+                </asp:GridView>
+
+                <div class="mt-3">
+                    <strong>Total: </strong>
+                    <asp:Label ID="lbltotalVenta" runat="server" Text="$"></asp:Label>
+                    <asp:Label ID="lbltotalVentaValor" runat="server"></asp:Label>
                 </div>
             </div>
         </div>
 
-        <asp:Button ID="btnAgregarItemVenta" runat="server" Text="AGREGAR PRODUCTO" CssClass="mt-4 btn btn-primary btn-sm " OnClick="btnAgregarItemVenta_Click" />
-
-
-        <h1 class="mt-4">PRODUCTOS AGREGADOS A LA VENTA</h1>
-        <div>
-            <!-- GRILLA DE PRODUCTOS AGREGADOS A LA VENTA -->
-            <asp:GridView ID="dgvDetalleVenta" runat="server" AutoGenerateColumns="false"
-                CssClass="table table-dark table-hover">
-                <Columns>
-                    <asp:BoundField HeaderText="Código" DataField="Producto.Codigo" />
-                    <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
-                    <asp:BoundField HeaderText="Precio Unitario" DataField="PrecioUnidad" />
-                    <asp:BoundField HeaderText="SubTotal" DataField="Subtotal" />
-                </Columns>
-            </asp:GridView>
-
-            <div>
-                <asp:Label ID="lbltotalVenta" runat="server" Text="Total: $"></asp:Label>
-                <asp:Label ID="lbltotalVentaValor" runat="server" ></asp:Label>
-            </div>
-
+        <!-- BOTONES -->
+        <div class="mb-5">
+            <asp:Button ID="btnFinalizarVenta" runat="server" Text="Finalizar Venta" CssClass="btn btn-success btn-sm me-2" OnClick="btnFinalizarVenta_Click" />
+            <asp:Button ID="btnVolverVenta" runat="server" Text="Volver" CssClass="btn btn-secondary btn-sm" OnClick="btnVolverVenta_Click" />
         </div>
-
-
-        <div>
-            <asp:Button ID="btnFinalizarVenta" runat="server" Text="Finalizar Venta" CssClass="mt-4 btn btn-primary btn-sm" OnClick="btnFinalizarVenta_Click"/>
-            <asp:Button ID="btnVolverVenta" runat="server" Text="Volver"  CssClass="mt-4 btn btn-secondary btn-sm" OnClick="btnVolverVenta_Click"/>
-        </div>
-
     </div>
-
 </asp:Content>

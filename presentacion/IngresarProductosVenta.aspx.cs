@@ -75,6 +75,12 @@ namespace presentacion
                     lblHelProdVenta.CssClass = "text-danger";
                     return;
                 }
+                if (string.IsNullOrEmpty(txtCantVenta.Text))
+                {
+                    lblHelpCantVenta.Text = "Este campo es obligatoria";
+                    lblHelpCantVenta.CssClass = "text-danger";
+                    return;
+                }
 
 
                 Producto producto = negocio.ObtenerPorId(idProducto);
@@ -127,8 +133,8 @@ namespace presentacion
 
 
 
-                lblHelpCantVenta.Text = "Indique la cantidad";
-                lblHelProdVenta.Text = "seleccione un producto";
+                //lblHelpCantVenta.Text = "Indique la cantidad";
+                //lblHelProdVenta.Text = "seleccione un producto";
 
                 decimal totalVenta = venta.ItemVenta.Sum(x => x.Cantidad * x.PrecioUnidad);
                 lbltotalVentaValor.Text = totalVenta.ToString();
