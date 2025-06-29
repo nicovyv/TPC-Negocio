@@ -58,7 +58,19 @@ namespace presentacion
                 negocio.Activar(id);
                 cargarUsuarios();
             }
-           
+            else if (e.CommandName == "Vendedor")
+            {
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                negocio.Activar(id);
+                cargarUsuarios();
+            }
+            else if (e.CommandName == "Admin")
+            {
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                negocio.Activar(id);
+                cargarUsuarios();
+            }
+
         }
     }
 }
