@@ -57,7 +57,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public List<Producto> FiltrarCategoria(string categoria)
+        public List<Producto> FiltrarCategoria(int idCategoria)
         { 
             List<Producto> listaProductos=new List<Producto>();
             AccesoDatos datos = new AccesoDatos();
@@ -65,7 +65,7 @@ namespace negocio
             {
                 string consulta = "SELECT P.ID,P.CodProd AS codigo, P.Nombre AS nombre,P.Descripcion AS descripcion,P.Precio AS precio,P.StockActual As stock,\r\nC.ID AS IDCATEGORIA,C.Descripcion AS categoria,\r\nM.ID AS IDMARCA,M.Descripcion AS marca\r\nFROM Productos P\r\nINNER JOIN Categorias C\r\nON P.IDCategoria=C.ID\r\nINNER JOIN Marcas M\r\nON P.IDMarca=M.ID\r\nWHERE C.ID=@categoria";
                 datos.setConsulta(consulta);
-                datos.setParametro("@categoria", categoria);
+                datos.setParametro("@categoria", idCategoria);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
