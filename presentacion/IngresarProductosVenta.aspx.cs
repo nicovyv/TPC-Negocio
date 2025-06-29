@@ -22,10 +22,10 @@ namespace presentacion
                 cargarCategorias();
 
 
-
+               // cargarProductos();
 
             }
-            cargarProductos();
+           
 
 
         }
@@ -39,6 +39,7 @@ namespace presentacion
             ddlCatVenta.DataValueField = "Id";
             ddlCatVenta.DataBind();
 
+            cargarProductos();
         }
 
 
@@ -46,9 +47,11 @@ namespace presentacion
         private void cargarProductos()
         {
             ProductoNegocio negocio = new ProductoNegocio();
-            Producto producto = new Producto();
+            //Producto producto = new Producto();
 
-            List<Producto> productosFiltrados = negocio.FiltrarCategoria(ddlCatVenta.Text);
+            int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
+
+            List<Producto> productosFiltrados = negocio.FiltrarCategoria(idCategoria);
 
             ddlProdVenta.DataSource = productosFiltrados;
             ddlProdVenta.DataTextField = "Nombre";
@@ -58,20 +61,20 @@ namespace presentacion
 
            
 
-            if (productosFiltrados.Count > 0)
-            {
-                producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-                lblPrecioProd.Text = producto.PrecioVenta.ToString();
-                lblStockProd.Text = producto.StockActual.ToString();
+            //if (productosFiltrados.Count > 0)
+            //{
+            //    Producto producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+            //    lblPrecioProd.Text = producto.PrecioVenta.ToString();
+            //    lblStockProd.Text = producto.StockActual.ToString();
 
 
-            }
-            else
-            {
-                lblPrecioProd.Text = "";
-                lblStockProd.Text = "";
-                txtCantVenta.Text = "";
-            }
+            //}
+            //else
+            //{
+            //    lblPrecioProd.Text = "";
+            //    lblStockProd.Text = "";
+            //    txtCantVenta.Text = "";
+            //}
 
 
         
@@ -131,7 +134,7 @@ namespace presentacion
                 {
                     venta = new Venta();
                     venta.ItemVenta = new List<ItemVenta>();
-                    Session.Add("venta", venta);
+                    Session["venta"] = venta;
                 }
 
 
@@ -145,7 +148,7 @@ namespace presentacion
 
                 venta.ItemVenta.Add(item);
 
-                Session.Add("venta", venta);
+               
 
 
 
@@ -192,6 +195,24 @@ namespace presentacion
         protected void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
             Response.Redirect("VentaRegistrada.aspx");
+        }
+        // SE CARGAN LOS PRODUCTOS FILTADOS POR CATEGORIA
+        protected void ddlCatVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cargarProductos();
+        }
+
+        protected void ddlProdVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProductoNegocio negocio = new ProductoNegocio();
+            int idProducto = int.Parse(ddlProdVenta.SelectedValue);
+
+            Producto producto = new Producto();
+
+            producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+
+            lblPrecioProd.Text = producto.PrecioVenta.ToString();
+            lblStockProd.Text = producto.StockActual.ToString();
         }
     }
 }

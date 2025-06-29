@@ -26,12 +26,12 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <asp:Label ID="lblCatVenta" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
-                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlCatVenta_SelectedIndexChanged"></asp:DropDownList>
                         <small class="form-text text-muted">Seleccione una categoría</small>
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblProdVenta" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
-                        <asp:DropDownList ID="ddlProdVenta" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlProdVenta" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlProdVenta_SelectedIndexChanged"></asp:DropDownList>
                         <asp:Label id="lblHelProdVenta" runat="server" class="form-text text-muted">Seleccione un producto</asp:Label>
                     </div>
                 </div>
@@ -63,7 +63,12 @@
                 <asp:GridView ID="dgvDetalleVenta" runat="server" AutoGenerateColumns="false"
                     CssClass="table table-striped table-bordered">
                     <Columns>
-                        <asp:BoundField HeaderText="Código" DataField="Producto.Codigo" />
+                        <asp:TemplateField HeaderText="Código">
+                            <ItemTemplate>
+                                <%# Eval("Producto.Codigo")%>
+                            </ItemTemplate>
+                        </asp:TemplateField>   
+<%--                        <asp:BoundField HeaderText="Código" DataField="Producto.Codigo" />--%>
                         <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
                         <asp:BoundField HeaderText="Precio Unitario" DataField="PrecioUnidad" />
                         <asp:BoundField HeaderText="SubTotal" DataField="Subtotal" />
