@@ -61,7 +61,7 @@ namespace presentacion
             else if (e.CommandName == "Vendedor")
             {
                 UsuarioNegocio negocio = new UsuarioNegocio();
-                negocio.Activar(id);
+                negocio.Vendedor(id);
                 cargarUsuarios();
             }
             else if (e.CommandName == "Admin")
