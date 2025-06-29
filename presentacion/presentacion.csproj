@@ -83,15 +83,13 @@
     <Content Include="IngresarProductosVenta.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Marcas.aspx" />
+    <Content Include="PassReset.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Proveedores.aspx" />
     <Content Include="Registro.aspx" />
-
     <Content Include="Usuarios.aspx" />
-
     <Content Include="VentaRegistrada.aspx" />
-
     <Content Include="Ventas.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -211,6 +209,13 @@
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
+    <Compile Include="PassReset.aspx.cs">
+      <DependentUpon>PassReset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PassReset.aspx.designer.cs">
+      <DependentUpon>PassReset.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Perfil.aspx.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -240,21 +245,19 @@
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="VentaRegistrada.aspx.cs">
       <DependentUpon>VentaRegistrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VentaRegistrada.aspx.designer.cs">
       <DependentUpon>VentaRegistrada.aspx</DependentUpon>
-
     </Compile>
     <Compile Include="Ventas.aspx.cs">
       <DependentUpon>Ventas.aspx</DependentUpon>

@@ -11,6 +11,7 @@
         body {
             background-color: #f8f9fa;
         }
+
         .login-container {
             max-width: 400px;
             margin: auto;
@@ -20,6 +21,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
+
         .navbar {
             border-bottom: 2px solid #0d6efd;
         }
@@ -49,14 +51,17 @@
                     <label for="txtPassword" class="form-label">Password</label>
                     <asp:TextBox runat="server" ID="txtPassword" CssClass="form-control" TextMode="Password" placeholder="Ingrese su password" />
                 </div>
+                <div class="mb-3">
+                    <a href="PassReset.aspx">Olvidé mi contraseña</a>
+                </div>
 
                 <div class="d-flex justify-content-between align-items-center mt-4">
                     <asp:Button runat="server"
-                                OnClick="btnLogin_Click"
-                                ID="btnLogin"
-                                CssClass="btn btn-primary"
-                                Text="Acceder" />
-                    <a href="Bienvenida.aspx" class="text-secondary">Cancelar</a>
+                        OnClick="btnLogin_Click"
+                        ID="btnLogin"
+                        CssClass="btn btn-primary"
+                        Text="Acceder" />
+                    <a href="Bienvenida.aspx" class="btn btn-dark">Cancelar</a>
                 </div>
             </form>
         </div>

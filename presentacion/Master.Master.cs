@@ -10,7 +10,7 @@ namespace presentacion
         {
             imgNavbar.ImageUrl = "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png";
 
-            if (!(Page is Login|| Page is Bienvenida || Page is Registro||Page is Error))
+            if (!(Page is Login|| Page is Bienvenida || Page is Registro||Page is Error || Page is PassReset))
             {
                 if (!Security.isLogin(Session["usuario"]))
                     Response.Redirect("Bienvenida.aspx", false);
