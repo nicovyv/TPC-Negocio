@@ -24,7 +24,7 @@
                 <!-- DDL CATEGORIA PRODUCTO -->
                 <div class="col-6">
                     <asp:Label ID="lblCatVenta" runat="server" Text="Categoria"></asp:Label>
-                    <asp:DropDownList ID="ddlCatVenta" runat="server"></asp:DropDownList>
+                    <asp:DropDownList AutoPostBack="true" ID="ddlCatVenta" runat="server"></asp:DropDownList>
                     <asp:Label runat="server" Text="Seleccione una catégoria (opcional)"></asp:Label>
                 </div>
                 <!-- DDL PRODUCTO -->
@@ -33,6 +33,7 @@
                     <asp:DropDownList ID="ddlProdVenta" runat="server"></asp:DropDownList>
                     <asp:Label runat="server" Text="seleccione un producto" ID="lblHelProdVenta"></asp:Label>
                 </div>
+                
             </div>
 
             <!--INPUT CANTIDAD PRODUCTO -->
@@ -40,6 +41,18 @@
                 <asp:Label ID="lblCantVenta" runat="server" Text="Cantidad"></asp:Label>
                 <asp:TextBox ID="txtCantVenta" runat="server"></asp:TextBox>
                 <asp:Label runat="server" Text="Indique la cantidad" ID="lblHelpCantVenta"></asp:Label>
+                <!-- STOCK PRODUCTO -->
+                <div class="col-6">
+                    <asp:Label ID="lblStockProd" runat="server" Text="STOCK del Producto"></asp:Label>
+                    <asp:TextBox ID="txtStockProd" ReadOnly="true" runat="server"></asp:TextBox>
+
+                </div>
+                <!-- PRECIO PRODUCTO -->
+                <div class="col-6">
+                    <asp:Label ID="lblPrecioProd" runat="server" Text="PRECIO del Producto por unidad"></asp:Label>
+                    <asp:TextBox ID="txtPrecioProd" ReadOnly="true" runat="server"></asp:TextBox>
+
+                </div>
             </div>
         </div>
 

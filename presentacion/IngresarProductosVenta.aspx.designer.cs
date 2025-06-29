@@ -105,6 +105,42 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.Label lblHelpCantVenta;
 
         /// <summary>
+        /// Control lblStockProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStockProd;
+
+        /// <summary>
+        /// Control txtStockProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStockProd;
+
+        /// <summary>
+        /// Control lblPrecioProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPrecioProd;
+
+        /// <summary>
+        /// Control txtPrecioProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrecioProd;
+
+        /// <summary>
         /// Control btnAgregarItemVenta.
         /// </summary>
         /// <remarks>

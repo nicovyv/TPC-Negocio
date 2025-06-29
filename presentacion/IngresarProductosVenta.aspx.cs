@@ -20,13 +20,13 @@ namespace presentacion
                 cargarCliente();
 
                 cargarCategorias();
-                cargarProductos();
+                
 
                
 
             }
+            cargarProductos();
 
-            
 
         }
 
@@ -44,10 +44,16 @@ namespace presentacion
         private void cargarProductos()
         {
             ProductoNegocio negocio = new ProductoNegocio();
-            ddlProdVenta.DataSource = negocio.listar();
+            Producto producto = new Producto(); 
+           
+            ddlProdVenta.DataSource = negocio.FiltrarCategoria(ddlCatVenta.Text);
+           
             ddlProdVenta.DataTextField = "Nombre";
             ddlProdVenta.DataValueField = "Id";
             ddlProdVenta.DataBind();
+            producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+            txtPrecioProd.Text=producto.PrecioVenta.ToString();
+            txtStockProd.Text=producto.StockActual.ToString();
         }
 
 

@@ -57,7 +57,45 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Producto> FiltrarCategoria(string categoria)
+        { 
+            List<Producto> listaProductos=new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT P.ID,P.CodProd AS codigo, P.Nombre AS nombre,P.Descripcion AS descripcion,P.Precio AS precio,P.StockActual As stock,\r\nC.ID AS IDCATEGORIA,C.Descripcion AS categoria,\r\nM.ID AS IDMARCA,M.Descripcion AS marca\r\nFROM Productos P\r\nINNER JOIN Categorias C\r\nON P.IDCategoria=C.ID\r\nINNER JOIN Marcas M\r\nON P.IDMarca=M.ID\r\nWHERE C.ID=@categoria";
+                datos.setConsulta(consulta);
+                datos.setParametro("@categoria", categoria);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Producto producto = new Producto();
+                    producto.Id = (int)datos.Lector["Id"];
+                    producto.Codigo = (string)datos.Lector["codigo"];
+                    producto.Nombre = (string)datos.Lector["nombre"];
+                    producto.Descripcion = (string)datos.Lector["descripcion"];
+                    producto.PrecioVenta = (decimal)datos.Lector["precio"];
+                    producto.StockActual = (int)datos.Lector["stock"];
+                    
+                    producto.Categoria = new Categoria();
+                    producto.Categoria.Id = (int)datos.Lector["IDCATEGORIA"];
+                    producto.Categoria.Descripcion = (string)datos.Lector["categoria"];
+                    
+                    producto.Marca = new Marca();
+                    producto.Marca.Id = (int)datos.Lector["IDMARCA"];
+                    producto.Marca.Descripcion = (string)datos.Lector["marca"];
+                    listaProductos.Add(producto);
+                }
+                return listaProductos;
+             }
+            
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            
+        }
 
 
         public bool ValidaCodigoProducto(string codProd, int idProd = 0)

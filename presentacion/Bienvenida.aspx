@@ -8,7 +8,8 @@
         <p class="lead mt-3">
             Gracias por utilizar nuestro sistema de back office para comercios.
         </p>
-
+        <% if (!negocio.Security.isLogin(Session["usuario"]))
+    { %>
         <hr class="my-4" />
 
         <div class="mt-4">
@@ -20,6 +21,7 @@
             <p class="lead">¿No tienes una cuenta todavía?</p>
             <a class="btn btn-outline-primary btn-lg px-4" href="Registro.aspx">Crear cuenta</a>
         </div>
+        <% } %>
     </div>
 </asp:Content>
 
