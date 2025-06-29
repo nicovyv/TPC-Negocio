@@ -6,16 +6,24 @@
     <h2>Venta registrada exitosamente</h2>
 
 
-    <div>
-        <p>Cliente</p>
-        <asp:Label ID="lblNombreClienteVentaExito" runat="server" Text=""></asp:Label>
-        <p>CUIL-CUIT</p>
-        <asp:Label ID="lblCuilVentaExito" runat="server" Text=""></asp:Label>
-        <p>N° Factura</p>
-        <asp:Label ID="lblFacturaVentaExito" runat="server" Text=""></asp:Label>
-        <p>Fecha</p>
-        <asp:Label ID="lblFechaVentaExito" runat="server" Text=""></asp:Label>
-    </div>
+
+      <!-- CARD CLIENTE -->
+  <div class="card mb-4 col-md-4 rounded-0">
+      <div class="card-header">
+          <h5 class="mb-0">Cliente</h5>
+      </div>
+      <div class="card-body">
+          <p>Cliente</p>
+          <asp:Label ID="lblNombreClienteVentaExito" runat="server" CssClass="d-block "></asp:Label>
+          <p>CUIL-CUIT</p>
+          <asp:Label ID="lblCuilVentaExito" runat="server" CssClass="d-block"></asp:Label>
+          <p>N° Factura</p>
+          <asp:Label ID="lblFacturaVenta" runat="server" Text=""></asp:Label>
+          <p>Fecha</p>
+          <asp:Label ID="lblFechaVentaExito" runat="server" Text=""></asp:Label>
+      </div>
+  </div>
+    
 
 
 

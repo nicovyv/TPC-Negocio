@@ -30,6 +30,26 @@ namespace negocio
             else { return false; }
         }
        
+        public static bool hayClienteAsignado(object client)
+        {
+            Cliente cliente;
+            if( client != null )
+            {
+                cliente=(Cliente)client;
+            }
+            else
+            {
+                cliente = null;
+            }
+
+            if(cliente!=null && cliente.Id!=0 ) {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static bool isLogin(object user)
         {
             Usuario usuario;

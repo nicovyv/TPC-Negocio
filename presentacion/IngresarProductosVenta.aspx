@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-4">
 
-        <!-- CLIENTE -->
+        <!-- CARD CLIENTE -->
         <div class="card mb-4 col-md-4 rounded-0">
             <div class="card-header">
                 <h5 class="mb-0">Cliente</h5>
@@ -23,32 +23,41 @@
                 <h5 class="mb-0">Ingresar Productos</h5>
             </div>
             <div class="card-body">
+               <%-- SELECCIÓN DEL PRODUCTO --%>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <asp:Label ID="lblCatVenta" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
-                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control" 
-                            OnSelectedIndexChanged="ddlCatVenta_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlCatVenta" runat="server" AutoPostBack="true" CssClass="form-control"
+                            />
+                      
                         <small class="form-text text-muted">Seleccione una categoría</small>
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblProdVenta" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
-                        <asp:DropDownList ID="ddlProdVenta" runat="server" AutoPostBack="true" CssClass="form-control" 
-                            OnSelectedIndexChanged="ddlProdVenta_SelectedIndexChanged"></asp:DropDownList>
-                        <asp:Label id="lblHelProdVenta" runat="server" class="form-text text-muted">Seleccione un producto</asp:Label>
+                        <asp:DropDownList ID="ddlProdVenta" runat="server" CssClass="form-control"
+                            />
+                      
+                        <asp:Label ID="lblHelProdVenta" runat="server" class="form-text text-muted">Seleccione un producto</asp:Label>
                     </div>
                 </div>
-
+                 <%-- SELECCIÓN DEL PRODUCTO --%>
                 <div class="row mb-3 ">
+                    <%--CANTIDADES DEL PRODUCTO--%>
                     <div class="col-md-4">
                         <asp:Label ID="lblCantVenta" runat="server" Text="Cantidad" CssClass="form-label"></asp:Label>
                         <asp:TextBox ID="txtCantVenta" runat="server" CssClass="form-control"></asp:TextBox>
-                     <asp:Label id="lblHelpCantVenta" runat="server" class="form-text">Indique la cantidad</asp:Label>
+                        <asp:Label ID="lblHelpCantVenta" runat="server" class="form-text">Indique la cantidad</asp:Label>
+                    </div>
+                    <%--INFORMACIÓN DEL PRODUCTO--%>
+                    <div class="col-md-4">
+                        <p>Stock Disponible</p>
+                        <asp:Label runat="server" CssClass="form" ID="lblStockProd" />
+                        <asp:TextBox runat="server" CssClass="form-control" ID="txtProdStock"></asp:TextBox>
                     </div>
                     <div class="col-md-4">
-                        <p>Stock Disponible</p> <asp:Label  runat="server" ID="lblStockProd"/>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Precio Unitario</p> <asp:Label  runat="server" ID="lblPrecioProd"/>
+                        <p>Precio Unitario</p>
+                        <asp:Label runat="server" ID="lblPrecioProd" />
+                        <asp:TextBox runat="server" CssClass="form-control" ID="txtProdPrecio"></asp:TextBox>
                     </div>
                 </div>
 
@@ -69,8 +78,8 @@
                             <ItemTemplate>
                                 <%# Eval("Producto.Codigo")%>
                             </ItemTemplate>
-                        </asp:TemplateField>   
-<%--                        <asp:BoundField HeaderText="Código" DataField="Producto.Codigo" />--%>
+                        </asp:TemplateField>
+                        <%--<asp:BoundField HeaderText="Código" DataField="Producto.Codigo" />--%>
                         <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
                         <asp:BoundField HeaderText="Precio Unitario" DataField="PrecioUnidad" />
                         <asp:BoundField HeaderText="SubTotal" DataField="Subtotal" />
@@ -84,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <asp:Label runat="server" ID="lblError" CssClass="form-label" ></asp:Label>
+        <asp:Label runat="server" ID="lblError" CssClass="form-label"></asp:Label>
         <!-- BOTONES -->
         <div class="mb-5">
             <asp:Button ID="btnFinalizarVenta" runat="server" Text="Finalizar Venta" CssClass="btn btn-success btn-sm me-2" OnClick="btnFinalizarVenta_Click" />

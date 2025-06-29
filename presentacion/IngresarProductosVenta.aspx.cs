@@ -12,24 +12,74 @@ namespace presentacion
 {
     public partial class IngresarProductosVenta : System.Web.UI.Page
     {
+        Cliente cliente;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            //configuracion de cargar DropDownList
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+
+            try
             {
+                if (!(IsPostBack))
+                {
+                    if (Security.hayClienteAsignado(Session["cliente"]))
+                    {
+                        //configuracion de cargar cliente
+                        cliente = (Cliente)Session["cliente"];
+                        lblNombreCliente.Text = cliente.Nombre;
+                        lblCuilCliente.Text = cliente.CuilCuit;
+                    }
+                    //DDL Categorias
+                    List<Categoria> categorias = categoriaNegocio.listar();
+                    ddlCatVenta.DataSource = categorias;
+                    ddlCatVenta.DataTextField = "Descripcion";
+                    ddlCatVenta.DataValueField = "Id";
+                    ddlCatVenta.DataBind();
+                }
+                
+                //DDL Productos
+                List<Producto> productos = new List<Producto>();
+                int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
+                productos = productoNegocio.FiltrarCategoria(idCategoria);
+               
+               
+                
+                ddlProdVenta.DataSource = productos;
+                ddlProdVenta.DataTextField = "Nombre";
+                ddlProdVenta.DataValueField = "Id";
+                ddlProdVenta.DataBind();
 
-                cargarCliente();
+                //Cargar precio del producto y stock actual
+                Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+                txtProdPrecio.Text = producto.PrecioVenta.ToString();
+                txtProdStock.Text = producto.StockActual.ToString();
 
-                cargarCategorias();
-
-
-               // cargarProductos();
 
             }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", Security.ManejoError(ex));
+                Response.Redirect("Error.aspx");
+            }
+           
+           
            
 
 
         }
+        protected void cargarCliente()
+        {
+            Cliente cliente = (Cliente)Session["cliente"];
 
+            string cuil = cliente.CuilCuit;
+            string nombre = cliente.Nombre;
+
+            lblNombreCliente.Text = nombre;
+            lblCuilCliente.Text = cuil;
+
+        }
 
         private void cargarCategorias()
         {
@@ -39,7 +89,7 @@ namespace presentacion
             ddlCatVenta.DataValueField = "Id";
             ddlCatVenta.DataBind();
 
-            cargarProductos();
+            //cargarProductos();
         }
 
 
@@ -47,8 +97,7 @@ namespace presentacion
         private void cargarProductos()
         {
             ProductoNegocio negocio = new ProductoNegocio();
-            //Producto producto = new Producto();
-
+            
             int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
 
             List<Producto> productosFiltrados = negocio.FiltrarCategoria(idCategoria);
@@ -61,20 +110,20 @@ namespace presentacion
 
            
 
-            //if (productosFiltrados.Count > 0)
-            //{
-            //    Producto producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-            //    lblPrecioProd.Text = producto.PrecioVenta.ToString();
-            //    lblStockProd.Text = producto.StockActual.ToString();
+            if (productosFiltrados.Count > 0)
+            {
+                Producto producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+               txtProdPrecio.Text = producto.PrecioVenta.ToString();
+               txtProdStock.Text = producto.StockActual.ToString();
 
 
-            //}
-            //else
-            //{
-            //    lblPrecioProd.Text = "";
-            //    lblStockProd.Text = "";
-            //    txtCantVenta.Text = "";
-            //}
+            }
+            else
+            {
+                txtProdPrecio.Text = "";
+                txtProdStock.Text = "";
+                txtCantVenta.Text = "";
+            }
 
 
         
@@ -98,12 +147,20 @@ namespace presentacion
                 //USAMOS EL ID DEL PRODUCTO PARA CAPTURAR EL PRODUCTO POR ID
                 Producto producto = negocio.ObtenerPorId(idProducto);
                 
+                
+                int cantidad = 0;
+                //VALIDACIÓN PARA QUE SE INGRESE UNA CANTIDAD DEL PRODUCTO
                 //PARSEAMOS LA CANTIDAD DEL PRODUCTO DE STRING A ENTERO
-                int cantidad = int.Parse(txtCantVenta.Text);
+                if (!string.IsNullOrEmpty(txtCantVenta.Text))
+                { cantidad = int.Parse(txtCantVenta.Text); }
+                else
+                {
+                    lblHelpCantVenta.Text = "Este campo es obligatorio";
+                    lblHelpCantVenta.CssClass = "text-danger";
+                    return;
+                }
                 
-                //AGREGAMOS LA VENTA A LA SESIÓN
-                
-                Venta venta = (Venta)Session["venta"];
+               
 
                 //VALIDACIONES
 
@@ -114,13 +171,7 @@ namespace presentacion
                     lblHelProdVenta.CssClass = "text-danger";
                     return;
                 }
-                //VALIDACIÓN PARA QUE SE INGRESE UNA CANTIDAD DEL PRODUCTO
-                if (string.IsNullOrEmpty(txtCantVenta.Text))
-                {
-                    lblHelpCantVenta.Text = "Este campo es obligatorio";
-                    lblHelpCantVenta.CssClass = "text-danger";
-                    return;
-                }
+                
 
                 //VALIDACIÓN PARA QUE LA CANTIDAD INGRESADA SEA MAYOR A CERO
                 if (cantidad < 1)
@@ -131,15 +182,18 @@ namespace presentacion
                 }
 
                 //VALIDACIÓN PARA QUE LA CANTIDAD INGRESADA NO SEA MAYOR AL STOCK DISPONIBLE
-                else if (producto.StockActual - cantidad < producto.StockMinimo)
+                int stock = producto.StockActual;
+                int diferenciaDeStock = stock - cantidad;
+
+                if (!(diferenciaDeStock>=0))
                 {
                     lblHelpCantVenta.Text = "No hay stock suficiente.";
                     lblHelpCantVenta.CssClass = "text-danger";
                     return;
                 }
 
-
-                
+                //AGREGAMOS LA VENTA A LA SESIÓN
+                Venta venta = (Venta)Session["venta"];
 
                 if (venta == null)
                 {
@@ -195,17 +249,7 @@ namespace presentacion
             Response.Redirect("Ventas.aspx");
         }
 
-        protected void cargarCliente()
-        {
-            Cliente cliente = (Cliente)Session["cliente"];
-
-            string cuil = cliente.CuilCuit;
-            string nombre = cliente.Nombre;
-
-            lblNombreCliente.Text = nombre;
-            lblCuilCliente.Text = cuil;
-
-        }
+       
 
         protected void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
@@ -214,20 +258,38 @@ namespace presentacion
         // SE CARGAN LOS PRODUCTOS FILTADOS POR CATEGORIA
         protected void ddlCatVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cargarProductos();
+            // cargarProductos();
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            ddlCatVenta.DataSource = negocio.listar();
+            ddlCatVenta.DataTextField = "Descripcion";
+            ddlCatVenta.DataValueField = "Id";
+            ddlCatVenta.DataBind();
         }
 
         protected void ddlProdVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+
             ProductoNegocio negocio = new ProductoNegocio();
+           
+           
+            int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
+            List<Producto> productosFiltrados = negocio.FiltrarCategoria(idCategoria);
+
+            ddlProdVenta.DataSource = productosFiltrados;
+            ddlProdVenta.DataTextField = "Nombre";
+            ddlProdVenta.DataValueField = "Id";
+            ddlProdVenta.DataBind();
             int idProducto = int.Parse(ddlProdVenta.SelectedValue);
 
+
             Producto producto = new Producto();
+            producto = negocio.ObtenerPorId(idProducto);
 
-            producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-
-            lblPrecioProd.Text = producto.PrecioVenta.ToString();
-            lblStockProd.Text = producto.StockActual.ToString();
+            //lblPrecioProd.Text = producto.PrecioVenta.ToString();
+            //lblStockProd.Text = producto.StockActual.ToString();
+            txtProdPrecio.Text = producto.PrecioVenta.ToString();
+            txtProdStock.Text= producto.StockActual.ToString(); 
         }
     }
 }

@@ -63,7 +63,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "SELECT P.ID,P.CodProd AS codigo, P.Nombre AS nombre,P.Descripcion AS descripcion,P.Precio AS precio,P.StockActual As stock,\r\nC.ID AS IDCATEGORIA,C.Descripcion AS categoria,\r\nM.ID AS IDMARCA,M.Descripcion AS marca\r\nFROM Productos P\r\nINNER JOIN Categorias C\r\nON P.IDCategoria=C.ID\r\nINNER JOIN Marcas M\r\nON P.IDMarca=M.ID\r\nWHERE C.ID=@categoria";
+                string consulta = "SELECT P.ID,P.CodProd AS codigo, P.Nombre AS nombre,P.Descripcion AS descripcion,P.Precio AS precio,P.StockActual As stock,\r\nC.ID AS IDCATEGORIA,C.Descripcion AS categoria,\r\nM.ID AS IDMARCA,M.Descripcion AS marca\r\nFROM Productos P\r\nINNER JOIN Categorias C\r\nON P.IDCategoria=C.ID\r\nINNER JOIN Marcas M\r\nON P.IDMarca=M.ID\r\nWHERE C.ID=@categoria AND P.Activo=1";
                 datos.setConsulta(consulta);
                 datos.setParametro("@categoria", idCategoria);
                 datos.ejecutarLectura();
