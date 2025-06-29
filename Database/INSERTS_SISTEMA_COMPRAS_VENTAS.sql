@@ -43,6 +43,16 @@ VALUES
 ('DeporteMax SA', 'info@deportemax.com', 'Av. Libertador 2000', '30101010109', '011-9999-0000');
 
 GO
+--INSERTAR PRODUCTOSXPROVEEDOR
+INSERT INTO ProductosXProveedor(IDProducto,IDProveedor)
+VALUES
+(1,1),
+(2,1),
+(3,2),
+(4,3),
+(5,4),
+(6,5)
+GO
 -- Insertando en Productos
 -- Supongamos que:
 -- IDCategoria: 1 = Electrónica, 2 = Hogar, 3 = Juguetería
@@ -58,3 +68,13 @@ VALUES
 ('DEP001', 'Pelota de fútbol', 'Pelota Adidas oficial tamaño 5', 6, 6, 30000, 5, 20, 20.00, 25000);
 
 GO
+
+--INSERT EN VENTAS
+INSERT INTO Ventas (IDCliente, Fecha, Total, Factura) VALUES
+(1, GETDATE(), 490000, 'V-0001');
+
+--INSERT ITEM VENTA
+INSERT INTO ItemVenta (IDVenta, IDProducto, Cantidad, PrecioUnidad) 
+VALUES
+(1,1,2,200000),
+(1, 2, 2, 45000);
