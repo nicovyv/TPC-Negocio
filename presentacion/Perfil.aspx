@@ -11,15 +11,15 @@
             <div class="col-md-5">
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="txtEmail" Enabled="false" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Por ejemplo: email@dominio.com" CssClass="form-control" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
-                    <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="txtNombre" maxlength="30" placeholder="Nombre" CssClass="form-control" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Apellido</label>
-                    <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="txtApellido" maxlength="30" placeholder="Apellido" CssClass="form-control" />
                 </div>
             </div>
 
