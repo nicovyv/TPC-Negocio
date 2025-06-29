@@ -20,9 +20,9 @@ namespace presentacion
                 cargarCliente();
 
                 cargarCategorias();
-                
 
-               
+
+
 
             }
             cargarProductos();
@@ -41,27 +41,49 @@ namespace presentacion
 
         }
 
+
+        // SE CARGAN LOS DDL PARA LA CARGA DE PRODUCTOS A LA VENTA, SE MUESTRA EN PANTALLA STOCK Y PRECIO UNITARIO
         private void cargarProductos()
         {
             ProductoNegocio negocio = new ProductoNegocio();
-            Producto producto = new Producto(); 
-           
-            ddlProdVenta.DataSource = negocio.FiltrarCategoria(ddlCatVenta.Text);
-           
+            Producto producto = new Producto();
+
+            List<Producto> productosFiltrados = negocio.FiltrarCategoria(ddlCatVenta.Text);
+
+            ddlProdVenta.DataSource = productosFiltrados;
             ddlProdVenta.DataTextField = "Nombre";
             ddlProdVenta.DataValueField = "Id";
             ddlProdVenta.DataBind();
-            producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-            txtPrecioProd.Text=producto.PrecioVenta.ToString();
-            txtStockProd.Text=producto.StockActual.ToString();
+
+
+           
+
+            if (productosFiltrados.Count > 0)
+            {
+                producto = negocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+                lblPrecioProd.Text = producto.PrecioVenta.ToString();
+                lblStockProd.Text = producto.StockActual.ToString();
+
+
+            }
+            else
+            {
+                lblPrecioProd.Text = "";
+                lblStockProd.Text = "";
+                txtCantVenta.Text = "";
+            }
+
+
+        
+
         }
 
 
-      
+
 
         protected void btnAgregarItemVenta_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 //Venta venta = null;
