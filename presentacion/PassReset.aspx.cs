@@ -17,13 +17,30 @@ namespace presentacion
 
         }
 
+        private string codigoAzar()
+        {
+            string palabras = "ASDFGHJKLÑZXCVBNMQWERTYUIOP1234567890";
+            string codigo ="";
+            Random random = new Random();
+
+            for(int i = 0; i<8; i++)
+            {
+                int indice = random.Next(palabras.Length);
+                codigo+=(palabras[indice]);
+            }            
+            return codigo;
+        }
+        
         protected void btnGenerar_Click(object sender, EventArgs e)
         {
 
             Usuario usuario = new Usuario();
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             EmailService emailService = new EmailService();
-            string codigo = "202020";
+            string codigo = codigoAzar();
+            
+
+
             Session.Add(("codigo"), codigo);
             try
             {
@@ -39,7 +56,7 @@ namespace presentacion
                     if (usuario.Id != 0)
                     {
                         Session.Add("Reestablecimiento", usuario);
-                        emailService.armarCorreo(usuario.Email, "Reestablecimiento de Clave", "Hola " + usuario.Email + ", su codigo para reestablecer su PassWord es " + codigo + ".");
+                        emailService.armarCorreo(usuario.Email, "Reestablecimiento de Clave", "Hola " + usuario.Email + ", su codigo para reestablecer su Password es " + codigo + ".");
                         emailService.enviarMail();
 
                         txtCodigo.Visible = true;
