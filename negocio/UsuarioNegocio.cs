@@ -22,9 +22,15 @@ namespace negocio
                     Usuario usuario = new Usuario();
                     usuario.Id = (int)datos.Lector["id"];
                     usuario.Email = (string)datos.Lector["email"];
-                    usuario.Password = (string)datos.Lector["pass"];    
-                    usuario.Nombre = (string)datos.Lector["nombre"];
-                    usuario.Apellido = (string)datos.Lector["apellido"];
+                    usuario.Password = (string)datos.Lector["pass"]; 
+                    if (!(datos.Lector["nombre"] is DBNull))
+                    {
+                        usuario.Nombre = (string)datos.Lector["nombre"];
+                    }
+                    if (!(datos.Lector["apellido"] is DBNull))
+                    {
+                        usuario.Apellido = (string)datos.Lector["apellido"];
+                    }
                     usuario.Admin = (bool)datos.Lector["admin"];
                     usuario.Activo = (bool)datos.Lector["activo"];
                     usuarios.Add(usuario);
