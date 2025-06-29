@@ -81,6 +81,12 @@ namespace presentacion
                 lblCambiar.Visible = true;
                 txtPassword.Visible = true;
             }
+            else
+            {
+                lblExito.Visible = true;
+                lblExito.Text = "El codigo es incorrecto, verifique su casilla de correo";
+                lblExito.CssClass = "alert alert-danger";
+            }
         }
 
         protected void btnCambiar_Click(object sender, EventArgs e)
