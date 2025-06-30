@@ -29,8 +29,6 @@
 
     <h3>Detalle de la Venta</h3>
     <div class="col-8">
-
-
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -60,8 +58,10 @@
                 </asp:Repeater>
             </tbody>
         </table>
-
-
+         <div class="mt-3">
+                    <strong>Total: $</strong>
+                    <asp:Label ID="lblTotalVentaRegistrada" runat="server"></asp:Label>
+                </div>
 
     </div>
 

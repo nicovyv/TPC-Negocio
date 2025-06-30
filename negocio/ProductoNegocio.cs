@@ -247,7 +247,7 @@ namespace negocio
             try
             {
 
-                datos.setConsulta("SELECT ID, CodProd, Nombre, Descripcion, IDCategoria, IDMarca, Precio, StockMinimo, StockActual, Ganancia, PrecioCompra FROM Productos WHERE ID = @id");
+                datos.setConsulta("SELECT P.ID, P.CodProd, P.Nombre, P.Descripcion, P.IDCategoria, C.Descripcion AS Categoria, P.IDMarca, M.Descripcion AS Marca, P.Precio, P.StockMinimo, P.StockActual, P.Ganancia, P.PrecioCompra FROM Productos P INNER JOIN Categorias C ON P.IDCategoria = C.ID INNER JOIN Marcas M ON M.ID = P.IDMarca WHERE P.ID = @id");
                 datos.setParametro("id", id);
                 datos.ejecutarLectura();
 
@@ -263,9 +263,11 @@ namespace negocio
 
                     producto.Categoria = new Categoria();
                     producto.Categoria.Id = (int)datos.Lector["IDCategoria"];
+                    producto.Categoria.Descripcion = (string)datos.Lector["Categoria"];
 
                     producto.Marca = new Marca();
                     producto.Marca.Id = (int)datos.Lector["IdMarca"];
+                    producto.Marca.Descripcion = (string)datos.Lector["Marca"];
 
                     producto.StockActual = (int)datos.Lector["StockActual"];
                     producto.StockMinimo = (int)datos.Lector["StockMinimo"];

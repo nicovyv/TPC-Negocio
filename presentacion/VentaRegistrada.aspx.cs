@@ -41,8 +41,9 @@ namespace presentacion
                 repDetalleVentaRegistrada.DataSource = venta.ItemVenta;
                 repDetalleVentaRegistrada.DataBind();
 
+                lblTotalVentaRegistrada.Text = venta.Total.ToString();
 
-                
+
             }
             catch (Exception)
             {
