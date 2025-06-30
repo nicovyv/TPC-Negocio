@@ -48,6 +48,30 @@ namespace negocio
             
           
         }
+
+
+        public bool ValidarItemExistente(List<ItemVenta> itemsVenta ,int idProducto)
+        {
+
+            foreach (var item in itemsVenta)
+            {
+                if (item.Producto.Id == idProducto)
+                    return true;
+            }
+            
+            return false;
+        }
+
+        public ItemVenta ObtenerItemExistente(List<ItemVenta> itemsVenta, int idProducto)
+        {
+            foreach (var item in itemsVenta)
+            {
+                if (item.Producto.Id == idProducto)
+                    return item;
+            }
+            return null;
+        }
+
         public void Agregar(Venta venta)
         {
             

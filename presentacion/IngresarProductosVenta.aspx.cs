@@ -98,6 +98,7 @@ namespace presentacion
 
         protected void btnAgregarItemVenta_Click(object sender, EventArgs e)
         {
+            ItemVenta item = null;
 
             try
             {
@@ -166,17 +167,63 @@ namespace presentacion
                 }
 
 
+                VentaNegocio ventaNegocio = new VentaNegocio();
                 //INSTANCIAMOS ITEM DE LA VENTA
-                ItemVenta item = new ItemVenta();
-                item.Producto = producto;
-                item.Cantidad = cantidad;
-                item.PrecioUnidad = producto.PrecioVenta;
+
+
+
+
 
                 //VALIDACIÓN PARA QUE NO SE REPITE EL ITEM EN EL LISTADO DE ITEMS DE LA VENTA
+                if (ventaNegocio.ValidarItemExistente(venta.ItemVenta, idProducto))
+                {
+
+                    item = ventaNegocio.ObtenerItemExistente(venta.ItemVenta, idProducto);
+
+                    int nuevaCantidad = item.Cantidad + cantidad;
+
+                    if (nuevaCantidad > producto.StockActual)
+                    {
+                        lblHelpCantVenta.Text = "No hay stock suficiente.";
+                        lblHelpCantVenta.CssClass = "text-danger";
+                        return;
+                    }
+
+                    item.Cantidad = nuevaCantidad;
+
+
+                }
+                else
+                {
+                    item = new ItemVenta();
+
+
+                    if (cantidad > producto.StockActual)
+                    {
+                        lblHelpCantVenta.Text = "No hay stock suficiente.";
+                        lblHelpCantVenta.CssClass = "text-danger";
+                        return;
+                    }
+
+                    item.Producto = producto;
+                    item.Cantidad = cantidad;
+                    item.PrecioUnidad = producto.PrecioVenta;
+
+
+                    //AGREGAMOS ITEM AL LISTADO DE PRODUCTOS DE LA VENTA
+                    venta.ItemVenta.Add(item);
+
+
+
+                }
+
+
+
+
+
                 //CODIGO DE LA VALIDACIÓN...
 
-                //AGREGAMOS ITEM AL LISTADO DE PRODUCTOS DE LA VENTA
-                venta.ItemVenta.Add(item);
+                
 
 
 
@@ -188,8 +235,6 @@ namespace presentacion
 
 
 
-                //lblHelpCantVenta.Text = "Indique la cantidad";
-                //lblHelProdVenta.Text = "seleccione un producto";
 
                 //CALCULAR TOTAL DE LA VENTA
                 decimal totalVenta = venta.ItemVenta.Sum(x => x.Cantidad * x.PrecioUnidad);
