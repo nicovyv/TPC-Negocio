@@ -300,5 +300,56 @@ namespace presentacion
             txtProdPrecio.Text = producto.PrecioVenta.ToString();
             txtProdStock.Text = producto.StockActual.ToString();
         }
+
+
+        //ELIMINACIÓN DE UN ITEM DE LA GRILLA DE VENTA A TRAVÉS DEL BOTÓN ELIMINAR
+        protected void dgvDetalleVenta_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {   // BUSCAMOS EL COMANDO
+                if (e.CommandName == "Eliminar")
+                {   // VARIABLE PARA GUARDAR EL ID DEL PRODUCTO
+                    int idProd = int.Parse(e.CommandArgument.ToString());
+
+                    //CREAMOS UNA VENTA Y LE ASIGMANOS LA EXISTENTE EN LA SESIÓN
+                    Venta venta = (Venta)Session["venta"];
+
+                    // VALIDAMOS QUE EXISTA
+                    if (venta != null && venta.ItemVenta != null)
+                    {
+                        VentaNegocio negocio = new VentaNegocio();
+                        // BUSCAMOS EL ITEM A TRAVÉS DEL ID DEL PRODUCTO
+                        ItemVenta itemEliminar = negocio.ObtenerItemExistente(venta.ItemVenta, idProd);
+                        // VALIDAMOS QUE TRAIGA UN ITEM
+                        if (itemEliminar != null)
+                        {   //LO QUITAMOS DE LA GRILLA
+                            venta.ItemVenta.Remove(itemEliminar);
+                            // ACTUALIZAMOS LA GRILLA
+                            dgvDetalleVenta.DataSource = venta.ItemVenta;
+                            dgvDetalleVenta.DataBind();
+                            // ACTUALIZAMOS EL VALOR TOTAL
+                            decimal totalVenta = venta.ItemVenta.Sum(x => x.Cantidad * x.PrecioUnidad);
+                            lbltotalVentaValor.Text = totalVenta.ToString();
+
+                        }
+
+
+
+
+
+                    }
+
+
+                }
+            }
+            catch (Exception)
+            {
+
+                Session.Add("error", "No se pudo eliminar el producto");
+                Response.Redirect("Error.aspx");
+            }
+
+
+        }
     }
 }

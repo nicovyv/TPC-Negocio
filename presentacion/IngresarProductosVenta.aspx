@@ -80,7 +80,7 @@
             </div>
             <div class="card-body">
                 <asp:GridView ID="dgvDetalleVenta" runat="server" AutoGenerateColumns="false"
-                    CssClass="table table-striped table-bordered">
+                    CssClass="table table-striped table-bordered" OnRowCommand="dgvDetalleVenta_RowCommand">
                     <Columns>
                         <asp:TemplateField HeaderText="Código">
                             <ItemTemplate>
@@ -99,7 +99,7 @@
                                     CssClass="btn btn-secondary btn-sm me-2"
                                     CommandName="Eliminar"
                                     CommandArgument='<%# Eval("Producto.Id")%>'
-                                    runat="server" />
+                                    runat="server"/>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
