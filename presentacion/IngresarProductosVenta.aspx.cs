@@ -30,35 +30,49 @@ namespace presentacion
                         lblNombreCliente.Text = cliente.Nombre;
                         lblCuilCliente.Text = cliente.CuilCuit;
                     }
-                    
+
                     //DDL Categorias
                     List<Categoria> categorias = categoriaNegocio.listar();
                     ddlCatVenta.DataSource = categorias;
                     ddlCatVenta.DataTextField = "Descripcion";
                     ddlCatVenta.DataValueField = "Id";
                     ddlCatVenta.DataBind();
-                    
+
+
+
                     //DDL Productos
                     List<Producto> productos = new List<Producto>();
                     int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
                     productos = productoNegocio.FiltrarCategoria(idCategoria);
 
+                    // SI LA CATEGORIA SELECCIONADA NO TIENE PRODUCTOS SE LIMPIA DDLPRODUCTOS. SI LOS TIENE CARGA DDL Y MUESTRA STOCK Y PRECIO
+                    if (productos.Count > 0)
+                    {
+                        ddlProdVenta.DataSource = productos;
+                        ddlProdVenta.DataTextField = "Nombre";
+                        ddlProdVenta.DataValueField = "Id";
+                        ddlProdVenta.DataBind();
+
+                        //Cargar precio del producto y stock actual
+                        Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+                        txtProdPrecio.Text = producto.PrecioVenta.ToString();
+                        txtProdStock.Text = producto.StockActual.ToString();
+                    }
+                    else
+                    {
+                        ddlProdVenta.Items.Clear();
+                        txtProdPrecio.Text = "";
+                        txtProdStock.Text = "";
+
+                        lblHelProdVenta.Text = "Sin Productos.";
+                    }
 
 
-                    ddlProdVenta.DataSource = productos;
-                    ddlProdVenta.DataTextField = "Nombre";
-                    ddlProdVenta.DataValueField = "Id";
-                    ddlProdVenta.DataBind();
-                    
-                    //Cargar precio del producto y stock actual
-                    Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-                    txtProdPrecio.Text = producto.PrecioVenta.ToString();
-                    txtProdStock.Text = producto.StockActual.ToString();
                 }
 
-               
 
-              
+
+
 
 
             }
@@ -68,7 +82,7 @@ namespace presentacion
                 Session.Add("error", Security.ManejoError(ex));
                 Response.Redirect("Error.aspx");
             }
-           
+
         }
         protected void cargarCliente()
         {
@@ -86,17 +100,17 @@ namespace presentacion
         {
 
             try
-            {   
+            {
                 //INSTANCIAMOS LA PRODUCTO NEGOCIO CON LOS METODOS ABML DE UN PRODUCTO
                 ProductoNegocio negocio = new ProductoNegocio();
-                
+
                 //CAPTURAMOS EL ID DEL PRODUCTO, SELECCIONADO EN EL DDL DE PRODUCTOS
                 int idProducto = int.Parse(ddlProdVenta.SelectedValue);
-                
+
                 //USAMOS EL ID DEL PRODUCTO PARA CAPTURAR EL PRODUCTO POR ID
                 Producto producto = negocio.ObtenerPorId(idProducto);
-                
-                
+
+
                 int cantidad = 0;
                 //VALIDACIÓN PARA QUE SE INGRESE UNA CANTIDAD DEL PRODUCTO
                 //PARSEAMOS LA CANTIDAD DEL PRODUCTO DE STRING A ENTERO
@@ -108,8 +122,8 @@ namespace presentacion
                     lblHelpCantVenta.CssClass = "text-danger";
                     return;
                 }
-                
-               
+
+
 
                 //VALIDACIONES
 
@@ -120,7 +134,7 @@ namespace presentacion
                     lblHelProdVenta.CssClass = "text-danger";
                     return;
                 }
-                
+
 
                 //VALIDACIÓN PARA QUE LA CANTIDAD INGRESADA SEA MAYOR A CERO
                 if (cantidad < 1)
@@ -134,7 +148,7 @@ namespace presentacion
                 int stock = producto.StockActual;
                 int diferenciaDeStock = stock - cantidad;
 
-                if (!(diferenciaDeStock>=0))
+                if (!(diferenciaDeStock >= 0))
                 {
                     lblHelpCantVenta.Text = "No hay stock suficiente.";
                     lblHelpCantVenta.CssClass = "text-danger";
@@ -164,7 +178,7 @@ namespace presentacion
                 //AGREGAMOS ITEM AL LISTADO DE PRODUCTOS DE LA VENTA
                 venta.ItemVenta.Add(item);
 
-               
+
 
 
 
@@ -198,7 +212,7 @@ namespace presentacion
             Response.Redirect("Ventas.aspx");
         }
 
-       
+
 
         protected void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
@@ -207,21 +221,35 @@ namespace presentacion
         // SE CARGAN LOS PRODUCTOS FILTADOS POR CATEGORIA
         protected void ddlCatVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             ProductoNegocio productoNegocio = new ProductoNegocio();
 
             int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
             List<Producto> productosFiltrados = productoNegocio.FiltrarCategoria(idCategoria);
 
-            ddlProdVenta.DataSource = productosFiltrados;
-            ddlProdVenta.DataTextField = "Nombre";
-            ddlProdVenta.DataValueField = "Id";
-            ddlProdVenta.DataBind();
+            // SI LA CATEGORIA SELECCIONADA NO TIENE PRODUCTOS SE LIMPIA DDLPRODUCTOS. SI LOS TIENE CARGA DDL Y MUESTRA STOCK Y PRECIO
+            if (productosFiltrados.Count > 0)
+            {
+                ddlProdVenta.DataSource = productosFiltrados;
+                ddlProdVenta.DataTextField = "Nombre";
+                ddlProdVenta.DataValueField = "Id";
+                ddlProdVenta.DataBind();
 
-            //Cargar precio del producto y stock actual
-            Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-            txtProdPrecio.Text = producto.PrecioVenta.ToString();
-            txtProdStock.Text = producto.StockActual.ToString();
+                //Cargar precio del producto y stock actual
+                Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
+                txtProdPrecio.Text = producto.PrecioVenta.ToString();
+                txtProdStock.Text = producto.StockActual.ToString();
+            }
+            else
+            {
+                ddlProdVenta.Items.Clear();
+                txtProdPrecio.Text = "";
+                txtProdStock.Text = "";
+
+                lblHelProdVenta.Text = "Sin Productos.";
+            }
+
+
         }
 
         protected void ddlProdVenta_SelectedIndexChanged(object sender, EventArgs e)
@@ -233,7 +261,7 @@ namespace presentacion
             producto = negocio.ObtenerPorId(idProducto);
 
             txtProdPrecio.Text = producto.PrecioVenta.ToString();
-            txtProdStock.Text= producto.StockActual.ToString(); 
+            txtProdStock.Text = producto.StockActual.ToString();
         }
     }
 }
