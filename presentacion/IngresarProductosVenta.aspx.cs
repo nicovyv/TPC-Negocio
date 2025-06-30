@@ -96,6 +96,7 @@ namespace presentacion
 
         }
 
+        //SE AGREGAN A LA GRILLA DE VENTA LOS PROCUTOS QUE SE VAN SELECCIONANDO
         protected void btnAgregarItemVenta_Click(object sender, EventArgs e)
         {
             ItemVenta item = null;
@@ -218,17 +219,6 @@ namespace presentacion
                 }
 
 
-
-
-
-                //CODIGO DE LA VALIDACIÓN...
-
-                
-
-
-
-
-
                 //GRILLA PARA VER PRODUCTOS INGRESADOS A LA VENTA
                 dgvDetalleVenta.DataSource = venta.ItemVenta;
                 dgvDetalleVenta.DataBind();
@@ -258,11 +248,13 @@ namespace presentacion
         }
 
 
-
+        // FINALIZA LA SELECCIOÓN DE PRODUCTOS Y DE LA VENTA
         protected void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
             Response.Redirect("VentaRegistrada.aspx");
         }
+
+
         // SE CARGAN LOS PRODUCTOS FILTADOS POR CATEGORIA
         protected void ddlCatVenta_SelectedIndexChanged(object sender, EventArgs e)
         {

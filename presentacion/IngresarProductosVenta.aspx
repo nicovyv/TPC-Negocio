@@ -23,34 +23,32 @@
                 <h5 class="mb-0">Ingresar Productos</h5>
             </div>
             <div class="card-body">
-               <%-- SELECCIÓN DEL PRODUCTO --%>
+                <%-- SELECCIÓN DEL PRODUCTO --%>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <asp:Label ID="lblCatVenta" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
-                        <asp:DropDownList 
-                            ID="ddlCatVenta" 
+                        <asp:DropDownList
+                            ID="ddlCatVenta"
                             OnSelectedIndexChanged="ddlCatVenta_SelectedIndexChanged"
                             AutoPostBack="true"
-                            runat="server"  
-                            CssClass="form-control"
-                            />
-                      
+                            runat="server"
+                            CssClass="form-control" />
+
                         <small class="form-text text-muted">Seleccione una categoría</small>
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblProdVenta" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
-                        <asp:DropDownList 
+                        <asp:DropDownList
                             ID="ddlProdVenta"
-                            runat="server" 
+                            runat="server"
                             AutoPostBack="true"
                             CssClass="form-control"
-                            OnSelectedIndexChanged="ddlProdVenta_SelectedIndexChanged"
-                            />
-                      
+                            OnSelectedIndexChanged="ddlProdVenta_SelectedIndexChanged" />
+
                         <asp:Label ID="lblHelProdVenta" runat="server" class="form-text text-muted">Seleccione un producto</asp:Label>
                     </div>
                 </div>
-                 <%-- SELECCIÓN DEL PRODUCTO --%>
+                <%-- SELECCIÓN DEL PRODUCTO --%>
                 <div class="row mb-3 ">
                     <%--CANTIDADES DEL PRODUCTO--%>
                     <div class="col-md-4">
@@ -93,6 +91,17 @@
                         <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
                         <asp:BoundField HeaderText="Precio Unitario" DataField="PrecioUnidad" />
                         <asp:BoundField HeaderText="SubTotal" DataField="Subtotal" />
+                        <asp:TemplateField HeaderText="Acción">
+                            <ItemTemplate>
+                                <asp:Button
+                                    ID="btnEliminarItem"
+                                    Text="Eliminar"
+                                    CssClass="btn btn-secondary btn-sm me-2"
+                                    CommandName="Eliminar"
+                                    CommandArgument='<%# Eval("Producto.Id")%>'
+                                    runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
 
