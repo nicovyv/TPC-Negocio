@@ -27,7 +27,7 @@
                     <div class="col-md-6">
                         <asp:Label ID="lblCatCompra" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
                         <asp:DropDownList
-                            ID="ddlCatCompra"
+                            ID="ddlCatCompra" OnSelectedIndexChanged="ddlCatCompra_SelectedIndexChanged"
                             
                             AutoPostBack="true"
                             runat="server"
@@ -38,7 +38,8 @@
                     <div class="col-md-6">
                         <asp:Label ID="lblProdCompra" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
                         <asp:DropDownList
-                            ID="ddlProdCompra"
+                            ID="ddlProdCompra" OnSelectedIndexChanged="ddlProdCompra_SelectedIndexChanged"
+                            
                             runat="server"
                             AutoPostBack="true"
                             CssClass="form-control"
