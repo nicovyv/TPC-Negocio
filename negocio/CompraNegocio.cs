@@ -64,5 +64,27 @@ namespace negocio
             }
         }
 
+        public bool ValidarItemExistente(List<DetalleCompra> detalleCompra, int idProducto)
+        {
+
+            foreach (var item in detalleCompra)
+            {
+                if (item.Producto.Id == idProducto)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public DetalleCompra ObtenerItemExistente(List<DetalleCompra> detalleCompra, int idProducto)
+        {
+            foreach (var item in detalleCompra)
+            {
+                if (item.Producto.Id == idProducto)
+                    return item;
+            }
+            return null;
+        }
+
     }
 }

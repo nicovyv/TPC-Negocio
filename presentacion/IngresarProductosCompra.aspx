@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <asp:Button ID="btnAgregarItemCompra" runat="server" Text="Agregar Producto" CssClass="btn btn-primary btn-sm"   />
+                <asp:Button ID="btnAgregarItemCompra" runat="server" Text="Agregar Producto" CssClass="btn btn-primary btn-sm" OnClick="btnAgregarItemCompra_Click"   />
             </div>
         </div>
 
@@ -80,7 +80,7 @@
             </div>
             <div class="card-body">
                 <asp:GridView ID="dgvDetalleCompra" runat="server" AutoGenerateColumns="false"
-                    CssClass="table table-striped table-bordered" O>
+                    CssClass="table table-striped table-bordered" OnRowCommand="dgvDetalleCompra_RowCommand">
                     <Columns>
                         <asp:TemplateField HeaderText="Código">
                             <ItemTemplate>
@@ -115,8 +115,8 @@
         <asp:Label runat="server" ID="lblError" CssClass="form-label"></asp:Label>
         <!-- BOTONES -->
         <div class="mb-5">
-            <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-success btn-sm me-2" />
-            <asp:Button ID="btnVolverCompra" runat="server" Text="Volver" CssClass="btn btn-secondary btn-sm"  />
+            <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-success btn-sm me-2" OnClick="btnFinalizarCompra_Click" />
+            <asp:Button ID="btnVolverCompra" runat="server" Text="Volver" CssClass="btn btn-secondary btn-sm" OnClick="btnVolverCompra_Click"  />
         </div>
     </div>
 </asp:Content>

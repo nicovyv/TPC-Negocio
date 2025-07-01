@@ -74,6 +74,7 @@
     <Content Include="Bienvenida.aspx" />
     <Content Include="Categorias.aspx" />
     <Content Include="Clientes.aspx" />
+    <Content Include="CompraRegistrada.aspx" />
     <Content Include="Compras.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="FormCompra.aspx" />
@@ -143,6 +144,13 @@
     </Compile>
     <Compile Include="Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompraRegistrada.aspx.cs">
+      <DependentUpon>CompraRegistrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompraRegistrada.aspx.designer.cs">
+      <DependentUpon>CompraRegistrada.aspx</DependentUpon>
     </Compile>
     <Compile Include="Compras.aspx.cs">
       <DependentUpon>Compras.aspx</DependentUpon>
