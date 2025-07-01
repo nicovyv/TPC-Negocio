@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace dominio
 {
@@ -11,6 +13,13 @@ namespace dominio
         public Proveedor Proveedor { get; set; }
         public Usuario Usuario { get; set; }
         public List<DetalleCompra> Detalle { get; set; }
-        public decimal Total { get; set; }
+        public Decimal Total
+        {
+            get
+            { //SE OBTIENE EL VALOR DE LA COMPRA A PARTIR DE LOS VALORES SUBTOTALES DE SUS ITEMVENTA
+                return Detalle.Sum(x => x.Subtotal);
+            }
+            set { }
+        }
     }
 }
