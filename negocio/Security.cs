@@ -50,6 +50,27 @@ namespace negocio
                 return false;
             }
         }
+        public static bool hayProveedorAsignado(object prooved)
+        {
+            Proveedor proveedor;
+            if (prooved != null)
+            {
+                proveedor = (Proveedor)prooved;
+            }
+            else
+            {
+                proveedor = null;
+            }
+
+            if (proveedor != null && proveedor.Id != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static bool isLogin(object user)
         {
             Usuario usuario;

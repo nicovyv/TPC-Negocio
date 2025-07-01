@@ -5,14 +5,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-4">
 
-        <!-- CARD Proovedor -->
+        <!-- CARD Proveedor -->
         <div class="card mb-4 col-md-4 rounded-0">
             <div class="card-header">
-                <h5 class="mb-0">Proovedor</h5>
+                <h5 class="mb-0">Proveedor</h5>
             </div>
             <div class="card-body">
-                <asp:Label ID="lblNombreProovedor" runat="server" CssClass="d-block "></asp:Label>
-                <asp:Label ID="lblCuilProovedor" runat="server" CssClass="d-block"></asp:Label>
+                <asp:Label ID="lblNombreProveedor" runat="server" CssClass="d-block "></asp:Label>
+                <asp:Label ID="lblCuilProveedor" runat="server" CssClass="d-block"></asp:Label>
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                     </div>
                     <%--INFORMACIÓN DEL PRODUCTO--%>
                     <div class="col-md-4">
-                        <p>Stock Disponible</p>
+                        <p>Stock Actual</p>
                         <asp:Label runat="server" CssClass="form" ID="lblStockProd" />
                         <asp:TextBox runat="server" CssClass="form-control" ID="txtProdStock"></asp:TextBox>
                     </div>

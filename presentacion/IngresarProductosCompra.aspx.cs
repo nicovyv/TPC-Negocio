@@ -13,6 +13,7 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Proveedor proveedor;
 
             //configuracion de cargar DropDownList
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
@@ -22,57 +23,51 @@ namespace presentacion
             {
                 if (!(IsPostBack))
                 {
-                  /*  if (Security.hayClienteAsignado(Session["cliente"]))
+                    if (Security.hayProveedorAsignado(Session["proveedor"]))
                     {
-                        //configuracion de cargar cliente
-                        cliente = (Cliente)Session["cliente"];
-                        lblNombreCliente.Text = cliente.Nombre;
-                        lblCuilCliente.Text = cliente.CuilCuit;
+                        //configuracion de cargar Proveedor
+                        proveedor = (Proveedor)Session["proveedor"];
+                        lblNombreProveedor.Text = proveedor.Nombre;
+                        lblCuilProveedor.Text = proveedor.CuilCuit;
                     }
-                  */
+
                     //DDL Categorias
                     List<Categoria> categorias = categoriaNegocio.listar();
-                    ddlCatVenta.DataSource = categorias;
-                    ddlCatVenta.DataTextField = "Descripcion";
-                    ddlCatVenta.DataValueField = "Id";
-                    ddlCatVenta.DataBind();
+                    ddlCatCompra.DataSource = categorias;
+                    ddlCatCompra.DataTextField = "Descripcion";
+                    ddlCatCompra.DataValueField = "Id";
+                    ddlCatCompra.DataBind();
 
 
 
                     //DDL Productos
                     List<Producto> productos = new List<Producto>();
-                    int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
+                    int idCategoria = int.Parse(ddlCatCompra.SelectedValue);
                     productos = productoNegocio.FiltrarCategoria(idCategoria);
 
                     // SI LA CATEGORIA SELECCIONADA NO TIENE PRODUCTOS SE LIMPIA DDLPRODUCTOS. SI LOS TIENE CARGA DDL Y MUESTRA STOCK Y PRECIO
                     if (productos.Count > 0)
                     {
-                        ddlProdVenta.DataSource = productos;
-                        ddlProdVenta.DataTextField = "Nombre";
-                        ddlProdVenta.DataValueField = "Id";
-                        ddlProdVenta.DataBind();
+                        ddlProdCompra.DataSource = productos;
+                        ddlProdCompra.DataTextField = "Nombre";
+                        ddlProdCompra.DataValueField = "Id";
+                        ddlProdCompra.DataBind();
 
                         //Cargar precio del producto y stock actual
-                        Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
-                        txtProdPrecio.Text = producto.PrecioVenta.ToString();
+                        Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdCompra.SelectedValue));
+                        txtProdPrecio.Text = producto.PrecioCompra.ToString();
                         txtProdStock.Text = producto.StockActual.ToString();
                     }
                     else
                     {
-                        ddlProdVenta.Items.Clear();
+                        ddlProdCompra.Items.Clear();
                         txtProdPrecio.Text = "";
                         txtProdStock.Text = "";
 
-                        lblHelProdVenta.Text = "Sin Productos.";
+                        lblHelProdCompra.Text = "Sin Productos.";
                     }
 
-
                 }
-
-
-
-
-
 
             }
             catch (Exception ex)
@@ -81,5 +76,6 @@ namespace presentacion
                 Session.Add("error", Security.ManejoError(ex));
                 Response.Redirect("Error.aspx");
             }
+        }
     }
 }
