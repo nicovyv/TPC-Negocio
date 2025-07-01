@@ -49,7 +49,39 @@ namespace negocio
           
         }
 
+        public int GenerarNumFacura()
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+               
+                datos.setConsulta("SELECT MAX(Facturas) FROM VENTAS");
+                datos.ejecutarAccion();
+
+                if (datos.Lector.Read())
+                {
+                    int ultimaFactura = (int)datos.Lector[0];
+                    return ultimaFactura + 1;
+                }
+                else
+                {
+                    return 1000000;
+                }
+
+
+                return 1;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public bool ValidarItemExistente(List<ItemVenta> itemsVenta ,int idProducto)
         {
 
