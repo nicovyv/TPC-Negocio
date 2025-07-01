@@ -15,30 +15,48 @@ namespace presentacion
     {
 
         /// <summary>
-        /// Control txtCompraCantidad.
+        /// Control txtBuscadorProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompraCantidad;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscadorProveedor;
 
         /// <summary>
-        /// Control txtCompraPrecioUnit.
+        /// Control btnAsignarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompraPrecioUnit;
+        protected global::System.Web.UI.WebControls.Button btnAsignarProveedor;
 
         /// <summary>
-        /// Control btnAgregarCliente.
+        /// Control txtCuit.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtCuit;
+
+        /// <summary>
+        /// Control txtnombreProveedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtnombreProveedor;
+
+        /// <summary>
+        /// Control btnIngresarProductos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnIngresarProductos;
     }
 }

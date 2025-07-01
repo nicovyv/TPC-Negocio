@@ -9,6 +9,36 @@ namespace negocio
 {
     public class ProveedorNegocio
     {
+
+        public Proveedor buscarProveedorPorCuitCuil(string cuitCuil)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Proveedor proveedor = new Proveedor();
+
+            try
+            {
+                datos.setConsulta("SELECT Id,Nombre,Email,Direccion,CuilCuit,Telefono FROM Proveedores WHERE CuilCuit=@cuilCuit AND Activo=1;");
+                datos.setParametro("@cuilCuit", cuitCuil);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    proveedor.Id = (int)datos.Lector["Id"];
+                    proveedor.Nombre = (string)datos.Lector["Nombre"];
+                    proveedor.Email = (string)datos.Lector["Email"];
+                    proveedor.Direccion = (string)datos.Lector["Direccion"];
+                    proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
+                    proveedor.Telefono = (string)datos.Lector["Telefono"];
+                    //proveedor.Activo = (bool)datos.Lector["Activo"];
+                }
+                return proveedor;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public List<Proveedor> listar(string id = "")
         {
             List<Proveedor> listaProveedores = new List<Proveedor>();
