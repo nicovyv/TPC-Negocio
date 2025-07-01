@@ -69,13 +69,11 @@ namespace negocio
                     return 1000000;
                 }
 
-
-                return 1;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex; 
             }
             finally
             {
