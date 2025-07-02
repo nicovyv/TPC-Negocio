@@ -30,7 +30,7 @@ namespace negocio
                     venta.Id = (int)datos.Lector["ID"];
                     venta.Fecha = (DateTime)datos.Lector["Fecha"];
                     venta.Total = (Decimal)datos.Lector["Total"];
-                    venta.Factura = (string)datos.Lector["Factura"];
+                    venta.Factura = (int)datos.Lector["Factura"];
                    
                     venta.Cliente=new Cliente() { 
                     Nombre = (string)datos.Lector["NombreCliente"]
@@ -48,24 +48,24 @@ namespace negocio
             
           
         }
-
+        // metodo para generar un nuevo numero de factura único
         public int GenerarNumFacura()
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-               
+               // se selecciona la ultima factura de la base de datos
                 datos.setConsulta("SELECT MAX(Facturas) FROM VENTAS");
                 datos.ejecutarAccion();
-
+                // se valida que se lea un registro
                 if (datos.Lector.Read())
-                {
+                {   // se guarda el valor y devuelve +1
                     int ultimaFactura = (int)datos.Lector[0];
                     return ultimaFactura + 1;
                 }
                 else
-                {
+                {   // si no hay facuras guardadas dvuelve 1000000 como primer numero de factura
                     return 1000000;
                 }
 
@@ -80,6 +80,9 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        
+
         public bool ValidarItemExistente(List<ItemVenta> itemsVenta ,int idProducto)
         {
 

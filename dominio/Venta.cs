@@ -19,7 +19,7 @@ namespace dominio
             }
             set { }
         }
-        public string Factura { get; set; }
+        public int Factura { get; set; }
 
     }
 }

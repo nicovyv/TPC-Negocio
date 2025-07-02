@@ -251,7 +251,29 @@ namespace presentacion
         // FINALIZA LA SELECCIOÓN DE PRODUCTOS Y DE LA VENTA
         protected void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
-            Response.Redirect("VentaRegistrada.aspx");
+
+            try
+            {
+                VentaNegocio negocio = new VentaNegocio();
+                Venta venta = (Venta)Session["venta"];
+                Cliente cliente = (Cliente)Session["cliente"];
+
+                venta.Cliente = cliente;
+                venta.Fecha = DateTime.Now;
+                venta.Factura = negocio.GenerarNumFacura();
+
+
+
+
+                Response.Redirect("VentaRegistrada.aspx");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+           
         }
 
 
