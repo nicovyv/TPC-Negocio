@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <h2>Venta registrada exitosamente</h2>
+      <h2>Compra registrada exitosamente</h2>
 
 
 
@@ -16,8 +16,7 @@
         <asp:Label ID="lblNombreProveedorCompraExito" runat="server" CssClass="d-block "></asp:Label>
         <p>CUIL-CUIT</p>
         <asp:Label ID="lblCuilCompraExito" runat="server" CssClass="d-block"></asp:Label>
-        <p>N° Factura</p>
-        <asp:Label ID="lblFacturaCompra" runat="server" Text=""></asp:Label>
+        
         <p>Fecha</p>
         <asp:Label ID="lblFechaCompra" runat="server" Text=""></asp:Label>
     </div>

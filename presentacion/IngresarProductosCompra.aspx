@@ -54,18 +54,18 @@
                     <div class="col-md-4">
                         <asp:Label ID="lblCantCompra" runat="server" Text="Cantidad" CssClass="form-label"></asp:Label>
                         <asp:TextBox ID="txtCantCompra" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:Label ID="lblHelpCantCompra" runat="server" class="form-text">Indique la cantidad</asp:Label>
+                        <asp:Label ID="lblHelpCantCompra" runat="server" pattern="^[1-9]\d*$" title="Ingrese solo números enteros positivos"  class="form-text">Indique la cantidad</asp:Label>
                     </div>
                     <%--INFORMACIÓN DEL PRODUCTO--%>
                     <div class="col-md-4">
                         <p>Stock Actual</p>
                         <asp:Label runat="server" CssClass="form" ID="lblStockProd" />
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtProdStock"></asp:TextBox>
+                        <asp:TextBox runat="server" CssClass="form-control" Enabled="false" ID="txtProdStock"></asp:TextBox>
                     </div>
                     <div class="col-md-4">
                         <p>Precio Unitario</p>
                         <asp:Label runat="server" ID="lblPrecioProd" />
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtProdPrecio"></asp:TextBox>
+                        <asp:TextBox runat="server"  pattern="^[1-9]\d*$" title="Ingrese solo números enteros positivos" CssClass="form-control" ID="txtProdPrecio"></asp:TextBox>
                     </div>
                 </div>
 

@@ -30,7 +30,8 @@ namespace presentacion
                         lblNombreProveedor.Text = proveedor.Nombre;
                         lblCuilProveedor.Text = proveedor.CuilCuit;
                     }
-
+                    txtCantCompra.Text = "";
+                    txtProdPrecio.Enabled = true;
                     //DDL Categorias
                     List<Categoria> categorias = categoriaNegocio.listar();
                     ddlCatCompra.DataSource = categorias;
@@ -55,7 +56,7 @@ namespace presentacion
 
                         //Cargar precio del producto y stock actual
                         Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdCompra.SelectedValue));
-                        txtProdPrecio.Text = producto.PrecioCompra.ToString();
+                        //txtProdPrecio.Text = producto.PrecioCompra.ToString();
                         txtProdStock.Text = producto.StockActual.ToString();
                     }
                     else
@@ -90,15 +91,42 @@ namespace presentacion
 
         }
 
+        private void corroborarPrecioExistente()
+        {
+            ProductoNegocio negocio = new ProductoNegocio();
+            int idProducto = int.Parse(ddlProdCompra.SelectedValue);
+            Compra compra = (Compra)Session["compra"];
+            txtProdPrecio.Text = "";
+            txtCantCompra.Text = "";
+            if (compra != null)
+            {
+                var itemExistente = compra.Detalle.FirstOrDefault(x => x.Producto.Id == idProducto);
+                if (itemExistente != null)
+                {
+                    // Si ya está, bloqueamos el TextBox de precio
+                    txtProdPrecio.Enabled = false;
+                    txtProdPrecio.Text = itemExistente.PrecioUnidad.ToString();
+                }
+                else
+                {
+                    txtProdPrecio.Enabled = true;
+                }
+            }
+            else
+            {
+                txtProdPrecio.Enabled = true;
+            }
+        }
+
         protected void ddlProdCompra_SelectedIndexChanged(object sender, EventArgs e)
         {
             ProductoNegocio negocio = new ProductoNegocio();
             int idProducto = int.Parse(ddlProdCompra.SelectedValue);
-
+            corroborarPrecioExistente();
             Producto producto = new Producto();
             producto = negocio.ObtenerPorId(idProducto);
 
-            txtProdPrecio.Text = producto.PrecioCompra.ToString();
+            //txtProdPrecio.Text = producto.PrecioCompra.ToString();
             txtProdStock.Text = producto.StockActual.ToString();
         }
 
@@ -108,7 +136,7 @@ namespace presentacion
 
             int idCategoria = int.Parse(ddlCatCompra.SelectedValue);
             List<Producto> productosFiltrados = productoNegocio.FiltrarCategoria(idCategoria);
-
+            corroborarPrecioExistente();
             // SI LA CATEGORIA SELECCIONADA NO TIENE PRODUCTOS SE LIMPIA DDLPRODUCTOS. SI LOS TIENE CARGA DDL Y MUESTRA STOCK Y PRECIO
             if (productosFiltrados.Count > 0)
             {
@@ -119,7 +147,7 @@ namespace presentacion
 
                 //Cargar precio del producto y stock actual
                 Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdCompra.SelectedValue));
-                txtProdPrecio.Text = producto.PrecioCompra.ToString();
+                // txtProdPrecio.Text = producto.PrecioCompra.ToString();
                 txtProdStock.Text = producto.StockActual.ToString();
             }
             else
@@ -170,6 +198,8 @@ namespace presentacion
                             // ACTUALIZAMOS EL VALOR TOTAL
                             decimal totalCompra = compra.Detalle.Sum(x => x.Cantidad * x.PrecioUnidad);
                             lbltotalCompraValor.Text = totalCompra.ToString();
+                            corroborarPrecioExistente();
+                            
 
                         }
 
@@ -214,12 +244,16 @@ namespace presentacion
                 { cantidad = int.Parse(txtCantCompra.Text); }
                 else
                 {
-                    lblHelpCantCompra.Text = "Este campo es obligatorio";
+                    lblHelpCantCompra.Text = "El campo de Cantidad es obligatorio";
                     lblHelpCantCompra.CssClass = "text-danger";
                     return;
                 }
 
-
+                if (string.IsNullOrEmpty(txtProdPrecio.Text)){
+                    lblHelpCantCompra.Text = "El campo de Precio Unitario es obligatorio";
+                    lblHelpCantCompra.CssClass = "text-danger";
+                    return;
+                }
 
                 //VALIDACIONES
 
@@ -239,79 +273,64 @@ namespace presentacion
                     lblHelpCantCompra.CssClass = "text-danger";
                     return;
                 }
-
-                //VALIDACIÓN PARA QUE LA CANTIDAD INGRESADA NO SEA MAYOR AL STOCK DISPONIBLE
-                int stock = producto.StockActual;
-                int diferenciaDeStock = stock - cantidad;
-
-                if (!(diferenciaDeStock >= 0))
-                {
-                    lblHelpCantCompra.Text = "No hay stock suficiente.";
-                    lblHelpCantCompra.CssClass = "text-danger";
-                    return;
-                }
-
-                //AGREGAMOS LA Compra A LA SESIÓN
                 Compra compra = (Compra)Session["compra"];
 
                 if (compra == null)
                 {
                     compra = new Compra();
                     compra.Detalle = new List<DetalleCompra>();
-                    Session["compra"] = compra;
+                    Session["compra"] = compra;                    
                 }
-
 
                 CompraNegocio CompraNegocio = new CompraNegocio();
-                //INSTANCIAMOS ITEM DE LA Compra
 
+                item = CompraNegocio.ObtenerItemExistente(compra.Detalle, idProducto);
 
-
-
-
-                //VALIDACIÓN PARA QUE NO SE REPITE EL ITEM EN EL LISTADO DE ITEMS DE LA Compra
-                if (CompraNegocio.ValidarItemExistente(compra.Detalle, idProducto))
+                if (item != null)
                 {
-
-                    item = CompraNegocio.ObtenerItemExistente(compra.Detalle, idProducto);
-
-                    int nuevaCantidad = item.Cantidad + cantidad;
-
-                    if (nuevaCantidad > producto.StockActual)
-                    {
-                        lblHelpCantCompra.Text = "No hay stock suficiente.";
-                        lblHelpCantCompra.CssClass = "text-danger";
-                        return;
-                    }
-
-                    item.Cantidad = nuevaCantidad;
-
+                    cantidad += item.Cantidad;
 
                 }
-                else
+
+
+
+                //VALIDACIÓN PARA QUE LA CANTIDAD INGRESADA SEA MAYOR AL STOCK MINIMO
+                int stock = producto.StockActual;
+                int stockMin = producto.StockMinimo;
+                int diferenciaDeStock = (stock - stockMin) + cantidad;
+
+                if (!(diferenciaDeStock >= 0))
                 {
+                    diferenciaDeStock *= -1;
+                    lblHelpCantCompra.Text = "Debe comprar " + diferenciaDeStock + " unidades más para cumplir con el stock minimo.";
+                    lblHelpCantCompra.CssClass = "text-danger";
+                    //txtCantCompra.Text = diferenciaDeStock.ToString();
+                    return;
+                }
+
+                if (item != null)
+                {
+                    item.Cantidad = cantidad;
+                }
+
+                if (!CompraNegocio.ValidarItemExistente(compra.Detalle, idProducto))
+                {
+
                     item = new DetalleCompra();
-
-
-                    if (cantidad > producto.StockActual)
-                    {
-                        lblHelpCantCompra.Text = "No hay stock suficiente.";
-                        lblHelpCantCompra.CssClass = "text-danger";
-                        return;
-                    }
-
+                    int precioUnidad = int.Parse(txtProdPrecio.Text);
                     item.Producto = producto;
                     item.Cantidad = cantidad;
-                    item.PrecioUnidad = producto.PrecioCompra;
+                    string precioTexto = txtProdPrecio.Text.Replace(',', '.'); //admitimos . o , cuando se ingresa numero con decimal
+                    item.PrecioUnidad = decimal.Parse(precioTexto);
+
 
 
                     //AGREGAMOS ITEM AL LISTADO DE PRODUCTOS DE LA Compra
                     compra.Detalle.Add(item);
 
-
-
                 }
 
+                txtProdPrecio.Enabled = false;
 
                 //GRILLA PARA VER PRODUCTOS INGRESADOS A LA Compra
                 dgvDetalleCompra.DataSource = compra.Detalle;
@@ -323,7 +342,7 @@ namespace presentacion
                 //CALCULAR TOTAL DE LA Compra
                 decimal totalCompra = compra.Detalle.Sum(x => x.Cantidad * x.PrecioUnidad);
                 lbltotalCompraValor.Text = totalCompra.ToString();
-
+                lblHelpCantCompra.Text = "";
             }
             catch (Exception ex)
             {

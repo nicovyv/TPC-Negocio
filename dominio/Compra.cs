@@ -7,8 +7,7 @@ namespace dominio
 {
     public class Compra
     {
-        public int Id { get; set; }
-        public string NFactura { get; set; }
+        public int Id { get; set; }        
         public DateTime Fecha { get; set; }
         public Proveedor Proveedor { get; set; }
         public Usuario Usuario { get; set; }
