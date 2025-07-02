@@ -262,7 +262,7 @@ namespace presentacion
                 venta.Fecha = DateTime.Now;
                 venta.Factura = negocio.GenerarNumFactura();
 
-
+                negocio.Agregar(venta);
 
 
                 Response.Redirect("VentaRegistrada.aspx");

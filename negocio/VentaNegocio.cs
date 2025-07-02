@@ -111,7 +111,7 @@ namespace negocio
             AccesoDatos datos =new AccesoDatos();
             try
             {
-                datos.setConsulta("INSERT INTO Ventas (IDCliente, Fecha, Total, Factura) VALUES (IDCliente=@idCliente, Fecha=@fecha, Total=@total, Factura=@factura);");
+                datos.setConsulta("INSERT INTO Ventas (IDCliente, Fecha, Total, Factura) VALUES (@idCliente, @fecha, @total, @factura);");
                 datos.setParametro("@idCliente",venta.Cliente.Id);
                 datos.setParametro("@fecha", venta.Fecha);
                 datos.setParametro("@total", venta.Total);
