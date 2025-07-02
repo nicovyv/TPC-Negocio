@@ -19,11 +19,11 @@ namespace negocio
             {
                 if(id != "")
                 {
-                    datos.setConsulta("SELECT C.ID, C.NumFactura, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor,U.ID AS IDUsuario, U.Email AS Email Usuario INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID INNER JOIN USUARIOS U ON C.IDUsuario = U.ID WHERE ID= "+id);
+                    datos.setConsulta("SELECT C.ID, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor,U.ID AS IDUsuario, U.Email AS Email Usuario INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID INNER JOIN USUARIOS U ON C.IDUsuario = U.ID WHERE ID= "+id);
                 }
                 else
                 {
-                    datos.setConsulta("SELECT C.ID, C.NumFactura, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor,U.ID AS IDUsuario, U.Email AS Email Usuario INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID INNER JOIN USUARIOS U ON C.IDUsuario = U.ID");
+                    datos.setConsulta("SELECT C.ID, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor,U.ID AS IDUsuario, U.Email AS Email Usuario INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID INNER JOIN USUARIOS U ON C.IDUsuario = U.ID");
                 }
                     
 
@@ -33,7 +33,7 @@ namespace negocio
                 {
                     Compra compra = new Compra();
                     compra.Id = (int)datos.Lector["ID"];
-                    compra.NFactura = (string)datos.Lector["NFactura"];
+                   
                     compra.Fecha = (DateTime)datos.Lector["Fecha"];
                     compra.Total = (decimal)datos.Lector["Total"];
 

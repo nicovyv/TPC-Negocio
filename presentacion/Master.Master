@@ -33,7 +33,7 @@
                                     <li><a class="dropdown-item" href="Productos.aspx">Ver Productos</a></li>
                                     <li><a class="dropdown-item" href="FormProductos.aspx">Nuevo Producto</a></li>
                                 </ul>
-                            </li>                           
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Clientes</a>
                                 <ul class="dropdown-menu">
@@ -58,7 +58,11 @@
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Ventas.aspx">Ventas</a>
+                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Ventas</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Ventas.aspx">Ver Ventas</a></li>
+                                    <li><a class="dropdown-item" href="Ventas.aspx">Nueva Ventas</a></li>
+                                </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Marcas</a>
