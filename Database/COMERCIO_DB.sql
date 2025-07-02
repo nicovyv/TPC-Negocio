@@ -180,3 +180,27 @@ GO
 
 --GO
 
+CREATE PROCEDURE SP_GUARDAR_ITEM_VENTA
+	@IDVenta INT,
+	@IDProducto INT,
+	@Cantidad INT,
+	@PrecioUnidad MONEY
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+
+			INSERT INTO ItemVenta(IDVenta, IDProducto, Cantidad, PrecioUnidad)
+			VALUES (@IDVenta, @IDProducto, @Cantidad, @PrecioUnidad)
+
+			UPDATE Productos SET StockActual = StockActual - @Cantidad WHERE ID = @IDProducto
+
+
+		COMMIT TRANSACTION
+	END TRY
+
+	BEGIN CATCH
+				ROLLBACK TRANSACTION
+				RAISERROR ('Ocurrio un error', 16, 1)
+	END CATCH
+END
