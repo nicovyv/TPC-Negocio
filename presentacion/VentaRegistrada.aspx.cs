@@ -49,7 +49,8 @@ namespace presentacion
             catch (Exception)
             {
 
-                throw;
+                Session.Add("error", "No se pudo visualizar venta");
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

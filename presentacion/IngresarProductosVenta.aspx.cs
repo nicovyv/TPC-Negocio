@@ -265,12 +265,16 @@ namespace presentacion
                 negocio.Agregar(venta);
 
 
-                Response.Redirect("VentaRegistrada.aspx");
-            }
-            catch (Exception)
-            {
 
-                throw;
+                Response.Redirect("VentaRegistrada.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception ex)
+            {
+                Session.Remove("venta");
+                Session.Add("error", "No se pudo registrar la venta" + ex.ToString());
+                Response.Redirect("Error.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
 
            

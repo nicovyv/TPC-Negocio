@@ -31,22 +31,23 @@ namespace negocio
                     venta.Fecha = (DateTime)datos.Lector["Fecha"];
                     venta.Total = (Decimal)datos.Lector["Total"];
                     venta.Factura = (int)datos.Lector["Factura"];
-                   
-                    venta.Cliente=new Cliente() { 
-                    Nombre = (string)datos.Lector["NombreCliente"]
-                    };    
+
+                    venta.Cliente = new Cliente()
+                    {
+                        Nombre = (string)datos.Lector["NombreCliente"]
+                    };
 
                     lista.Add(venta);
                 }
                 return lista;
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 throw ex;
             }
-            
-          
+
+
         }
         // metodo para generar un nuevo numero de factura único
         public int GenerarNumFactura()
@@ -55,7 +56,7 @@ namespace negocio
 
             try
             {
-               // se selecciona la ultima factura de la base de datos
+                // se selecciona la ultima factura de la base de datos
                 datos.setConsulta("SELECT MAX(Factura) FROM VENTAS");
                 datos.ejecutarLectura();
                 // se valida que se lea un registro
@@ -73,7 +74,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw ex; 
+                throw ex;
             }
             finally
             {
@@ -81,9 +82,10 @@ namespace negocio
             }
         }
 
-        
 
-        public bool ValidarItemExistente(List<ItemVenta> itemsVenta ,int idProducto)
+
+
+        public bool ValidarItemExistente(List<ItemVenta> itemsVenta, int idProducto)
         {
 
             foreach (var item in itemsVenta)
@@ -91,7 +93,7 @@ namespace negocio
                 if (item.Producto.Id == idProducto)
                     return true;
             }
-            
+
             return false;
         }
 
@@ -107,23 +109,41 @@ namespace negocio
 
         public void Agregar(Venta venta)
         {
-            
-            AccesoDatos datos =new AccesoDatos();
+
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("INSERT INTO Ventas (IDCliente, Fecha, Total, Factura) VALUES (@idCliente, @fecha, @total, @factura);");
-                datos.setParametro("@idCliente",venta.Cliente.Id);
+                datos.setConsulta("INSERT INTO Ventas (IDCliente, Fecha, Total, Factura) VALUES (@idCliente, @fecha, @total, @factura); ; SELECT SCOPE_IDENTITY();");
+                datos.setParametro("@idCliente", venta.Cliente.Id);
                 datos.setParametro("@fecha", venta.Fecha);
                 datos.setParametro("@total", venta.Total);
                 datos.setParametro("@factura", venta.Factura);
-                datos.ejecutarAccion();
+                
+                int idVenta = Convert.ToInt32(datos.ejecutarEscalar());
+
+
+                foreach (var item in venta.ItemVenta)
+                {
+                    datos.limpiarParametros();
+                    datos.setearSP("SP_GUARDAR_ITEM_VENTA");
+                    datos.setParametro("@IDVenta", idVenta);
+                    datos.setParametro("@IDProducto", item.Producto.Id);
+                    datos.setParametro("@Cantidad", item.Cantidad);
+                    datos.setParametro("@PrecioUnidad", item.Producto.PrecioVenta);
+
+                    datos.ejecutarAccion();
+                }
+
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            finally { datos.cerrarConexion(); }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
         }
 
