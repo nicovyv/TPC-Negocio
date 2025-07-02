@@ -49,17 +49,17 @@ namespace negocio
           
         }
         // metodo para generar un nuevo numero de factura único
-        public int GenerarNumFacura()
+        public int GenerarNumFactura()
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
                // se selecciona la ultima factura de la base de datos
-                datos.setConsulta("SELECT MAX(Facturas) FROM VENTAS");
-                datos.ejecutarAccion();
+                datos.setConsulta("SELECT MAX(Factura) FROM VENTAS");
+                datos.ejecutarLectura();
                 // se valida que se lea un registro
-                if (datos.Lector.Read())
+                if (datos.Lector.Read() && !datos.Lector.IsDBNull(0))
                 {   // se guarda el valor y devuelve +1
                     int ultimaFactura = (int)datos.Lector[0];
                     return ultimaFactura + 1;

@@ -27,13 +27,13 @@ namespace presentacion
         {
             try
             {
-                Cliente cliente = new Cliente();
-                cliente = (Cliente)Session["cliente"];
+              //  Cliente cliente = new Cliente();
+               // cliente = (Cliente)Session["cliente"];
                 Venta venta = new Venta();
                 venta = (Venta)Session["venta"];
 
-                lblNombreClienteVentaExito.Text = cliente.Nombre;
-                lblCuilVentaExito.Text = cliente.CuilCuit;
+                lblNombreClienteVentaExito.Text = venta.Cliente.Nombre;
+                lblCuilVentaExito.Text = venta.Cliente.CuilCuit;
                 lblFechaVentaExito.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 lblFacturaVenta.Text = venta.Factura.ToString();
 

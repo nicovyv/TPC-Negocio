@@ -260,7 +260,7 @@ namespace presentacion
 
                 venta.Cliente = cliente;
                 venta.Fecha = DateTime.Now;
-                venta.Factura = negocio.GenerarNumFacura();
+                venta.Factura = negocio.GenerarNumFactura();
 
 
 
