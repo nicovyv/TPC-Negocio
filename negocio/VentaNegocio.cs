@@ -21,7 +21,7 @@ namespace negocio
                 }
                 else
                 {
-                    datos.setConsulta("SELECT V.ID,C.ID,C.Nombre AS NombreCliente,C.CuilCuit,V.Fecha,V.Total,V.Factura FROM Ventas V INNER JOIN Clientes C ON V.IDCliente=C.ID");
+                    datos.setConsulta(" SELECT V.ID, V.Fecha, V.Total, V.Factura, C.ID AS IDCliente, C.Nombre, C.CuilCuit, C.Direccion, C.Telefono, C.Email, C.Activo FROM Ventas V INNER JOIN Clientes C ON C.ID = V.IDCliente ORDER BY V.Fecha DESC");
                 }
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
@@ -34,10 +34,20 @@ namespace negocio
 
                     venta.Cliente = new Cliente()
                     {
-                        Nombre = (string)datos.Lector["NombreCliente"]
+                        Id = (int)datos.Lector["IDCliente"],
+                        Nombre = (string)datos.Lector["NombreCliente"],
+                        CuilCuit = (string)datos.Lector["CuilCuit"],
+                        Direccion = (string)datos.Lector["Direccion"],
+                        Telefono = (string)datos.Lector["Telefono"],
+                        Email = (string)datos.Lector["Email"],
+                        Activo = (bool)datos.Lector["Activo"]
                     };
 
+
+
                     lista.Add(venta);
+
+
                 }
                 return lista;
             }
@@ -49,6 +59,26 @@ namespace negocio
 
 
         }
+
+
+        private List<ItemVenta> ObtenerItemsDeVenta(Venta idVenta)
+        {
+            ItemVenta items = new ItemVenta();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
         // metodo para generar un nuevo numero de factura único
         public int GenerarNumFactura()
         {
@@ -118,10 +148,10 @@ namespace negocio
                 datos.setParametro("@fecha", venta.Fecha);
                 datos.setParametro("@total", venta.Total);
                 datos.setParametro("@factura", venta.Factura);
-                
+                // recuperamos id venta
                 int idVenta = Convert.ToInt32(datos.ejecutarEscalar());
 
-
+                // cargamos los item en la base de datos
                 foreach (var item in venta.ItemVenta)
                 {
                     datos.limpiarParametros();

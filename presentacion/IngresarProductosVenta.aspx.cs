@@ -253,15 +253,15 @@ namespace presentacion
         {
 
             try
-            {
+            {   // recuperamos la venta el cliente de la sesión 
                 VentaNegocio negocio = new VentaNegocio();
                 Venta venta = (Venta)Session["venta"];
                 Cliente cliente = (Cliente)Session["cliente"];
-
+                // asignamos el estado de la venta
                 venta.Cliente = cliente;
                 venta.Fecha = DateTime.Now;
                 venta.Factura = negocio.GenerarNumFactura();
-
+                // registro en la base de datos
                 negocio.Agregar(venta);
 
 

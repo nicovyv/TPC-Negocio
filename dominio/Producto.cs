@@ -11,7 +11,6 @@ namespace dominio
         public Categoria Categoria { get; set; }
         public Marca Marca { get; set; }
         public decimal PrecioVenta { get; set; }
-        public string Img { get; set; }
         public int StockActual { get; set; }
         public int StockMinimo { get; set; }
         public List<Proveedor> Proveedores { get; set; }
