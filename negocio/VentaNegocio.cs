@@ -43,7 +43,7 @@ namespace negocio
                         Activo = (bool)datos.Lector["Activo"]
                     };
 
-
+                    venta.ItemVenta = ObtenerItemsDeVenta(venta.Id);
 
                     lista.Add(venta);
 
@@ -56,24 +56,66 @@ namespace negocio
 
                 throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
 
         }
 
-
-        private List<ItemVenta> ObtenerItemsDeVenta(Venta idVenta)
+        // OBTENER LOS ITEMS ASOCIADOS A UNA VENTA DESDE LA BASE DE DATOS
+        private List<ItemVenta> ObtenerItemsDeVenta(int idVenta)
         {
-            ItemVenta items = new ItemVenta();
+            List<ItemVenta> items = new List<ItemVenta>();
             AccesoDatos datos = new AccesoDatos();
 
             try
-            {
+            {   // consulta sql
+                datos.setConsulta("SELECT IV.ID, IV.Cantidad, IV.PrecioUnidad, P.ID AS IDProducto, P.CodProd, P.Nombre, P.Descripcion, C.ID AS IDCategoria, C.Descripcion AS CatDesc, M.ID AS IDMarca, M.Descripcion AS MarcaDesc FROM ItemVenta IV INNER JOIN Productos P ON P.ID = IV.IDProducto INNER JOIN Categorias C ON P.IDCategoria = C.ID INNER JOIN Marcas M ON P.IDMarca = M.ID WHERE IV.IDVenta = @idVenta");
+                datos.setParametro("@idVenta", idVenta);
+                datos.ejecutarLectura();
+
+
+                // mapeo de datos
+                while (datos.Lector.Read())
+                {
+                    ItemVenta item = new ItemVenta();
+                    item.Id = (int)datos.Lector["ID"];
+                    item.Cantidad = (int)datos.Lector["Cantidad"];
+                    item.PrecioUnidad = (decimal)datos.Lector["PrecioUnidad"];
+
+                    item.Producto = new Producto();
+                    item.Producto.Id = (int)datos.Lector["IDProducto"];
+                    item.Producto.Codigo = (string)datos.Lector["CodProd"];
+                    item.Producto.Nombre = (string)datos.Lector["Nombre"];
+                    item.Producto.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    item.Producto.Marca = new Marca();
+                    item.Producto.Marca.Id = (int)datos.Lector["IDMarca"];
+                    item.Producto.Marca.Descripcion = (string)datos.Lector["MarcaDesc"];
+
+                    item.Producto.Categoria = new Categoria();
+                    item.Producto.Categoria.Id = (int)datos.Lector["IDCategoria"];
+                    item.Producto.Categoria.Descripcion = (string)datos.Lector["CatDesc"];
+
+
+                    items.Add(item);
+
+                }
+
+                // retorno de la lista de items de la venta
+                return items;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
 
         }
