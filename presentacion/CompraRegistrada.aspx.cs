@@ -15,6 +15,7 @@ namespace presentacion
             if (!IsPostBack)
             {
                 cargarDatosCompra();
+                Session.Remove("compra");
             }
         }
 

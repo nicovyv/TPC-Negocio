@@ -168,7 +168,31 @@ namespace presentacion
 
         protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CompraRegistrada.aspx");
+            try
+            {
+                CompraNegocio negocio = new CompraNegocio();
+                Compra compra = (Compra)Session["compra"];
+                Proveedor proveedor = (Proveedor)Session["proveedor"];
+
+                compra.Proveedor = proveedor;
+                compra.Fecha = DateTime.Now;
+
+
+                negocio.Agregar(compra);
+
+
+
+                Response.Redirect("CompraRegistrada.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception ex)
+            {
+                Session.Remove("compra");
+                Session.Add("error", "No se pudo registrar la compra" + ex.ToString());
+                Response.Redirect("Error.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+                throw;
+            }
         }
 
         protected void dgvDetalleCompra_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -199,7 +223,7 @@ namespace presentacion
                             decimal totalCompra = compra.Detalle.Sum(x => x.Cantidad * x.PrecioUnidad);
                             lbltotalCompraValor.Text = totalCompra.ToString();
                             corroborarPrecioExistente();
-                            
+
 
                         }
 
@@ -249,7 +273,8 @@ namespace presentacion
                     return;
                 }
 
-                if (string.IsNullOrEmpty(txtProdPrecio.Text)){
+                if (string.IsNullOrEmpty(txtProdPrecio.Text))
+                {
                     lblHelpCantCompra.Text = "El campo de Precio Unitario es obligatorio";
                     lblHelpCantCompra.CssClass = "text-danger";
                     return;
@@ -279,7 +304,7 @@ namespace presentacion
                 {
                     compra = new Compra();
                     compra.Detalle = new List<DetalleCompra>();
-                    Session["compra"] = compra;                    
+                    Session["compra"] = compra;
                 }
 
                 CompraNegocio CompraNegocio = new CompraNegocio();
@@ -311,6 +336,11 @@ namespace presentacion
                 if (item != null)
                 {
                     item.Cantidad = cantidad;
+
+                    if(item.PrecioUnidad == 0)
+                    {
+                        item.PrecioUnidad = decimal.Parse(txtProdPrecio.Text);
+                    }
                 }
 
                 if (!CompraNegocio.ValidarItemExistente(compra.Detalle, idProducto))
@@ -321,7 +351,7 @@ namespace presentacion
                     item.Producto = producto;
                     item.Cantidad = cantidad;
                     string precioTexto = txtProdPrecio.Text.Replace(',', '.'); //admitimos . o , cuando se ingresa numero con decimal
-                    item.PrecioUnidad = decimal.Parse(precioTexto);
+                    item.PrecioUnidad = decimal.Parse(txtProdPrecio.Text);
 
 
 

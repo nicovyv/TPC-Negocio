@@ -89,28 +89,7 @@ CONSTRAINT FK_PRODXPROV_PROD FOREIGN KEY (IDProducto) REFERENCES Productos (ID),
 CONSTRAINT FK_PRODXPROV_PROV FOREIGN KEY (IDProveedor) REFERENCES Proveedores (ID)
 );
 
-GO
 
-CREATE TABLE Compras (
-    ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),	
-    NFactura VARCHAR(50) NOT NULL UNIQUE,
-    Fecha DATE NOT NULL DEFAULT GETDATE(),
-    IDProveedor INT NOT NULL FOREIGN KEY REFERENCES Proveedores(ID),
-    IDUsuario INT NOT NULL FOREIGN KEY REFERENCES Usuarios(ID),
-    Total MONEY NOT NULL CHECK (Total > 0),
-    Activo BIT NOT NULL DEFAULT 1
-);
-
-GO
-
-CREATE TABLE DetalleCompra (
-    ID INT PRIMARY KEY IDENTITY(1,1),
-    IDCompra INT NOT NULL FOREIGN KEY REFERENCES Compras(ID),
-    IDProducto INT NOT NULL FOREIGN KEY REFERENCES Productos(ID),
-    Cantidad INT NOT NULL CHECK (Cantidad > 0),
-    Precio MONEY NOT NULL CHECK (Precio > 0),
-	Activo BIT NOT NULL DEFAULT 1
-);
 
 GO
 
@@ -120,6 +99,29 @@ AS
 BEGIN
 INSERT INTO Usuarios (email,pass,admin) OUTPUT inserted.ID VALUES (@email,@pass,0)
 END
+
+GO
+
+CREATE TABLE Compras (
+    ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),	    
+    Fecha DATE NOT NULL,
+    IDProveedor INT NOT NULL,    
+    Total MONEY NOT NULL CHECK (Total > 0),
+    Activo BIT NOT NULL DEFAULT 1
+	CONSTRAINT FK_COMPRAS_PROVEEDORES FOREIGN KEY (IDProveedor) REFERENCES Proveedores (ID)
+);
+GO
+
+CREATE TABLE DetalleCompra (
+    ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    IDCompra INT NOT NULL FOREIGN KEY REFERENCES Compras(ID),
+    IDProducto INT NOT NULL FOREIGN KEY REFERENCES Productos(ID),
+    Cantidad INT NOT NULL CHECK (Cantidad > 0),
+    PrecioUnidad MONEY NOT NULL CHECK (PrecioUnidad > 0),
+	CONSTRAINT FK_DetalleCompra_Compra FOREIGN KEY (IDCompra) REFERENCES Compra (ID),
+	CONSTRAINT FK_DetalleCompra_Producto FOREIGN KEY (IDProducto) REFERENCES PRODUCTOS (ID),
+	Activo BIT NOT NULL DEFAULT 1
+);
 
 
 GO
@@ -194,6 +196,32 @@ BEGIN
 			VALUES (@IDVenta, @IDProducto, @Cantidad, @PrecioUnidad)
 
 			UPDATE Productos SET StockActual = StockActual - @Cantidad WHERE ID = @IDProducto
+
+
+		COMMIT TRANSACTION
+	END TRY
+
+	BEGIN CATCH
+				ROLLBACK TRANSACTION
+				RAISERROR ('Ocurrio un error', 16, 1)
+	END CATCH
+END
+go
+
+CREATE PROCEDURE SP_GUARDAR_DETALLE_COMPRA
+	@IDCompra INT,
+	@IDProducto INT,
+	@Cantidad INT,
+	@PrecioUnidad MONEY
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+
+			INSERT INTO DetalleCompra(IDCompra, IDProducto, Cantidad, PrecioUnidad)
+			VALUES (@IDCompra, @IDProducto, @Cantidad, @PrecioUnidad)
+
+			UPDATE Productos SET StockActual = StockActual + @Cantidad, PrecioCompra = @PrecioUnidad, PrecioVenta = @PrecioUnidad * ((100+Ganancia)/100) WHERE ID = @IDProducto
 
 
 		COMMIT TRANSACTION

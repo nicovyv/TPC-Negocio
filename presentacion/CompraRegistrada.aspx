@@ -48,7 +48,7 @@
                           <td><%#Eval("Producto.Nombre")%></td>
                           <td><%#Eval("Producto.Categoria.Descripcion")%></td>
                           <td><%#Eval("Producto.Marca.Descripcion")%></td>
-                          <td><%#Eval("Producto.PrecioCompra")%></td>
+                          <td><%#Eval("PrecioUnidad")%></td>
                           <td><%#Eval("Cantidad")%></td>
                           <td><%#Eval("Subtotal")%></td>
                       </tr>

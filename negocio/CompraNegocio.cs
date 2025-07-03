@@ -19,11 +19,11 @@ namespace negocio
             {
                 if(id != "")
                 {
-                    datos.setConsulta("SELECT C.ID, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor,U.ID AS IDUsuario, U.Email AS Email Usuario INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID INNER JOIN USUARIOS U ON C.IDUsuario = U.ID WHERE ID= "+id);
+                    datos.setConsulta("SELECT C.ID, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID WHERE ID= "+id);
                 }
                 else
                 {
-                    datos.setConsulta("SELECT C.ID, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor,U.ID AS IDUsuario, U.Email AS Email Usuario INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID INNER JOIN USUARIOS U ON C.IDUsuario = U.ID");
+                    datos.setConsulta("SELECT C.ID, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID");
                 }
                     
 
@@ -42,12 +42,7 @@ namespace negocio
                         Nombre = (string)datos.Lector["NombreProveedor"]
 
                     };
-
-                    compra.Usuario = new Usuario
-                    {
-                        Id = (int)datos.Lector["IDUsuario"],
-                        Email = (string)datos.Lector["Email"],
-                    };
+                  
 
                     lista.Add(compra);
                 }
@@ -86,5 +81,44 @@ namespace negocio
             return null;
         }
 
+        public void Agregar(Compra compra)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO Compras (idProveedor, Fecha, Total) VALUES (@idProveedor, @fecha, @total); ; SELECT SCOPE_IDENTITY();");
+                datos.setParametro("@idProveedor", compra.Proveedor.Id);
+                datos.setParametro("@fecha", compra.Fecha);
+                datos.setParametro("@total", compra.Total);
+                
+
+                int idcompra = Convert.ToInt32(datos.ejecutarEscalar());
+
+
+                foreach (var item in compra.Detalle)
+                {
+                    datos.limpiarParametros();
+                    datos.setearSP("SP_GUARDAR_DETALLE_COMPRA");
+                    datos.setParametro("@IDCompra", idcompra);
+                    datos.setParametro("@IDProducto", item.Producto.Id);
+                    datos.setParametro("@Cantidad", item.Cantidad);
+                    datos.setParametro("@PrecioUnidad", item.PrecioUnidad);
+
+                    datos.ejecutarAccion();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
     }
 }
