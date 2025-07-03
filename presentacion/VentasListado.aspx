@@ -3,30 +3,34 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container">
+    <div class="container my-5"> 
+        <div class="row justify-content-center">
+            <div class="col-md-10"> 
 
-        <div>
-            <asp:GridView ID="dgvHistorialVentas" runat="server" AutoGenerateColumns="false"
-                    CssClass="table table-striped table-bordered">
-                <Columns>
+                <h2 class="text-center mb-4">Historial de Ventas</h2> 
+
+                <asp:GridView ID="dgvHistorialVentas" runat="server" AutoGenerateColumns="false"
+                    CssClass="table table-striped table-bordered text-center" >
+                    <Columns>
                         <asp:BoundField HeaderText="Factura" DataField="Factura" />
                         <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
                         <asp:BoundField HeaderText="Cliente" DataField="Cliente.Nombre" />
-                        <asp:TemplateField HeaderText="Acción">
+                      <asp:TemplateField HeaderText="Acción">
                             <ItemTemplate>
                                 <asp:Button
-                                    ID="btnEliminarItem"
+                                    ID="btnDetalleVenta"
                                     Text="Ver Detalle"
-                                    CssClass="btn btn-secondary btn-sm me-2"
+                                    CssClass="btn btn-secondary btn-sm"
                                     CommandName="DetalleVenta"
-                                    CommandArgument='<%# Eval("Venta.Id")%>'
+                                    CommandArgument='<%# Eval("Id") %>'
                                     runat="server"/>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
-            </asp:GridView>
-        </div>
+                </asp:GridView>
 
+            </div>
+        </div>
     </div>
     
 </asp:Content>

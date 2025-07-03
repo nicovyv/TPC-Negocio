@@ -93,6 +93,7 @@
     <Content Include="Usuarios.aspx" />
     <Content Include="VentaRegistrada.aspx" />
     <Content Include="Ventas.aspx" />
+    <Content Include="VentasListado.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +282,13 @@
     </Compile>
     <Compile Include="Ventas.aspx.designer.cs">
       <DependentUpon>Ventas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VentasListado.aspx.cs">
+      <DependentUpon>VentasListado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VentasListado.aspx.designer.cs">
+      <DependentUpon>VentasListado.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -35,7 +35,7 @@ namespace negocio
                     venta.Cliente = new Cliente()
                     {
                         Id = (int)datos.Lector["IDCliente"],
-                        Nombre = (string)datos.Lector["NombreCliente"],
+                        Nombre = (string)datos.Lector["Nombre"],
                         CuilCuit = (string)datos.Lector["CuilCuit"],
                         Direccion = (string)datos.Lector["Direccion"],
                         Telefono = (string)datos.Lector["Telefono"],
