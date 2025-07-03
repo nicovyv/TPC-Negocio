@@ -15,12 +15,25 @@
                 <label for="txtEmail" class="col-sm-3 col-form-label col-form-label-sm">Email</label>
                 <div class="col-sm-9">
                     <asp:TextBox runat="server" ID="txtEmail" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Por ejemplo: email@dominio.com" placeholder="Ingrese su email..." CssClass="form-control form-control-sm" />
+                    <asp:RequiredFieldValidator
+                        runat="server"
+                        ControlToValidate="txtEmail"
+                        ErrorMessage="El campo Email es obligatorio."
+                        CssClass="text-danger"
+                        Display="Dynamic" />
                 </div>
+                
             </div>
             <div class="mb-3 row">
                 <label for="txtPassword" class="col-sm-3 col-form-label col-form-label-sm">Password</label>
                 <div class="col-sm-9">
                  <asp:TextBox runat="server" type="password" ID="txtPassword" placeholder="Ingrese una contraseña..." CssClass="form-control form-control-sm" />
+                    <asp:RequiredFieldValidator
+                        runat="server"
+                        ControlToValidate="txtPassword"
+                        ErrorMessage="El campo Password es obligatorio."
+                        CssClass="text-danger"
+                        Display="Dynamic" />
                 </div>
             </div>
             <asp:Button OnClick="btnRegistrarse_Click" Text="Registrarse" ID="btnRegistrarse" CssClass="btn btn-primary m-1 float-end" runat="server" />
