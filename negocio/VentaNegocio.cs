@@ -17,7 +17,8 @@ namespace negocio
             {
                 if (id != "")
                 {
-                    datos.setConsulta("SELECT V.ID,C.ID,C.Nombre,C.CuilCuit,V.Fecha,V.Total,V.Factura FROM Ventas V INNER JOIN Clientes C ON V.IDCliente=C.ID WHERE ID= " + id);
+                    datos.setConsulta("SELECT V.ID, V.Fecha, V.Total, V.Factura, C.ID AS IDCliente, C.Nombre, C.CuilCuit, C.Direccion, C.Telefono, C.Email, C.Activo FROM Ventas V INNER JOIN Clientes C ON V.IDCliente = C.ID  WHERE V.ID = " + id);
+                   // datos.setParametro("@id", int.Parse(id));
                 }
                 else
                 {

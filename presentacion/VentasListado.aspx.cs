@@ -21,5 +21,14 @@ namespace presentacion
                 
             }
         }
+
+        protected void dgvHistorialVentas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if(e.CommandName == "DetalleVenta")
+            {
+                int idVenta = Convert.ToInt32(e.CommandArgument);
+                Response.Redirect("VentaRegistrada.aspx?id=" + idVenta);
+            }
+        }
     }
 }

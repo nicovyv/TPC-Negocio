@@ -10,7 +10,7 @@
                 <h2 class="text-center mb-4">Historial de Ventas</h2> 
 
                 <asp:GridView ID="dgvHistorialVentas" runat="server" AutoGenerateColumns="false"
-                    CssClass="table table-striped table-bordered text-center" >
+                    CssClass="table table-striped table-bordered text-center"  OnRowCommand="dgvHistorialVentas_RowCommand">
                     <Columns>
                         <asp:BoundField HeaderText="Factura" DataField="Factura" />
                         <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
