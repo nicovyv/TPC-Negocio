@@ -19,7 +19,7 @@ namespace negocio
             {
 
                 {
-                    datos.setConsulta("SELECT C.ID as ID, C.Fecha as Fecha from Compras C");
+                    datos.setConsulta("SELECT C.ID as ID, C.Fecha as Fecha,P.cuilcuit AS CuilCuit, P.Nombre AS NombreProveedor from Compras C INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID ");
                 }
 
 
@@ -31,7 +31,9 @@ namespace negocio
                     compra.Id = (int)datos.Lector["ID"];
 
                     compra.Fecha = (DateTime)datos.Lector["Fecha"];
-
+                    compra.Proveedor = new Proveedor();
+                    compra.Proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
+                    compra.Proveedor.Nombre = (string)datos.Lector["NombreProveedor"];
                     DetalleCompraNegocio detalleNegocio = new DetalleCompraNegocio();
                     compra.Detalle = detalleNegocio.Listar(compra.Id);
 
