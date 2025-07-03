@@ -10,22 +10,18 @@ namespace negocio
 {
     public class CompraNegocio
     {
-        public List<Compra> listar(string id = "")
+        public List<Compra> listar()
         {
             List<Compra> lista = new List<Compra>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                if(id != "")
+
                 {
-                    datos.setConsulta("SELECT C.ID, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID WHERE ID= "+id);
+                    datos.setConsulta("SELECT C.ID as ID, C.Fecha as Fecha from Compras C");
                 }
-                else
-                {
-                    datos.setConsulta("SELECT C.ID, C.Fecha,C.Total,P.ID AS IDProveedor, P.Nombre AS NombreProveedor INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID");
-                }
-                    
+
 
                 datos.ejecutarLectura();
 
@@ -33,16 +29,11 @@ namespace negocio
                 {
                     Compra compra = new Compra();
                     compra.Id = (int)datos.Lector["ID"];
-                   
+
                     compra.Fecha = (DateTime)datos.Lector["Fecha"];
-                    compra.Total = (decimal)datos.Lector["Total"];
 
-                    compra.Proveedor = new Proveedor
-                    {
-                        Nombre = (string)datos.Lector["NombreProveedor"]
-
-                    };
-                  
+                    DetalleCompraNegocio detalleNegocio = new DetalleCompraNegocio();
+                    compra.Detalle = detalleNegocio.Listar(compra.Id);
 
                     lista.Add(compra);
                 }
@@ -91,7 +82,7 @@ namespace negocio
                 datos.setParametro("@idProveedor", compra.Proveedor.Id);
                 datos.setParametro("@fecha", compra.Fecha);
                 datos.setParametro("@total", compra.Total);
-                
+
 
                 int idcompra = Convert.ToInt32(datos.ejecutarEscalar());
 

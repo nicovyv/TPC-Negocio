@@ -21,11 +21,9 @@
               CssClass="table table-dark table-hover" AutoGenerateColumns="false"
               AllowPaging="false" PageSize="5" OnRowCommand="dgvCompra_RowCommand">
               <Columns>
-                  <asp:BoundField HeaderText="N Factura" DataField="NFactura" />
+                  
                   <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
-                  <asp:BoundField HeaderText="Proveedor" DataField="Proveedor" />
-                  <asp:BoundField HeaderText="Usuario" DataField="Usuario" />
-                  <asp:BoundField HeaderText="Total" DataField="Total" />
+                   <asp:BoundField HeaderText="Total" DataField="Total" />
                   <asp:TemplateField HeaderText="Acción">
                       <ItemTemplate>
                           <asp:Button Text="Ver Detalle" CssClass="btn btn-light" CommandName="VerDetalle" CommandArgument='<%# Eval("Id") %>' runat="server" />
