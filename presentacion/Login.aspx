@@ -45,12 +45,24 @@
                 <div class="mb-3">
                     <label for="txtEmail" class="form-label">Email Usuario</label>
                     <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Por ejemplo: email@dominio.com" AutoCompleteType="Email" placeholder="Ingrese su email" />
+                    <asp:RequiredFieldValidator
+                        runat="server"
+                        ControlToValidate="txtEmail"
+                        ErrorMessage="El campo Email es obligatorio."
+                        CssClass="text-danger"
+                        Display="Dynamic" />
                 </div>
 
                 <div class="mb-3">
                     <label for="txtPassword" class="form-label">Password</label>
                     <asp:TextBox runat="server" ID="txtPassword" CssClass="form-control" TextMode="Password" placeholder="Ingrese su password" />
-                </div>
+                    <asp:RequiredFieldValidator
+                        runat="server"
+                        ControlToValidate="txtPassword"
+                        ErrorMessage="El campo Password es obligatorio."
+                        CssClass="text-danger"
+                        Display="Dynamic" />
+                    </div>
                 <div class="mb-3">
                     <a href="PassReset.aspx">Olvidé mi contraseña</a>
                 </div>

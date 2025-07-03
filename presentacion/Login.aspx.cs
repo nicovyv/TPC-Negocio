@@ -25,6 +25,11 @@ namespace presentacion
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+            {
+                return;
+            }
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             Usuario usuario = new Usuario();
 
