@@ -28,7 +28,7 @@
                 <label for="txtPassword" class="col-sm-3 col-form-label col-form-label-sm">Password</label>
                 <div class="col-sm-9">
                  <asp:TextBox runat="server" type="password" ID="txtPassword" placeholder="Ingrese una contraseña..." CssClass="form-control form-control-sm" />
-                    <asp:RequiredFieldValidator
+                 <asp:RequiredFieldValidator
                         runat="server"
                         ControlToValidate="txtPassword"
                         ErrorMessage="El campo Password es obligatorio."
