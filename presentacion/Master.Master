@@ -79,14 +79,14 @@
                                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Marcas</a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="Marcas.aspx">Ver Marcas</a></li>
-                                    <li><a class="dropdown-item" href="AltaMarca.aspx">Nuevo Marca</a></li>
+                                    <li><a class="dropdown-item" href="AltaMarca.aspx">Nueva Marca</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Categorías</a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="Categorias.aspx">Ver Categorías</a></li>
-                                    <li><a class="dropdown-item" href="AltaCategoria.aspx">Nuevo Categoría</a></li>
+                                    <li><a class="dropdown-item" href="AltaCategoria.aspx">Nueva Categoría</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
