@@ -86,6 +86,53 @@ namespace negocio
             }
         }
 
+        public List<Proveedor> listarBajas(string id = "")
+        {
+            List<Proveedor> listaProveedores = new List<Proveedor>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                if (id != "")
+                {
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES WHERE activo=0 ID = " + id);
+                }
+                else
+                {
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES WHERE activo=0");
+                }
+                datos.ejecutarLectura();
+
+
+                while (datos.Lector.Read())
+                {
+                    Proveedor proveedor = new Proveedor();
+                    proveedor.Id = (int)datos.Lector["ID"];
+                    proveedor.Nombre = (string)datos.Lector["Nombre"];
+                    proveedor.Email = (string)datos.Lector["Email"];
+                    proveedor.Direccion = (string)datos.Lector["Direccion"];
+                    proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
+                    proveedor.Telefono = (string)datos.Lector["Telefono"];
+
+                    listaProveedores.Add(proveedor);
+
+                }
+
+                return listaProveedores;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+
+            }
+        }
+
 
         public void agregarProveedor(Proveedor proveedor)
         {
@@ -162,7 +209,24 @@ namespace negocio
             }
         }
 
-
+        public void reactivarProveedor(int Id)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setConsulta("UPDATE Proveedores SET ACTIVO = 1 where id = @id");
+                accesoDatos.setParametro("@id", Id);
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
 
         public List<Proveedor> listarProveedoresXProducto(int idProd)
         {

@@ -86,6 +86,54 @@ namespace negocio
             }
         }
 
+        public List<Cliente> listarBajas(string id = "")
+        {
+            List<Cliente> listaClientes = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                if (id != "")
+                {
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES WHERE activo=0 and ID = " + id);
+                }
+                else
+                {
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES WHERE activo=0");
+                }
+                datos.ejecutarLectura();
+
+
+                while (datos.Lector.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.Id = (int)datos.Lector["Id"];
+                    cliente.Nombre = (string)datos.Lector["Nombre"];
+                    cliente.Email = (string)datos.Lector["Email"];
+                    cliente.Direccion = (string)datos.Lector["Direccion"];
+                    cliente.CuilCuit = (string)datos.Lector["CuilCuit"];
+                    cliente.Telefono = (string)datos.Lector["Telefono"];
+
+                    listaClientes.Add(cliente);
+
+                }
+
+                return listaClientes;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+
+            }
+        }
+
         public void agregarCliente(Cliente cliente)
         {
             AccesoDatos accesoDatos = new AccesoDatos();
@@ -148,6 +196,25 @@ namespace negocio
             try
             {
                 accesoDatos.setConsulta("UPDATE CLIENTES SET ACTIVO = 0  WHERE ID = @ID");
+                accesoDatos.setParametro("ID", Id);
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
+
+        public void reactivarCliente(int Id)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setConsulta("UPDATE CLIENTES SET ACTIVO = 1  WHERE ID = @ID");
                 accesoDatos.setParametro("ID", Id);
                 accesoDatos.ejecutarAccion();
             }

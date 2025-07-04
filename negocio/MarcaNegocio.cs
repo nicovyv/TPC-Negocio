@@ -52,6 +52,48 @@ namespace negocio
             }
         }
 
+        public List<Marca> listarBaja(string id = "")
+        {
+            List<Marca> marcas = new List<Marca>();
+            AccesoDatos datos = new AccesoDatos();
+
+
+            try
+            {
+                if (id != "")
+                {
+                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS WHERE activo=0 ID = " + id);
+                }
+                else
+                {
+                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS WHERE activo=0");
+                }
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Marca marca = new Marca();
+                    marca.Id = (int)datos.Lector["ID"];
+                    marca.Descripcion = (string)datos.Lector["DESCRIPCION"];
+
+                    marcas.Add(marca);
+
+                }
+
+                return marcas;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
         public void agregarMarca(Marca marca)
         {
@@ -106,6 +148,21 @@ namespace negocio
             {
                 AccesoDatos datos = new AccesoDatos();
                 datos.setConsulta("UPDATE MARCAS SET ACTIVO = 0 where id = @id");
+                datos.setParametro("Id", Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void reactivarMarca(int Id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setConsulta("UPDATE MARCAS SET ACTIVO = 1 where id = @id");
                 datos.setParametro("Id", Id);
                 datos.ejecutarAccion();
             }

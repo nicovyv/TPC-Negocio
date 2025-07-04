@@ -54,6 +54,51 @@ namespace negocio
             }
         }
 
+        public List<Categoria> listarBajas(string id = "")
+        {
+            List<Categoria> listaCategoria = new List<Categoria>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                if (id != "")
+                {
+                    datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS WHERE activo=0 and ID = " + id);
+                }
+                else
+                {
+                    datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS WHERE activo=0");
+                }
+
+                datos.ejecutarLectura();
+
+
+                while (datos.Lector.Read())
+                {
+                    Categoria categoria = new Categoria();
+                    categoria.Id = (int)datos.Lector["ID"];
+                    categoria.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    listaCategoria.Add(categoria);
+
+                }
+
+                return listaCategoria;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+
+            }
+        }
+
         public void agregar(Categoria nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -101,6 +146,21 @@ namespace negocio
             {
                 AccesoDatos datos = new AccesoDatos();
                 datos.setConsulta("UPDATE CATEGORIAS SET ACTIVO = 0 where id = @id");
+                datos.setParametro("Id", Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void reactivarCategoria(int Id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setConsulta("UPDATE CATEGORIAS SET ACTIVO = 1 where id = @id");
                 datos.setParametro("Id", Id);
                 datos.ejecutarAccion();
             }
