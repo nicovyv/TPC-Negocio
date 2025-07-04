@@ -16,8 +16,18 @@ namespace presentacion
             if (!IsPostBack)
             {
                 cargarCategorias();
+                cargarCategoriasBajas();
             }
         }
+        private void cargarCategoriasBajas()
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            Session.Add(("listaCategoriasBaja"), negocio.listarBajas());
+            dgvBajas.DataSource = Session["listaCategoriasBaja"];
+            dgvBajas.DataBind();
+        }
+
+
         private void cargarCategorias()
         {
             CategoriaNegocio negocio = new CategoriaNegocio();
@@ -34,6 +44,7 @@ namespace presentacion
                 CategoriaNegocio negocio = new CategoriaNegocio();
                 negocio.eliminarCategoria(id);
                 cargarCategorias();
+                cargarCategoriasBajas();
             }
             else if (e.CommandName == "Modificar")
             {
@@ -62,6 +73,45 @@ namespace presentacion
             dgvCategorias.DataSource = listaFiltrada;
             dgvCategorias.DataBind();
             btnLimpiar.Visible = true;
+        }
+
+        protected void txtFiltroBaja_TextChanged(object sender, EventArgs e)
+        {
+            List<Categoria> lista = (List<Categoria>)Session["listaCategoriasBaja"];
+            List<Categoria> listaFiltrada = lista.FindAll(x => x.Descripcion.ToUpper().Contains(txtFiltroBaja.Text.ToUpper()));
+            dgvBajas.DataSource = listaFiltrada;
+            dgvBajas.DataBind();
+            btnLimpiarBaja.Visible = true;
+        }
+
+        protected void btnLimpiarBaja_Click(object sender, EventArgs e)
+        {
+            dgvBajas.DataSource = Session["listaCategoriasBaja"];
+            dgvBajas.DataBind();
+            txtFiltroBaja.Text = "";
+            btnLimpiarBaja.Visible = false;
+        }
+
+        protected void dgvBajas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName == "Reactivar")
+            {
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                negocio.reactivarCategoria(id);
+                cargarCategoriasBajas();
+                cargarCategorias();
+            }
+            else if (e.CommandName == "Modificar")
+            {
+                Response.Redirect("AltaCategoria.aspx?id=" + id);
+            }
+        }
+
+        protected void dgvBajas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvBajas.PageIndex = e.NewPageIndex;
+            cargarCategoriasBajas();
         }
     }
     
