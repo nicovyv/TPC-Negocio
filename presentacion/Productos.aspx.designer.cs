@@ -33,15 +33,6 @@ namespace presentacion
         protected global::System.Web.UI.WebControls.Button btnLimpiarBuscadorProd;
 
         /// <summary>
-        /// Control ddlFiltroMarca.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltroMarca;
-
-        /// <summary>
         /// Control ddlFiltroCategoria.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFiltroCategoria;
+
+        /// <summary>
+        /// Control ddlFiltroMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFiltroMarca;
 
         /// <summary>
         /// Control btnProdBaja.

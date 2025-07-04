@@ -19,6 +19,7 @@ namespace presentacion
             if (!IsPostBack)
             {
                 cargarProductos();
+                CargarFiltros();
 
                 if (Security.isAdmin(Session["usuario"]))
                 {
@@ -112,11 +113,6 @@ namespace presentacion
 
         protected void txtBuscadorProd_TextChanged(object sender, EventArgs e)
         {
-            //    List<Marca> lista = (List<Marca>)Session["listaMarcas"];
-            //    List<Marca> listaFiltrada = lista.FindAll(x => x.Descripcion.ToUpper().Contains(txtFiltro.Text.ToUpper()));
-            //    dgvMarcas.DataSource = listaFiltrada;
-            //    dgvMarcas.DataBind();
-            //    btnLimpiar.Visible = true;
 
             ProductoNegocio negocio = new ProductoNegocio();
             List<Producto> productos = negocio.listar();
@@ -164,5 +160,105 @@ namespace presentacion
             txtBuscadorProd.Text = "";
             btnLimpiarBuscadorProd.Visible = false;
         }
+
+
+        protected void CargarFiltros()
+        {
+            CategoriaNegocio negocioCategoria = new CategoriaNegocio();
+            List<Categoria> categorias = negocioCategoria.listar();
+            ddlFiltroCategoria.DataSource = categorias;
+            ddlFiltroCategoria.DataTextField = "Descripcion";
+            ddlFiltroCategoria.DataValueField = "Id";
+
+            ddlFiltroCategoria.DataBind();
+            ddlFiltroCategoria.Items.Insert(0, new ListItem("Todas las categorías", "0"));
+
+
+
+
+            MarcaNegocio negocioMarca = new MarcaNegocio();
+            List<Marca> marcas = negocioMarca.listar();
+            ddlFiltroMarca.DataSource = marcas;
+            ddlFiltroMarca.DataTextField = "Descripcion";
+            ddlFiltroMarca.DataValueField = "Id";
+            
+            ddlFiltroMarca.DataBind();
+            ddlFiltroMarca.Items.Insert(0, new ListItem("Todas las marcas", "0"));
+
+        }
+
+        protected void ddlFiltroCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+
+        }
+
+        protected void ddlFiltroMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+
+
+        protected void AplicarFiltros()
+        {
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+
+
+            int idCategoria = 0;
+            int idMarca = 0;
+
+            if (!(string.IsNullOrEmpty(ddlFiltroCategoria.SelectedValue)))
+            {
+                idCategoria = int.Parse(ddlFiltroCategoria.SelectedValue);
+            }
+
+            if (!(string.IsNullOrEmpty(ddlFiltroMarca.SelectedValue)))
+            {
+                idMarca = int.Parse(ddlFiltroMarca.SelectedValue);
+            }
+
+            List<Producto> productosFiltrados = new List<Producto>();
+
+            if (idMarca > 0 && idCategoria  > 0)
+            {
+                productosFiltrados = productoNegocio.FiltrarMarcaCategoria(idMarca, idCategoria);
+            }
+            else if (idMarca > 0)
+            {
+                productosFiltrados = productoNegocio.FiltrarMarca(idMarca);
+            }
+            else if(idCategoria > 0)
+            {
+                productosFiltrados = productoNegocio.FiltrarCategoria(idCategoria);
+            }
+            else
+            {
+                productosFiltrados = productoNegocio.listar();
+            }
+
+
+
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvProductoAdmin.DataSource = productosFiltrados;
+                dgvProductoAdmin.DataBind();
+            }
+            else if (Security.isLogin(Session["usuario"]))
+            {
+                dgvProductoVendedor.DataSource = productosFiltrados;
+                dgvProductoVendedor.DataBind();
+
+            }
+            else
+            {
+                Session.Add("error", "Debes estar logueado.");
+                Response.Redirect("Error.aspx");
+            }
+
+
+        }
+
+      
     }
 }

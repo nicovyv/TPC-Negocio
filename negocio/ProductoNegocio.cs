@@ -98,6 +98,46 @@ namespace negocio
         }
 
 
+        public List<Producto> FiltrarMarca(int idMarca)
+        {
+            List<Producto> listaProductos = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT P.ID,P.CodProd AS codigo, P.Nombre AS nombre,P.Descripcion AS descripcion,P.Precio AS precio,P.StockActual As stock,\r\nC.ID AS IDCATEGORIA,C.Descripcion AS categoria,\r\nM.ID AS IDMARCA,M.Descripcion AS marca\r\nFROM Productos P\r\nINNER JOIN Categorias C\r\nON P.IDCategoria=C.ID\r\nINNER JOIN Marcas M\r\nON P.IDMarca=M.ID\r\nWHERE C.ID=@marca AND P.Activo=1";
+                datos.setConsulta(consulta);
+                datos.setParametro("@marca", idMarca);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Producto producto = new Producto();
+                    producto.Id = (int)datos.Lector["Id"];
+                    producto.Codigo = (string)datos.Lector["codigo"];
+                    producto.Nombre = (string)datos.Lector["nombre"];
+                    producto.Descripcion = (string)datos.Lector["descripcion"];
+                    producto.PrecioVenta = (decimal)datos.Lector["precio"];
+                    producto.StockActual = (int)datos.Lector["stock"];
+
+                    producto.Categoria = new Categoria();
+                    producto.Categoria.Id = (int)datos.Lector["IDCATEGORIA"];
+                    producto.Categoria.Descripcion = (string)datos.Lector["categoria"];
+
+                    producto.Marca = new Marca();
+                    producto.Marca.Id = (int)datos.Lector["IDMARCA"];
+                    producto.Marca.Descripcion = (string)datos.Lector["marca"];
+                    listaProductos.Add(producto);
+                }
+                return listaProductos;
+            }
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
         public bool ValidaCodigoProducto(string codProd, int idProd = 0)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -436,6 +476,62 @@ namespace negocio
             }
 
 
+        }
+
+
+
+        public List<Producto> FiltrarMarcaCategoria(int idMarca, int idCategoria)
+        {
+            List<Producto> listaFiltrada = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+
+
+
+            try
+            {
+                datos.setConsulta("SELECT P.ID, P.CodProd, P.Nombre, P.Descripcion, P.IdCategoria, P.IdMarca, P.StockActual, P.StockMinimo, P.Ganancia, P.PrecioCompra, P.Precio AS PrecioVenta, P.Activo, C.Descripcion AS CategoriaDescripcion, M.Descripcion AS MarcaDescripcion  FROM Productos P INNER JOIN Categorias C ON P.IdCategoria = C.Id INNER JOIN Marcas M ON P.IdMarca = M.Id WHERE P.Activo = 1 AND C.ID = @idCategoria AND M.ID = @idMarca");
+                datos.setParametro("@idCategoria", idCategoria);
+                datos.setParametro("@idMarca", idMarca);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto producto = new Producto();
+                    producto.Id = (int)datos.Lector["ID"];
+                    producto.Codigo = (string)datos.Lector["CodProd"];
+                    producto.Nombre = (string)datos.Lector["Nombre"];
+                    producto.Descripcion = (string)datos.Lector["Descripcion"];
+                    producto.StockActual = (int)datos.Lector["StockActual"];
+                    producto.StockMinimo = (int)datos.Lector["StockMinimo"];
+                    producto.Ganancia = float.Parse(datos.Lector["Ganancia"].ToString());
+                    producto.PrecioCompra = (decimal)datos.Lector["PrecioCompra"];
+                    producto.PrecioVenta = (decimal)datos.Lector["PrecioVenta"];
+                    producto.Activo = (bool)datos.Lector["Activo"];
+
+                    producto.Marca = new Marca();
+                    producto.Marca.Id = (int)datos.Lector["IdMarca"];
+                    producto.Marca.Descripcion = (string)datos.Lector["MarcaDescripcion"];
+
+                    producto.Categoria = new Categoria();
+                    producto.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    producto.Categoria.Descripcion = (string)datos.Lector["CategoriaDescripcion"];
+
+                    listaFiltrada.Add(producto);
+                }
+
+                return listaFiltrada;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }
