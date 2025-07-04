@@ -100,7 +100,7 @@ namespace negocio
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setConsulta("delete from CATEGORIAS where id = @id");
+                datos.setConsulta("UPDATE CATEGORIAS SET ACTIVO = 0 where id = @id");
                 datos.setParametro("Id", Id);
                 datos.ejecutarAccion();
             }

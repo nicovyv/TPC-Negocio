@@ -147,7 +147,7 @@ namespace negocio
             AccesoDatos accesoDatos = new AccesoDatos();
             try
             {
-                accesoDatos.setConsulta("DELETE FROM CLIENTES WHERE ID = @ID");
+                accesoDatos.setConsulta("UPDATE CLIENTES SET ACTIVO = 0  WHERE ID = @ID");
                 accesoDatos.setParametro("ID", Id);
                 accesoDatos.ejecutarAccion();
             }
