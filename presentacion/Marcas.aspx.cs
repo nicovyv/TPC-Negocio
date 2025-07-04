@@ -16,6 +16,7 @@ namespace presentacion
             if (!IsPostBack)
             {
                 cargarMarcas();
+                cargarBajas();
             }            
             
         }
@@ -52,6 +53,7 @@ namespace presentacion
                 MarcaNegocio negocio = new MarcaNegocio();
                 negocio.eliminarMarca(id);
                 cargarMarcas();
+                cargarBajas();
             }
             else if (e.CommandName == "Modificar")
             {
@@ -59,10 +61,54 @@ namespace presentacion
             }
         }
 
+
         protected void dgvMarcas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvMarcas.PageIndex=e.NewPageIndex;
             cargarMarcas();
+        }
+        private void cargarBajas()
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+            Session.Add(("listaMarcasBaja"), negocio.listarBaja());
+            dgvBajas.DataSource = Session["listaMarcasBaja"];
+            dgvBajas.DataBind();
+        }
+
+        protected void txtFiltroBaja_TextChanged(object sender, EventArgs e)
+        {
+            List<Marca> lista = (List<Marca>)Session["listaMarcasBaja"];
+            List<Marca> listaFiltrada = lista.FindAll(x => x.Descripcion.ToUpper().Contains(txtFiltroBaja.Text.ToUpper()));
+            dgvBajas.DataSource = listaFiltrada;
+            dgvBajas.DataBind();
+            btnLimpiarBaja.Visible = true;
+        }
+
+        protected void btnLimpiarBaja_Click(object sender, EventArgs e)
+        {
+            dgvBajas.DataSource = Session["listaMarcasBaja"];
+            dgvBajas.DataBind();
+            txtFiltroBaja.Text = "";
+            btnLimpiarBaja.Visible = false;
+        }
+
+        protected void dgvBajas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName == "Reactivar")
+            {
+                MarcaNegocio negocio = new MarcaNegocio();
+                negocio.reactivarMarca(id);
+                cargarMarcas();
+                cargarBajas();
+            }
+           
+        }
+
+        protected void dgvBajas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvBajas.PageIndex = e.NewPageIndex;
+            cargarBajas();
         }
     }
 }
