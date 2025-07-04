@@ -2,7 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <h2>Compra registrada exitosamente</h2>
+
+    <asp:Label CssClass="h2" Text="text" ID="lblTitulo" runat="server" />
+      
 
 
 
@@ -64,7 +66,6 @@
   </div>
 
   <div>
-      <asp:Button runat="server" Text="Nueva Compra" CssClass="mt-4 btn btn-primary btn-sm" />
-      <asp:Button runat="server" Text="Ir al Perfil" CssClass="mt-4 btn btn-secondary btn-sm" />
+      
   </div>
 </asp:Content>

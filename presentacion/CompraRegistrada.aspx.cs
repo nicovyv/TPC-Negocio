@@ -1,4 +1,5 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,39 +13,59 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            Compra compra = null;
+
+            // SIEMPRE cargamos la compra, sea por URL o sesión
+            if (Request.QueryString["id"] != null)
             {
-                cargarDatosCompra();
+                lblTitulo.Text = "Dettalle Compra";
+                string idCompra = Request.QueryString["id"];
+                CompraNegocio negocio = new CompraNegocio();
+                compra = negocio.listar(idCompra).FirstOrDefault();
+            }
+            else
+            {
+                lblTitulo.Text = "Compra Exitosa";
+                compra = (Compra)Session["compra"];
+            }
+
+            if (compra == null)
+            {
+                Session.Add("error", "No hay datos para mostrar");
+                Response.Redirect("Error.aspx", false);
+                return;
+            }
+
+            // SIEMPRE cargamos los datos para evitar error de validación
+            cargarDatosCompra(compra);
+
+            // SOLO si es una nueva compra y no es postback, limpiamos la sesión
+            if (!IsPostBack && Request.QueryString["id"] == null)
+            {
                 Session.Remove("compra");
             }
+        
         }
 
-        protected void cargarDatosCompra()
+        protected void cargarDatosCompra(Compra compra)
         {
             try
             {
-                Proveedor proveedor = new Proveedor();
-                proveedor = (Proveedor)Session["proveedor"];
+                // Datos del proveedor
+                lblNombreProveedorCompraExito.Text = compra.Proveedor?.Nombre;
+                lblCuilCompraExito.Text = compra.Proveedor?.CuilCuit;
+                lblFechaCompra.Text = compra.Fecha.ToString("dd/MM/yyyy");
 
-                lblNombreProveedorCompraExito.Text = proveedor.Nombre;
-                lblCuilCompraExito.Text = proveedor.CuilCuit;
-                lblFechaCompra.Text = DateTime.Now.ToString("dd/MM/yyyy");
-
-
-                Compra compra = new Compra();
-                compra = (Compra)Session["compra"];
-
+                // Detalle de la compra
                 repDetalleCompraRegistrada.DataSource = compra.Detalle;
                 repDetalleCompraRegistrada.DataBind();
 
-                lblTotalCompraRegistrada.Text = compra.Total.ToString();
-
-
+                lblTotalCompraRegistrada.Text = compra.Total.ToString("F2");
             }
             catch (Exception)
             {
-
-                throw;
+                Session.Add("error", "No se pudo visualizar la compra");
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

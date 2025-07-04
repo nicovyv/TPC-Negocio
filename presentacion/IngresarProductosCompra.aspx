@@ -28,7 +28,6 @@
                         <asp:Label ID="lblCatCompra" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
                         <asp:DropDownList
                             ID="ddlCatCompra" OnSelectedIndexChanged="ddlCatCompra_SelectedIndexChanged"
-                            
                             AutoPostBack="true"
                             runat="server"
                             CssClass="form-control" />
@@ -39,11 +38,9 @@
                         <asp:Label ID="lblProdCompra" runat="server" Text="Producto" CssClass="form-label"></asp:Label>
                         <asp:DropDownList
                             ID="ddlProdCompra" OnSelectedIndexChanged="ddlProdCompra_SelectedIndexChanged"
-                            
                             runat="server"
                             AutoPostBack="true"
-                            CssClass="form-control"
-                             />
+                            CssClass="form-control" />
 
                         <asp:Label ID="lblHelProdCompra" runat="server" class="form-text text-muted">Seleccione un producto</asp:Label>
                     </div>
@@ -53,8 +50,8 @@
                     <%--CANTIDADES DEL PRODUCTO--%>
                     <div class="col-md-4">
                         <asp:Label ID="lblCantCompra" runat="server" Text="Cantidad" CssClass="form-label"></asp:Label>
-                        <asp:TextBox ID="txtCantCompra" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:Label ID="lblHelpCantCompra" runat="server" pattern="^[1-9]\d*$" title="Ingrese solo números enteros positivos"  class="form-text">Indique la cantidad</asp:Label>
+                        <asp:TextBox ID="txtCantCompra" runat="server" pattern="^[1-9]\d*$" title="Ingrese solo números enteros positivos" CssClass="form-control"></asp:TextBox>
+                        <asp:Label ID="lblHelpCantCompra" runat="server" class="form-text">Indique la cantidad</asp:Label>
                     </div>
                     <%--INFORMACIÓN DEL PRODUCTO--%>
                     <div class="col-md-4">
@@ -63,13 +60,19 @@
                         <asp:TextBox runat="server" CssClass="form-control" Enabled="false" ID="txtProdStock"></asp:TextBox>
                     </div>
                     <div class="col-md-4">
+                        <p>Stock Minimo</p>
+                        <asp:Label runat="server" CssClass="form" ID="lblMinimo" />
+                        <asp:TextBox runat="server" CssClass="form-control" Enabled="false" ID="txtMinimo"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
                         <p>Precio Unitario</p>
                         <asp:Label runat="server" ID="lblPrecioProd" />
-                        <asp:TextBox runat="server"  pattern="^[1-9]\d*$" title="Ingrese solo números enteros positivos" CssClass="form-control" ID="txtProdPrecio"></asp:TextBox>
+                        <asp:TextBox runat="server" pattern="^[1-9]\d*$" title="Ingrese solo números enteros positivos" CssClass="form-control" ID="txtProdPrecio"></asp:TextBox>
+                        <asp:Label ID="lblPrecioMsj" runat="server" class="form-text"></asp:Label>
                     </div>
                 </div>
 
-                <asp:Button ID="btnAgregarItemCompra" runat="server" Text="Agregar Producto" CssClass="btn btn-primary btn-sm" OnClick="btnAgregarItemCompra_Click"   />
+                <asp:Button ID="btnAgregarItemCompra" runat="server" Text="Agregar Producto" CssClass="btn btn-primary btn-sm" OnClick="btnAgregarItemCompra_Click" />
             </div>
         </div>
 
@@ -116,7 +119,7 @@
         <!-- BOTONES -->
         <div class="mb-5">
             <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-success btn-sm me-2" OnClick="btnFinalizarCompra_Click" />
-            <asp:Button ID="btnVolverCompra" runat="server" Text="Volver" CssClass="btn btn-secondary btn-sm" OnClick="btnVolverCompra_Click"  />
+            <asp:Button ID="btnVolverCompra" runat="server" Text="Volver" CssClass="btn btn-secondary btn-sm" OnClick="btnVolverCompra_Click" />
         </div>
     </div>
 </asp:Content>

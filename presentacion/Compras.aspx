@@ -34,7 +34,7 @@
                     <ItemTemplate>
                         <%# Eval("Proveedor.Nombre") %>
                     </ItemTemplate>
-                </asp:TemplateField>
+                </asp:TemplateField>                
 
                 <asp:TemplateField HeaderText="Acción">
                     <ItemTemplate>

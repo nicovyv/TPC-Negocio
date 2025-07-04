@@ -10,14 +10,18 @@ namespace negocio
 {
     public class CompraNegocio
     {
-        public List<Compra> listar()
+        public List<Compra> listar(string id="")
         {
             List<Compra> lista = new List<Compra>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-
+                if(id!="")
+                {
+                    datos.setConsulta("SELECT C.ID as ID, C.Fecha as Fecha,P.cuilcuit AS CuilCuit, P.Nombre AS NombreProveedor from Compras C INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID where C.ID = "+id);
+                }
+                else
                 {
                     datos.setConsulta("SELECT C.ID as ID, C.Fecha as Fecha,P.cuilcuit AS CuilCuit, P.Nombre AS NombreProveedor from Compras C INNER JOIN PROVEEDORES P ON C.IDProveedor = P.ID ");
                 }

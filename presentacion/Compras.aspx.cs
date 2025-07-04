@@ -12,7 +12,10 @@ namespace presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarCompras();
+            if (!IsPostBack)
+            {
+                cargarCompras();
+            }
         }
 
         private void cargarCompras()
@@ -22,9 +25,14 @@ namespace presentacion
             dgvCompra.DataSource = Session["listaCompras"];
             dgvCompra.DataBind();
         }
-        protected void dgvCompra_RowCommand(object sender, EventArgs e)
+        protected void dgvCompra_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
+            if (e.CommandName == "VerDetalle")
+            {
+                int idCompra = Convert.ToInt32(e.CommandArgument);
+                Response.Redirect("CompraRegistrada.aspx?id=" + idCompra);
+            }
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)

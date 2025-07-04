@@ -30,8 +30,7 @@ namespace presentacion
                         lblNombreProveedor.Text = proveedor.Nombre;
                         lblCuilProveedor.Text = proveedor.CuilCuit;
                     }
-                    txtCantCompra.Text = "";
-                    txtProdPrecio.Enabled = true;
+                    limpiarCampos();
                     //DDL Categorias
                     List<Categoria> categorias = categoriaNegocio.listar();
                     ddlCatCompra.DataSource = categorias;
@@ -58,13 +57,14 @@ namespace presentacion
                         Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdCompra.SelectedValue));
                         //txtProdPrecio.Text = producto.PrecioCompra.ToString();
                         txtProdStock.Text = producto.StockActual.ToString();
+                        txtMinimo.Text = producto.StockMinimo.ToString();
                     }
                     else
                     {
                         ddlProdCompra.Items.Clear();
                         txtProdPrecio.Text = "";
                         txtProdStock.Text = "";
-
+                        txtMinimo.Text = "";
                         lblHelProdCompra.Text = "Sin Productos.";
                     }
 
@@ -91,19 +91,17 @@ namespace presentacion
 
         }
 
-        private void corroborarPrecioExistente()
+        private void corroborarPrecioExistente(int idProducto)
         {
-            ProductoNegocio negocio = new ProductoNegocio();
-            int idProducto = int.Parse(ddlProdCompra.SelectedValue);
             Compra compra = (Compra)Session["compra"];
             txtProdPrecio.Text = "";
             txtCantCompra.Text = "";
+
             if (compra != null)
             {
                 var itemExistente = compra.Detalle.FirstOrDefault(x => x.Producto.Id == idProducto);
                 if (itemExistente != null)
                 {
-                    // Si ya está, bloqueamos el TextBox de precio
                     txtProdPrecio.Enabled = false;
                     txtProdPrecio.Text = itemExistente.PrecioUnidad.ToString();
                 }
@@ -118,26 +116,38 @@ namespace presentacion
             }
         }
 
+        private void limpiarCampos()
+        {
+            txtProdPrecio.Text = "";
+            txtCantCompra.Text = "";
+            txtProdStock.Text = "";
+            txtMinimo.Text = "";
+            txtProdPrecio.Enabled = true;
+        }
         protected void ddlProdCompra_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             ProductoNegocio negocio = new ProductoNegocio();
             int idProducto = int.Parse(ddlProdCompra.SelectedValue);
-            corroborarPrecioExistente();
-            Producto producto = new Producto();
-            producto = negocio.ObtenerPorId(idProducto);
 
-            //txtProdPrecio.Text = producto.PrecioCompra.ToString();
+            limpiarCampos();
+            
+
+            Producto producto = negocio.ObtenerPorId(idProducto);
             txtProdStock.Text = producto.StockActual.ToString();
+            txtMinimo.Text = producto.StockMinimo.ToString();
+
+            corroborarPrecioExistente(idProducto);
         }
 
         protected void ddlCatCompra_SelectedIndexChanged(object sender, EventArgs e)
         {
+            limpiarCampos();
             ProductoNegocio productoNegocio = new ProductoNegocio();
 
             int idCategoria = int.Parse(ddlCatCompra.SelectedValue);
             List<Producto> productosFiltrados = productoNegocio.FiltrarCategoria(idCategoria);
-            corroborarPrecioExistente();
-            // SI LA CATEGORIA SELECCIONADA NO TIENE PRODUCTOS SE LIMPIA DDLPRODUCTOS. SI LOS TIENE CARGA DDL Y MUESTRA STOCK Y PRECIO
+
             if (productosFiltrados.Count > 0)
             {
                 ddlProdCompra.DataSource = productosFiltrados;
@@ -145,17 +155,19 @@ namespace presentacion
                 ddlProdCompra.DataValueField = "Id";
                 ddlProdCompra.DataBind();
 
-                //Cargar precio del producto y stock actual
-                Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdCompra.SelectedValue));
-                // txtProdPrecio.Text = producto.PrecioCompra.ToString();
+                int idProducto = int.Parse(ddlProdCompra.SelectedValue);
+                Producto producto = productoNegocio.ObtenerPorId(idProducto);
                 txtProdStock.Text = producto.StockActual.ToString();
+                txtMinimo.Text = producto.StockMinimo.ToString();
+
+
             }
             else
             {
                 ddlProdCompra.Items.Clear();
                 txtProdPrecio.Text = "";
                 txtProdStock.Text = "";
-
+                txtMinimo.Text = "";
                 lblHelProdCompra.Text = "Sin Productos.";
             }
         }
@@ -181,7 +193,7 @@ namespace presentacion
                 negocio.Agregar(compra);
 
 
-
+                limpiarCampos();
                 Response.Redirect("CompraRegistrada.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
@@ -222,9 +234,11 @@ namespace presentacion
                             // ACTUALIZAMOS EL VALOR TOTAL
                             decimal totalCompra = compra.Detalle.Sum(x => x.Cantidad * x.PrecioUnidad);
                             lbltotalCompraValor.Text = totalCompra.ToString();
-                            corroborarPrecioExistente();
+                            limpiarCampos();
+                            corroborarPrecioExistente(idProd);
+                            
 
-
+                            
                         }
 
 
@@ -258,7 +272,7 @@ namespace presentacion
                 int idProducto = int.Parse(ddlProdCompra.SelectedValue);
 
                 //USAMOS EL ID DEL PRODUCTO PARA CAPTURAR EL PRODUCTO POR ID
-                Producto producto = negocio.ObtenerPorId(idProducto);
+                Producto producto = negocio.ObtenerPorId(idProducto); 
 
 
                 int cantidad = 0;
@@ -365,8 +379,8 @@ namespace presentacion
                 //GRILLA PARA VER PRODUCTOS INGRESADOS A LA Compra
                 dgvDetalleCompra.DataSource = compra.Detalle;
                 dgvDetalleCompra.DataBind();
-
-
+                
+                limpiarCampos();
 
 
                 //CALCULAR TOTAL DE LA Compra
