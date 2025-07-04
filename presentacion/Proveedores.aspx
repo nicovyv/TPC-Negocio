@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-4">
         <h1 class="mb-4">Proveedores Activos</h1>
-         <!-- Buscador -->
+        <!-- Buscador -->
         <div class="row mb-4">
             <div class="col-md-6">
                 <label for="txtFiltro" class="form-label">Nombre del proveedor</label>
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-         <!-- Grilla -->
+        <!-- Grilla -->
         <asp:GridView ID="dgvProveedores" runat="server" DataKeyNames="Id"
             CssClass="table table-dark table-hover" AutoGenerateColumns="false"
             AllowPaging="false" PageSize="5" OnRowCommand="dgvProveedores_RowCommand">
@@ -30,15 +30,46 @@
                 <asp:TemplateField HeaderText="Acción">
                     <ItemTemplate>
                         <asp:Button Text="Modificar" CssClass="btn btn-light" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
-                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                        <asp:Button Text="Dar de Baja" CssClass="btn btn-danger" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-         <!-- Botón Nuevo Proveedor -->
+
+        <h1 class="mb-4">Proveedores Dados de Baja</h1>
+        <!-- Buscador bajas -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="txtFiltro" class="form-label">Nombre del proveedor</label>
+                <div class="input-group">
+                    <asp:TextBox runat="server" ID="txtBaja" placeholder="Busque Proveedores..." CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBaja_TextChanged" />
+                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                </div>
+                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnBaja" OnClick="btnBaja_Click"  visible="false" />
+            </div>
+        </div>
+
+        <!-- Grilla de bajas -->
+        <asp:GridView ID="dgvBajas" runat="server" DataKeyNames="Id"
+            CssClass="table table-dark table-hover" AutoGenerateColumns="false"
+            AllowPaging="false" PageSize="5" OnRowCommand="dgvBajas_RowCommand">
+            <Columns>
+                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
+                <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
+                <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+                <asp:BoundField HeaderText="Email" DataField="Email" />
+                <asp:TemplateField HeaderText="Acción">
+                    <ItemTemplate>
+                        <asp:Button Text="Reactivar" CssClass="btn btn-success" CommandName="Reactivar" CommandArgument='<%# Eval("Id") %>' runat="server" />                        
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+        <!-- Botón Nuevo Proveedor -->
         <div class="mt-4">
             <a class="btn btn-success" href="AltaProveedor.aspx">Nuevo Proveedor</a>
         </div>
     </div>
-    
+
 </asp:Content>

@@ -15,7 +15,8 @@ namespace presentacion
         {
             if (!IsPostBack)
             {
-                cargarProveedores();             
+                cargarProveedores();
+                cargarBajas();
             }
             
         }
@@ -35,6 +36,7 @@ namespace presentacion
                 ProveedorNegocio negocio = new ProveedorNegocio();
                 negocio.eliminarProveedor(id);
                 cargarProveedores();
+                cargarBajas();
             }
             else if (e.CommandName == "Modificar")
             {
@@ -57,6 +59,44 @@ namespace presentacion
             dgvProveedores.DataBind();
             txtFiltro.Text = "";
             btnLimpiar.Visible = false;
+        }
+
+        private void cargarBajas()
+        {
+            ProveedorNegocio negocio = new ProveedorNegocio();
+            Session.Add(("listaProveedoresBaja"), negocio.listarBajas());
+            dgvBajas.DataSource = Session["listaProveedoresBaja"];
+            dgvBajas.DataBind();
+
+        }
+
+        protected void dgvBajas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName == "Reactivar")
+            {
+                ProveedorNegocio negocio = new ProveedorNegocio();
+                negocio.reactivarProveedor(id);
+                cargarProveedores();
+                cargarBajas();
+            }
+        }
+
+        protected void btnBaja_Click(object sender, EventArgs e)
+        {
+            dgvBajas.DataSource = Session["listaProveedoresBaja"];
+            dgvBajas.DataBind();
+            txtBaja.Text = "";
+            btnBaja.Visible = false;
+        }
+
+        protected void txtBaja_TextChanged(object sender, EventArgs e)
+        {
+            List<Proveedor> lista = (List<Proveedor>)Session["listaProveedoresBaja"];
+            List<Proveedor> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtBaja.Text.ToUpper()));
+            dgvBajas.DataSource = listaFiltrada;
+            dgvBajas.DataBind();
+            btnBaja.Visible = true;
         }
     }
 }
