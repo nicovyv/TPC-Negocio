@@ -118,7 +118,7 @@ CREATE TABLE DetalleCompra (
     IDProducto INT NOT NULL FOREIGN KEY REFERENCES Productos(ID),
     Cantidad INT NOT NULL CHECK (Cantidad > 0),
     PrecioUnidad MONEY NOT NULL CHECK (PrecioUnidad > 0),
-	CONSTRAINT FK_DetalleCompra_Compra FOREIGN KEY (IDCompra) REFERENCES Compra (ID),
+	CONSTRAINT FK_DetalleCompra_Compra FOREIGN KEY (IDCompra) REFERENCES Compras (ID),
 	CONSTRAINT FK_DetalleCompra_Producto FOREIGN KEY (IDProducto) REFERENCES PRODUCTOS (ID),
 	Activo BIT NOT NULL DEFAULT 1
 );
@@ -153,7 +153,7 @@ GO
 
 --SP
 
-CREATE PROCEDURE sp_ListarProd AS
+ALTER PROCEDURE sp_ListarProd AS
 BEGIN
 	SELECT 
 	P.ID AS IdProducto, 
@@ -174,6 +174,7 @@ BEGIN
 	INNER JOIN Categorias C ON C.ID = P.IDCategoria
 	INNER JOIN Marcas M ON M.ID = P.IDMarca
 	WHERE P.Activo = 1
+	ORDER BY P.ID DESC
 END
 
 GO
@@ -221,7 +222,7 @@ BEGIN
 			INSERT INTO DetalleCompra(IDCompra, IDProducto, Cantidad, PrecioUnidad)
 			VALUES (@IDCompra, @IDProducto, @Cantidad, @PrecioUnidad)
 
-			UPDATE Productos SET StockActual = StockActual + @Cantidad, PrecioCompra = @PrecioUnidad, PrecioVenta = @PrecioUnidad * ((100+Ganancia)/100) WHERE ID = @IDProducto
+			UPDATE Productos SET StockActual = StockActual + @Cantidad, PrecioCompra = @PrecioUnidad, Precio = @PrecioUnidad * ((100+Ganancia)/100) WHERE ID = @IDProducto
 
 
 		COMMIT TRANSACTION
