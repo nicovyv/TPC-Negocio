@@ -57,12 +57,12 @@
                     <div class="col-md-4">
                         <p>Stock Actual</p>
                         <asp:Label runat="server" CssClass="form" ID="lblStockProd" />
-                        <asp:TextBox runat="server" CssClass="form-control" Enabled="false" ID="txtProdStock"></asp:TextBox>
+                        <asp:TextBox runat="server"  CssClass="form-control" Enabled="false" ID="txtProdStock"></asp:TextBox>
                     </div>
                     <div class="col-md-4">
                         <p>Stock Minimo</p>
                         <asp:Label runat="server" CssClass="form" ID="lblMinimo" />
-                        <asp:TextBox runat="server" CssClass="form-control" Enabled="false" ID="txtMinimo"></asp:TextBox>
+                        <asp:TextBox runat="server"  CssClass="form-control" Enabled="false" ID="txtMinimo"></asp:TextBox>
                     </div>
                     <div class="col-md-4">
                         <p>Precio Unitario</p>

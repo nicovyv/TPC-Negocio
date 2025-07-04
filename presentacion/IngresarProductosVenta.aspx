@@ -60,12 +60,12 @@
                     <div class="col-md-4">
                         <p>Stock Disponible</p>
                         <asp:Label runat="server" CssClass="form" ID="lblStockProd" />
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtProdStock"></asp:TextBox>
+                        <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtProdStock"></asp:TextBox>
                     </div>
                     <div class="col-md-4">
                         <p>Precio Unitario</p>
                         <asp:Label runat="server" ID="lblPrecioProd" />
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtProdPrecio"></asp:TextBox>
+                        <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtProdPrecio"></asp:TextBox>
                     </div>
                 </div>
 
