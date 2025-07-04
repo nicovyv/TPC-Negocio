@@ -20,11 +20,11 @@ namespace negocio
             {
                 if (id != "")
                 {
-                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS WHERE ID = " + id);
+                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS WHERE activo=1 ID = " + id);
                 }
                 else
                 {
-                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS");
+                    datos.setConsulta("SELECT ID, Descripcion FROM MARCAS WHERE activo=1");
                 }
 
                 datos.ejecutarLectura();

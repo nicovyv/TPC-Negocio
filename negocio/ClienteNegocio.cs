@@ -48,11 +48,11 @@ namespace negocio
                 
                 if(id!= "")
                 {
-                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES WHERE ID = "+ id);
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES WHERE activo=1 and ID = " + id);
                 }
                 else
                 {
-                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES");
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM CLIENTES WHERE activo=1");
                 }
                     datos.ejecutarLectura();
 

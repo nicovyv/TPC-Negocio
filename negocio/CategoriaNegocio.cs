@@ -19,11 +19,11 @@ namespace negocio
 
                 if (id != "")
                 {
-                    datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS WHERE ID = " + id);
+                    datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS WHERE activo=1 and ID = " + id);
                 }
                 else
                 {
-                    datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS");
+                    datos.setConsulta("SELECT ID, DESCRIPCION FROM CATEGORIAS WHERE activo=1");
                 }
                     
                 datos.ejecutarLectura();
