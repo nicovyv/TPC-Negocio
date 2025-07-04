@@ -478,7 +478,52 @@ namespace negocio
 
         }
 
+        public List<Producto> FiltrarPorCategoriaYProveedor(int idCategoria, int idProveedor)
+        {
+            List<Producto> productosFiltrados = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+            ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
 
+            try
+            {
+                datos.setConsulta("SELECT P.ID, P.CODPROD, P.NOMBRE, P.DESCRIPCION, P.IDCATEGORIA, P.IDMARCA, P.PRECIO, P.STOCKACTUAL, P.STOCKMINIMO, P.GANANCIA, P.PRECIOCOMPRA FROM PRODUCTOS P WHERE P.ACTIVO = 1 AND P.IDCATEGORIA = @idCategoria");
+                datos.setParametro("@idCategoria", idCategoria);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto prod = new Producto();
+                    prod.Id = (int)datos.Lector["ID"];
+                    prod.Codigo = datos.Lector["CODPROD"].ToString();
+                    prod.Nombre = datos.Lector["NOMBRE"].ToString();
+                    prod.Descripcion = datos.Lector["DESCRIPCION"].ToString();
+                    prod.PrecioVenta = (decimal)datos.Lector["PRECIO"];
+                    prod.StockActual = (int)datos.Lector["STOCKACTUAL"];
+                    prod.StockMinimo = (int)datos.Lector["STOCKMINIMO"];
+                    prod.Ganancia = float.Parse(datos.Lector["GANANCIA"].ToString());
+                    prod.PrecioCompra = (decimal)datos.Lector["PRECIOCOMPRA"];
+
+                    // Agregamos los proveedores asociados a ese producto
+                    prod.Proveedores = proveedorNegocio.listarProveedoresPorProducto(prod.Id);
+
+                    // Solo agregamos el producto si está asociado al proveedor que queremos
+                    if (prod.Proveedores.Any(p => p.Id == idProveedor))
+                    {
+                        productosFiltrados.Add(prod);
+                    }
+                }
+
+                return productosFiltrados;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
         public List<Producto> FiltrarMarcaCategoria(int idMarca, int idCategoria)
         {

@@ -227,7 +227,7 @@ namespace negocio
 
             try
             {
-                accesoDatos.setConsulta("select id, email, pass, nombre, apellido, admin,UrlImagenPerfil  from Usuarios where email=@email and pass=@pass");
+                accesoDatos.setConsulta("select id, email, pass, nombre, apellido, admin,UrlImagenPerfil  from Usuarios where email=@email and pass=@pass and activo = 1");
                 accesoDatos.setParametro("@email", usuario.Email);
                 accesoDatos.setParametro("@pass", usuario.Password);
                 accesoDatos.ejecutarLectura();

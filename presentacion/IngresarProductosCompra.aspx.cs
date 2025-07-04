@@ -11,9 +11,10 @@ namespace presentacion
 {
     public partial class IngresarProductosCompra : System.Web.UI.Page
     {
+        Proveedor proveedor = new Proveedor();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Proveedor proveedor;
+            
 
             //configuracion de cargar DropDownList
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
@@ -23,9 +24,11 @@ namespace presentacion
             {
                 if (!(IsPostBack))
                 {
+                    
                     if (Security.hayProveedorAsignado(Session["proveedor"]))
                     {
                         //configuracion de cargar Proveedor
+                        
                         proveedor = (Proveedor)Session["proveedor"];
                         lblNombreProveedor.Text = proveedor.Nombre;
                         lblCuilProveedor.Text = proveedor.CuilCuit;
@@ -43,11 +46,13 @@ namespace presentacion
                     //DDL Productos
                     List<Producto> productos = new List<Producto>();
                     int idCategoria = int.Parse(ddlCatCompra.SelectedValue);
-                    productos = productoNegocio.FiltrarCategoria(idCategoria);
+
+                    productos = productoNegocio.FiltrarPorCategoriaYProveedor(idCategoria, proveedor.Id);
 
                     // SI LA CATEGORIA SELECCIONADA NO TIENE PRODUCTOS SE LIMPIA DDLPRODUCTOS. SI LOS TIENE CARGA DDL Y MUESTRA STOCK Y PRECIO
                     if (productos.Count > 0)
                     {
+                        lblHelProdCompra.Visible = false;
                         ddlProdCompra.DataSource = productos;
                         ddlProdCompra.DataTextField = "Nombre";
                         ddlProdCompra.DataValueField = "Id";
@@ -61,11 +66,12 @@ namespace presentacion
                     }
                     else
                     {
+                        lblHelProdCompra.Visible = true;
                         ddlProdCompra.Items.Clear();
                         txtProdPrecio.Text = "";
                         txtProdStock.Text = "";
                         txtMinimo.Text = "";
-                        lblHelProdCompra.Text = "Sin Productos.";
+                        lblHelProdCompra.Text = "Sin Productos asociados al proveedor en la categoria seleccionada, intente con otra categoria.";
                     }
 
                 }
@@ -144,9 +150,9 @@ namespace presentacion
         {
             limpiarCampos();
             ProductoNegocio productoNegocio = new ProductoNegocio();
-
+            proveedor = (Proveedor)Session["proveedor"];
             int idCategoria = int.Parse(ddlCatCompra.SelectedValue);
-            List<Producto> productosFiltrados = productoNegocio.FiltrarCategoria(idCategoria);
+            List<Producto> productosFiltrados = productoNegocio.FiltrarPorCategoriaYProveedor(idCategoria, proveedor.Id); ;
 
             if (productosFiltrados.Count > 0)
             {
@@ -159,16 +165,17 @@ namespace presentacion
                 Producto producto = productoNegocio.ObtenerPorId(idProducto);
                 txtProdStock.Text = producto.StockActual.ToString();
                 txtMinimo.Text = producto.StockMinimo.ToString();
-
+                lblHelProdCompra.Visible = false;
 
             }
             else
             {
+                lblHelProdCompra.Visible = true;
                 ddlProdCompra.Items.Clear();
                 txtProdPrecio.Text = "";
                 txtProdStock.Text = "";
                 txtMinimo.Text = "";
-                lblHelProdCompra.Text = "Sin Productos.";
+                lblHelProdCompra.Text = "Sin Productos asociados al proveedor en la categoria seleccionada, intente con otra categoria.";
             }
         }
 
