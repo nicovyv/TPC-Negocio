@@ -16,11 +16,22 @@ namespace presentacion
         }
 
         private void cargarClientes()
-        {            
-            ClienteNegocio negocio = new ClienteNegocio();            
-            Session.Add(("listaClientes"), negocio.listar());
-            dgvClientes.DataSource = Session["listaClientes"];             
-            dgvClientes.DataBind();
+        {
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                ClienteNegocio negocio = new ClienteNegocio();
+                Session.Add(("listaClientes"), negocio.listar());
+                dgvClientesAdmin.DataSource = Session["listaClientes"];
+                dgvClientesAdmin.DataBind();
+            }
+            else
+            {
+                ClienteNegocio negocio = new ClienteNegocio();
+                Session.Add(("listaClientes"), negocio.listar());
+                dgvClientesVendedor.DataSource = Session["listaClientes"];
+                dgvClientesVendedor.DataBind();
+            }
+            
         }
         protected void dgvClientes_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
@@ -41,17 +52,40 @@ namespace presentacion
         {
             List<Cliente> lista = (List<Cliente>)Session["listaClientes"];
             List<Cliente> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
-            dgvClientes.DataSource = listaFiltrada;
-            dgvClientes.DataBind();
-            btnLimpiar.Visible = true;
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvClientesAdmin.DataSource = listaFiltrada;
+                dgvClientesAdmin.DataBind();
+                btnLimpiar.Visible = true;
+            }
+            else
+            {
+                dgvClientesVendedor.DataSource = listaFiltrada;
+                dgvClientesVendedor.DataBind();
+                btnLimpiar.Visible = true;
+            }
+            
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
-            dgvClientes.DataSource = Session["listaClientes"];
-            dgvClientes.DataBind();
-            txtFiltro.Text = "";
-            btnLimpiar.Visible = false;
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvClientesAdmin.DataSource = Session["listaClientes"];
+                dgvClientesAdmin.DataBind();
+                txtFiltro.Text = "";
+                btnLimpiar.Visible = false;
+            }
+            else
+            {
+                dgvClientesVendedor.DataSource = Session["listaClientes"];
+                dgvClientesVendedor.DataBind();
+                txtFiltro.Text = "";
+                btnLimpiar.Visible = false;
+            }
+            
         }
     }
 }

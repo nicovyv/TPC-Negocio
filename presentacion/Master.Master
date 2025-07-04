@@ -41,8 +41,10 @@
                                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Clientes</a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="Clientes.aspx">Ver Clientes</a></li>
-
+                                    <% if (negocio.Security.isAdmin(Session["usuario"]))
+                                        { %>
                                     <li><a class="dropdown-item" href="AltaCliente.aspx">Nuevo Cliente</a></li>
+                                    <% } %>
                                 </ul>
                             </li>
                             <% if (negocio.Security.isAdmin(Session["usuario"]))

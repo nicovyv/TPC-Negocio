@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <div class="container mt-4">
-    <h1 class="mb-4">Clientes</h1>
+        <h1 class="mb-4">Clientes</h1>
         <!-- Buscador -->
         <div class="row mb-4">
             <div class="col-md-6">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <!-- Grilla -->
-        <asp:GridView ID="dgvClientes" runat="server" DataKeyNames="Id"
+        <asp:GridView ID="dgvClientesVendedor" runat="server" DataKeyNames="Id"
             CssClass="table table-dark table-hover" AutoGenerateColumns="false"
             AllowPaging="false" PageSize="5" OnRowCommand="dgvClientes_RowCommand">
             <Columns>
@@ -27,21 +27,45 @@
                 <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
                 <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
                 <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-                <asp:BoundField HeaderText="Email" DataField="Email" />
+                <asp:BoundField HeaderText="Email" DataField="Email"  />
+                
                 <asp:TemplateField HeaderText="Acción">
                     <ItemTemplate>
                         <asp:Button Text="Modificar" CssClass="btn btn-light" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
                         <asp:Button Text="Eliminar" CssClass="btn btn-danger" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
+               
             </Columns>
         </asp:GridView>
+
+        <asp:GridView ID="dgvClientesAdmin" runat="server" DataKeyNames="Id"
+    CssClass="table table-dark table-hover" AutoGenerateColumns="false"
+    AllowPaging="false" PageSize="5" OnRowCommand="dgvClientes_RowCommand">
+    <Columns>
+        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+        <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
+        <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
+        <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+        <asp:BoundField HeaderText="Email" DataField="Email"  />
+        
+        <asp:TemplateField HeaderText="Acción">
+            <ItemTemplate>
+                <asp:Button Text="Modificar" CssClass="btn btn-light" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                <asp:Button Text="Eliminar" CssClass="btn btn-danger" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+            </ItemTemplate>
+        </asp:TemplateField>
+       
+    </Columns>
+</asp:GridView>
+        <% if (negocio.Security.isAdmin(Session["usuario"]))
+    { %>
         <!-- Botón Nuevo CLIENTE -->
         <div class="mt-4">
             <a class="btn btn-success" href="AltaCliente.aspx">Nuevo Cliente</a>
         </div>
     </div>
-    
 
+    <% } %>
 
 </asp:Content>
