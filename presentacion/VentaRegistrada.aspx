@@ -67,7 +67,7 @@
 
     <div>
         <asp:Button runat="server" Text="Nueva Venta" CssClass="mt-4 btn btn-primary btn-sm" />
-        <asp:Button runat="server" Text="Ir al Perfil" CssClass="mt-4 btn btn-secondary btn-sm" />
+        <a href="Perfil.aspx" class="mt-4 btn btn-secondary btn-sm">Ir al Perfil</a>
     </div>
 
 </asp:Content>
