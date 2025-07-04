@@ -195,6 +195,11 @@ namespace presentacion
 
         protected void btnGuardarProd_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+            {
+                return;
+            }
             ProductoNegocio negocio = new ProductoNegocio();
             Producto nuevo = new Producto();
 

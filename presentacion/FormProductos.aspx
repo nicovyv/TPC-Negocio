@@ -20,18 +20,37 @@
             <div class="mb-3 d-flex">
                 <label for="txtCodProd" class="form-label">Codigo: </label>
                 <asp:TextBox runat="server" ID="txtCodProd" CssClass="form-control" />
+               
+                <asp:RequiredFieldValidator
+                    runat="server"
+                    ControlToValidate="txtCodProd"
+                    ErrorMessage="El campo Codigo del producto es obligatorio."
+                    CssClass="text-danger"
+                    Display="Dynamic" />
                 <asp:Label runat="server" ID="lblErrorCodProd" Visible="false"></asp:Label>
             </div>
             <%--NOMBRE PRODUCTO--%>
             <div class="mb-3 d-flex">
                 <label for="txtNombreProd" class="form-label">Nombre: </label>
                 <asp:TextBox runat="server" ID="txtNombreProd" CssClass="form-control" />
+                <asp:RequiredFieldValidator
+                    runat="server"
+                    ControlToValidate="txtNombreProd"
+                    ErrorMessage="El campo Nombre del producto es obligatorio."
+                    CssClass="text-danger"
+                    Display="Dynamic" />
                 <asp:Label runat="server" ID="lblErrorNombreProd" Visible="false"></asp:Label>
             </div>
             <%--DESCRIPCION PRODUCTO--%>
             <div class="mb-3 d-flex">
                 <label for="txtDescProd" class="form-label">Descripción: </label>
                 <asp:TextBox runat="server" ID="txtDescProd" CssClass="form-control" />
+                <asp:RequiredFieldValidator
+                    runat="server"
+                    ControlToValidate="txtDescProd"
+                    ErrorMessage="El campo Descripción del producto es obligatorio."
+                    CssClass="text-danger"
+                    Display="Dynamic" />
                 <asp:Label runat="server" ID="lblErrorDescProd" Visible="false"></asp:Label>
             </div>
             <%--MARCA PRODUCTO--%>
@@ -48,6 +67,7 @@
             <div class="mb-3 d-flex" id="divPrecioCompra" runat="server">
                 <label for="txtPrecioCompraProd" class="form-label">Precio Compra: </label>
                 <asp:TextBox runat="server" ID="txtPrecioCompraProd" CssClass="form-control" Enabled="false" />
+            
             </div>
             <%--PRECIO VENTA--%>
             <div class="mb-3 d-flex" id="divPrecioVenta" runat="server">
@@ -58,12 +78,24 @@
             <div class="mb-3 d-flex">
                 <label for="txtGananciaProd" class="form-label">% Ganancia: </label>
                 <asp:TextBox runat="server" ID="txtGananciaProd" CssClass="form-control" />
+                <asp:RequiredFieldValidator
+                    runat="server"
+                    ControlToValidate="txtGananciaProd"
+                    ErrorMessage="El campo Ganancia del producto es obligatorio."
+                    CssClass="text-danger"
+                    Display="Dynamic" />
                 <asp:Label runat="server" ID="lblErrorGananciaProd" Visible="false"></asp:Label>
             </div>
             <%--STOCK MINIMO--%>
             <div class="mb-3 d-flex">
                 <label for="txtStockMinimoProd" class="form-label">Stock Minimo: </label>
                 <asp:TextBox runat="server" ID="txtStockMinimoProd" CssClass="form-control" />
+                <asp:RequiredFieldValidator
+                    runat="server"
+                    ControlToValidate="txtStockMinimoProd"
+                    ErrorMessage="El campo Stock Minimo del producto es obligatorio."
+                    CssClass="text-danger"
+                    Display="Dynamic" />
                 <asp:Label runat="server" ID="lblErrorStockMinimoProd" Visible="false"></asp:Label>
             </div>
             <%--STOCK ACTUAL--%>
