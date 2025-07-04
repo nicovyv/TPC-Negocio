@@ -91,6 +91,11 @@ namespace presentacion
 
         protected void btnAgregarCliente_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+            {
+                return;
+            }
             try
             {
                 if (ValidarCamposVacios(txtTelefono) || ValidarCamposVacios(txtDireccion) ||
