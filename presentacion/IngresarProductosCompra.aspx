@@ -118,7 +118,7 @@
         <asp:Label runat="server" ID="lblError" CssClass="form-label"></asp:Label>
         <!-- BOTONES -->
         <div class="mb-5">
-            <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-success btn-sm me-2" OnClick="btnFinalizarCompra_Click" />
+            <asp:Button ID="btnFinalizarCompra" Enabled="false" runat="server" Text="Finalizar Compra" CssClass="btn btn-success btn-sm me-2" OnClick="btnFinalizarCompra_Click" />
             <asp:Button ID="btnVolverCompra" runat="server" Text="Volver" CssClass="btn btn-secondary btn-sm" OnClick="btnVolverCompra_Click" />
         </div>
     </div>

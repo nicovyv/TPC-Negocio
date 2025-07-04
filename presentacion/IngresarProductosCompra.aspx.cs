@@ -14,8 +14,8 @@ namespace presentacion
         Proveedor proveedor = new Proveedor();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
 
+            
             //configuracion de cargar DropDownList
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             ProductoNegocio productoNegocio = new ProductoNegocio();
@@ -40,7 +40,7 @@ namespace presentacion
                     ddlCatCompra.DataTextField = "Descripcion";
                     ddlCatCompra.DataValueField = "Id";
                     ddlCatCompra.DataBind();
-
+                    
 
 
                     //DDL Productos
@@ -63,6 +63,7 @@ namespace presentacion
                         //txtProdPrecio.Text = producto.PrecioCompra.ToString();
                         txtProdStock.Text = producto.StockActual.ToString();
                         txtMinimo.Text = producto.StockMinimo.ToString();
+                        btnAgregarItemCompra.Enabled = true;
                     }
                     else
                     {
@@ -72,6 +73,7 @@ namespace presentacion
                         txtProdStock.Text = "";
                         txtMinimo.Text = "";
                         lblHelProdCompra.Text = "Sin Productos asociados al proveedor en la categoria seleccionada, intente con otra categoria.";
+                        btnAgregarItemCompra.Enabled = false;
                     }
 
                 }
@@ -166,10 +168,11 @@ namespace presentacion
                 txtProdStock.Text = producto.StockActual.ToString();
                 txtMinimo.Text = producto.StockMinimo.ToString();
                 lblHelProdCompra.Visible = false;
-
+                btnAgregarItemCompra.Enabled = true;
             }
             else
             {
+                btnAgregarItemCompra.Enabled = false;
                 lblHelProdCompra.Visible = true;
                 ddlProdCompra.Items.Clear();
                 txtProdPrecio.Text = "";
@@ -394,6 +397,7 @@ namespace presentacion
                 decimal totalCompra = compra.Detalle.Sum(x => x.Cantidad * x.PrecioUnidad);
                 lbltotalCompraValor.Text = totalCompra.ToString();
                 lblHelpCantCompra.Text = "";
+                btnFinalizarCompra.Enabled = true;
             }
             catch (Exception ex)
             {
