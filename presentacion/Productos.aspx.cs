@@ -51,7 +51,7 @@ namespace presentacion
                 dgvProductoVendedor.DataBind();
             }
 
-            
+
         }
 
         protected void dgvProducto_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,11 +110,59 @@ namespace presentacion
 
         }
 
-        //protected void dgvProducto_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
-        //    Button btnModProd = 
-        //}
+        protected void txtBuscadorProd_TextChanged(object sender, EventArgs e)
+        {
+            //    List<Marca> lista = (List<Marca>)Session["listaMarcas"];
+            //    List<Marca> listaFiltrada = lista.FindAll(x => x.Descripcion.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            //    dgvMarcas.DataSource = listaFiltrada;
+            //    dgvMarcas.DataBind();
+            //    btnLimpiar.Visible = true;
 
+            ProductoNegocio negocio = new ProductoNegocio();
+            List<Producto> productos = negocio.listar();
+
+            List<Producto> productosFiltrados = productos.FindAll(x => x.Nombre.ToUpper().Contains(txtBuscadorProd.Text.ToUpper()));
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvProductoAdmin.DataSource = productosFiltrados;
+                dgvProductoAdmin.DataBind();
+            }
+            else if (Security.isLogin(Session["usuario"]))
+            {
+                dgvProductoVendedor.DataSource = productosFiltrados;
+                dgvProductoVendedor.DataBind();
+
+            }
+            else
+            {
+                Session.Add("error", "Debes estar logueado.");
+                Response.Redirect("Error.aspx");
+            }
+
+
+            btnLimpiarBuscadorProd.Visible = true;
+
+
+        }
+
+        protected void btnLimpiarBuscadorProd_Click(object sender, EventArgs e)
+        {
+
+            ProductoNegocio negocio = new ProductoNegocio();
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvProductoAdmin.DataSource = negocio.listar();
+                dgvProductoAdmin.DataBind();
+            }
+            else
+            {
+                dgvProductoVendedor.DataSource = negocio.listar();
+                dgvProductoVendedor.DataBind();
+            }
+            txtBuscadorProd.Text = "";
+            btnLimpiarBuscadorProd.Visible = false;
+        }
     }
 }

@@ -15,13 +15,22 @@ namespace presentacion
     {
 
         /// <summary>
-        /// Control txtBuscador.
+        /// Control txtBuscadorProd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscador;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscadorProd;
+
+        /// <summary>
+        /// Control btnLimpiarBuscadorProd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLimpiarBuscadorProd;
 
         /// <summary>
         /// Control ddlFiltroMarca.

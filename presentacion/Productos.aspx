@@ -13,9 +13,10 @@
             <div class="col-md-6">
                 <label for="txtBuscador" class="form-label">Nombre del Producto</label>
                 <div class="input-group">
-                    <asp:TextBox ID="txtBuscador" runat="server" CssClass="form-control" AutoPostBack="true" />
+                    <asp:TextBox ID="txtBuscadorProd" placeholder="Busque Productos..." runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBuscadorProd_TextChanged" />
                     <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
                 </div>
+                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light mt-2" ID="btnLimpiarBuscadorProd"  Visible="false" OnClick="btnLimpiarBuscadorProd_Click" />
             </div>
         </div>
 
