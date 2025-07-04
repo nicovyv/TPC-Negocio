@@ -7,7 +7,7 @@
 <div class="container mt-4">
 
     <!-- TÍTULO -->
-    <h1 class="mb-4">Marcas</h1>
+    <h1 class="mb-4">Marcas Activas</h1>
 
     <!-- BUSCADOR -->
     <div class="row mb-4">

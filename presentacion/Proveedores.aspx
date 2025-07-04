@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-4">
-        <h1 class="mb-4">Proveedores</h1>
+        <h1 class="mb-4">Proveedores Activos</h1>
          <!-- Buscador -->
         <div class="row mb-4">
             <div class="col-md-6">
