@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,12 +38,19 @@ namespace presentacion
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
-
+            dgvCompra.DataSource = Session["listaClientes"];
+            dgvCompra.DataBind();
+            txtFiltro.Text = "";
+            btnLimpiar.Visible = false;
         }
 
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
-
+            List<Compra> lista = (List<Compra>)Session["listaCompras"];
+            List<Compra> listaFiltrada = lista.FindAll(x => x.Proveedor.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvCompra.DataSource = listaFiltrada;
+            dgvCompra.DataBind();
+            btnLimpiar.Visible = true;
         }
     }
 }

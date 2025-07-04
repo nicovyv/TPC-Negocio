@@ -11,7 +11,7 @@
             <div class="col-md-6">
                 <label for="txtFiltro" class="form-label">Compra</label>
                 <div class="input-group">
-                    <asp:TextBox runat="server" ID="TextBox1" placeholder="Busque Compras..." CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+                    <asp:TextBox runat="server" ID="txtFiltro" placeholder="Busque Compras por Nombre del Proveedor que contenga..." CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
                     <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
                 </div>
                 <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnLimpiar" OnClick="btnLimpiar_Click" Visible="false" />
