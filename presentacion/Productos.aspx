@@ -31,7 +31,7 @@
                     <label for="ddlFiltroCategoria" class="form-label">Categoría</label>
                     <asp:DropDownList ID="ddlFiltroCategoria" runat="server" CssClass="form-select"></asp:DropDownList>
                 </div>
-                <asp:Button Text="Ver productos dados de baja" runat="server" CssClass="btn btn-outline-secondary" />
+                <asp:Button Text="Ver productos dados de baja" runat="server" CssClass="btn btn-outline-secondary" ID="btnProdBaja" OnClick="btnProdBaja_Click" />
             </div>
         </div>
 

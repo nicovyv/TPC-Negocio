@@ -102,6 +102,14 @@ namespace presentacion
             Response.Redirect("FormProductos.aspx");
         }
 
+        protected void btnProdBaja_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ProductosInactivosLista.aspx");
+
+
+
+        }
+
         //protected void dgvProducto_RowDataBound(object sender, GridViewRowEventArgs e)
         //{
         //    GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);

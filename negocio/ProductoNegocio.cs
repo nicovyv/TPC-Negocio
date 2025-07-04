@@ -58,8 +58,8 @@ namespace negocio
             }
         }
         public List<Producto> FiltrarCategoria(int idCategoria)
-        { 
-            List<Producto> listaProductos=new List<Producto>();
+        {
+            List<Producto> listaProductos = new List<Producto>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -76,25 +76,25 @@ namespace negocio
                     producto.Descripcion = (string)datos.Lector["descripcion"];
                     producto.PrecioVenta = (decimal)datos.Lector["precio"];
                     producto.StockActual = (int)datos.Lector["stock"];
-                    
+
                     producto.Categoria = new Categoria();
                     producto.Categoria.Id = (int)datos.Lector["IDCATEGORIA"];
                     producto.Categoria.Descripcion = (string)datos.Lector["categoria"];
-                    
+
                     producto.Marca = new Marca();
                     producto.Marca.Id = (int)datos.Lector["IDMARCA"];
                     producto.Marca.Descripcion = (string)datos.Lector["marca"];
                     listaProductos.Add(producto);
                 }
                 return listaProductos;
-             }
-            
+            }
+
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            
+
         }
 
 
@@ -182,7 +182,7 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
-                
+
             }
 
         }
@@ -238,7 +238,7 @@ namespace negocio
             }
         }
 
-        public Producto ObtenerPorId (int id)
+        public Producto ObtenerPorId(int id)
         {
 
             Producto producto = null;
@@ -287,7 +287,7 @@ namespace negocio
                     datos.ejecutarLectura();
 
                     producto.Proveedores = new List<Proveedor>();
-                    
+
 
                     while (datos.Lector.Read())
                     {
@@ -299,10 +299,10 @@ namespace negocio
 
 
 
-                    
+
                 }
 
-               
+
 
             }
             catch (Exception)
@@ -314,7 +314,7 @@ namespace negocio
             {
                 datos.cerrarConexion();
 
-               
+
             }
 
 
@@ -333,7 +333,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                
+
 
                 datos.setConsulta("UPDATE Productos SET Activo = 0 WHERE ID = @id");
                 datos.setParametro("@id", id);
@@ -351,10 +351,91 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
-           
+
 
         }
 
 
+        public List<Producto> listarProdBaja()
+        {
+            List<Producto> listaInactivos = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setConsulta("SELECT ID, CodProd, Nombre, Descripcion, IdCategoria, IdMarca, Precio, StockActual, StockMinimo, Ganancia, PrecioCompra, Activo FROM Productos WHERE Activo = 0");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto producto = new Producto();
+                    producto.Id = (int)datos.Lector["ID"];
+                    producto.Codigo = (string)datos.Lector["CodProd"];
+                    producto.Nombre = (string)datos.Lector["Nombre"];
+                    producto.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    producto.Categoria = new Categoria();
+                    producto.Categoria.Id = (int)datos.Lector["IdCategoria"];
+
+
+                    producto.Marca = new Marca();
+                    producto.Marca.Id = (int)datos.Lector["IdMarca"];
+
+
+                    producto.StockActual = (int)datos.Lector["StockActual"];
+                    producto.StockMinimo = (int)datos.Lector["StockMinimo"];
+                    producto.Ganancia = float.Parse(datos.Lector["Ganancia"].ToString());
+                    producto.PrecioVenta = (decimal)datos.Lector["Precio"];
+                    producto.PrecioCompra = (decimal)datos.Lector["PrecioCompra"];
+
+                    listaInactivos.Add(producto);
+                }
+
+                return listaInactivos;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
+
+
+
+        // ALTA LOGICA
+        public void Activar(int id)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+
+                datos.setConsulta("UPDATE Productos SET Activo = 0 WHERE ID = @id");
+                datos.setParametro("@id", id);
+
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
     }
 }
