@@ -48,7 +48,7 @@ namespace negocio
             {
                 if (id != "")
                 {
-                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES WHERE activo=1 ID = " + id);
+                    datos.setConsulta("SELECT ID, NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO FROM PROVEEDORES WHERE activo=1 and ID = " + id);
                 }
                 else
                 {

@@ -25,7 +25,7 @@ namespace presentacion
                         ProveedorNegocio negocio = new ProveedorNegocio();
                         Proveedor seleccionado = (negocio.listar(id))[0];
 
-                        Session.Add("proveedoreSeleccionado", seleccionado);
+                        Session.Add("proveedorSeleccionado", seleccionado);
 
                         txtNombreProveedor.Text = seleccionado.Nombre;
                         txtCuilProveedor.Text = seleccionado.CuilCuit;
