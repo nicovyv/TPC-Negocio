@@ -112,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <asp:Label runat="server" ID="lblError" CssClass="form-label"></asp:Label>
+        <asp:Label runat="server" ID="lblError" CssClass="form-label text-danger"></asp:Label>
         <!-- BOTONES -->
         <div class="mb-5">
             <asp:Button ID="btnFinalizarVenta" runat="server" Text="Finalizar Venta" CssClass="btn btn-success btn-sm me-2" OnClick="btnFinalizarVenta_Click" />

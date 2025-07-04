@@ -47,8 +47,10 @@
                     </asp:DropDownList>
                 </div>
 
-
+                <% if(negocio.Security.isAdmin(Session["usuario"]))
+                                { %> 
                 <asp:Button Text="Ver productos dados de baja" runat="server" CssClass="btn btn-outline-info" ID="btnProdBaja" OnClick="btnProdBaja_Click" />
+                <%} %>
             </div>
         </div>
 

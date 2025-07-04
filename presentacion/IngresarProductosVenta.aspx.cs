@@ -22,7 +22,7 @@ namespace presentacion
             try
             {
                 if (!(IsPostBack))
-                {
+                {    
                     if (Security.hayClienteAsignado(Session["cliente"]))
                     {
                         //configuracion de cargar cliente
@@ -251,11 +251,16 @@ namespace presentacion
         // FINALIZA LA SELECCIOÓN DE PRODUCTOS Y DE LA VENTA
         protected void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
-
+            Venta venta = (Venta)Session["venta"];
+            if (venta.ItemVenta.Count == 0)
+            {
+                lblError.Text = "NO ES POSIBLE FINALIZAR LA VENTA, DEBE AGREGAR PRODUCTOS A LA VENTA.";
+                return;
+            }
             try
             {   // recuperamos la venta el cliente de la sesión 
                 VentaNegocio negocio = new VentaNegocio();
-                Venta venta = (Venta)Session["venta"];
+                
                 Cliente cliente = (Cliente)Session["cliente"];
                 // asignamos el estado de la venta
                 venta.Cliente = cliente;
