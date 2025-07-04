@@ -86,6 +86,41 @@ namespace negocio
             }
         }
 
+        public List<Proveedor> listarProveedoresPorProducto(int idProducto)
+        {
+            List<Proveedor> proveedores = new List<Proveedor>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setConsulta("SELECT P.ID, P.NOMBRE, P.EMAIL, P.DIRECCION, P.CUILCUIT, P.TELEFONO FROM PROVEEDORES P INNER JOIN ProductosXProveedor PP ON P.ID = PP.IDProveedor WHERE PP.IDProducto = @idProducto");
+                datos.setParametro("@idProducto", idProducto);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Proveedor proveedor = new Proveedor();
+                    proveedor.Id = (int)datos.Lector["ID"];
+                    proveedor.Nombre = (string)datos.Lector["Nombre"];
+                    proveedor.Email = (string)datos.Lector["Email"];
+                    proveedor.Direccion = (string)datos.Lector["Direccion"];
+                    proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
+                    proveedor.Telefono = (string)datos.Lector["Telefono"];
+
+                    proveedores.Add(proveedor);
+                }
+
+                return proveedores;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public List<Proveedor> listarBajas(string id = "")
         {
             List<Proveedor> listaProveedores = new List<Proveedor>();
