@@ -27,14 +27,8 @@
                 <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
                 <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
                 <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-                <asp:BoundField HeaderText="Email" DataField="Email"  />
+                <asp:BoundField HeaderText="Email" DataField="Email"  />             
                 
-                <asp:TemplateField HeaderText="Acción">
-                    <ItemTemplate>
-                        <asp:Button Text="Modificar" CssClass="btn btn-light" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
-                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
                
             </Columns>
         </asp:GridView>

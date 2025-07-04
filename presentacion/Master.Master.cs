@@ -22,7 +22,7 @@ namespace presentacion
                     {
                         imgNavbar.ImageUrl = "~/Imagenes/" + ((Usuario)Session["usuario"]).ImagenUrl;
                     }
-                    if(!(Page is Ventas || Page is IngresarProductosVenta || Page is VentasListado || Page is VentaRegistrada || Page is Perfil || Page is Clientes || Page is AltaCliente || Page is Productos || Page is FormProductos))
+                    if(!(Page is Ventas || Page is IngresarProductosVenta || Page is VentasListado || Page is VentaRegistrada || Page is Perfil || Page is Clientes || Page is Productos || Page is FormProductos))
                     {
                         if (!Security.isAdmin(Session["usuario"]))
                             Response.Redirect("Ventas.aspx", false);

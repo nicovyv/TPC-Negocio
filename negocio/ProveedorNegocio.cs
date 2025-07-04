@@ -148,8 +148,8 @@ namespace negocio
             AccesoDatos accesoDatos = new AccesoDatos();
             try
             {
-                accesoDatos.setConsulta("UPDATE Proveedores SET ACTIVO = 0 where id = @id\"");
-                accesoDatos.setParametro("ID", Id);
+                accesoDatos.setConsulta("UPDATE Proveedores SET ACTIVO = 0 where id = @id");
+                accesoDatos.setParametro("@id", Id);
                 accesoDatos.ejecutarAccion();
             }
             catch (Exception ex)
