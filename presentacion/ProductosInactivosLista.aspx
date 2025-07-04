@@ -6,10 +6,13 @@
 
     <div class="container mt-4">
         <h2 class="mb-4 text-center">Productos Dados de Baja</h2>
+
+        <asp:Label ID="lblMsjProdActivo" Visible="false" runat="server" Text="Label"></asp:Label>
+
         <asp:GridView ID="dgvProdInactivos" runat="server"
             AutoGenerateColumns="false"
             CssClass="table table-striped table-bordered"
-            AllowPaging="true" PageSize="10">
+            AllowPaging="true" PageSize="10" OnRowCommand="dgvProdInactivos_RowCommand">
             <columns>
                 <asp:BoundField HeaderText="Código" DataField="Codigo" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
@@ -29,8 +32,8 @@
                 </asp:TemplateField>
             </columns>
         </asp:GridView>
+        <a href="Productos.aspx" class="btn btn-success mt-3">Ir a Productos</a>
 
-        <asp:Button Text="Volver" runat="server" CssClass="btn btn-secondary mt-3" />
     </div>
 
 </asp:Content>

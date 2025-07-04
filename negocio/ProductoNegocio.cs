@@ -418,7 +418,7 @@ namespace negocio
             {
 
 
-                datos.setConsulta("UPDATE Productos SET Activo = 0 WHERE ID = @id");
+                datos.setConsulta("UPDATE Productos SET Activo = 1 WHERE ID = @id");
                 datos.setParametro("@id", id);
 
 

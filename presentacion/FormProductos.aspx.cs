@@ -56,6 +56,8 @@ namespace presentacion
 
             if (producto != null)
             {
+                lblTitulo.Text = "Modificar Producto";
+
                 txtCodProd.Text = producto.Codigo;
                 txtCodProd.Enabled = false;
 
@@ -98,6 +100,7 @@ namespace presentacion
 
                 if (producto != null)
                 {
+                    btnGuardarProd.Visible = false;
 
                     txtCodProd.Text = producto.Codigo;
                     txtCodProd.Enabled = false;
@@ -359,13 +362,18 @@ namespace presentacion
 
                 negocio.eliminar(idProducto);
 
-                Response.Redirect("Productos.aspx");
+                lblMsjBajaProd.Text = "Producto dado de baja.";
+                lblMsjBajaProd.CssClass = "alert alert-warning text-center d-block";
+                lblMsjBajaProd.Visible = true;
+
+                // Response.Redirect("Productos.aspx");
 
             }
             catch (Exception)
             {
 
-                throw;
+                Session.Add("error", "No se pudo dar de baja el producto.");
+                Response.Redirect("Error.aspx");
             }
         }
     }
