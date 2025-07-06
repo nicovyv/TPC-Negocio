@@ -107,7 +107,12 @@ namespace presentacion
         protected void txtBaja_TextChanged(object sender, EventArgs e)
         {
             List<Cliente> lista = (List<Cliente>)Session["listaClientesBaja"];
-            List<Cliente> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtBaja.Text.ToUpper()));
+            string filtro = txtBaja.Text.ToUpper();
+
+            List<Cliente> listaFiltrada = lista.FindAll(x =>
+                (!string.IsNullOrEmpty(x.Nombre) && x.Nombre.ToUpper().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(x.CuilCuit) && x.CuilCuit.ToUpper().Contains(filtro))
+            );
 
             if (Security.isAdmin(Session["usuario"]))
             {
@@ -120,7 +125,12 @@ namespace presentacion
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             List<Cliente> lista = (List<Cliente>)Session["listaClientes"];
-            List<Cliente> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            string filtro = txtFiltro.Text.ToUpper();
+
+            List<Cliente> listaFiltrada = lista.FindAll(x =>
+                (!string.IsNullOrEmpty(x.Nombre) && x.Nombre.ToUpper().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(x.CuilCuit) && x.CuilCuit.ToUpper().Contains(filtro))
+            );
 
             if (Security.isAdmin(Session["usuario"]))
             {

@@ -15,6 +15,33 @@ namespace presentacion
     {
 
         /// <summary>
+        /// Control txtBuscarVentas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarVentas;
+
+        /// <summary>
+        /// Control btnBuscarVentas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarVentas;
+
+        /// <summary>
+        /// Control btnLimpiarBusquedaVentas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLimpiarBusquedaVentas;
+
+        /// <summary>
         /// Control dgvHistorialVentas.
         /// </summary>
         /// <remarks>

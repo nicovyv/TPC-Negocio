@@ -13,44 +13,36 @@
             <div class="col-md-6">
                 <label for="txtBuscador" class="form-label">Nombre del Producto</label>
                 <div class="input-group">
-                    <asp:TextBox ID="txtBuscadorProd" placeholder="Busque Productos..." runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBuscadorProd_TextChanged" />
-                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                    <asp:TextBox ID="txtBuscadorProd" placeholder="Buscar Productos..." runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtBuscadorProd_TextChanged" />
+                    <div class="input-group-append">
+                        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                        <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-outline-secondary" ID="btnLimpiarBuscadorProd" Visible="false" OnClick="btnLimpiarBuscadorProd_Click" />
+
+                    </div>
                 </div>
-                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light mt-2" ID="btnLimpiarBuscadorProd" Visible="false" OnClick="btnLimpiarBuscadorProd_Click" />
             </div>
         </div>
 
         <!-- Filtros -->
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <h5>Filtrar por:</h5>
-
-
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Filtros</h5>
+            </div>
+            <div class="card-body">
                 <div class="mb-3">
                     <label for="ddlFiltroCategoria" class="form-label">Categoría</label>
-                    <asp:DropDownList 
-                        ID="ddlFiltroCategoria" 
-                        runat="server" 
-                        CssClass="form-select"
-                        AutoPostBack="true"
-                        OnSelectedIndexChanged="ddlFiltroCategoria_SelectedIndexChanged">
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlFiltroCategoria" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFiltroCategoria_SelectedIndexChanged"></asp:DropDownList>
                 </div>
 
                 <div class="mb-3">
                     <label for="ddlFiltroMarca" class="form-label">Marca</label>
-                    <asp:DropDownList ID="ddlFiltroMarca" 
-                        runat="server" 
-                        CssClass="form-select" 
-                        AutoPostBack="true" 
-                        OnSelectedIndexChanged="ddlFiltroMarca_SelectedIndexChanged">
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlFiltroMarca" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFiltroMarca_SelectedIndexChanged"></asp:DropDownList>
                 </div>
 
-                <% if(negocio.Security.isAdmin(Session["usuario"]))
-                                { %> 
-                <asp:Button Text="Ver productos dados de baja" runat="server" CssClass="btn btn-outline-info" ID="btnProdBaja" OnClick="btnProdBaja_Click" />
-                <%} %>
+                <% if (negocio.Security.isAdmin(Session["usuario"]))
+                    { %>
+                <asp:Button Text="Ver productos dados de baja" runat="server" CssClass="btn btn-outline-info mt-2" ID="btnProdBaja" OnClick="btnProdBaja_Click" />
+                <% } %>
             </div>
         </div>
 
@@ -117,8 +109,8 @@
         </asp:GridView>
 
         <!-- Botón Nuevo Producto -->
-        <div class="mt-4">
-            <asp:Button ID="btnNuevoProd" OnClick="btnNuevoProd_Click" runat="server" Text="Nuevo Producto" CssClass="btn btn-success" />
+        <div class="mt-4 text-center">
+            <asp:Button ID="btnNuevoProd" OnClick="btnNuevoProd_Click" runat="server" Text="Nuevo Producto" CssClass="btn btn-success btn-lg px-4" />
         </div>
     </div>
 

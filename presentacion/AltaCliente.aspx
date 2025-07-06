@@ -3,86 +3,63 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-dark text-white">
+                <asp:Label runat="server" ID="lblTitulo" CssClass="h4 bi bi-box-seam" Text="Formulario de Alta Cliente"></asp:Label>
+            </div>
+            <div class="card-body">
 
+                <!-- Validación de CUIL -->
+                <asp:Label ID="lblValidarCuit" runat="server" Visible="false" CssClass="alert alert-danger d-block" />
 
-    <div class="d-flex justify-content-center">
+                <!-- Nombre -->
+                <div class="mb-3">
+                    <label for="txtNombreCliente" class="form-label">Nombre</label>
+                    <asp:TextBox ID="txtNombreCliente" runat="server" CssClass="form-control" MaxLength="30" placeholder="Nombre" />
+                    <asp:RequiredFieldValidator ControlToValidate="txtNombreCliente" runat="server" CssClass="text-danger" ErrorMessage="El campo Nombre es obligatorio." Display="Dynamic" />
+                </div>
 
-        <div class="col-6 mt-4">
-          <%-- TITULO--%>
-            <div class="mb-3">
-                <asp:Label runat="server" ID="lblTitulo" CssClass="h1" Text="Formulario de Alta Cliente"></asp:Label>
-            </div>
-            <%--VALIDACION CUIL O CUIT--%>
-            <div class="mb-3">
-                <asp:Label ID="lblValidarCuit" runat="server" Visible="false" CssClass="alert alert-danger" />
-            
-            </div>
-            <%--NOMBRE DEL CLIENTE--%>
-            <div class="mb-3">
-                <label for="txtNombreCliente" class="form-label">Nombre</label>
-                <asp:TextBox runat="server" ID="txtNombreCliente" maxlength="30" placeholder="Nombre" CssClass="form-control" />
-                <asp:RequiredFieldValidator
-                    runat="server"
-                    ControlToValidate="txtNombreCliente"
-                    ErrorMessage="El campo Nombre es obligatorio."
-                    CssClass="text-danger"
-                    Display="Dynamic" />
-            </div>
-            <%--CUIT O CUIL DEL CLIENTE--%>
-            <div class="mb-3">
-                <label for="txtCuilCliente" class="form-label">Cuil/Cuit</label>
-                <asp:TextBox runat="server" ID="txtCuilCliente" MaxLength="11" placeholder="20000000005" pattern="\d{11}" 
-             title="Ingrese solo números, exactamente 11 dígitos" CssClass="form-control" />
-                <asp:RequiredFieldValidator
-                    runat="server"
-                    ControlToValidate="txtCuilCliente"
-                    ErrorMessage="El campo Cuil es obligatorio."
-                    CssClass="text-danger"
-                    Display="Dynamic" />
-            </div>
-            <%--DIRECCION--%>
-            <div class="mb-3">
-                <label for="txtDireccion" class="form-label">Direccion</label>
-                <asp:TextBox runat="server" ID="txtDireccion" maxlength="30" placeholder="Calle 1234, Localidad" CssClass="form-control" />
-                <asp:RequiredFieldValidator
-                    runat="server"
-                    ControlToValidate="txtDireccion"
-                    ErrorMessage="El campo Dirección es obligatorio."
-                    CssClass="text-danger"
-                    Display="Dynamic" />
-            </div>
-            <%--TELEFONO--%>
-            <div class="mb-3">
-                <label for="txtTelefono" class="form-label">Telefono</label>
-                <asp:TextBox 
-                    runat="server" 
-                    ID="txtTelefono" 
-                    pattern="\d{10}" 
-                    title="Ingrese solo números, exactamente 10 dígitos" 
-                    maxlength="10" 
-                    placeholder="1130000000" 
-                    CssClass="form-control" />
-                <asp:RequiredFieldValidator
-                    runat="server"
-                    ControlToValidate="txtTelefono"
-                    ErrorMessage="El campo telefono es obligatorio."
-                    CssClass="text-danger"
-                    Display="Dynamic" />
-            </div>
-            <div class="mb-3">
-                <label for="txtEmailCliente"  class="form-label">Email</label>
-                <asp:TextBox runat="server" ID="txtEmailCliente" title="Por ejemplo: email@dominio.com" maxlength="30" CssClass="form-control" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" AutoCompleteType="Email" placeholder="email@dominio.com" />
-                <asp:RequiredFieldValidator
-                    runat="server"
-                    ControlToValidate="txtEmailCliente"
-                    ErrorMessage="El campo Email es obligatorio."
-                    CssClass="text-danger"
-                    Display="Dynamic" />
-            </div>
-            <div class="mb-3">
-                <asp:Button class="btn btn-dark" Text="Registrar Cliente" runat="server" ID="btnAgregarCliente" OnClick="btnAgregarCliente_Click" />
-                <a class="btn btn-dark" href="Clientes.aspx">Cancelar</a>
+                <!-- CUIL / CUIT -->
+                <div class="mb-3">
+                    <label for="txtCuilCliente" class="form-label">CUIL / CUIT</label>
+                    <asp:TextBox ID="txtCuilCliente" runat="server" MaxLength="11" placeholder="20000000005" CssClass="form-control"
+                        pattern="\d{11}" title="Ingrese solo números, exactamente 11 dígitos" />
+                    <asp:RequiredFieldValidator ControlToValidate="txtCuilCliente" runat="server" CssClass="text-danger" ErrorMessage="El campo CUIL/CUIT es obligatorio." Display="Dynamic" />
+                </div>
+
+                <!-- Dirección -->
+                <div class="mb-3">
+                    <label for="txtDireccion" class="form-label">Dirección</label>
+                    <asp:TextBox ID="txtDireccion" runat="server" MaxLength="30" CssClass="form-control" placeholder="Calle 1234, Localidad" />
+                    <asp:RequiredFieldValidator ControlToValidate="txtDireccion" runat="server" CssClass="text-danger" ErrorMessage="El campo Dirección es obligatorio." Display="Dynamic" />
+                </div>
+
+                <!-- Teléfono -->
+                <div class="mb-3">
+                    <label for="txtTelefono" class="form-label">Teléfono</label>
+                    <asp:TextBox ID="txtTelefono" runat="server" MaxLength="10" CssClass="form-control" placeholder="1130000000"
+                        pattern="\d{10}" title="Ingrese solo números, exactamente 10 dígitos" />
+                    <asp:RequiredFieldValidator ControlToValidate="txtTelefono" runat="server" CssClass="text-danger" ErrorMessage="El campo Teléfono es obligatorio." Display="Dynamic" />
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="txtEmailCliente" class="form-label">Email</label>
+                    <asp:TextBox ID="txtEmailCliente" runat="server" MaxLength="30" CssClass="form-control" placeholder="email@dominio.com"
+                        pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                        title="Por ejemplo: email@dominio.com" AutoCompleteType="Email" />
+                    <asp:RequiredFieldValidator ControlToValidate="txtEmailCliente" runat="server" CssClass="text-danger" ErrorMessage="El campo Email es obligatorio." Display="Dynamic" />
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <asp:Button ID="btnAgregarCliente" runat="server" Text="Registrar Cliente" CssClass="btn btn-primary" OnClick="btnAgregarCliente_Click" />
+                    <a class="btn btn-outline-secondary" href="Clientes.aspx">Cancelar</a>
+                </div>
+
             </div>
         </div>
     </div>
+
 </asp:Content>

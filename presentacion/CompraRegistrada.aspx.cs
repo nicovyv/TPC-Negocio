@@ -18,7 +18,7 @@ namespace presentacion
             // SIEMPRE cargamos la compra, sea por URL o sesión
             if (Request.QueryString["id"] != null)
             {
-                lblTitulo.Text = "Dettalle Compra";
+                lblTitulo.Text = "Detalle Compra";
                 string idCompra = Request.QueryString["id"];
                 CompraNegocio negocio = new CompraNegocio();
                 compra = negocio.listar(idCompra).FirstOrDefault();

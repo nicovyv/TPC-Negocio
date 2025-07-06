@@ -45,12 +45,31 @@ namespace presentacion
         }
 
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
-        {        
+        {
+
             List<Proveedor> lista = (List<Proveedor>)Session["listaProveedores"];
-            List<Proveedor> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
-            dgvProveedores.DataSource = listaFiltrada;
-            dgvProveedores.DataBind();
-            btnLimpiar.Visible = true;           
+            string filtro = txtFiltro.Text.ToUpper();
+
+            List<Proveedor> listaFiltrada = lista.FindAll(x =>
+                (!string.IsNullOrEmpty(x.Nombre) && x.Nombre.ToUpper().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(x.CuilCuit) && x.CuilCuit.ToUpper().Contains(filtro))
+            );
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvProveedores.DataSource = listaFiltrada;
+                dgvProveedores.DataBind();
+                btnLimpiar.Visible = true;
+            }
+            else
+            {
+                dgvProveedores.DataSource = listaFiltrada;
+                dgvProveedores.DataBind();
+                btnLimpiar.Visible = true;
+            }
+
+
+        
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
@@ -92,11 +111,22 @@ namespace presentacion
 
         protected void txtBaja_TextChanged(object sender, EventArgs e)
         {
+
             List<Proveedor> lista = (List<Proveedor>)Session["listaProveedoresBaja"];
-            List<Proveedor> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtBaja.Text.ToUpper()));
-            dgvBajas.DataSource = listaFiltrada;
-            dgvBajas.DataBind();
-            btnBaja.Visible = true;
+            string filtro = txtBaja.Text.ToUpper();
+
+            List<Proveedor> listaFiltrada = lista.FindAll(x =>
+                (!string.IsNullOrEmpty(x.Nombre) && x.Nombre.ToUpper().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(x.CuilCuit) && x.CuilCuit.ToUpper().Contains(filtro))
+            );
+
+            if (Security.isAdmin(Session["usuario"]))
+            {
+                dgvBajas.DataSource = listaFiltrada;
+                dgvBajas.DataBind();
+                btnBaja.Visible = true;
+            }
+
         }
     }
 }

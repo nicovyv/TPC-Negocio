@@ -45,6 +45,17 @@ namespace presentacion
                     int idCategoria = int.Parse(ddlCatVenta.SelectedValue);
                     productos = productoNegocio.FiltrarCategoria(idCategoria);
 
+
+
+                    if (dgvDetalleVenta.Rows.Count == 0)
+                    {
+                        btnFinalizarVenta.Enabled = false;
+                    }
+                    else
+                    {
+                        btnFinalizarVenta.Enabled = true;
+                    }
+
                     // SI LA CATEGORIA SELECCIONADA NO TIENE PRODUCTOS SE LIMPIA DDLPRODUCTOS. SI LOS TIENE CARGA DDL Y MUESTRA STOCK Y PRECIO
                     if (productos.Count > 0)
                     {
@@ -57,12 +68,14 @@ namespace presentacion
                         Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
                         txtProdPrecio.Text = producto.PrecioVenta.ToString();
                         txtProdStock.Text = producto.StockActual.ToString();
+                        btnAgregarItemVenta.Enabled = true;
                     }
                     else
                     {
                         ddlProdVenta.Items.Clear();
                         txtProdPrecio.Text = "";
                         txtProdStock.Text = "";
+                        btnAgregarItemVenta.Enabled = false;
 
                         lblHelProdVenta.Text = "Sin Productos.";
                     }
@@ -230,6 +243,9 @@ namespace presentacion
                 decimal totalVenta = venta.ItemVenta.Sum(x => x.Cantidad * x.PrecioUnidad);
                 lbltotalVentaValor.Text = totalVenta.ToString();
 
+
+                btnFinalizarVenta.Enabled = dgvDetalleVenta.Rows.Count > 0;
+
             }
             catch (Exception ex)
             {
@@ -307,12 +323,14 @@ namespace presentacion
                 Producto producto = productoNegocio.ObtenerPorId(int.Parse(ddlProdVenta.SelectedValue));
                 txtProdPrecio.Text = producto.PrecioVenta.ToString();
                 txtProdStock.Text = producto.StockActual.ToString();
+
             }
             else
             {
                 ddlProdVenta.Items.Clear();
                 txtProdPrecio.Text = "";
                 txtProdStock.Text = "";
+
 
                 lblHelProdVenta.Text = "Sin Productos.";
             }
@@ -330,6 +348,8 @@ namespace presentacion
 
             txtProdPrecio.Text = producto.PrecioVenta.ToString();
             txtProdStock.Text = producto.StockActual.ToString();
+
+            
         }
 
 
@@ -358,6 +378,9 @@ namespace presentacion
                             // ACTUALIZAMOS LA GRILLA
                             dgvDetalleVenta.DataSource = venta.ItemVenta;
                             dgvDetalleVenta.DataBind();
+
+                            btnFinalizarVenta.Enabled = dgvDetalleVenta.Rows.Count > 0;
+
                             // ACTUALIZAMOS EL VALOR TOTAL
                             decimal totalVenta = venta.ItemVenta.Sum(x => x.Cantidad * x.PrecioUnidad);
                             lbltotalVentaValor.Text = totalVenta.ToString();
@@ -382,5 +405,8 @@ namespace presentacion
 
 
         }
+
+
+
     }
 }

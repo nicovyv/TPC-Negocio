@@ -5,96 +5,115 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container mt-4">
-        <h1 class="mb-4">Clientes</h1>
-        <!-- Buscador -->
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <label for="txtFiltro" class="form-label">Nombre del cliente</label>
-                <div class="input-group">
-                    <asp:TextBox ID="txtFiltro" placeholder="Busque Clientes..." runat="server" CssClass="form-control" OnTextChanged="txtFiltro_TextChanged" AutoPostBack="true" />
-                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2><i class="bi bi-people"></i>Clientes</h2>
+            <% if (negocio.Security.isAdmin(Session["usuario"]))
+                { %>
+            <a class="btn btn-success" href="AltaCliente.aspx"><i class="bi bi-plus-circle"></i>Nuevo Cliente</a>
+            <% } %>
+        </div>
+
+        <!-- Clientes Activos -->
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">
+                <strong>Clientes Activos</strong>
+            </div>
+            <div class="card-body">
+
+                <!-- Buscador -->
+                <div class="row g-2 align-items-end mb-3">
+                    <div class="col-md-6">
+                        <label for="txtFiltro" class="form-label">Nombre del Cliente</label>
+                        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control" placeholder="Buscar por cuil o nombre..." AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+                    </div>
+                    <div class="col-auto">
+                        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                    </div>
+                    <div class="col-auto">
+                        <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-outline-secondary" ID="btnLimpiar" OnClick="btnLimpiar_Click" Visible="false" />
+                    </div>
                 </div>
-                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnLimpiar" OnClick="btnLimpiar_Click" Visible="false" />
+
+                <!-- Grilla Clientes Vendedor -->
+                <asp:Panel ID="pnlVendedor" runat="server">
+                    <div class="table-responsive mb-4">
+                        <asp:GridView ID="dgvClientesVendedor" runat="server" CssClass="table table-dark table-hover" AutoGenerateColumns="false" DataKeyNames="Id">
+                            <Columns>
+                                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                                <asp:BoundField HeaderText="CUIL/CUIT" DataField="CuilCuit" />
+                                <asp:BoundField HeaderText="Dirección" DataField="Direccion" />
+                                <asp:BoundField HeaderText="Teléfono" DataField="Telefono" />
+                                <asp:BoundField HeaderText="Email" DataField="Email" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </asp:Panel>
+
+                <!-- Grilla Clientes Admin -->
+                <asp:Panel ID="pnlAdmin" runat="server">
+                    <div class="table-responsive mb-4">
+                        <asp:GridView ID="dgvClientesAdmin" runat="server" CssClass="table table-dark table-hover" AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvClientes_RowCommand">
+                            <Columns>
+                                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                                <asp:BoundField HeaderText="CUIL/CUIT" DataField="CuilCuit" />
+                                <asp:BoundField HeaderText="Dirección" DataField="Direccion" />
+                                <asp:BoundField HeaderText="Teléfono" DataField="Telefono" />
+                                <asp:BoundField HeaderText="Email" DataField="Email" />
+                                <asp:TemplateField HeaderText="Acción">
+                                    <ItemTemplate>
+                                        <asp:Button Text="Modificar" CssClass="btn btn-outline-light btn-sm me-2" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                                        <asp:Button Text="Eliminar" CssClass="btn btn-danger btn-sm" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </asp:Panel>
 
             </div>
         </div>
-        <!-- Grilla para Vendedores -->
-        <asp:GridView ID="dgvClientesVendedor" runat="server" DataKeyNames="Id"
-            CssClass="table table-dark table-hover" AutoGenerateColumns="false"
-            AllowPaging="false" PageSize="5" OnRowCommand="dgvClientes_RowCommand">
-            <Columns>
-                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
-                <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
-                <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-                <asp:BoundField HeaderText="Email" DataField="Email" />
 
-
-            </Columns>
-        </asp:GridView>
-        <!-- Grilla para Admin -->
-        <asp:GridView ID="dgvClientesAdmin" runat="server" DataKeyNames="Id"
-            CssClass="table table-dark table-hover" AutoGenerateColumns="false"
-            AllowPaging="false" PageSize="5" OnRowCommand="dgvClientes_RowCommand">
-            <Columns>
-                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
-                <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
-                <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-                <asp:BoundField HeaderText="Email" DataField="Email" />
-
-                <asp:TemplateField HeaderText="Acción">
-                    <ItemTemplate>
-                        <asp:Button Text="Modificar" CssClass="btn btn-light" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' runat="server" />
-                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-            </Columns>
-        </asp:GridView>
         <% if (negocio.Security.isAdmin(Session["usuario"]))
-    { %>
-        <h1 class="mb-4">Clientes Dados de Baja</h1>
-        <!-- Buscador BAJAS -->
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <label for="txtFiltro" class="form-label">Nombre del cliente</label>
-                <div class="input-group">
-                    <asp:TextBox ID="txtBaja" placeholder="Busque Clientes..." runat="server" CssClass="form-control" OnTextChanged="txtBaja_TextChanged" AutoPostBack="true" />
-                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+            { %>
+        <!-- Clientes dados de baja -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark">
+                <strong>Clientes Dados de Baja</strong>
+            </div>
+            <div class="card-body">
+                <!-- Buscador -->
+                <div class="row g-2 align-items-end mb-3">
+                    <div class="col-md-6">
+                        <label for="txtBaja" class="form-label">Nombre del Cliente</label>
+                        <asp:TextBox ID="txtBaja" runat="server" CssClass="form-control" placeholder="Buscar por cuil o nombre..." AutoPostBack="true" OnTextChanged="txtBaja_TextChanged" />
+                    </div>
+                    <div class="col-auto">
+                        <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" />
+                    </div>
+                    <div class="col-auto">
+                        <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-outline-secondary" ID="btnBaja" OnClick="btnBaja_Click" Visible="false" />
+                    </div>
                 </div>
-                <asp:Button Text="Limpiar" runat="server" CssClass="btn btn-light" ID="btnBaja" OnClick="btnBaja_Click" Visible="false" />
 
+                <!-- Grilla de Bajas -->
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvBajas" runat="server" CssClass="table table-secondary table-hover" AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvBajas_RowCommand">
+                        <Columns>
+                            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                            <asp:BoundField HeaderText="CUIL/CUIT" DataField="CuilCuit" />
+                            <asp:BoundField HeaderText="Dirección" DataField="Direccion" />
+                            <asp:BoundField HeaderText="Teléfono" DataField="Telefono" />
+                            <asp:BoundField HeaderText="Email" DataField="Email" />
+                            <asp:TemplateField HeaderText="Acción">
+                                <ItemTemplate>
+                                    <asp:Button Text="Reactivar" CssClass="btn btn-success btn-sm" CommandName="Reactivar" CommandArgument='<%# Eval("Id") %>' runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
         <% } %>
-        <!-- Grilla de bajas para Admin -->
-        <asp:GridView ID="dgvBajas" runat="server" DataKeyNames="Id"
-            CssClass="table table-dark table-hover" AutoGenerateColumns="false"
-            AllowPaging="false" PageSize="5" OnRowCommand="dgvBajas_RowCommand">
-            <Columns>
-                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="CuilCuit" DataField="CuilCuit" />
-                <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
-                <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-                <asp:BoundField HeaderText="Email" DataField="Email" />
-
-                <asp:TemplateField HeaderText="Acción">
-                    <ItemTemplate>
-                        <asp:Button Text="Reactivar" CssClass="btn btn-light" CommandName="Reactivar" CommandArgument='<%# Eval("Id") %>' runat="server" />
-
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-            </Columns>
-        </asp:GridView>
-        <% if (negocio.Security.isAdmin(Session["usuario"]))
-            { %>
-        <!-- Botón Nuevo CLIENTE -->
-        <div class="mt-4">
-            <a class="btn btn-success" href="AltaCliente.aspx">Nuevo Cliente</a>
-        </div>
     </div>
-
-    <% } %>
 </asp:Content>

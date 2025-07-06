@@ -38,7 +38,7 @@ namespace presentacion
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
-            dgvCompra.DataSource = Session["listaClientes"];
+            dgvCompra.DataSource = Session["listaCompras"];
             dgvCompra.DataBind();
             txtFiltro.Text = "";
             btnLimpiar.Visible = false;
@@ -47,7 +47,13 @@ namespace presentacion
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             List<Compra> lista = (List<Compra>)Session["listaCompras"];
-            List<Compra> listaFiltrada = lista.FindAll(x => x.Proveedor.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            string filtro = txtFiltro.Text.Trim().ToUpper();
+
+            List<Compra> listaFiltrada = lista.FindAll(x =>
+                (!string.IsNullOrEmpty(x.Proveedor.CuilCuit) && x.Proveedor.CuilCuit.ToUpper().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(x.Proveedor.Nombre) && x.Proveedor.Nombre.ToUpper().Contains(filtro))
+            );
+
             dgvCompra.DataSource = listaFiltrada;
             dgvCompra.DataBind();
             btnLimpiar.Visible = true;
