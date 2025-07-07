@@ -100,6 +100,9 @@ namespace presentacion
 
                 if (producto != null)
                 {
+
+                    lblTitulo.Text = "Detalle de Producto";
+
                     btnGuardarProd.Visible = false;
 
                     txtCodProd.Text = producto.Codigo;
