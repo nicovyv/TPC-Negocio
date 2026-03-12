@@ -47,11 +47,11 @@ El sistema automatiza el cálculo del precio de venta final mediante lógica en 
 
 ### Capturas del Sistema
 
- ![](img/venta2.jpeg)
- ![](img/clienteAlta.jpeg)
- ![](img/compraDetalle.jpeg)
- ![](img/perfil.jpeg)
- ![](img/prov.jpeg)
+ ![](img/venta2.jfif)
+ ![](img/clienteAlta.jfif)
+ ![](img/compraDetalle.jfif)
+ ![](img/perfil.jfif)
+ ![](img/prov.jfif)
 
 ---
 ## Acerca del Proyecto y el equipo 
