@@ -114,13 +114,15 @@ GO
 
 CREATE TABLE DetalleCompra (
     ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    IDCompra INT NOT NULL FOREIGN KEY REFERENCES Compras(ID),
-    IDProducto INT NOT NULL FOREIGN KEY REFERENCES Productos(ID),
+    IDCompra INT NOT NULL,
+    IDProducto INT NOT NULL,
     Cantidad INT NOT NULL CHECK (Cantidad > 0),
     PrecioUnidad MONEY NOT NULL CHECK (PrecioUnidad > 0),
-	CONSTRAINT FK_DetalleCompra_Compra FOREIGN KEY (IDCompra) REFERENCES Compras (ID),
-	CONSTRAINT FK_DetalleCompra_Producto FOREIGN KEY (IDProducto) REFERENCES PRODUCTOS (ID),
-	Activo BIT NOT NULL DEFAULT 1
+    Activo BIT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_DetalleCompra_Compra 
+        FOREIGN KEY (IDCompra) REFERENCES Compras(ID),
+    CONSTRAINT FK_DetalleCompra_Producto 
+        FOREIGN KEY (IDProducto) REFERENCES Productos(ID)
 );
 
 
