@@ -10,6 +10,11 @@ namespace negocio
 {
     public class CompraNegocio
     {
+        private string leerTexto(object valor)
+        {
+            return valor == DBNull.Value ? null : (string)valor;
+        }
+
         public List<Compra> listar(string id="")
         {
             List<Compra> lista = new List<Compra>();
@@ -36,7 +41,7 @@ namespace negocio
 
                     compra.Fecha = (DateTime)datos.Lector["Fecha"];
                     compra.Proveedor = new Proveedor();
-                    compra.Proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
+                    compra.Proveedor.CuilCuit = leerTexto(datos.Lector["CuilCuit"]);
                     compra.Proveedor.Nombre = (string)datos.Lector["NombreProveedor"];
                     DetalleCompraNegocio detalleNegocio = new DetalleCompraNegocio();
                     compra.Detalle = detalleNegocio.Listar(compra.Id);

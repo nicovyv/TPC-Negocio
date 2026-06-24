@@ -31,16 +31,12 @@
                             <label for="txtCuilProveedor" class="form-label">Cuil/Cuit</label>
                             <asp:TextBox runat="server" ID="txtCuilProveedor" MaxLength="11" placeholder="20000000005"
                                 pattern="\d{11}" title="Ingrese solo números, exactamente 11 dígitos" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCuilProveedor"
-                                ErrorMessage="El campo Cuil/Cuit es obligatorio." CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <!-- Dirección -->
                         <div class="mb-3">
                             <label for="txtDireccion" class="form-label">Dirección</label>
                             <asp:TextBox runat="server" ID="txtDireccion" MaxLength="30" placeholder="Calle 1234, Localidad" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtDireccion"
-                                ErrorMessage="El campo Dirección es obligatorio." CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <!-- Teléfono -->
@@ -49,8 +45,6 @@
                             <asp:TextBox runat="server" ID="txtTelefono" pattern="\d{10}"
                                 title="Ingrese solo números, exactamente 10 dígitos"
                                 MaxLength="10" placeholder="1130000000" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtTelefono"
-                                ErrorMessage="El campo Teléfono es obligatorio." CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <!-- Email -->
@@ -59,8 +53,6 @@
                             <asp:TextBox runat="server" ID="txtEmailProveedor" title="Por ejemplo: email@dominio.com"
                                 MaxLength="30" CssClass="form-control" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                                 AutoCompleteType="Email" placeholder="email@dominio.com" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmailProveedor"
-                                ErrorMessage="El campo Email es obligatorio." CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <!-- Botones -->

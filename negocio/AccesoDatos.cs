@@ -72,7 +72,7 @@ namespace negocio
         }
         public void setParametro(string nombre, Object valor)
         {
-            comando.Parameters.AddWithValue(nombre, valor);
+            comando.Parameters.AddWithValue(nombre, valor ?? DBNull.Value);
         }
         public void cerrarConexion()
         {

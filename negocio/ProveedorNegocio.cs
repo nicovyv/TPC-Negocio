@@ -9,6 +9,15 @@ namespace negocio
 {
     public class ProveedorNegocio
     {
+        private string leerTexto(object valor)
+        {
+            return valor == DBNull.Value ? null : (string)valor;
+        }
+
+        private string normalizarTextoOpcional(string valor)
+        {
+            return string.IsNullOrWhiteSpace(valor) ? null : valor.Trim();
+        }
 
         public Proveedor buscarProveedorPorCuitCuil(string cuitCuil)
         {
@@ -25,10 +34,10 @@ namespace negocio
 
                     proveedor.Id = (int)datos.Lector["Id"];
                     proveedor.Nombre = (string)datos.Lector["Nombre"];
-                    proveedor.Email = (string)datos.Lector["Email"];
-                    proveedor.Direccion = (string)datos.Lector["Direccion"];
-                    proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
-                    proveedor.Telefono = (string)datos.Lector["Telefono"];
+                    proveedor.Email = leerTexto(datos.Lector["Email"]);
+                    proveedor.Direccion = leerTexto(datos.Lector["Direccion"]);
+                    proveedor.CuilCuit = leerTexto(datos.Lector["CuilCuit"]);
+                    proveedor.Telefono = leerTexto(datos.Lector["Telefono"]);
                     //proveedor.Activo = (bool)datos.Lector["Activo"];
                 }
                 return proveedor;
@@ -62,10 +71,10 @@ namespace negocio
                     Proveedor proveedor = new Proveedor();
                     proveedor.Id = (int)datos.Lector["ID"];
                     proveedor.Nombre = (string)datos.Lector["Nombre"];
-                    proveedor.Email = (string)datos.Lector["Email"];
-                    proveedor.Direccion = (string)datos.Lector["Direccion"];
-                    proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
-                    proveedor.Telefono = (string)datos.Lector["Telefono"];
+                    proveedor.Email = leerTexto(datos.Lector["Email"]);
+                    proveedor.Direccion = leerTexto(datos.Lector["Direccion"]);
+                    proveedor.CuilCuit = leerTexto(datos.Lector["CuilCuit"]);
+                    proveedor.Telefono = leerTexto(datos.Lector["Telefono"]);
 
                     listaProveedores.Add(proveedor);
 
@@ -102,10 +111,10 @@ namespace negocio
                     Proveedor proveedor = new Proveedor();
                     proveedor.Id = (int)datos.Lector["ID"];
                     proveedor.Nombre = (string)datos.Lector["Nombre"];
-                    proveedor.Email = (string)datos.Lector["Email"];
-                    proveedor.Direccion = (string)datos.Lector["Direccion"];
-                    proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
-                    proveedor.Telefono = (string)datos.Lector["Telefono"];
+                    proveedor.Email = leerTexto(datos.Lector["Email"]);
+                    proveedor.Direccion = leerTexto(datos.Lector["Direccion"]);
+                    proveedor.CuilCuit = leerTexto(datos.Lector["CuilCuit"]);
+                    proveedor.Telefono = leerTexto(datos.Lector["Telefono"]);
 
                     proveedores.Add(proveedor);
                 }
@@ -144,10 +153,10 @@ namespace negocio
                     Proveedor proveedor = new Proveedor();
                     proveedor.Id = (int)datos.Lector["ID"];
                     proveedor.Nombre = (string)datos.Lector["Nombre"];
-                    proveedor.Email = (string)datos.Lector["Email"];
-                    proveedor.Direccion = (string)datos.Lector["Direccion"];
-                    proveedor.CuilCuit = (string)datos.Lector["CuilCuit"];
-                    proveedor.Telefono = (string)datos.Lector["Telefono"];
+                    proveedor.Email = leerTexto(datos.Lector["Email"]);
+                    proveedor.Direccion = leerTexto(datos.Lector["Direccion"]);
+                    proveedor.CuilCuit = leerTexto(datos.Lector["CuilCuit"]);
+                    proveedor.Telefono = leerTexto(datos.Lector["Telefono"]);
 
                     listaProveedores.Add(proveedor);
 
@@ -178,11 +187,11 @@ namespace negocio
             try
             {
                 accesoDatos.setConsulta("INSERT INTO PROVEEDORES (NOMBRE, EMAIL, DIRECCION, CUILCUIT, TELEFONO) VALUES (@NOMBRE, @EMAIL, @DIRECCION, @CUILCUIT, @TELEFONO)");
-                accesoDatos.setParametro("@NOMBRE", proveedor.Nombre);
-                accesoDatos.setParametro("@EMAIL", proveedor.Email);
-                accesoDatos.setParametro("@DIRECCION", proveedor.Direccion);
-                accesoDatos.setParametro("@CUILCUIT", proveedor.CuilCuit);
-                accesoDatos.setParametro("@TELEFONO", proveedor.Telefono);
+                accesoDatos.setParametro("@NOMBRE", proveedor.Nombre.Trim());
+                accesoDatos.setParametro("@EMAIL", normalizarTextoOpcional(proveedor.Email));
+                accesoDatos.setParametro("@DIRECCION", normalizarTextoOpcional(proveedor.Direccion));
+                accesoDatos.setParametro("@CUILCUIT", normalizarTextoOpcional(proveedor.CuilCuit));
+                accesoDatos.setParametro("@TELEFONO", normalizarTextoOpcional(proveedor.Telefono));
                 accesoDatos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -205,11 +214,11 @@ namespace negocio
             {
                 accesoDatos.setConsulta("UPDATE PROVEEDORES SET NOMBRE = @NOMBRE, EMAIL = @EMAIL, DIRECCION = @DIRECCION, CUILCUIT = @CUILCUIT, TELEFONO = @TELEFONO WHERE ID = @ID");
                 accesoDatos.setParametro("@ID", proveedor.Id);
-                accesoDatos.setParametro("@NOMBRE", proveedor.Nombre);
-                accesoDatos.setParametro("@EMAIL", proveedor.Email);
-                accesoDatos.setParametro("@DIRECCION", proveedor.Direccion);
-                accesoDatos.setParametro("@CUILCUIT", proveedor.CuilCuit);
-                accesoDatos.setParametro("@TELEFONO", proveedor.Telefono);
+                accesoDatos.setParametro("@NOMBRE", proveedor.Nombre.Trim());
+                accesoDatos.setParametro("@EMAIL", normalizarTextoOpcional(proveedor.Email));
+                accesoDatos.setParametro("@DIRECCION", normalizarTextoOpcional(proveedor.Direccion));
+                accesoDatos.setParametro("@CUILCUIT", normalizarTextoOpcional(proveedor.CuilCuit));
+                accesoDatos.setParametro("@TELEFONO", normalizarTextoOpcional(proveedor.Telefono));
 
                 accesoDatos.ejecutarAccion();
             }

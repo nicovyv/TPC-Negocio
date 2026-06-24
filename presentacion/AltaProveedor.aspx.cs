@@ -31,7 +31,7 @@ namespace presentacion
                         txtCuilProveedor.Text = seleccionado.CuilCuit;
                         txtDireccion.Text = seleccionado.Direccion;
                         txtEmailProveedor.Text = seleccionado.Email;
-                        txtTelefono.Text = seleccionado.Telefono.ToString();
+                        txtTelefono.Text = seleccionado.Telefono;
                     }
                 }
                 catch (Exception)
@@ -96,15 +96,14 @@ namespace presentacion
         {
             try
             {
-                if (ValidarCamposVacios(txtTelefono) || ValidarCamposVacios(txtDireccion) ||
-                    ValidarCamposVacios(txtCuilProveedor) || ValidarCamposVacios(txtEmailProveedor) || ValidarCamposVacios(txtNombreProveedor))
+                if (ValidarCamposVacios(txtNombreProveedor))
                 {
                     lblValidarCuit.Visible = true;
-                    lblValidarCuit.Text = "!Atención! Se deben completar todos los datos, por favor";
+                    lblValidarCuit.Text = "!Atención! Se debe completar el nombre del proveedor";
                     return;
                 }
 
-                if (!ValidarCuit(txtCuilProveedor.Text))
+                if (!string.IsNullOrWhiteSpace(txtCuilProveedor.Text) && !ValidarCuit(txtCuilProveedor.Text))
                 {
                     lblValidarCuit.Visible = true;
                     lblValidarCuit.Text = "CUIT/CUIL inválido. Debe contener 11 dígitos";

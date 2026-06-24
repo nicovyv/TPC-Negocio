@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{33
 	ProjectSection(SolutionItems) = preProject
 		Database\COMERCIO_DB.sql = Database\COMERCIO_DB.sql
 		Database\INSERTS_SISTEMA_COMPRAS_VENTAS.sql = Database\INSERTS_SISTEMA_COMPRAS_VENTAS.sql
+		Database\INSERTS_SUPLEMENTOS.sql = Database\INSERTS_SUPLEMENTOS.sql
 	EndProjectSection
 EndProject
 Global
