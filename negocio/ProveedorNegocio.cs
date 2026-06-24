@@ -18,6 +18,34 @@ namespace negocio
         {
             return string.IsNullOrWhiteSpace(valor) ? null : valor.Trim();
         }
+        
+        public Proveedor buscarProveedorPorNombre(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Proveedor proveedor = new Proveedor();
+            try
+            {
+                datos.setConsulta("SELECT Id,Nombre,Email,Direccion,CuilCuit,Telefono FROM Proveedores WHERE Nombre=@nombre AND Activo=1;");
+                datos.setParametro("@nombre", nombre);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    proveedor.Id = (int)datos.Lector["Id"];
+                    proveedor.Nombre = (string)datos.Lector["Nombre"];
+                    proveedor.Email = leerTexto(datos.Lector["Email"]);
+                    proveedor.Direccion = leerTexto(datos.Lector["Direccion"]);
+                    proveedor.CuilCuit = leerTexto(datos.Lector["CuilCuit"]);
+                    proveedor.Telefono = leerTexto(datos.Lector["Telefono"]);
+                    //proveedor.Activo = (bool)datos.Lector["Activo"];
+                }
+                return proveedor;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
 
         public Proveedor buscarProveedorPorCuitCuil(string cuitCuil)
         {

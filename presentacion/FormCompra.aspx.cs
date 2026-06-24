@@ -44,7 +44,15 @@ namespace presentacion
 
             try
             {
-                proveedor = proveedorNegocio.buscarProveedorPorCuitCuil(txtBuscadorProveedor.Text);
+                string nombreProveedor = txtBuscadorProveedor.Text?.Trim();
+
+                if (string.IsNullOrWhiteSpace(nombreProveedor))
+                {
+                    Session.Add("error", "Debe ingresar un nombre de proveedor para poder realizar la compra");
+                    Response.Redirect("Error.aspx", false);
+                }
+
+                proveedor = proveedorNegocio.buscarProveedorPorNombre(nombreProveedor);
                 //GENERAMOS UNA NUEVA COMPRA
                 compra = new Compra();
                 //ASIGNAMOS CLIENTE A LA COMPRA
@@ -53,18 +61,20 @@ namespace presentacion
 
                 if (proveedor.Id != 0)
                 {
-                    txtCuit.Text = proveedor.CuilCuit;
+                    txtCuit.Text = string.IsNullOrWhiteSpace(proveedor.CuilCuit) ? "Sin CUIT" : proveedor.CuilCuit;
+
                     txtnombreProveedor.Text = proveedor.Nombre;
 
 
-                    Session.Add("proveedor", proveedor);
+                    Session["proveedor"] = proveedor;
 
                     btnIngresarProductos.Visible = true;
                 }
                 else
                 {
-                    Session.Add("error", "El proveedor no está registrado en el sistema, no se puede realizar la compra");
+                    Session.Add("error", "Debe ingresar un nombre de proveedor para poder realizar la compra");
                     Response.Redirect("Error.aspx", false);
+                    return;
                 }
 
             }

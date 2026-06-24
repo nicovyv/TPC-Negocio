@@ -11,10 +11,10 @@
             <div class="card-body">
                 <div class="row align-items-end">
                     <div class="col-md-6">
-                        <label for="txtBuscadorProveedor" class="form-label">CUIT/CUIL del Proveedor</label>
+                        <label for="txtBuscadorProveedor" class="form-label">Nombre del Proveedor</label>
                         <div class="input-group">
                             <asp:TextBox ID="txtBuscadorProveedor" runat="server"
-                                placeholder="Ingrese CUIT o CUIL del proveedor"
+                                placeholder="Ingrese nombre del proveedor"
                                 CssClass="form-control" AutoPostBack="true" />
                             <asp:Button Text="Asignar Proveedor" ID="btnAsignarProveedor"
                                 runat="server" CssClass="btn btn-primary" OnClick="btnAsignarProveedor_Click" />
