@@ -37,7 +37,7 @@ namespace negocio
 
                     producto.StockActual = (int)datos.Lector["StockActual"];
                     producto.StockMinimo = (int)datos.Lector["StockMinimo"];
-                    producto.Ganancia = float.Parse(datos.Lector["Ganancia"].ToString());
+                    producto.Ganancia = decimal.Parse(datos.Lector["Ganancia"].ToString());
                     producto.PrecioVenta = (decimal)datos.Lector["PrecioVenta"];
                     producto.PrecioCompra = (decimal)datos.Lector["PrecioCompra"];
 
@@ -188,6 +188,8 @@ namespace negocio
                 datos.setParametro("@desc", nuevo.Descripcion);
                 datos.setParametro("@idMarca", nuevo.Marca.Id);
                 datos.setParametro("@stockMinimo", nuevo.StockMinimo);
+                nuevo.Ganancia = nuevo.CalcularGanancia();
+
                 datos.setParametro("@ganancia", nuevo.Ganancia);
                 datos.setParametro("@idCat", nuevo.Categoria.Id);
 
@@ -236,14 +238,16 @@ namespace negocio
 
             try
             {
-                datos.setConsulta("UPDATE Productos SET Nombre = @nombre, Descripcion = @desc, IDCategoria = @idCat, IDMarca = @idMarca, StockMinimo = @stockMinimo, Ganancia = @ganancia WHERE ID = @id");
+                datos.setConsulta("UPDATE Productos SET Nombre = @nombre, Descripcion = @desc, IDCategoria = @idCat, IDMarca = @idMarca, StockMinimo = @stockMinimo, Ganancia = @ganancia, Precio=@precioVenta WHERE ID = @id");
                 datos.setParametro("@id", producto.Id);
                 datos.setParametro("@nombre", producto.Nombre);
                 datos.setParametro("@desc", producto.Descripcion);
                 datos.setParametro("@idCat", producto.Categoria.Id);
                 datos.setParametro("@idMarca", producto.Marca.Id);
                 datos.setParametro("@stockMinimo", producto.StockMinimo);
+                producto.Ganancia = producto.CalcularGanancia();
                 datos.setParametro("@ganancia", producto.Ganancia);
+                datos.setParametro("@precioVenta", producto.PrecioVenta);
 
                 datos.ejecutarAccion();
 
@@ -311,7 +315,7 @@ namespace negocio
 
                     producto.StockActual = (int)datos.Lector["StockActual"];
                     producto.StockMinimo = (int)datos.Lector["StockMinimo"];
-                    producto.Ganancia = float.Parse(datos.Lector["Ganancia"].ToString());
+                    producto.Ganancia = decimal.Parse(datos.Lector["Ganancia"].ToString());
                     producto.PrecioVenta = (decimal)datos.Lector["Precio"];
                     producto.PrecioCompra = (decimal)datos.Lector["PrecioCompra"];
 
@@ -424,7 +428,7 @@ namespace negocio
 
                     producto.StockActual = (int)datos.Lector["StockActual"];
                     producto.StockMinimo = (int)datos.Lector["StockMinimo"];
-                    producto.Ganancia = float.Parse(datos.Lector["Ganancia"].ToString());
+                    producto.Ganancia = decimal.Parse(datos.Lector["Ganancia"].ToString());
                     producto.PrecioVenta = (decimal)datos.Lector["Precio"];
                     producto.PrecioCompra = (decimal)datos.Lector["PrecioCompra"];
 
@@ -500,7 +504,7 @@ namespace negocio
                     prod.PrecioVenta = (decimal)datos.Lector["PRECIO"];
                     prod.StockActual = (int)datos.Lector["STOCKACTUAL"];
                     prod.StockMinimo = (int)datos.Lector["STOCKMINIMO"];
-                    prod.Ganancia = float.Parse(datos.Lector["GANANCIA"].ToString());
+                    prod.Ganancia = decimal.Parse(datos.Lector["GANANCIA"].ToString());
                     prod.PrecioCompra = (decimal)datos.Lector["PRECIOCOMPRA"];
 
                     // Agregamos los proveedores asociados a ese producto
@@ -549,7 +553,7 @@ namespace negocio
                     producto.Descripcion = (string)datos.Lector["Descripcion"];
                     producto.StockActual = (int)datos.Lector["StockActual"];
                     producto.StockMinimo = (int)datos.Lector["StockMinimo"];
-                    producto.Ganancia = float.Parse(datos.Lector["Ganancia"].ToString());
+                    producto.Ganancia = decimal.Parse(datos.Lector["Ganancia"].ToString());
                     producto.PrecioCompra = (decimal)datos.Lector["PrecioCompra"];
                     producto.PrecioVenta = (decimal)datos.Lector["PrecioVenta"];
                     producto.Activo = (bool)datos.Lector["Activo"];

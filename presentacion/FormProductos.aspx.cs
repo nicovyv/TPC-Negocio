@@ -245,15 +245,15 @@ namespace presentacion
                 nuevo.Categoria.Id = int.Parse(ddlCatProd.SelectedValue);
 
 
-                if (!float.TryParse(txtGananciaProd.Text, out float ganancia))
-                {
-                    lblErrorGananciaProd.Text = "Debe ingresar un número válido";
-                    lblErrorGananciaProd.Visible = true;
-                    return;
-                }
+                //if (!decimal.TryParse(txtGananciaProd.Text, out decimal ganancia))
+                //{
+                //    lblErrorGananciaProd.Text = "Debe ingresar un número válido";
+                //    lblErrorGananciaProd.Visible = true;
+                //    return;
+                //}
 
-                //nuevo.Ganancia = float.Parse(txtGananciaProd.Text);
-                nuevo.Ganancia = ganancia;
+                
+                nuevo.Ganancia = decimal.Parse(txtGananciaProd.Text);
 
 
                 if (!int.TryParse(txtStockMinimoProd.Text, out int stockMinimo))
@@ -267,9 +267,7 @@ namespace presentacion
 
 
 
-                nuevo.PrecioCompra = 0;
-                nuevo.PrecioVenta = 0;
-                nuevo.StockActual = 0;
+                
 
 
                 nuevo.Proveedores = new List<Proveedor>();

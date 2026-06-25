@@ -215,27 +215,34 @@ BEGIN
 END
 go
 
-CREATE PROCEDURE SP_GUARDAR_DETALLE_COMPRA
-	@IDCompra INT,
-	@IDProducto INT,
-	@Cantidad INT,
-	@PrecioUnidad MONEY
+CREATE OR ALTER PROCEDURE SP_GUARDAR_DETALLE_COMPRA
+    @IDCompra INT,
+    @IDProducto INT,
+    @Cantidad INT,
+    @PrecioUnidad MONEY
 AS
 BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION
+    BEGIN TRY
+        BEGIN TRANSACTION;
 
-			INSERT INTO DetalleCompra(IDCompra, IDProducto, Cantidad, PrecioUnidad)
-			VALUES (@IDCompra, @IDProducto, @Cantidad, @PrecioUnidad)
+        INSERT INTO DetalleCompra(IDCompra, IDProducto, Cantidad, PrecioUnidad)
+        VALUES (@IDCompra, @IDProducto, @Cantidad, @PrecioUnidad);
 
-			UPDATE Productos SET StockActual = StockActual + @Cantidad, PrecioCompra = @PrecioUnidad, Precio = @PrecioUnidad * ((100+Ganancia)/100) WHERE ID = @IDProducto
+        UPDATE Productos
+        SET StockActual = StockActual + @Cantidad,
+            PrecioCompra = @PrecioUnidad,
+            Ganancia = CASE
+                WHEN @PrecioUnidad > 0 AND Precio > @PrecioUnidad
+                    THEN ((Precio - @PrecioUnidad) / @PrecioUnidad) * 100
+                ELSE 0
+            END
+        WHERE ID = @IDProducto;
 
-
-		COMMIT TRANSACTION
-	END TRY
-
-	BEGIN CATCH
-				ROLLBACK TRANSACTION
-				RAISERROR ('Ocurrio un error', 16, 1)
-	END CATCH
-END
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;
+GO

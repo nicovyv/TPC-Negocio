@@ -14,8 +14,16 @@ namespace dominio
         public int StockActual { get; set; }
         public int StockMinimo { get; set; }
         public List<Proveedor> Proveedores { get; set; }
-        public float Ganancia { get; set; }
+        public decimal Ganancia { get; set; }
         public decimal PrecioCompra { get; set; }
         public bool Activo { get; set; }
+
+        public decimal CalcularGanancia()
+        {
+            if (PrecioCompra <= 0)
+                return 0;
+
+            return ((PrecioVenta - PrecioCompra) / PrecioCompra) * 100;
+        }
     }
 }
