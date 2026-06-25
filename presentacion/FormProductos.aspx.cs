@@ -68,7 +68,10 @@ namespace presentacion
                 ddlMarcaProd.SelectedValue = producto.Marca.Id.ToString();
 
                 txtPrecioVentaProd.Text = producto.PrecioVenta.ToString();
-                txtPrecioVentaProd.Enabled = false;
+                txtPrecioVentaProd.Enabled = true;
+
+                txtGananciaProd.Text = producto.Ganancia.ToString();
+                txtGananciaProd.Enabled = false;
 
                 txtPrecioCompraProd.Text = producto.PrecioCompra.ToString();
                 txtPrecioCompraProd.Enabled = false;
@@ -121,7 +124,7 @@ namespace presentacion
                     ddlMarcaProd.Enabled = false;
 
                     txtPrecioVentaProd.Text = producto.PrecioVenta.ToString();
-                    txtPrecioVentaProd.Enabled = false;
+                    txtPrecioVentaProd.Enabled = true;
 
                     txtPrecioCompraProd.Text = producto.PrecioCompra.ToString();
                     txtPrecioCompraProd.Enabled = false;
