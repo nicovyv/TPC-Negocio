@@ -202,7 +202,7 @@ namespace negocio
                     datos.setParametro("@IDVenta", idVenta);
                     datos.setParametro("@IDProducto", item.Producto.Id);
                     datos.setParametro("@Cantidad", item.Cantidad);
-                    datos.setParametro("@PrecioUnidad", item.Producto.PrecioVenta);
+                    datos.setParametro("@PrecioUnidad", item.PrecioUnidad);
 
                     datos.ejecutarAccion();
                 }

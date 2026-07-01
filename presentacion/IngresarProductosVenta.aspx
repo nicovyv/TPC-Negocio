@@ -52,7 +52,7 @@
                     <div class="col-md-4">
                         <label class="form-label">Precio Unitario</label>
                         <asp:Label runat="server" ID="lblPrecioProd" CssClass="form-text" />
-                        <asp:TextBox runat="server" ID="txtProdPrecio" ReadOnly="true" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="txtProdPrecio" ReadOnly="false" CssClass="form-control" />
                     </div>
                 </div>
 

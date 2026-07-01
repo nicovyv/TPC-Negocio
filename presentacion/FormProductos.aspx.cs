@@ -206,17 +206,16 @@ namespace presentacion
             {
                 return;
             }
+
             ProductoNegocio negocio = new ProductoNegocio();
             Producto nuevo = new Producto();
 
             try
             {
-
                 if (!ValidarCamposObligatorios())
                 {
                     return;
                 }
-
 
                 int idProducto = 0;
 
@@ -224,6 +223,7 @@ namespace presentacion
                     int.TryParse(Request.QueryString["id"], out idProducto);
 
                 nuevo.Id = idProducto;
+                bool esModificacion = nuevo.Id != 0;
 
                 if (!negocio.ValidaCodigoProducto(txtCodProd.Text, idProducto))
                 {
@@ -232,7 +232,6 @@ namespace presentacion
                     lblErrorCodProd.Visible = true;
                     return;
                 }
-
 
                 nuevo.Codigo = txtCodProd.Text;
                 nuevo.Nombre = txtNombreProd.Text;
@@ -244,31 +243,15 @@ namespace presentacion
                 nuevo.Categoria = new Categoria();
                 nuevo.Categoria.Id = int.Parse(ddlCatProd.SelectedValue);
 
-
-                //if (!decimal.TryParse(txtGananciaProd.Text, out decimal ganancia))
-                //{
-                //    lblErrorGananciaProd.Text = "Debe ingresar un número válido";
-                //    lblErrorGananciaProd.Visible = true;
-                //    return;
-                //}
-
-                
-                nuevo.Ganancia = decimal.Parse(txtGananciaProd.Text);
-
-
                 if (!int.TryParse(txtStockMinimoProd.Text, out int stockMinimo))
                 {
                     lblErrorStockMinimoProd.Text = "Debe ingresar un número válido";
+                    lblErrorStockMinimoProd.CssClass = "text-danger";
                     lblErrorStockMinimoProd.Visible = true;
                     return;
                 }
-                //nuevo.StockMinimo = int.Parse(txtStockMinimoProd.Text);
+
                 nuevo.StockMinimo = stockMinimo;
-
-
-
-                
-
 
                 nuevo.Proveedores = new List<Proveedor>();
                 foreach (ListItem item in cblProveedoresProd.Items)
@@ -281,22 +264,37 @@ namespace presentacion
                     }
                 }
 
-                if (nuevo.Id == 0)
+                if (esModificacion)
                 {
-                    negocio.Agregar(nuevo);
+                    if (!decimal.TryParse(txtPrecioVentaProd.Text, out decimal precioVenta))
+                    {
+                        lblErrorPrecioVentaProd.Text = "Debe ingresar un precio de venta válido";
+                        lblErrorPrecioVentaProd.CssClass = "text-danger";
+                        lblErrorPrecioVentaProd.Visible = true;
+                        return;
+                    }
+
+                    nuevo.PrecioVenta = precioVenta;
+
+                    if (!decimal.TryParse(txtPrecioCompraProd.Text, out decimal precioCompra))
+                        precioCompra = 0;
+
+                    nuevo.PrecioCompra = precioCompra;
+
+                    negocio.Modificar(nuevo);
                 }
                 else
                 {
-                    negocio.Modificar(nuevo);
+                    nuevo.PrecioVenta = 0;
+                    nuevo.PrecioCompra = 0;
+
+                    negocio.Agregar(nuevo);
                 }
-                // negocio.Agregar(nuevo);
 
                 Response.Redirect("Productos.aspx");
-
             }
             catch (Exception)
             {
-
                 throw;
             }
 

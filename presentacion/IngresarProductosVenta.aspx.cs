@@ -130,7 +130,9 @@ namespace presentacion
                 //VALIDACIÓN PARA QUE SE INGRESE UNA CANTIDAD DEL PRODUCTO
                 //PARSEAMOS LA CANTIDAD DEL PRODUCTO DE STRING A ENTERO
                 if (!string.IsNullOrEmpty(txtCantVenta.Text))
-                { cantidad = int.Parse(txtCantVenta.Text); }
+                { 
+                    cantidad = int.Parse(txtCantVenta.Text); 
+                }
                 else
                 {
                     lblHelpCantVenta.Text = "Este campo es obligatorio";
@@ -221,7 +223,11 @@ namespace presentacion
 
                     item.Producto = producto;
                     item.Cantidad = cantidad;
-                    item.PrecioUnidad = producto.PrecioVenta;
+
+
+                    decimal precioUnidad = decimal.Parse(txtProdPrecio.Text);
+                    item.PrecioUnidad = precioUnidad;
+                    
 
 
                     //AGREGAMOS ITEM AL LISTADO DE PRODUCTOS DE LA VENTA

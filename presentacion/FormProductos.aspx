@@ -59,6 +59,7 @@
                     <div class="col-md-6 mb-3" runat="server" id="divPrecioVenta">
                         <label for="txtPrecioVentaProd" class="form-label">Precio Venta</label>
                         <asp:TextBox runat="server" ID="txtPrecioVentaProd" CssClass="form-control" Enabled="false" />
+                        <asp:Label runat="server" ID="lblErrorPrecioVentaProd" Visible="false"></asp:Label>
                     </div>
                 </div>
 
