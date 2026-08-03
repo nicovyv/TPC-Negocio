@@ -73,7 +73,7 @@ namespace presentacion
                 repDetalleVentaRegistrada.DataSource = venta.ItemVenta;
                 repDetalleVentaRegistrada.DataBind();
 
-                lblTotalVentaRegistrada.Text = venta.Total.ToString();
+                lblTotalVentaRegistrada.Text = venta.Total.ToString("$ #,##0.00");
 
 
             }

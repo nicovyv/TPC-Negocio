@@ -60,7 +60,7 @@
                 <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
                 <asp:BoundField HeaderText="Categoría" DataField="Categoria.Descripcion" />
                 <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" />
-                <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
+                <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" DataFormatString="{0:$ #,##0.00}" />
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
                         <asp:Button
@@ -94,7 +94,7 @@
                 <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
                 <asp:BoundField HeaderText="Categoría" DataField="Categoria.Descripcion" />
                 <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" />
-                <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" />
+                <asp:BoundField HeaderText="Precio de Venta" DataField="PrecioVenta" DataFormatString="{0:$ #,##0.00}" />
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
                         <asp:Button

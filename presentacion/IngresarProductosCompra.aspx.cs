@@ -243,7 +243,7 @@ namespace presentacion
                             dgvDetalleCompra.DataBind();
                             // ACTUALIZAMOS EL VALOR TOTAL
                             decimal totalCompra = compra.Detalle.Sum(x => x.Cantidad * x.PrecioUnidad);
-                            lbltotalCompraValor.Text = totalCompra.ToString();
+                            lbltotalCompraValor.Text = totalCompra.ToString("$ #,##0.00");
                             limpiarCampos();
                             corroborarPrecioExistente(idProd);
                             
@@ -395,7 +395,7 @@ namespace presentacion
 
                 //CALCULAR TOTAL DE LA Compra
                 decimal totalCompra = compra.Detalle.Sum(x => x.Cantidad * x.PrecioUnidad);
-                lbltotalCompraValor.Text = totalCompra.ToString();
+                lbltotalCompraValor.Text = totalCompra.ToString("$ #,##0.00");
                 lblHelpCantCompra.Text = "";
                 btnFinalizarCompra.Enabled = true;
             }

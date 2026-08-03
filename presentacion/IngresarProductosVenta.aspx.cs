@@ -247,7 +247,7 @@ namespace presentacion
 
                 //CALCULAR TOTAL DE LA VENTA
                 decimal totalVenta = venta.ItemVenta.Sum(x => x.Cantidad * x.PrecioUnidad);
-                lbltotalVentaValor.Text = totalVenta.ToString();
+                lbltotalVentaValor.Text = totalVenta.ToString("$ #,##0.00");
 
 
                 btnFinalizarVenta.Enabled = dgvDetalleVenta.Rows.Count > 0;
@@ -389,7 +389,7 @@ namespace presentacion
 
                             // ACTUALIZAMOS EL VALOR TOTAL
                             decimal totalVenta = venta.ItemVenta.Sum(x => x.Cantidad * x.PrecioUnidad);
-                            lbltotalVentaValor.Text = totalVenta.ToString();
+                            lbltotalVentaValor.Text = totalVenta.ToString("$ #,##0.00");
 
                         }
 

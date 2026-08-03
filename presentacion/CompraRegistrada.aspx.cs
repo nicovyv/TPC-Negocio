@@ -60,7 +60,7 @@ namespace presentacion
                 repDetalleCompraRegistrada.DataSource = compra.Detalle;
                 repDetalleCompraRegistrada.DataBind();
 
-                lblTotalCompraRegistrada.Text = compra.Total.ToString("F2");
+                lblTotalCompraRegistrada.Text = compra.Total.ToString("$ #,##0.00");
             }
             catch (Exception)
             {

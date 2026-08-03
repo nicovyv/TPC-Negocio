@@ -38,7 +38,7 @@
                         <asp:BoundField HeaderText="Fecha" DataField="Fecha"
                             DataFormatString="{0:dd/MM/yyyy}" HtmlEncode="false" />
 
-                        <asp:BoundField HeaderText="Total" DataField="Total" />
+                        <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString="{0:$ #,##0.00}" />
 
                         <asp:TemplateField HeaderText="Cuil/Cuit Proveedor">
                             <ItemTemplate>

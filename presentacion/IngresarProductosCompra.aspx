@@ -80,8 +80,8 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
-                        <asp:BoundField HeaderText="Precio Unitario" DataField="PrecioUnidad" />
-                        <asp:BoundField HeaderText="SubTotal" DataField="Subtotal" />
+                        <asp:BoundField HeaderText="Precio Unitario" DataField="PrecioUnidad" DataFormatString="{0:$ #,##0.00}" />
+                        <asp:BoundField HeaderText="SubTotal" DataField="Subtotal" DataFormatString="{0:$ #,##0.00}" />
                         <asp:TemplateField HeaderText="Acción">
                             <ItemTemplate>
                                 <asp:Button ID="btnEliminarItem" Text="Eliminar" CssClass="btn btn-secondary btn-sm me-2"
@@ -93,7 +93,7 @@
 
                 <div class="mt-3">
                     <strong>Total: </strong>
-                    <asp:Label ID="lbltotalCompra" runat="server" Text="$"></asp:Label>
+                    <asp:Label ID="lbltotalCompra" runat="server"></asp:Label>
                     <asp:Label ID="lbltotalCompraValor" runat="server"></asp:Label>
                 </div>
             </div>

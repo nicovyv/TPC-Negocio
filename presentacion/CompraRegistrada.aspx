@@ -52,9 +52,9 @@
                                     <td><%# Eval("Producto.Nombre") %></td>
                                     <td><%# Eval("Producto.Categoria.Descripcion") %></td>
                                     <td><%# Eval("Producto.Marca.Descripcion") %></td>
-                                    <td><%# Eval("PrecioUnidad") %></td>
+                                    <td><%# Eval("PrecioUnidad", "{0:$ #,##0.00}") %></td>
                                     <td><%# Eval("Cantidad") %></td>
-                                    <td><%# Eval("Subtotal") %></td>
+                                    <td><%# Eval("Subtotal", "{0:$ #,##0.00}") %></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
@@ -63,7 +63,7 @@
 
                 <!-- Total -->
                 <div class="mt-3 text-end">
-                    <strong>Total: $</strong>
+                    <strong>Total: </strong>
                     <asp:Label ID="lblTotalCompraRegistrada" runat="server"></asp:Label>
                 </div>
             </div>
