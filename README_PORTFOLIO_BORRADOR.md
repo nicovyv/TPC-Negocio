@@ -4,8 +4,6 @@ Aplicación web desarrollada en C# con ASP.NET Web Forms y SQL Server para admin
 
 El sistema fue construido como proyecto académico y luego extendido con reglas de negocio reales, tomando como caso de uso un comercio de suplementos. Aun así, la estructura puede adaptarse a otros rubros que trabajen con productos, proveedores, compras, ventas e inventario.
 
-Repositorio: https://github.com/nicovyv/TPC-Negocio
-
 ## Funcionalidades
 
 - Gestión de productos, marcas y categorías.
@@ -63,7 +61,7 @@ La carpeta `Database` incluye scripts para crear la base de datos y cargar datos
 
 La base de datos incluye tablas para productos, clientes, proveedores, usuarios, compras, ventas, detalles de compra, items de venta, marcas y categorías.
 
-También se utilizan stored procedures para operaciones relacionadas con compras, ventas y actualización de stock.
+También se utilizan stored procedures para algunas operaciones críticas relacionadas con compras, ventas y actualización de stock.
 
 ## Capturas del Sistema
 
@@ -148,9 +146,9 @@ negocio/AccesoDatos.cs
 
 ## Estado del Proyecto
 
-Proyecto funcional en etapa de mejora continua.
+Proyecto en desarrollo.
 
-Actualmente el sistema cuenta con los flujos principales de gestión comercial y continúa en mejora, especialmente en aspectos de validaciones, consistencia de datos, reportes y pruebas.
+Actualmente el sistema cuenta con los flujos principales de gestión comercial y continúa en mejora, especialmente en aspectos de presentación, validaciones, consistencia de datos, reportes y pruebas.
 
 ## Mejoras Futuras
 
@@ -161,6 +159,7 @@ Actualmente el sistema cuenta con los flujos principales de gestión comercial y
 - Agregar tests unitarios para reglas de negocio.
 - Mejorar permisos para controlar quién puede modificar precios.
 - Configurar la cadena de conexión desde archivo de configuración.
+- Mejorar la presentación visual de las capturas del README.
 
 ## Aprendizajes del Proyecto
 
