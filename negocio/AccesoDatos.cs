@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,10 @@ namespace negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=COMERCIO_DB; integrated security=true");
+            string cadena = ConfigurationManager
+                           .ConnectionStrings["ConexionDB"]
+                           .ConnectionString;
+            conexion = new SqlConnection(cadena);
             comando = new SqlCommand();
         }
 
